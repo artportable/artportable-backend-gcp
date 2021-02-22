@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using Npgsql;
 
@@ -78,6 +79,16 @@ namespace Artportable.API
 
             // register AutoMapper-related services
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // Swagger
+            services.AddSwaggerGen(c => {
+              c.SwaggerDoc("v1", new OpenApiInfo
+              {
+                  Version = "v1",
+                  Title = "ArtPortable API",
+                  Description = "A backend for ArtPortable",
+              });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -112,6 +123,12 @@ namespace Artportable.API
                 // production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ArtPortable API");
+            });
 
             app.UseHttpsRedirection();
 
