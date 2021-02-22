@@ -8,6 +8,9 @@ namespace Artportable.API.Controllers
     // [Authorize]
     public class UserController : ControllerBase
     {
+        /// <summary>
+        /// Gets the user Kalle Banan
+        /// </summary>
         [HttpGet()]
         public IActionResult GetUser()
         {

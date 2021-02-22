@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
+using System.Reflection;
 using Npgsql;
 
 namespace Artportable.API
@@ -88,6 +90,10 @@ namespace Artportable.API
                   Title = "ArtPortable API",
                   Description = "A backend for ArtPortable",
               });
+
+              var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+              var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+              c.IncludeXmlComments(xmlPath);
             });
         }
 
