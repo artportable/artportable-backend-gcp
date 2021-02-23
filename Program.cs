@@ -1,8 +1,8 @@
 ﻿using Artportable.API.Entities;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -12,34 +12,32 @@ namespace Artportable.API
     {
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
-            Console.WriteLine("Hello World!");
-            Console.WriteLine($" is network available {System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()}");
-            // Console.WriteLine($" is network available {System.Net.Dns.GetHostEntry()}");
-            // migrate & seed the database.  Best practice = in Main, using service scope
-            using (var scope = host.Services.CreateScope())
-            {
-                try
-                {
-                    var context = scope.ServiceProvider.GetService<GalleryContext>();                   
-                    // migrate & seed
-                    // context.Database.
-                    context.Database.Migrate();
-                }
-                catch (Exception ex)
-                {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while migrating or seeding the database.");
-                }
-            }
+          var host = CreateHostBuilder(args).Build();
 
-            // run the web app
-            host.Run();
+          // Seed DB
+          using (var scope = host.Services.CreateScope())
+          {
+              var services = scope.ServiceProvider;
+
+              try {
+                var context = services.GetService<GalleryContext>();
+                context.Database.Migrate();
+              }
+              catch (Exception ex)
+              {
+                  var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                  logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+              }
+          }
+
+          host.Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+              .ConfigureWebHostDefaults(webBuilder =>
+              {
+                  webBuilder.UseStartup<Startup>();
+              });
     }
 }
