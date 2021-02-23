@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
@@ -22,14 +21,13 @@ namespace Artportable.API
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration _configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
@@ -37,7 +35,9 @@ namespace Artportable.API
 
             services.AddHttpContextAccessor();
 
+            // Registered services
             services.AddScoped<IAuthorizationHandler, MustOwnImageHandler>();
+            services.AddScoped<IGalleryRepository, GalleryRepository>();
 
             services.AddAuthorization(authorizationOptions =>
             {
@@ -60,9 +60,9 @@ namespace Artportable.API
                     options.ApiSecret = "apisecret";
                 });
 
-
+            // Database
             var builder =
-                new NpgsqlConnectionStringBuilder(Configuration.GetConnectionString("ArtportableDBConnectionString"))
+                new NpgsqlConnectionStringBuilder(_configuration.GetConnectionString("ArtportableDBConnectionString"))
                 {
                     Password = "artportable", Username = "artportable"
                 };
@@ -75,9 +75,6 @@ namespace Artportable.API
             {
                 options.UseNpgsql(connection);
             });
-
-            // register the repository
-            services.AddScoped<IGalleryRepository, GalleryRepository>();
 
             // register AutoMapper-related services
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -97,10 +94,9 @@ namespace Artportable.API
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            // Forwarded HTTP headers
             var forwardedHeaderOptions = new ForwardedHeadersOptions
             {
                 ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
@@ -110,6 +106,7 @@ namespace Artportable.API
 
             app.UseForwardedHeaders(forwardedHeaderOptions);
 
+            // Exception handling
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -146,7 +143,10 @@ namespace Artportable.API
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
