@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Artportable.API.Entities.Model;
+using Artportable.API.Services;
 
 namespace Artportable.API.Controllers
 {
@@ -8,15 +8,41 @@ namespace Artportable.API.Controllers
     // [Authorize]
     public class UserController : ControllerBase
     {
+        private readonly IGalleryRepository _galleryRepository;
+
+        public UserController(IGalleryRepository galleryRepository)
+        {
+            _galleryRepository = galleryRepository;
+        }
+
+        [HttpGet("imgs")]
+        public IActionResult GetImages()
+        {
+            var images = _galleryRepository.GetImages();
+            return Ok(images);
+        }
+
+        [HttpGet("")]
+        public IActionResult GetUsers()
+        {
+            var users = _galleryRepository.GetUsers();
+            return Ok(users);
+        }
+
         /// <summary>
         /// Gets the user Kalle Banan
         /// </summary>
-        [HttpGet()]
-        public IActionResult GetUser()
+        [HttpGet("kalle")]
+        public IActionResult GetKalle()
         {
-          var user = new User() { Name = "Kalle Banan" };
+          var user = new TestUser() { Name = "Kalle Banan" };
 
           return Ok(user);
         }
+    }
+
+    public class TestUser
+    {
+        public string Name { get; set; }
     }
 }

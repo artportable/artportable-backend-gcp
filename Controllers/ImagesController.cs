@@ -40,7 +40,7 @@ namespace Artportable.API.Controllers
             var ownerId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
             
             // get from repo
-            var imagesFromRepo = _galleryRepository.GetImages(ownerId);
+            var imagesFromRepo = _galleryRepository.GetImages();
 
             // map to model
             var imagesToReturn = _mapper.Map<IEnumerable<Entities.Model.Image>>(imagesFromRepo);

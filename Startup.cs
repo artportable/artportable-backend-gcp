@@ -15,7 +15,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
-using Npgsql;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Artportable.API
 {
@@ -61,20 +61,18 @@ namespace Artportable.API
                 });
 
             // Database
-            var builder =
-                new NpgsqlConnectionStringBuilder(_configuration.GetConnectionString("ArtportableDBConnectionString"))
-                {
-                    Password = "artportable", Username = "artportable"
-                };
+            services.AddDbContextPool<GalleryContext>(
+                dbContextOptions => dbContextOptions
+                    .UseMySql(
+                        _configuration.GetConnectionString("DefaultConnection"),
+                        new MySqlServerVersion(new Version(8, 0, 21)),
+                        mySqlOptions => mySqlOptions
+                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                    // Everything from this point on is optional but helps with debugging.
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+            );
 
-            var connection = builder.ConnectionString;
-            // register the DbContext on the container, getting the connection string from
-            // appSettings (note: use this during development; in a production environment,
-            // it's better to store the connection string in an environment variable)
-            services.AddEntityFrameworkNpgsql().AddDbContext<GalleryContext>(options =>
-            {
-                options.UseNpgsql(connection);
-            });
 
             // register AutoMapper-related services
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

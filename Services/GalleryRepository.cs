@@ -25,9 +25,9 @@ namespace Artportable.API.Services
             return _context.Images.FirstOrDefault(i => i.Id == id);
         }
   
-        public IEnumerable<Image> GetImages(string ownerId)
+        public IEnumerable<Image> GetImages()
         {
-            return _context.Images.Where(i => i.OwnerId == ownerId)
+            return _context.Images
                 .OrderBy(i => i.Title).ToList();
         }
 
@@ -59,6 +59,10 @@ namespace Artportable.API.Services
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public IEnumerable<User> GetUsers() {
+            return _context.Users;
         }
 
         public void Dispose()
