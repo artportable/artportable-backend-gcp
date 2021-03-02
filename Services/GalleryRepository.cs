@@ -7,12 +7,12 @@ namespace Artportable.API.Services
 {
     public class GalleryRepository : IGalleryRepository, IDisposable
     {
-        private GalleryContext _context;
+        private APContext _context;
 
-        public GalleryRepository(GalleryContext galleryContext)
+        public GalleryRepository(APContext apContext)
         {
-            _context = galleryContext ?? 
-                throw new ArgumentNullException(nameof(galleryContext));
+            _context = apContext ?? 
+                throw new ArgumentNullException(nameof(apContext));
         }
 
         public bool ImageExists(Guid id)

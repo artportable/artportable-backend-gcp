@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities
 {
-    public class GalleryContext : DbContext
+    public class APContext : DbContext
     {
-        public GalleryContext(DbContextOptions<GalleryContext> options)
+        public APContext(DbContextOptions<APContext> options)
            : base(options)
         {
         }

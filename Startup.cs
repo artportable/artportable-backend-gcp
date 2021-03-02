@@ -62,7 +62,7 @@ namespace Artportable.API
                 });
 
             // Database
-            services.AddDbContextPool<GalleryContext>(
+            services.AddDbContextPool<APContext>(
                 dbContextOptions => dbContextOptions
                     .UseMySql(
                         _configuration.GetConnectionString("DefaultConnection"),
