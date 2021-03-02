@@ -204,7 +204,7 @@ namespace Artportable.API.Entities
             Name = "Jimmy",
             Surname = "Lord",
             DateOfBirth = new DateTime(1999, 01, 01),
-            Location = "Stockholm, Sweden",
+            Location = "Cyber space",
             Title = "Artist",
             Headline = "Ambitious artist inspired by the flow of the nature"
           },
@@ -212,8 +212,8 @@ namespace Artportable.API.Entities
           {
             Id = 2,
             UserId = 2,
-            Name = "Jimmy",
-            Surname = "Lord",
+            Name = "Anders",
+            Surname = "Rose",
             DateOfBirth = new DateTime(1999, 01, 01),
             Location = "Stockholm, Sweden",
             Title = "Artist",
@@ -223,10 +223,10 @@ namespace Artportable.API.Entities
           {
             Id = 3,
             UserId = 3,
-            Name = "Jimmy",
-            Surname = "Lord",
+            Name = "Ludwig",
+            Surname = "Slotte",
             DateOfBirth = new DateTime(1999, 01, 01),
-            Location = "Stockholm, Sweden",
+            Location = "Vemdalen, Sweden",
             Title = "Artist",
             Headline = "Ambitious artist inspired by the flow of the nature"
           },
@@ -234,19 +234,19 @@ namespace Artportable.API.Entities
           {
             Id = 4,
             UserId = 4,
-            Name = "Jimmy",
-            Surname = "Lord",
+            Name = "Niclas",
+            Surname = "Kamlind",
             DateOfBirth = new DateTime(1999, 01, 01),
             Location = "Stockholm, Sweden",
-            Title = "Artist",
-            Headline = "Ambitious artist inspired by the flow of the nature"
+            Title = "Head of Gitslack",
+            Headline = "Ambitious artist inspired by Gitting and slacking"
           },
           new UserProfile
           {
             Id = 5,
             UserId = 5,
-            Name = "Jimmy",
-            Surname = "Lord",
+            Name = "Linus",
+            Surname = "Linus",
             DateOfBirth = new DateTime(1999, 01, 01),
             Location = "Stockholm, Sweden",
             Title = "Artist",
@@ -256,10 +256,10 @@ namespace Artportable.API.Entities
           {
             Id = 6,
             UserId = 6,
-            Name = "Jimmy",
-            Surname = "Lord",
+            Name = "Kalle",
+            Surname = "Banan",
             DateOfBirth = new DateTime(1999, 01, 01),
-            Location = "Stockholm, Sweden",
+            Location = "Kalleland",
             Title = "Artist",
             Headline = "Ambitious artist inspired by the flow of the nature"
           }
