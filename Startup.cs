@@ -38,6 +38,7 @@ namespace Artportable.API
             // Registered services
             services.AddScoped<IAuthorizationHandler, MustOwnImageHandler>();
             services.AddScoped<IGalleryRepository, GalleryRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddAuthorization(authorizationOptions =>
             {
