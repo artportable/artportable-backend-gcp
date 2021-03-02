@@ -47,7 +47,7 @@ namespace Artportable.API.Controllers
             return Ok(user);
           }
           catch (Exception e) {
-            Console.WriteLine("Something went wrong, {e]", e);
+            Console.WriteLine("Something went wrong, {0}", e);
             return StatusCode(StatusCodes.Status500InternalServerError);
           }
         }
@@ -64,8 +64,7 @@ namespace Artportable.API.Controllers
         ///        "name": "Bat",
         ///        "surname": "Man",
         ///        "email": "batman@artportable.com",
-        ///        "password": "asecret",
-        ///        "dateofbirth": "19790101",
+        ///        "dateofbirth": "1979-01-01",
         ///        "location": "Stockholm"
         ///     }
         ///
@@ -76,19 +75,39 @@ namespace Artportable.API.Controllers
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public IActionResult Create([FromBody] UserDTO user)
         {
+          if (!isValid(user))
+          {
+            return BadRequest();
+          }
+          if (_userService.UserExists(user))
+          {
+            return StatusCode(StatusCodes.Status409Conflict, "User already exists");
+          }
+
           try {
             var publicId = _userService.CreateUser(user);
 
             return CreatedAtAction(nameof(Get), new { id = publicId }, user);
           }
           catch (ArgumentException e) {
-            Console.WriteLine("Argument not valid, {e]", e);
-            return StatusCode(StatusCodes.Status400BadRequest);;
+            Console.WriteLine("Argument not valid, {0}", e);
+            return StatusCode(StatusCodes.Status400BadRequest);
           }
           catch (Exception e) {
-            Console.WriteLine("Something went wrong, {e]", e);
-            return StatusCode(StatusCodes.Status500InternalServerError);;
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
           }
+        }
+
+        private bool isValid(UserDTO user)
+        {
+          return user != null &&
+            !String.IsNullOrWhiteSpace(user.Username) &&
+            !String.IsNullOrWhiteSpace(user.Name) &&
+            !String.IsNullOrWhiteSpace(user.Surname) &&
+            !String.IsNullOrWhiteSpace(user.Email) &&
+            user.DateOfBirth != null &&
+            !String.IsNullOrWhiteSpace(user.Location);
         }
     }
 }

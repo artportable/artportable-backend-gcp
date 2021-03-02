@@ -12,7 +12,7 @@ namespace Artportable.API.Entities.Models
 
 
     public int MembershipId { get; set; }
-    public int FileId { get; set; }
+    public int? FileId { get; set; }
 
 
     [Required]
