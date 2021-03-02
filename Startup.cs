@@ -68,7 +68,9 @@ namespace Artportable.API
                         _configuration.GetConnectionString("DefaultConnection"),
                         new MySqlServerVersion(new Version(8, 0, 21)),
                         mySqlOptions => mySqlOptions
-                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                            .CharSetBehavior(CharSetBehavior.NeverAppend)
+                    )
+                    .UseSnakeCaseNamingConvention()
                     // Everything from this point on is optional but helps with debugging.
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors()

@@ -1,0 +1,39 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+
+namespace Artportable.API.Entities.Models
+{
+  public class User
+  {
+    [Key]
+    public int Id { get; set; }
+    public Guid PublicId { get; set; }
+
+
+    public int MembershipId { get; set; }
+    public int FileId { get; set; }
+
+
+    [Required]
+    [MaxLength(50)]
+    public string Username { get; set; }
+
+    [Required]
+    [MaxLength(100)]
+    public string Email { get; set; }
+
+    [Required]
+    public DateTime Created { get; set; }
+
+    [Required]
+    [MaxLength(2)]
+    [Comment("According to the ISO 639-1 standard")]
+    public string Language { get; set; }
+
+
+    public UserProfile UserProfile {get; set; }
+    public Membership Membership { get; set; }
+    public File File { get; set; }
+  }
+}

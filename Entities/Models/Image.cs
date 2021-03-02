@@ -1,23 +1,23 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Artportable.API.Entities
+namespace Artportable.API.Entities.Models
 {
-    public class User
+    public class Image
     {
         [Key]
         public Guid Id { get; set; }
 
         [Required]
         [MaxLength(150)]
-        public string Username { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(200)]
-        public string Email { get; set; }
+        public string FileName { get; set; }
 
         [Required]
-        [MaxLength(150)]
-        public string Profilepicture { get; set; }
+        [MaxLength(50)]
+        public string OwnerId { get; set; }
     }
 }

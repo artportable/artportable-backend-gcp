@@ -1,4 +1,5 @@
 ﻿using Artportable.API.Entities;
+using Artportable.API.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace Artportable.API.Services
         }
 
         public IEnumerable<User> GetUsers() {
-            return _context.Users;
+            return null;//_context.Users;
         }
 
         public void Dispose()

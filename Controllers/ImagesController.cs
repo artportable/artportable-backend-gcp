@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Artportable.API.Services;
-using Artportable.API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +13,7 @@ namespace Artportable.API.Controllers
 {
     [Route("api/images")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class ImagesController : ControllerBase
     {
         private readonly IGalleryRepository _galleryRepository;
@@ -37,7 +36,7 @@ namespace Artportable.API.Controllers
         [HttpGet()]
         public IActionResult GetImages()
         {
-            var ownerId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            // var ownerId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
             
             // get from repo
             var imagesFromRepo = _galleryRepository.GetImages();
@@ -70,7 +69,7 @@ namespace Artportable.API.Controllers
         public IActionResult CreateImage([FromBody] ImageForCreation imageForCreation)
         {
             // Automapper maps only the Title in our configuration
-            var imageEntity = _mapper.Map<Entities.Image>(imageForCreation);
+            var imageEntity = _mapper.Map<Entities.Models.Image>(imageForCreation);
 
             // Create an image from the passed-in bytes (Base64), and 
             // set the filename on the image

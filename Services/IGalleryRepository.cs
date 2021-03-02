@@ -1,4 +1,4 @@
-﻿using Artportable.API.Entities;
+﻿using Artportable.API.Entities.Models;
 using System;
 using System.Collections.Generic;
 
