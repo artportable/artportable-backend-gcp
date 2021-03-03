@@ -20,6 +20,37 @@ namespace Artportable.API.Controllers
         }
 
         /// <summary>
+        /// Checks whether the given input (username OR email) is free or already in use
+        /// Example: GET /api/user?email=kalle@artportable.com
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <returns>True if it's free, false otherwise</returns>
+        [HttpGet("")]
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        public IActionResult Get(string username = null, string email = null)
+        {
+          try {
+            if (username != null)
+            {
+              return Ok(!_userService.UsernameExists(username));
+            }
+            else if (email != null)
+            {
+              return Ok(!_userService.EmailExists(email));
+            }
+            else
+            {
+              return BadRequest();
+            }
+          }
+          catch (Exception e) {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+          }
+        }
+
+        /// <summary>
         /// Gets a specific user by ID
         /// </summary>
         /// <param name="id"></param>

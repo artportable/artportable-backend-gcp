@@ -48,6 +48,16 @@ namespace Artportable.API.Services
       return _context.Users.Any(u => u.Username == user.Username || u.Email == user.Email);
     }
 
+    public bool UsernameExists(string username)
+    {
+      return _context.Users.Any(u => u.Username == username);
+    }
+
+    public bool EmailExists(string email)
+    {
+      return _context.Users.Any(u => u.Email == email);
+    }
+
     public Guid CreateUser(UserDTO user)
     {
       var publicId = Guid.NewGuid();
