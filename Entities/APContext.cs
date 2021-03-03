@@ -14,7 +14,7 @@ namespace Artportable.API.Entities
     public DbSet<Image> Images { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<Membership> Memberships { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
     public DbSet<File> Files { get; set; }
     public DbSet<Artwork> Artworks { get; set; }
     public DbSet<Tag> Tags { get; set; }
@@ -132,7 +132,7 @@ namespace Artportable.API.Entities
           {
             Id = 1,
             PublicId = new Guid("b2ca9be2-f852-4d65-9498-c43366996352"),
-            MembershipId = 1,
+            SubscriptionId = 1,
             FileId = 94,
             Username = "lordtep",
             Email = "lord@tep.com",
@@ -143,7 +143,7 @@ namespace Artportable.API.Entities
           {
             Id = 2,
             PublicId = new Guid("39d044e3-6936-4c18-85d0-9d0b1ed5164e"),
-            MembershipId = 1,
+            SubscriptionId = 1,
             FileId = 95,
             Username = "andersand",
             Email = "anders@anders.and",
@@ -154,7 +154,7 @@ namespace Artportable.API.Entities
           {
             Id = 3,
             PublicId = new Guid("6b4282b6-3014-40cd-9de3-a3f29f10bb31"),
-            MembershipId = 1,
+            SubscriptionId = 1,
             FileId = 96,
             Username = "ludde",
             Email = "lud@wig.se",
@@ -165,7 +165,7 @@ namespace Artportable.API.Entities
           {
             Id = 4,
             PublicId = new Guid("857ce515-b7dd-4eae-991b-20468cf33ec3"),
-            MembershipId = 2,
+            SubscriptionId = 2,
             FileId = 97,
             Username = "sillynilly",
             Email = "niclas@hej.hopp",
@@ -176,7 +176,7 @@ namespace Artportable.API.Entities
           {
             Id = 5,
             PublicId = new Guid("820d9ee1-573e-4c4b-aeec-b077a793e26f"),
-            MembershipId = 3,
+            SubscriptionId = 3,
             FileId = 98,
             Username = "linkanboy",
             Email = "li@n.us",
@@ -187,7 +187,7 @@ namespace Artportable.API.Entities
           {
             Id = 6,
             PublicId = new Guid("939dbb39-9250-43c7-b1d5-fe879ccf4167"),
-            MembershipId = 3,
+            SubscriptionId = 3,
             FileId = 99,
             Username = "kallebanan",
             Email = "kalle@banan.se",
@@ -265,18 +265,18 @@ namespace Artportable.API.Entities
           }
         );
 
-        modelBuilder.Entity<Membership>().HasData(
-          new Membership
+        modelBuilder.Entity<Subscription>().HasData(
+          new Subscription
           {
             Id = 1,
             Name = "Bas"
           },
-          new Membership
+          new Subscription
           {
             Id = 2,
             Name = "Portfolio"
           },
-          new Membership
+          new Subscription
           {
             Id = 3,
             Name = "Portfolio Premium"

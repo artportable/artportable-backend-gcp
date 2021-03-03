@@ -11,7 +11,7 @@ namespace Artportable.API.Entities.Models
     public Guid PublicId { get; set; }
 
 
-    public int MembershipId { get; set; }
+    public int SubscriptionId { get; set; }
     public int? FileId { get; set; }
 
 
@@ -33,7 +33,7 @@ namespace Artportable.API.Entities.Models
 
 
     public UserProfile UserProfile {get; set; }
-    public Membership Membership { get; set; }
+    public Subscription Subscription { get; set; }
     public File File { get; set; }
   }
 }

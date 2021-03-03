@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Artportable.API.Entities.Models
 {
-  public class Membership
+  public class Subscription
   {
     [Key]
     public int Id { get; set; }
