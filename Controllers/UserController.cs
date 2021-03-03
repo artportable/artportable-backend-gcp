@@ -7,7 +7,7 @@ using System;
 
 namespace Artportable.API.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
     // [Authorize]
     public class UserController : ControllerBase
