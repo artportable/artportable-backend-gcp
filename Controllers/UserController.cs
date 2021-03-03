@@ -12,20 +12,11 @@ namespace Artportable.API.Controllers
     // [Authorize]
     public class UserController : ControllerBase
     {
-        private readonly IGalleryRepository _galleryRepository;
         private readonly IUserService _userService;
 
-        public UserController(IGalleryRepository galleryRepository, IUserService userService)
+        public UserController(IUserService userService)
         {
-            _galleryRepository = galleryRepository;
             _userService = userService;
-        }
-
-        [HttpGet("")]
-        [SwaggerResponse(StatusCodes.Status200OK)]
-        public IActionResult Get()
-        {
-          return Ok("Hej!");
         }
 
         /// <summary>
@@ -75,10 +66,6 @@ namespace Artportable.API.Controllers
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public IActionResult Create([FromBody] UserDTO user)
         {
-          if (!isValid(user))
-          {
-            return BadRequest();
-          }
           if (_userService.UserExists(user))
           {
             return StatusCode(StatusCodes.Status409Conflict, "User already exists");
@@ -97,17 +84,6 @@ namespace Artportable.API.Controllers
             Console.WriteLine("Something went wrong, {0}", e);
             return StatusCode(StatusCodes.Status500InternalServerError);
           }
-        }
-
-        private bool isValid(UserDTO user)
-        {
-          return user != null &&
-            !String.IsNullOrWhiteSpace(user.Username) &&
-            !String.IsNullOrWhiteSpace(user.Name) &&
-            !String.IsNullOrWhiteSpace(user.Surname) &&
-            !String.IsNullOrWhiteSpace(user.Email) &&
-            user.DateOfBirth != null &&
-            !String.IsNullOrWhiteSpace(user.Location);
         }
     }
 }

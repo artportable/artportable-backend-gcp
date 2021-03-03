@@ -1,14 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Artportable.API.DTOs
 {
-    public class UserDTO
-    {
-        public string Username { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Location { get; set; }
-    }
+  public class UserDTO
+  {
+    [Required, StringLength(50, MinimumLength = 2)]
+    public string Username { get; set; }
+    [Required, StringLength(200)]
+    public string Name { get; set; }
+    [Required, StringLength(200)]
+    public string Surname { get; set; }
+    [Required, StringLength(100), EmailAddress]
+    public string Email { get; set; }
+    [Required]
+    public DateTime DateOfBirth { get; set; }
+    [Required, StringLength(100)]
+    public string Location { get; set; }
+  }
 }
