@@ -14,5 +14,17 @@ The API is written in ASP.NET Core 3.1 (latest LTS). It's a RESTful API supporti
 ### Database
 A MySQL database is hosted in AWS RDS. The database is accessed and modified using a code-first approach through EF Core 5 (Entity Framework).
 
+#### Update database
+The structure of the database can be changed using the EF Core CLI tools and migrations.
+* Edit models and contexts in the Entities folder
+* Add migration  
+`dotnet ef migrations add <NAME>`
+* Apply the changes  
+`dotnet ef database update`.
+* OR retrieve a SQL query and execute it manually  
+`dotnet ef migrations script`
+
+More about this can be found in [the EF Core documentation](https://docs.microsoft.com/en-us/ef/core/).
+
 ## Links
 * [Frontend repo]("https://github.com/boulder/artportable-web")
