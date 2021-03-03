@@ -15,24 +15,24 @@ namespace Artportable.API.Entities.Models
 
 
     [Required]
-    [MaxLength(200)]
+    [MaxLength(50)]
     public string Name { get; set; }
 
     [Required]
-    [MaxLength(200)]
+    [MaxLength(50)]
     public string Surname { get; set; }
 
     [Required]
     public DateTime DateOfBirth { get; set; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(50)]
     public string Location { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(50)]
     public string Title { get; set; }
 
-    [MaxLength(400)]
+    [MaxLength(140)]
     public string Headline { get; set; }
 
 

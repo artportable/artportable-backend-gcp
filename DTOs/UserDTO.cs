@@ -7,15 +7,15 @@ namespace Artportable.API.DTOs
   {
     [Required, StringLength(50, MinimumLength = 2)]
     public string Username { get; set; }
-    [Required, StringLength(200)]
+    [Required, StringLength(50)]
     public string Name { get; set; }
-    [Required, StringLength(200)]
+    [Required, StringLength(50)]
     public string Surname { get; set; }
-    [Required, StringLength(100), EmailAddress]
+    [Required, StringLength(254), EmailAddress]
     public string Email { get; set; }
     [Required]
     public DateTime DateOfBirth { get; set; }
-    [Required, StringLength(100)]
+    [Required, StringLength(50)]
     public string Location { get; set; }
   }
 }
