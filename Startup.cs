@@ -38,6 +38,7 @@ namespace Artportable.API
             // Registered services
             services.AddScoped<IAuthorizationHandler, MustOwnImageHandler>();
             services.AddScoped<IGalleryRepository, GalleryRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddAuthorization(authorizationOptions =>
             {
@@ -61,13 +62,15 @@ namespace Artportable.API
                 });
 
             // Database
-            services.AddDbContextPool<GalleryContext>(
+            services.AddDbContextPool<APContext>(
                 dbContextOptions => dbContextOptions
                     .UseMySql(
                         _configuration.GetConnectionString("DefaultConnection"),
                         new MySqlServerVersion(new Version(8, 0, 21)),
                         mySqlOptions => mySqlOptions
-                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                            .CharSetBehavior(CharSetBehavior.NeverAppend)
+                    )
+                    .UseSnakeCaseNamingConvention()
                     // Everything from this point on is optional but helps with debugging.
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors()

@@ -1,4 +1,5 @@
 ﻿using Artportable.API.Entities;
+using Artportable.API.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,12 @@ namespace Artportable.API.Services
 {
     public class GalleryRepository : IGalleryRepository, IDisposable
     {
-        private GalleryContext _context;
+        private APContext _context;
 
-        public GalleryRepository(GalleryContext galleryContext)
+        public GalleryRepository(APContext apContext)
         {
-            _context = galleryContext ?? 
-                throw new ArgumentNullException(nameof(galleryContext));
+            _context = apContext ?? 
+                throw new ArgumentNullException(nameof(apContext));
         }
 
         public bool ImageExists(Guid id)
@@ -62,7 +63,7 @@ namespace Artportable.API.Services
         }
 
         public IEnumerable<User> GetUsers() {
-            return _context.Users;
+            return null;//_context.Users;
         }
 
         public void Dispose()

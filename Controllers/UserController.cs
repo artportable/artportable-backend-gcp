@@ -1,48 +1,89 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Artportable.API.Services;
+using Microsoft.AspNetCore.Http;
+using Artportable.API.DTOs;
+using Swashbuckle.AspNetCore.Annotations;
+using System;
 
 namespace Artportable.API.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
     // [Authorize]
     public class UserController : ControllerBase
     {
-        private readonly IGalleryRepository _galleryRepository;
+        private readonly IUserService _userService;
 
-        public UserController(IGalleryRepository galleryRepository)
+        public UserController(IUserService userService)
         {
-            _galleryRepository = galleryRepository;
-        }
-
-        [HttpGet("imgs")]
-        public IActionResult GetImages()
-        {
-            var images = _galleryRepository.GetImages();
-            return Ok(images);
-        }
-
-        [HttpGet("")]
-        public IActionResult GetUsers()
-        {
-            var users = _galleryRepository.GetUsers();
-            return Ok(users);
+            _userService = userService;
         }
 
         /// <summary>
-        /// Gets the user Kalle Banan
+        /// Gets a specific user by ID
         /// </summary>
-        [HttpGet("kalle")]
-        public IActionResult GetKalle()
+        /// <param name="id"></param>
+        [HttpGet("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        public IActionResult Get(Guid id)
         {
-          var user = new TestUser() { Name = "Kalle Banan" };
+          try {
+            var user = _userService.Get(id);
 
-          return Ok(user);
+            if (user == null) {
+              return StatusCode(StatusCodes.Status404NotFound);
+            }
+
+            return Ok(user);
+          }
+          catch (Exception e) {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+          }
         }
-    }
 
-    public class TestUser
-    {
-        public string Name { get; set; }
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /
+        ///     {
+        ///        "username": "batman",
+        ///        "name": "Bat",
+        ///        "surname": "Man",
+        ///        "email": "batman@artportable.com",
+        ///        "dateofbirth": "1979-01-01",
+        ///        "location": "Stockholm"
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="user"></param>
+        [HttpPost("")]
+        [SwaggerResponse(StatusCodes.Status201Created)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        public IActionResult Create([FromBody] UserDTO user)
+        {
+          if (_userService.UserExists(user))
+          {
+            return StatusCode(StatusCodes.Status409Conflict, "User already exists");
+          }
+
+          try {
+            var publicId = _userService.CreateUser(user);
+
+            return CreatedAtAction(nameof(Get), new { id = publicId }, user);
+          }
+          catch (ArgumentException e) {
+            Console.WriteLine("Argument not valid, {0}", e);
+            return StatusCode(StatusCodes.Status400BadRequest);
+          }
+          catch (Exception e) {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+          }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Artportable.API
               var services = scope.ServiceProvider;
 
               try {
-                var context = services.GetService<GalleryContext>();
+                var context = services.GetService<APContext>();
                 context.Database.Migrate();
               }
               catch (Exception ex)
