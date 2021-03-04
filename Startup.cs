@@ -93,7 +93,18 @@ namespace Artportable.API
               var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
               c.IncludeXmlComments(xmlPath);
             });
-        }
+
+            services.AddCors(options =>
+            {
+              options.AddPolicy("MyAllowSpecificOrigins",
+                builder =>
+                {
+                  builder.AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod();
+                });
+            });
+          }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -139,6 +150,8 @@ namespace Artportable.API
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors("MyAllowSpecificOrigins");
 
             app.UseAuthentication();
 
