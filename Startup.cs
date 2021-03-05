@@ -41,6 +41,7 @@ namespace Artportable.API
             services.AddScoped<IGalleryRepository, GalleryRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IStripeService, StripeService>();
 
             services.AddAuthorization(authorizationOptions =>
             {

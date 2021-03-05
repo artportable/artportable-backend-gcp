@@ -26,5 +26,15 @@ The structure of the database can be changed using the EF Core CLI tools and mig
 
 More about this can be found in [the EF Core documentation](https://docs.microsoft.com/en-us/ef/core/).
 
+### Stripe
+Stripe is used for handling card payments.
+
+#### Webhooks
+Webhooks are used for recieving feedback from Stripe, for example when a user paid their subscription.
+
+Test events can be triggered with the Stripe CLI:
+* Run `stripe listen --forward-to https://localhost:5001/api/stripe --skip-verify`
+* Trigger events with `stripe trigger payment_intent.created`
+
 ## Links
 * [Frontend repo]("https://github.com/boulder/artportable-web")
