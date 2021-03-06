@@ -59,5 +59,26 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Creates a subscription in Stripe
+    /// for a given customer and price ID
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns>The Stripe subscription ID</returns>
+    [HttpPost("subscriptions")]
+    public IActionResult CreateSubscription([FromBody] SubscriptionRequestDTO req)
+    {
+      try {
+        var id = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price);
+
+        return Ok(id);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+   }
   }
 }

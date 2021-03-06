@@ -2,6 +2,7 @@
 using Artportable.API.Enums;
 using Stripe;
 using System;
+using System.Collections.Generic;
 
 namespace Artportable.API.Services
 {
@@ -38,6 +39,46 @@ namespace Artportable.API.Services
       });
 
       return response.Id;
+    }
+
+    public string CreateSubscription(string paymentMethodId, string customerId, string priceId)
+    {
+      // Attach payment method
+      var options = new PaymentMethodAttachOptions
+      {
+        Customer = customerId,
+      };
+      var service = new PaymentMethodService();
+      var paymentMethod = service.Attach(paymentMethodId, options);
+
+      // Update customer's default invoice payment method
+      var customerOptions = new CustomerUpdateOptions
+      {
+        InvoiceSettings = new CustomerInvoiceSettingsOptions
+        {
+          DefaultPaymentMethod = paymentMethod.Id,
+        },
+      };
+      var customerService = new CustomerService();
+      customerService.Update(customerId, customerOptions);
+
+      // Create subscription
+      var subscriptionOptions = new SubscriptionCreateOptions
+      {
+        Customer = customerId,
+        Items = new List<SubscriptionItemOptions>
+        {
+          new SubscriptionItemOptions
+          {
+            Price = priceId,
+          },
+        },
+      };
+      subscriptionOptions.AddExpand("latest_invoice.payment_intent");
+      var subscriptionService = new SubscriptionService();
+
+      Subscription subscription = subscriptionService.Create(subscriptionOptions);
+      return subscription.Id;
     }
 
     private int CalculateAmount(PaymentIntentRequestDTO request)
