@@ -28,6 +28,18 @@ namespace Artportable.API.Services
       return paymentIntentClientSecret;
     }
 
+    public string CreateCustomer(string email, string fullName)
+    {
+      var customerService = new CustomerService();
+      var response = customerService.Create(new CustomerCreateOptions
+      {
+          Email = email,
+          Name = fullName
+      });
+
+      return response.Id;
+    }
+
     private int CalculateAmount(PaymentIntentRequestDTO request)
     {
       // Replace this constant with a calculation of the order's amount

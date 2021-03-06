@@ -40,5 +40,24 @@ namespace Artportable.API.Controllers
       }
     }
 
+    /// <summary>
+    /// Register a customer in Stripe by creating a customer object
+    /// </summary>
+    /// <param name="customer"></param>
+    /// <returns>The Stripe customer ID</returns>
+    [HttpPost("customers")]
+    public IActionResult CreateCustomer([FromBody] StripeCustomerDTO customer)
+    {
+      try {
+        var id = _paymentService.CreateCustomer(customer.Email, customer.FullName);
+
+        return Ok(id);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }
