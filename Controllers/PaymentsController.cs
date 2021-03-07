@@ -79,6 +79,25 @@ namespace Artportable.API.Controllers
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
-   }
+    }
+
+    /// <summary>
+    /// Cancels a subscription in Stripe
+    /// </summary>
+    /// <param name="subscriptionId"></param>
+    [HttpDelete("subscriptions")]
+    public IActionResult CancelSubscription(string subscriptionId)
+    {
+      try {
+        _paymentService.CancelSubscription(subscriptionId);
+
+        return Ok();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

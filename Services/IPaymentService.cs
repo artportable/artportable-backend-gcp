@@ -7,5 +7,6 @@ namespace Artportable.API.Services
     string CreateIntent(PaymentIntentRequestDTO paymentIntentRequest);
     string CreateCustomer(string email, string fullName);
     string CreateSubscription(string paymentMethodId, string customerId, string priceId);
+    void CancelSubscription(string subscriptionId);
   }
 }

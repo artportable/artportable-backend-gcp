@@ -81,6 +81,12 @@ namespace Artportable.API.Services
       return subscription.Id;
     }
 
+    public void CancelSubscription(string subscriptionId)
+    {
+      var service = new SubscriptionService();
+      var subscription = service.Cancel(subscriptionId, null);
+    }
+
     private int CalculateAmount(PaymentIntentRequestDTO request)
     {
       // Replace this constant with a calculation of the order's amount
