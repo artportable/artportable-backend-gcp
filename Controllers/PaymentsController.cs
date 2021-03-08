@@ -46,12 +46,13 @@ namespace Artportable.API.Controllers
     /// <param name="customer"></param>
     /// <returns>The Stripe customer ID</returns>
     [HttpPost("customers")]
-    public IActionResult CreateCustomer([FromBody] StripeCustomerDTO customer)
+    public ActionResult<StripeResponseDTO> CreateCustomer([FromBody] StripeCustomerDTO customer)
     {
       try {
         var id = _paymentService.CreateCustomer(customer.Email, customer.FullName);
+        var res = new StripeResponseDTO { Id = id };
 
-        return Ok(id);
+        return Ok(res);
       }
       catch (Exception e)
       {
@@ -67,12 +68,13 @@ namespace Artportable.API.Controllers
     /// <param name="req"></param>
     /// <returns>The Stripe subscription ID</returns>
     [HttpPost("subscriptions")]
-    public IActionResult CreateSubscription([FromBody] SubscriptionRequestDTO req)
+    public ActionResult<StripeResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
     {
       try {
         var id = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price);
+        var res = new StripeResponseDTO { Id = id };
 
-        return Ok(id);
+        return Ok(res);
       }
       catch (Exception e)
       {
