@@ -3,6 +3,7 @@ using Artportable.API.Enums;
 using Stripe;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Artportable.API.Services
 {
@@ -27,6 +28,35 @@ namespace Artportable.API.Services
       var paymentIntentClientSecret = paymentIntent.ClientSecret;
 
       return paymentIntentClientSecret;
+    }
+
+    public List<StripePriceDTO> GetPrices()
+    {
+      var pricesService = new PriceService();
+        var prices = pricesService.List();
+
+        var productService = new ProductService();
+        var products = productService.List();
+
+        var res = prices.Data
+          .Where(p =>
+            p != null &&
+            p.Active == true &&
+            p.Deleted != true &&
+            p?.Recurring?.Interval != null &&
+            products.Any(product => p.ProductId == product.Id)
+          )
+          .Select(p => new StripePriceDTO()
+          {
+            Id = p.Id,
+            Amount = (decimal) p.UnitAmount / 100,
+            Currency = p.Currency,
+            RecurringInterval = p.Recurring.Interval,
+            Product = products.First(product => p.ProductId == product.Id).Name
+          })
+          .ToList();
+
+        return res;
     }
 
     public string CreateCustomer(string email, string fullName)

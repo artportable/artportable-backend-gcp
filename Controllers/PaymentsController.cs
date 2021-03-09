@@ -5,6 +5,7 @@ using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Text.Json;
+using System.Collections.Generic;
 
 namespace Artportable.API.Controllers
 {
@@ -33,6 +34,24 @@ namespace Artportable.API.Controllers
         var paymentIntentClientSecret = _paymentService.CreateIntent(request);
 
         return JsonSerializer.Serialize(new { clientSecret = paymentIntentClientSecret });
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Retrieve prices for all products (plans) from Stripe
+    /// </summary>
+    /// <returns>A list of prices</returns>
+    [HttpGet("prices")]
+    public ActionResult<List<StripePriceDTO>> ListPrices()
+    {
+      try {
+        var prices = _paymentService.GetPrices();
+
+        return Ok(prices);
       }
       catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);
