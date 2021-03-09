@@ -16,6 +16,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Stripe;
 
 namespace Artportable.API
 {
@@ -39,6 +40,8 @@ namespace Artportable.API
             services.AddScoped<IAuthorizationHandler, MustOwnImageHandler>();
             services.AddScoped<IGalleryRepository, GalleryRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IStripeService, StripeService>();
 
             services.AddAuthorization(authorizationOptions =>
             {
@@ -75,6 +78,10 @@ namespace Artportable.API
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors()
             );
+
+            // Stripe
+            // This is a sample test API key
+            StripeConfiguration.ApiKey = "sk_test_51IRGljA3UXZjjLWxv4sO6lHEF0mNBqAfXWn9wpsWgOK3bS2zy2UYglHeMe6P3IZ2SSGKcrMxYrrftyVq4xwi6MZJ00mOgmNvxW";
 
 
             // register AutoMapper-related services
