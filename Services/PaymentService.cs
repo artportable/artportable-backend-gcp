@@ -14,22 +14,6 @@ namespace Artportable.API.Services
     {
     }
 
-    public string CreateIntent(PaymentIntentRequestDTO paymentIntentRequest)
-    {
-      var paymentIntents = new PaymentIntentService();
-      
-      var paymentIntentCreateOptions = new PaymentIntentCreateOptions {
-        Amount = CalculateAmount(paymentIntentRequest),
-        Currency = "sek",
-      };
-
-      var paymentIntent = paymentIntents.Create(paymentIntentCreateOptions);
-
-      var paymentIntentClientSecret = paymentIntent.ClientSecret;
-
-      return paymentIntentClientSecret;
-    }
-
     public List<StripePriceDTO> GetPrices()
     {
       var pricesService = new PriceService();
@@ -115,25 +99,6 @@ namespace Artportable.API.Services
     {
       var service = new SubscriptionService();
       var subscription = service.Cancel(subscriptionId, null);
-    }
-
-    private int CalculateAmount(PaymentIntentRequestDTO request)
-    {
-      // Replace this constant with a calculation of the order's amount
-      // Calculate the order total on the server to prevent
-      // people from directly manipulating the amount on the client
-
-      switch (request.Subscription)
-      {
-        case SubscriptionEnum.Bas:
-          return 50 * 100;
-        case SubscriptionEnum.Portfolio:
-          return 150 * 100;
-        case SubscriptionEnum.PortfolioPremium:
-          return 250 * 100;
-        default:
-          throw new ArgumentException();
-      }
     }
   }
 }

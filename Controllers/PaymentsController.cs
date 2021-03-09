@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
-using System.Text.Json;
 using System.Collections.Generic;
 
 namespace Artportable.API.Controllers
@@ -19,26 +18,6 @@ namespace Artportable.API.Controllers
     public PaymentsController(IPaymentService paymentService)
     {
       _paymentService = paymentService;
-    }
-
-    /// <summary>
-    /// Create a payment intent through Stripe
-    /// </summary>
-    /// <param name="request"></param>
-    [HttpPost("")]
-    [SwaggerResponse(StatusCodes.Status201Created)]
-    [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public ActionResult<string> Create(PaymentIntentRequestDTO request)
-    {
-      try {
-        var paymentIntentClientSecret = _paymentService.CreateIntent(request);
-
-        return JsonSerializer.Serialize(new { clientSecret = paymentIntentClientSecret });
-      }
-      catch (Exception e) {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
     }
 
     /// <summary>
