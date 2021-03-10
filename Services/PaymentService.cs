@@ -100,5 +100,27 @@ namespace Artportable.API.Services
       var service = new SubscriptionService();
       var subscription = service.Cancel(subscriptionId, null);
     }
+
+    public void UpdateSubscription(string subscriptionId, string priceId)
+    {
+      var service = new SubscriptionService();
+
+      var currentSubscription = service.Get(subscriptionId);
+
+      var items = new List<SubscriptionItemOptions> {
+        new SubscriptionItemOptions {
+          Id = currentSubscription.Items.Data[0].Id,
+          Price = priceId,
+        },
+      };
+
+      var options = new SubscriptionUpdateOptions {
+        CancelAtPeriodEnd = false,
+        ProrationBehavior = "create_prorations",
+        Items = items,
+      };
+
+      service.Update(subscriptionId, options);
+    }
   }
 }

@@ -9,5 +9,6 @@ namespace Artportable.API.Services
     string CreateCustomer(string email, string fullName);
     string CreateSubscription(string paymentMethodId, string customerId, string priceId);
     void CancelSubscription(string subscriptionId);
+    void UpdateSubscription(string subscriptionId, string priceId);
   }
 }
