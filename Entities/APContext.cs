@@ -14,6 +14,7 @@ namespace Artportable.API.Entities
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Subscription> Subscriptions { get; set; }
+    public DbSet<Product> Products { get; set; }
     public DbSet<File> Files { get; set; }
     public DbSet<Artwork> Artworks { get; set; }
     public DbSet<Tag> Tags { get; set; }
@@ -142,7 +143,7 @@ namespace Artportable.API.Entities
           {
             Id = 2,
             PublicId = new Guid("39d044e3-6936-4c18-85d0-9d0b1ed5164e"),
-            SubscriptionId = 1,
+            SubscriptionId = 2,
             FileId = 95,
             Username = "andersand",
             Email = "anders@anders.and",
@@ -153,7 +154,7 @@ namespace Artportable.API.Entities
           {
             Id = 3,
             PublicId = new Guid("6b4282b6-3014-40cd-9de3-a3f29f10bb31"),
-            SubscriptionId = 1,
+            SubscriptionId = 3,
             FileId = 96,
             Username = "ludde",
             Email = "lud@wig.se",
@@ -164,7 +165,7 @@ namespace Artportable.API.Entities
           {
             Id = 4,
             PublicId = new Guid("857ce515-b7dd-4eae-991b-20468cf33ec3"),
-            SubscriptionId = 2,
+            SubscriptionId = 4,
             FileId = 97,
             Username = "sillynilly",
             Email = "niclas@hej.hopp",
@@ -175,7 +176,7 @@ namespace Artportable.API.Entities
           {
             Id = 5,
             PublicId = new Guid("820d9ee1-573e-4c4b-aeec-b077a793e26f"),
-            SubscriptionId = 3,
+            SubscriptionId = 5,
             FileId = 98,
             Username = "linkanboy",
             Email = "li@n.us",
@@ -186,7 +187,7 @@ namespace Artportable.API.Entities
           {
             Id = 6,
             PublicId = new Guid("939dbb39-9250-43c7-b1d5-fe879ccf4167"),
-            SubscriptionId = 3,
+            SubscriptionId = 6,
             FileId = 99,
             Username = "kallebanan",
             Email = "kalle@banan.se",
@@ -264,21 +265,66 @@ namespace Artportable.API.Entities
           }
         );
 
-        modelBuilder.Entity<Subscription>().HasData(
-          new Subscription
+        modelBuilder.Entity<Product>().HasData(
+          new Product
           {
             Id = 1,
             Name = "Bas"
           },
-          new Subscription
+          new Product
           {
             Id = 2,
             Name = "Portfolio"
           },
-          new Subscription
+          new Product
           {
             Id = 3,
             Name = "Portfolio Premium"
+          }
+        );
+
+        modelBuilder.Entity<Subscription>().HasData(
+          new Subscription
+          {
+            Id = 1,
+            ProductId = 1,
+            ExpirationDate = DateTime.Now.AddDays(30),
+            CustomerId = "testcujlkdjsalkdsa"
+          },
+          new Subscription
+          {
+            Id = 2,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(21),
+            CustomerId = "testcujlkd13543a"
+          },
+          new Subscription
+          {
+            Id = 3,
+            ProductId = 3,
+            ExpirationDate = DateTime.Now.AddDays(25),
+            CustomerId = "testcujlkd32132dsa"
+          },
+          new Subscription
+          {
+            Id = 4,
+            ProductId = 1,
+            ExpirationDate = DateTime.Now.AddDays(17),
+            CustomerId = "testcujlkdj6543sa"
+          },
+          new Subscription
+          {
+            Id = 5,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(6),
+            CustomerId = "testcsasaSAdsa"
+          },
+          new Subscription
+          {
+            Id = 6,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(46),
+            CustomerId = "testcdsdsalkdsa"
           }
         );
 
