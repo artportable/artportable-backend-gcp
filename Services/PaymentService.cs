@@ -1,4 +1,5 @@
 ﻿using Artportable.API.DTOs;
+using Artportable.API.Entities;
 using Artportable.API.Enums;
 using Stripe;
 using System;
@@ -9,9 +10,12 @@ namespace Artportable.API.Services
 {
   public class PaymentService : IPaymentService
   {
+    private APContext _context;
 
-    public PaymentService()
+    public PaymentService(APContext apContext)
     {
+      _context = apContext ??
+        throw new ArgumentNullException(nameof(apContext));
     }
 
     public List<StripePriceDTO> GetPrices()
@@ -46,11 +50,18 @@ namespace Artportable.API.Services
     public string CreateCustomer(string email, string fullName)
     {
       var customerService = new CustomerService();
-      var response = customerService.Create(new CustomerCreateOptions
+      var options = new CustomerCreateOptions
       {
           Email = email,
           Name = fullName
-      });
+      };
+      var response = customerService.Create(options);
+
+      _context.Subscriptions
+        .Where(s => s.User.Email == email)
+        .Single().CustomerId = response.Id;
+
+      _context.SaveChanges();
 
       return response.Id;
     }

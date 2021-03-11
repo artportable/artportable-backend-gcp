@@ -289,7 +289,7 @@ namespace Artportable.API.Entities
             Id = 1,
             ProductId = 1,
             ExpirationDate = DateTime.Now.AddDays(30),
-            CustomerId = "testcujlkdjsalkdsa"
+            CustomerId = null
           },
           new Subscription
           {
@@ -310,7 +310,7 @@ namespace Artportable.API.Entities
             Id = 4,
             ProductId = 1,
             ExpirationDate = DateTime.Now.AddDays(17),
-            CustomerId = "testcujlkdj6543sa"
+            CustomerId = null
           },
           new Subscription
           {
