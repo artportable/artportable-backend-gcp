@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using IdentityServer4.AccessTokenValidation;
-using Artportable.API.Authorization;
 using Artportable.API.Entities;
 using Artportable.API.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,8 +35,6 @@ namespace Artportable.API
             services.AddHttpContextAccessor();
 
             // Registered services
-            services.AddScoped<IAuthorizationHandler, MustOwnImageHandler>();
-            services.AddScoped<IGalleryRepository, GalleryRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IStripeService, StripeService>();
@@ -50,8 +46,6 @@ namespace Artportable.API
                     policyBuilder =>
                     {
                         policyBuilder.RequireAuthenticatedUser();
-                        policyBuilder.AddRequirements(
-                            new MustOwnImageRequirement());
                     });
             });
 
