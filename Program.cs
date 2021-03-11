@@ -8,36 +8,36 @@ using System;
 
 namespace Artportable.API
 {
-    public class Program
+  public class Program
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-          var host = CreateHostBuilder(args).Build();
+      var host = CreateHostBuilder(args).Build();
 
-          // Seed DB
-          using (var scope = host.Services.CreateScope())
-          {
-              var services = scope.ServiceProvider;
+      // Seed DB
+      using (var scope = host.Services.CreateScope())
+      {
+        var services = scope.ServiceProvider;
 
-              try {
-                var context = services.GetService<APContext>();
-                context.Database.Migrate();
-              }
-              catch (Exception ex)
-              {
-                  var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                  logger.LogError(ex, "An error occurred while migrating or seeding the database.");
-              }
-          }
-
-          host.Run();
+        try {
+          var context = services.GetService<APContext>();
+          context.Database.Migrate();
         }
+        catch (Exception ex)
+        {
+          var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+          logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+        }
+      }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-              .ConfigureWebHostDefaults(webBuilder =>
-              {
-                  webBuilder.UseStartup<Startup>();
-              });
+      host.Run();
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+      Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+          webBuilder.UseStartup<Startup>();
+        });
+  }
 }
