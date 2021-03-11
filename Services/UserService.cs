@@ -64,7 +64,7 @@ namespace Artportable.API.Services
       var userDb = new User
       {
         PublicId = publicId,
-        SubscriptionId = (int) SubscriptionEnum.Bas,
+        SubscriptionId = (int) ProductEnum.Bas,
         Username = user.Username,
         Email = user.Email,
         Created = DateTime.Now,

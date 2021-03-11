@@ -1,6 +1,6 @@
 namespace Artportable.API.Enums
 {
-  public enum SubscriptionEnum
+  public enum ProductEnum
   {
     Bas = 1,
     Portfolio,
