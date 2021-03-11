@@ -7,11 +7,10 @@ namespace Artportable.API.Entities
   public class APContext : DbContext
   {
     public APContext(DbContextOptions<APContext> options)
-        : base(options)
+      : base(options)
     {
     }
 
-    public DbSet<Image> Images { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Subscription> Subscriptions { get; set; }
@@ -26,103 +25,103 @@ namespace Artportable.API.Entities
         modelBuilder.Entity<File>().HasData(
           new File()
           {
-              Id = 1,
-              Name = "3fbe2aea-2257-44f2-b3b1-3d8bacade89c.jpg",
+            Id = 1,
+            Name = "3fbe2aea-2257-44f2-b3b1-3d8bacade89c.jpg",
           },
           new File()
           {
-              Id = 2,
-              Name = "43de8b65-8b19-4b87-ae3c-df97e18bd461.jpg",
+            Id = 2,
+            Name = "43de8b65-8b19-4b87-ae3c-df97e18bd461.jpg",
           },
           new File()
           {
-              Id = 3,
-              Name = "46194927-ccda-432f-bc95-4820318c08c7.jpg",
+            Id = 3,
+            Name = "46194927-ccda-432f-bc95-4820318c08c7.jpg",
           },
           new File()
           {
-              Id = 4,
-              Name = "4cdd494c-e6e1-4af1-9e54-24a8e80ea2b4.jpg",
+            Id = 4,
+            Name = "4cdd494c-e6e1-4af1-9e54-24a8e80ea2b4.jpg",
           },
           new File()
           {
-              Id = 5,
-              Name = "5c20ca95-bb00-4ef1-8b85-c4b11e66eb54.jpg",
+            Id = 5,
+            Name = "5c20ca95-bb00-4ef1-8b85-c4b11e66eb54.jpg",
           },
           new File()
           {
-              Id = 6,
-              Name = "6b33c074-65cf-4f2b-913a-1b2d4deb7050.jpg",
+            Id = 6,
+            Name = "6b33c074-65cf-4f2b-913a-1b2d4deb7050.jpg",
           },
           new File()
           {
-              Id = 7,
-              Name = "7e80a4c8-0a8a-4593-a16f-2e257294a1f9.jpg",
+            Id = 7,
+            Name = "7e80a4c8-0a8a-4593-a16f-2e257294a1f9.jpg",
           },
           new File()
           {
-              Id = 8,
-              Name = "8d351bbb-f760-4b56-9d4e-e8d61619bf70.jpg",
+            Id = 8,
+            Name = "8d351bbb-f760-4b56-9d4e-e8d61619bf70.jpg",
           },
           new File()
           {
-              Id = 9,
-              Name = "b2894002-0b7c-4f05-896a-856283012c87.jpg",
+            Id = 9,
+            Name = "b2894002-0b7c-4f05-896a-856283012c87.jpg",
           },
           new File()
           {
-              Id = 10,
-              Name = "cc412f08-2a7b-4225-b659-07fdb168302d.jpg",
+            Id = 10,
+            Name = "cc412f08-2a7b-4225-b659-07fdb168302d.jpg",
           },
           new File()
           {
-              Id = 11,
-              Name = "cd139111-c82e-4bc8-9f7d-43a1059bfe73.jpg",
+            Id = 11,
+            Name = "cd139111-c82e-4bc8-9f7d-43a1059bfe73.jpg",
           },
           new File()
           {
-              Id = 12,
-              Name = "dc3f39bf-d1da-465d-9ea4-935902c2e3d2.jpg",
+            Id = 12,
+            Name = "dc3f39bf-d1da-465d-9ea4-935902c2e3d2.jpg",
           },
           new File()
           {
-              Id = 13,
-              Name = "e0e32179-109c-4a8a-bf91-3d65ff83ca29.jpg",
+            Id = 13,
+            Name = "e0e32179-109c-4a8a-bf91-3d65ff83ca29.jpg",
           },
           new File()
           {
-              Id = 14,
-              Name = "fdfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 14,
+            Name = "fdfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           },
           new File()
           {
-              Id = 94,
-              Name = "1dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 94,
+            Name = "1dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           },
           new File()
           {
-              Id = 95,
-              Name = "2dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 95,
+            Name = "2dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           },
           new File()
           {
-              Id = 96,
-              Name = "3dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 96,
+            Name = "3dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           },
           new File()
           {
-              Id = 97,
-              Name = "4dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 97,
+            Name = "4dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           },
           new File()
           {
-              Id = 98,
-              Name = "5dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 98,
+            Name = "5dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           },
           new File()
           {
-              Id = 99,
-              Name = "6dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
+            Id = 99,
+            Name = "6dfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
           }
         );
 
@@ -289,143 +288,143 @@ namespace Artportable.API.Entities
         modelBuilder.Entity<Artwork>().HasData(
           new Artwork()
           {
-              Id = 1,
-              PublicId = new Guid("25320c5e-f58a-4b1f-b63a-8ee07a840bdf"),
-              UserId = 1,
-              FileId = 1,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 1,
+            PublicId = new Guid("25320c5e-f58a-4b1f-b63a-8ee07a840bdf"),
+            UserId = 1,
+            FileId = 1,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 2,
-              PublicId = new Guid("1efe7a31-8dcc-4ff0-9b2d-5f148e2989cc"),
-              UserId = 1,
-              FileId = 2,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 2,
+            PublicId = new Guid("1efe7a31-8dcc-4ff0-9b2d-5f148e2989cc"),
+            UserId = 1,
+            FileId = 2,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 3,
-              PublicId = new Guid("b24e3df5-0394-468d-9c1d-db1252fea920"),
-              UserId = 1,
-              FileId = 3,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 3,
+            PublicId = new Guid("b24e3df5-0394-468d-9c1d-db1252fea920"),
+            UserId = 1,
+            FileId = 3,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 4,
-              PublicId = new Guid("9f35e705-637a-4bbe-8c35-402b2ecf7128"),
-              UserId = 1,
-              FileId = 4,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 4,
+            PublicId = new Guid("9f35e705-637a-4bbe-8c35-402b2ecf7128"),
+            UserId = 1,
+            FileId = 4,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 5,
-              PublicId = new Guid("939df3fd-de57-4caf-96dc-c5e110322a96"),
-              UserId = 1,
-              FileId = 5,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 5,
+            PublicId = new Guid("939df3fd-de57-4caf-96dc-c5e110322a96"),
+            UserId = 1,
+            FileId = 5,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 6,
-              PublicId = new Guid("d70f656d-75a7-45fc-b385-e4daa834e6a8"),
-              UserId = 1,
-              FileId = 6,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 6,
+            PublicId = new Guid("d70f656d-75a7-45fc-b385-e4daa834e6a8"),
+            UserId = 1,
+            FileId = 6,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 7,
-              PublicId = new Guid("ce1d2b1c-7869-4df5-9a32-2cbaca8c3234"),
-              UserId = 1,
-              FileId = 7,
-              Title = "An Artwork by Frank",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 7,
+            PublicId = new Guid("ce1d2b1c-7869-4df5-9a32-2cbaca8c3234"),
+            UserId = 1,
+            FileId = 7,
+            Title = "An Artwork by Frank",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 8,
-              PublicId = new Guid("2645bd94-3624-43fc-b21f-1209d730fc71"),
-              UserId = 2,
-              FileId = 8,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 8,
+            PublicId = new Guid("2645bd94-3624-43fc-b21f-1209d730fc71"),
+            UserId = 2,
+            FileId = 8,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 9,
-              PublicId = new Guid("3f41dc87-e8de-42ee-ac8d-355e4d3e1a2d"),
-              UserId = 2,
-              FileId = 9,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 9,
+            PublicId = new Guid("3f41dc87-e8de-42ee-ac8d-355e4d3e1a2d"),
+            UserId = 2,
+            FileId = 9,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 10,
-              PublicId = new Guid("d3118665-43e3-4905-8848-5e335a428dd5"),
-              UserId = 2,
-              FileId = 10,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 10,
+            PublicId = new Guid("d3118665-43e3-4905-8848-5e335a428dd5"),
+            UserId = 2,
+            FileId = 10,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 11,
-              PublicId = new Guid("136f358d-98fb-4961-855c-59d5a6d1fa19"),
-              UserId = 2,
-              FileId = 11,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 11,
+            PublicId = new Guid("136f358d-98fb-4961-855c-59d5a6d1fa19"),
+            UserId = 2,
+            FileId = 11,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 12,
-              PublicId = new Guid("5e0e1379-3e8e-4f51-99f1-1fb9ec3a19b0"),
-              UserId = 2,
-              FileId = 12,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 12,
+            PublicId = new Guid("5e0e1379-3e8e-4f51-99f1-1fb9ec3a19b0"),
+            UserId = 2,
+            FileId = 12,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 13,
-              PublicId = new Guid("ab46efdb-0384-400c-89cb-95bba1c500e9"),
-              UserId = 2,
-              FileId = 13,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 13,
+            PublicId = new Guid("ab46efdb-0384-400c-89cb-95bba1c500e9"),
+            UserId = 2,
+            FileId = 13,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           },
           new Artwork()
           {
-              Id = 14,
-              PublicId = new Guid("ae03d971-40a6-4350-b8a9-7b12e1d93d71"),
-              UserId = 2,
-              FileId = 14,
-              Title = "An Artwork by Claire",
-              Description = "A delicious piece of art",
-              Published = DateTime.Now
+            Id = 14,
+            PublicId = new Guid("ae03d971-40a6-4350-b8a9-7b12e1d93d71"),
+            UserId = 2,
+            FileId = 14,
+            Title = "An Artwork by Claire",
+            Description = "A delicious piece of art",
+            Published = DateTime.Now
           }
         );
 

@@ -38,29 +38,29 @@ namespace Artportable.API.Controllers
       var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
       try
       {
-          // Construct event and verify signature
-          var stripeEvent = EventUtility.ConstructEvent(json,
-                    Request.Headers["Stripe-Signature"], _endpointSecret);
+        // Construct event and verify signature
+        var stripeEvent = EventUtility.ConstructEvent(json,
+                  Request.Headers["Stripe-Signature"], _endpointSecret);
 
 
-          if (stripeEvent.Type == Events.PaymentIntentSucceeded)
-          {
-              var paymentIntent = stripeEvent.Data.Object as PaymentIntent;
-              Console.WriteLine("A successful payment for {0} was made.", paymentIntent.Amount);
-          }
-          else if (stripeEvent.Type == Events.PaymentIntentCreated)
-          {
-              Console.WriteLine("A payment intent was created");
-          }
-          else
-          {
-              Console.WriteLine("Unhandled event type: {0}", stripeEvent.Type);
-          }
-          return Ok();
+        if (stripeEvent.Type == Events.PaymentIntentSucceeded)
+        {
+          var paymentIntent = stripeEvent.Data.Object as PaymentIntent;
+          Console.WriteLine("A successful payment for {0} was made.", paymentIntent.Amount);
+        }
+        else if (stripeEvent.Type == Events.PaymentIntentCreated)
+        {
+          Console.WriteLine("A payment intent was created");
+        }
+        else
+        {
+          Console.WriteLine("Unhandled event type: {0}", stripeEvent.Type);
+        }
+        return Ok();
       }
       catch (StripeException)
       {
-          return BadRequest("Failed to verify signature.");
+        return BadRequest("Failed to verify signature.");
       }
       catch (Exception e) {
         // Log error and send 500 back to Stripe so that they'll retry
