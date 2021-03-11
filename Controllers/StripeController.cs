@@ -11,7 +11,6 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
   public class StripeController : ControllerBase
   {
     private readonly IStripeService _stripeService;
@@ -35,27 +34,19 @@ namespace Artportable.API.Controllers
     [HttpPost]
     public async Task<IActionResult> Webhook()
     {
-      var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
       try
       {
+        var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
+
         // Construct event and verify signature
-        var stripeEvent = EventUtility.ConstructEvent(json,
-                  Request.Headers["Stripe-Signature"], _endpointSecret);
+        var stripeEvent = EventUtility.ConstructEvent(
+          json,
+          Request.Headers["Stripe-Signature"],
+          _endpointSecret
+        );
 
+        _stripeService.HandleEvent(stripeEvent);
 
-        if (stripeEvent.Type == Events.PaymentIntentSucceeded)
-        {
-          var paymentIntent = stripeEvent.Data.Object as PaymentIntent;
-          Console.WriteLine("A successful payment for {0} was made.", paymentIntent.Amount);
-        }
-        else if (stripeEvent.Type == Events.PaymentIntentCreated)
-        {
-          Console.WriteLine("A payment intent was created");
-        }
-        else
-        {
-          Console.WriteLine("Unhandled event type: {0}", stripeEvent.Type);
-        }
         return Ok();
       }
       catch (StripeException)
@@ -66,10 +57,7 @@ namespace Artportable.API.Controllers
         // Log error and send 500 back to Stripe so that they'll retry
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
-
       }
-
     }
-
   }
 }
