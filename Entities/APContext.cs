@@ -11,7 +11,6 @@ namespace Artportable.API.Entities
     {
     }
 
-    public DbSet<Image> Images { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Subscription> Subscriptions { get; set; }
