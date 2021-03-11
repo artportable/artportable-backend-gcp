@@ -99,5 +99,25 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Updates a subscription in Stripe
+    /// </summary>
+    /// <param name="subscriptionId"></param>
+    /// <param name="priceId"></param>
+    [HttpPut("subscriptions")]
+    public IActionResult UpdateSubscription(string subscriptionId, string priceId)
+    {
+      try {
+        _paymentService.UpdateSubscription(subscriptionId, priceId);
+
+        return Ok();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }
