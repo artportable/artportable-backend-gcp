@@ -69,7 +69,7 @@ namespace Artportable.API.Controllers
     public ActionResult<StripeResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
     {
       try {
-        var id = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price);
+        var id = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
         var res = new StripeResponseDTO { Id = id };
 
         return Ok(res);
@@ -112,6 +112,25 @@ namespace Artportable.API.Controllers
         _paymentService.UpdateSubscription(subscriptionId, priceId);
 
         return Ok();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Gets the promotion details for a given promotion code
+    /// </summary>
+    /// <param name="promotionCode"></param>
+    [HttpGet("promotions")]
+    public IActionResult GetPromotion(string promotionCode)
+    {
+      try {
+        var promotion = _paymentService.GetPromotion(promotionCode);
+
+        return Ok(promotion);
       }
       catch (Exception e)
       {

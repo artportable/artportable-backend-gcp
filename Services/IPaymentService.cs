@@ -7,8 +7,9 @@ namespace Artportable.API.Services
   {
     List<StripePriceDTO> GetPrices();
     string CreateCustomer(string email, string fullName);
-    string CreateSubscription(string paymentMethodId, string customerId, string priceId);
+    string CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId);
     void CancelSubscription(string subscriptionId);
     void UpdateSubscription(string subscriptionId, string priceId);
+    PromotionDTO GetPromotion(string promotionCode);
   }
 }
