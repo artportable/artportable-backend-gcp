@@ -146,8 +146,6 @@ namespace Artportable.API
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "ArtPortable API");
       });
 
-      app.UseHttpsRedirection();
-
       app.UseStaticFiles();
 
       app.UseRouting();
