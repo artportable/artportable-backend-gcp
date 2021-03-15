@@ -305,7 +305,7 @@ namespace Artportable.API.Entities
           {
             Id = 1,
             ProductId = 1,
-            ExpirationDate = DateTime.Now.AddDays(30),
+            ExpirationDate = null,
             CustomerId = null
           },
           new Subscription
@@ -326,7 +326,7 @@ namespace Artportable.API.Entities
           {
             Id = 4,
             ProductId = 1,
-            ExpirationDate = DateTime.Now.AddDays(17),
+            ExpirationDate = null,
             CustomerId = null
           },
           new Subscription
