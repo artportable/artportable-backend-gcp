@@ -66,7 +66,7 @@ namespace Artportable.API.Services
       return response.Id;
     }
 
-    public string CreateSubscription(string paymentMethodId, string customerId, string priceId)
+    public string CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId)
     {
       // Attach payment method
       var options = new PaymentMethodAttachOptions
@@ -91,6 +91,7 @@ namespace Artportable.API.Services
       var subscriptionOptions = new SubscriptionCreateOptions
       {
         Customer = customerId,
+        PromotionCode = promotionCodeId,
         Items = new List<SubscriptionItemOptions>
         {
           new SubscriptionItemOptions
@@ -132,6 +133,32 @@ namespace Artportable.API.Services
       };
 
       service.Update(subscriptionId, options);
+    }
+
+    public PromotionDTO GetPromotion(string promotionCode)
+    {
+      var promotionCodeService = new PromotionCodeService();
+      var options = new PromotionCodeListOptions(){
+        Code = promotionCode
+      };
+      var promotion = promotionCodeService.List(options)
+        .Where(x => x.Active == true)
+        .FirstOrDefault();
+
+      if (promotion == null)
+      {
+        return null;
+      }
+
+      var discountInPercent = promotion.Coupon.PercentOff != null;
+
+      return new PromotionDTO
+      {
+        Name = promotion.Coupon.Name,
+        DiscountInPercent = discountInPercent,
+        AmountOff = (discountInPercent ? promotion.Coupon.PercentOff : promotion.Coupon.AmountOff / 100) ?? 0,
+        Currency = promotion.Coupon.Currency
+      };
     }
   }
 }

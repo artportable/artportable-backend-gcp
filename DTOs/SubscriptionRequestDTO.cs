@@ -12,5 +12,7 @@ namespace Artportable.API.DTOs
 
     [JsonPropertyName("priceId")]
     public string Price { get; set; }
+    [JsonPropertyName("promotionCodeId")]
+    public string PromotionCodeId { get; set; } = null;
   }
 }
