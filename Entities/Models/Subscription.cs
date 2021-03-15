@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Artportable.API.Entities.Models
@@ -8,12 +7,14 @@ namespace Artportable.API.Entities.Models
   {
     [Key]
     public int Id { get; set; }
+    public int ProductId { get; set; }
 
 
-    [MaxLength(20)]
-    public string Name { get; set; }
+    public string CustomerId { get; set; }
+    public DateTime? ExpirationDate { get; set; }
 
 
-    public IEnumerable<User> Users { get; set; }
+    public Product Product { get; set; }
+    public User User { get; set; }
   }
 }

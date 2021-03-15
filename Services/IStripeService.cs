@@ -1,7 +1,9 @@
-﻿namespace Artportable.API.Services
+﻿using Stripe;
+
+namespace Artportable.API.Services
 {
   public interface IStripeService
   {
-    string HandleIntent();
+    void HandleEvent(Event e);
   }
 }

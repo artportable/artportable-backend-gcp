@@ -60,11 +60,18 @@ namespace Artportable.API.Services
 
     public Guid CreateUser(UserDTO user)
     {
+      var subscriptionDb = new Entities.Models.Subscription
+      {
+        ProductId = (int) ProductEnum.Bas,
+        CustomerId = null,
+        ExpirationDate = null
+      };
+
       var publicId = Guid.NewGuid();
       var userDb = new User
       {
         PublicId = publicId,
-        SubscriptionId = (int) SubscriptionEnum.Bas,
+        Subscription = subscriptionDb,
         Username = user.Username,
         Email = user.Email,
         Created = DateTime.Now,
