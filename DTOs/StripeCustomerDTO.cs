@@ -6,7 +6,7 @@ namespace Artportable.API.DTOs
   public class StripeCustomerDTO
   {
     [Required]
-    [JsonPropertyName("email")]
+    [JsonPropertyName("email"), EmailAddress]
     public string Email { get; set; }
     [Required]
     [JsonPropertyName("fullName")]
