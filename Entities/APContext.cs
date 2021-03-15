@@ -18,9 +18,19 @@ namespace Artportable.API.Entities
     public DbSet<File> Files { get; set; }
     public DbSet<Artwork> Artworks { get; set; }
     public DbSet<Tag> Tags { get; set; }
+    public DbSet<Connection> Connections { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<Connection>()
+        .HasOne(c => c.Follower)
+        .WithMany(u => u.FollowerRef)
+        .HasForeignKey(c => c.FollowerId);
+      modelBuilder.Entity<Connection>()
+        .HasOne(c => c.Followee)
+        .WithMany(u => u.FolloweeRef)
+        .HasForeignKey(c => c.FolloweeId);
+
       // Seed the database with test data
       if (true) {
         modelBuilder.Entity<File>().HasData(
@@ -504,6 +514,45 @@ namespace Artportable.API.Entities
           {
             Id = 6,
             Title = "fruit"
+          }
+        );
+
+        modelBuilder.Entity<Connection>().HasData(
+          new Connection
+          {
+            Id = 1,
+            FollowerId = 1,
+            FolloweeId = 2
+          },
+          new Connection
+          {
+            Id = 2,
+            FollowerId = 2,
+            FolloweeId = 1
+          },
+          new Connection
+          {
+            Id = 3,
+            FollowerId = 1,
+            FolloweeId = 3
+          },
+          new Connection
+          {
+            Id = 4,
+            FollowerId = 3,
+            FolloweeId = 6
+          },
+          new Connection
+          {
+            Id = 5,
+            FollowerId = 3,
+            FolloweeId = 4
+          },
+          new Connection
+          {
+            Id = 6,
+            FollowerId = 2,
+            FolloweeId = 4
           }
         );
       }
