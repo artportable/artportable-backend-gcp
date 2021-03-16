@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,5 +36,7 @@ namespace Artportable.API.Entities.Models
     public UserProfile UserProfile {get; set; }
     public Subscription Subscription { get; set; }
     public File File { get; set; }
+    public ICollection<Connection> FollowerRef { get; set; }
+    public ICollection<Connection> FolloweeRef { get; set; }
   }
 }
