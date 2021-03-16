@@ -23,7 +23,8 @@ namespace Artportable.API.Services
         .Include(a => a.User)
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
-        .Include(a => a.TertiaryFile);
+        .Include(a => a.TertiaryFile)
+        .Include(a => a.Likes);
       
       return artworks.Select(a =>
         new ArtworkDTO
@@ -36,7 +37,8 @@ namespace Artportable.API.Services
           PrimaryFile = a.PrimaryFile.Name,
           SecondaryFile = a.SecondaryFile != null ? a.SecondaryFile.Name : null,
           TertiaryFile = a.TertiaryFile != null ? a.TertiaryFile.Name : null,
-          Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()
+          Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
+          Likes = a.Likes.Count()
         })
         .ToList();
     }
@@ -48,6 +50,7 @@ namespace Artportable.API.Services
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
+        .Include(a => a.Likes)
         .Where(a => a.PublicId == id)
         .SingleOrDefault();
 
@@ -66,7 +69,8 @@ namespace Artportable.API.Services
           PrimaryFile = artwork.PrimaryFile.Name,
           SecondaryFile = artwork.SecondaryFile != null ? artwork.SecondaryFile.Name : null,
           TertiaryFile = artwork.TertiaryFile != null ? artwork.TertiaryFile.Name : null,
-          Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>()
+          Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
+          Likes = artwork.Likes.Count()
         };
     }
   }
