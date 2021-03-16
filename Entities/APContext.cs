@@ -19,6 +19,7 @@ namespace Artportable.API.Entities
     public DbSet<Artwork> Artworks { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Connection> Connections { get; set; }
+    public DbSet<Like> Likes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -538,6 +539,45 @@ namespace Artportable.API.Entities
             Id = 6,
             FollowerId = 2,
             FolloweeId = 4
+          }
+        );
+
+        modelBuilder.Entity<Like>().HasData(
+          new Like
+          {
+            Id = 1,
+            UserId = 1,
+            ArtworkId = 2
+          },
+          new Like
+          {
+            Id = 2,
+            UserId = 2,
+            ArtworkId = 1
+          },
+          new Like
+          {
+            Id = 3,
+            UserId = 1,
+            ArtworkId = 3
+          },
+          new Like
+          {
+            Id = 4,
+            UserId = 4,
+            ArtworkId = 6
+          },
+          new Like
+          {
+            Id = 5,
+            UserId = 5,
+            ArtworkId = 4
+          },
+          new Like
+          {
+            Id = 6,
+            UserId = 5,
+            ArtworkId = 4
           }
         );
       }

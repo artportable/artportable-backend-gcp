@@ -38,5 +38,6 @@ namespace Artportable.API.Entities.Models
     public File File { get; set; }
     public ICollection<Connection> FollowerRef { get; set; }
     public ICollection<Connection> FolloweeRef { get; set; }
+    public ICollection<Like> Likes { get; set; }
   }
 }
