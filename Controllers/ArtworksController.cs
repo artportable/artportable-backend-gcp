@@ -37,5 +37,28 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Get a specific artwork
+    /// </summary>
+    [HttpGet("{id}")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
+    public ActionResult<ArtworkDTO> Get(Guid id)
+    {
+      try {
+        var artwork = _artworkService.Get(id);
+
+        if (artwork == null)
+        {
+          return NotFound();
+        }
+
+        return Ok(artwork);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

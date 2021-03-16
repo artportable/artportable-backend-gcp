@@ -7,5 +7,6 @@ namespace Artportable.API.Services
   public interface IArtworkService
   {
     List<ArtworkDTO> Get();
+    ArtworkDTO Get(Guid id);
   }
 }

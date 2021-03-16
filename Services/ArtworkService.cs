@@ -40,5 +40,34 @@ namespace Artportable.API.Services
         })
         .ToList();
     }
+
+    public ArtworkDTO Get(Guid id)
+    {
+      var artwork = _context.Artworks
+        .Include(a => a.User)
+        .Include(a => a.PrimaryFile)
+        .Include(a => a.SecondaryFile)
+        .Include(a => a.TertiaryFile)
+        .Where(a => a.PublicId == id)
+        .SingleOrDefault();
+
+      if (artwork == null)
+      {
+        return null;
+      }
+
+      return new ArtworkDTO
+        {
+          Id = artwork.PublicId,
+          Owner = artwork.User.Username,
+          Title = artwork.Title,
+          Description = artwork.Description,
+          Published = artwork.Published,
+          PrimaryFile = artwork.PrimaryFile.Name,
+          SecondaryFile = artwork.SecondaryFile != null ? artwork.SecondaryFile.Name : null,
+          TertiaryFile = artwork.TertiaryFile != null ? artwork.TertiaryFile.Name : null,
+          Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>()
+        };
+    }
   }
 }
