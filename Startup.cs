@@ -15,6 +15,8 @@ using System.IO;
 using System.Reflection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Stripe;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Artportable.API
 {
@@ -30,7 +32,11 @@ namespace Artportable.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers()
-        .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+        .AddJsonOptions(opts =>
+        {
+          opts.JsonSerializerOptions.PropertyNamingPolicy = null;
+          opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+        });
 
       services.AddHttpContextAccessor();
 
@@ -38,6 +44,8 @@ namespace Artportable.API
       services.AddScoped<IUserService, UserService>();
       services.AddScoped<IPaymentService, PaymentService>();
       services.AddScoped<IStripeService, StripeService>();
+      services.AddScoped<IArtworkService, ArtworkService>();
+      services.AddScoped<IFeedService, FeedService>();
 
       services.AddAuthorization(authorizationOptions =>
       {
