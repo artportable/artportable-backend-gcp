@@ -8,5 +8,7 @@ namespace Artportable.API.Services
   {
     List<ArtworkDTO> Get();
     ArtworkDTO Get(Guid id);
+    bool Like(Guid artworkId, Guid userId);
+    void Unlike(Guid artworkId, Guid userId);
   }
 }

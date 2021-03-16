@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
+using Artportable.API.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
@@ -72,6 +73,51 @@ namespace Artportable.API.Services
           Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
           Likes = artwork.Likes.Count()
         };
+    }
+
+    public bool Like(Guid artworkId, Guid userId)
+    {
+      var aId = _context.Artworks.FirstOrDefault(a => a.PublicId == artworkId)?.Id;
+      var uId = _context.Users.FirstOrDefault(u => u.PublicId == userId)?.Id;
+
+      if (aId == null || uId == null) {
+        return false;
+      }
+
+      var exists = _context.Likes
+        .Count(l => l.ArtworkId == aId && l.UserId == uId);
+
+      if (exists > 0)
+      {
+        return true;
+      }
+
+      _context.Likes.Add(
+        new Like
+        {
+          ArtworkId = (int) aId,
+          UserId = (int) uId
+        }
+      );
+      _context.SaveChanges();
+
+      return true;
+    }
+
+    public void Unlike(Guid artworkId, Guid userId)
+    {
+      var record = _context.Likes
+        .Include(l => l.Artwork)
+        .Include(l => l.User)
+        .Where(l => l.Artwork.PublicId == artworkId && l.User.PublicId == userId)
+        .SingleOrDefault();
+
+      if (record == null) {
+        return;
+      }
+
+      _context.Likes.Remove(record);
+      _context.SaveChanges();
     }
   }
 }
