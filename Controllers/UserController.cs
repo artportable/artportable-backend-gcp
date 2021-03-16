@@ -57,7 +57,7 @@ namespace Artportable.API.Controllers
     [HttpGet("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public IActionResult Get(Guid id)
+    public ActionResult<UserDTO> Get(Guid id)
     {
       try {
         var user = _userService.Get(id);
@@ -110,6 +110,30 @@ namespace Artportable.API.Controllers
       catch (ArgumentException e) {
         Console.WriteLine("Argument not valid, {0}", e);
         return StatusCode(StatusCodes.Status400BadRequest);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Gets a specific user profile by ID
+    /// </summary>
+    /// <param name="id"></param>
+    [HttpGet("{id}/profile")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<ProfileDTO> GetProfile(Guid id)
+    {
+      try {
+        var user = _userService.GetProfile(id);
+
+        if (user == null) {
+          return StatusCode(StatusCodes.Status404NotFound);
+        }
+
+        return Ok(user);
       }
       catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);

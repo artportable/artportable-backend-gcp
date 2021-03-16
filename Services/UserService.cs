@@ -2,6 +2,7 @@
 using Artportable.API.Entities;
 using Artportable.API.Entities.Models;
 using Artportable.API.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -17,7 +18,8 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(apContext));
     }
 
-    public UserDTO Get(Guid id) {
+    public UserDTO Get(Guid id)
+    {
       var user = _context.Users
         .Where(i => i.PublicId == id)
         .Join(_context.UserProfiles,
@@ -36,6 +38,28 @@ namespace Artportable.API.Services
         Location = user.Profile.Location
       } :
       null;
+    }
+
+    public ProfileDTO GetProfile(Guid id)
+    {
+      var user = _context.Users
+        .Include(u => u.UserProfile)
+        .Where(i => i.PublicId == id)
+        .SingleOrDefault();
+
+      if (user == null) {
+        return null;
+      }
+
+      return new ProfileDTO()
+      {
+        Username = user.Username,
+        ProfilePicture = user.File?.Name,
+        Headline = user.UserProfile.Headline,
+        Title = user.UserProfile.Title,
+        Location = user.UserProfile.Location,
+        Artworks = _context.Artworks.Count(a => a.UserId == user.Id)
+      };
     }
 
     public bool UserExists(Guid id)
