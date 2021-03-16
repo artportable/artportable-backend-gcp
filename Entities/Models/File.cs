@@ -13,6 +13,8 @@ namespace Artportable.API.Entities.Models
     public string Name { get; set; }
 
 
-    public User User { get; set; }
+    public Artwork PrimaryFileRef { get; set; }
+    public Artwork SecondaryFileRef { get; set; }
+    public Artwork TertiaryFileRef { get; set; }
   }
 }

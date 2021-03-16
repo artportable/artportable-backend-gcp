@@ -12,7 +12,9 @@ namespace Artportable.API.Entities.Models
 
 
     public int UserId { get; set; }
-    public int FileId { get; set; }
+    public int PrimaryFileId { get; set; }
+    public int? SecondaryFileId { get; set; }
+    public int? TertiaryFileId { get; set; }
 
 
     [Required]
@@ -27,7 +29,9 @@ namespace Artportable.API.Entities.Models
 
 
     public User User { get; set; }
-    public File File { get; set; }
+    public File PrimaryFile { get; set; }
+    public File SecondaryFile { get; set; }
+    public File TertiaryFile { get; set; }
 
     public ICollection<Tag> Tags { get; set; }
   }
