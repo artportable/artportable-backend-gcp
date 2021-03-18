@@ -87,7 +87,12 @@ namespace Artportable.API.Services
       var exists = _context.Likes
         .Count(l => l.ArtworkId == aId && l.UserId == uId);
 
-      if (exists > 0)
+      if (exists > 1)
+      {
+        Console.WriteLine("WARN: There are more than one ({0}) copies of likes for user {1} on artwork {2}", exists, uId, aId);
+        return true;
+      }
+      else if (exists > 0)
       {
         return true;
       }
@@ -110,7 +115,7 @@ namespace Artportable.API.Services
         .Include(l => l.Artwork)
         .Include(l => l.User)
         .Where(l => l.Artwork.PublicId == artworkId && l.User.PublicId == userId)
-        .SingleOrDefault();
+        .FirstOrDefault();
 
       if (record == null) {
         return;
