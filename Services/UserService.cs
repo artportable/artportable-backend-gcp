@@ -44,6 +44,8 @@ namespace Artportable.API.Services
     {
       var user = _context.Users
         .Include(u => u.UserProfile)
+        .Include(u => u.FollowerRef)
+        .Include(u => u.FolloweeRef)
         .Where(i => i.PublicId == id)
         .SingleOrDefault();
 
@@ -58,7 +60,49 @@ namespace Artportable.API.Services
         Headline = user.UserProfile.Headline,
         Title = user.UserProfile.Title,
         Location = user.UserProfile.Location,
+        Followers = user.FollowerRef.Count(),
+        Followees = user.FolloweeRef.Count(),
         Artworks = _context.Artworks.Count(a => a.UserId == user.Id)
+      };
+    }
+
+    public ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile) {
+      var profile = _context.UserProfiles
+        .Include(up => up.User)
+        .Include(u => u.User.FollowerRef)
+        .Include(u => u.User.FolloweeRef)
+        .SingleOrDefault(up => up.User.PublicId == id);
+
+      if(profile == null) 
+      {
+        return null;
+      }
+
+
+      void setSafely<T>(T value, Action<T> setAction) {
+        if(value != null) {
+          setAction(value);
+        }
+      } 
+
+      setSafely(updatedProfile.Headline, h => { profile.Headline = h; });
+      setSafely(updatedProfile.Title, t => { profile.Title = t; });
+      setSafely(updatedProfile.Location, l => { profile.Location = l; });
+      //TODO: Profile picture?
+      //profile.User.File = updatedProfile.ProfilePicture;
+
+      _context.SaveChanges();
+
+      return new ProfileDTO()
+      {
+        Username = profile.User.Username,
+        ProfilePicture = profile.User.File?.Name,
+        Headline = profile.Headline,
+        Title = profile.Title,
+        Location = profile.Location,
+        Followers = profile.User.FollowerRef.Count(),
+        Followees = profile.User.FolloweeRef.Count(),
+        Artworks = _context.Artworks.Count(a => a.UserId == profile.User.Id)
       };
     }
 

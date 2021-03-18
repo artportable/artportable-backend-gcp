@@ -140,5 +140,24 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Put (update) to a specific user profile by ID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="body"></param>
+    [HttpPut("{id}/profile")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<ProfileDTO> UpdateProfile(Guid id, [FromBody]UpdateProfileDTO body)
+    {
+      var userProfile = _userService.UpdateProfile(id, body);
+
+      if (userProfile == null) {
+        return NotFound();
+      }
+
+      return Ok(userProfile);
+    }
   }
 }
