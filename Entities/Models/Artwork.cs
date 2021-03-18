@@ -34,5 +34,6 @@ namespace Artportable.API.Entities.Models
     public File TertiaryFile { get; set; }
 
     public ICollection<Tag> Tags { get; set; }
+    public ICollection<Like> Likes { get; set; }
   }
 }

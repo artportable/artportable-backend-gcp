@@ -25,7 +25,8 @@ namespace Artportable.API.Services
         .ThenInclude(u => u.UserProfile)
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
-        .Include(a => a.TertiaryFile);
+        .Include(a => a.TertiaryFile)
+        .Include(a => a.Likes);
 
       var res = artworks.Select(a =>
           new FeedItemDTO<ArtworkPostDTO>
@@ -34,6 +35,7 @@ namespace Artportable.API.Services
             User = a.User.Username,
             Location = a.User.UserProfile.Location,
             Published = a.Published,
+            Likes = a.Likes.Count(),
             Item = new ArtworkPostDTO
             {
               Id = a.PublicId,

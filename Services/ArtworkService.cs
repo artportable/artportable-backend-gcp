@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
+using Artportable.API.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
@@ -23,7 +24,8 @@ namespace Artportable.API.Services
         .Include(a => a.User)
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
-        .Include(a => a.TertiaryFile);
+        .Include(a => a.TertiaryFile)
+        .Include(a => a.Likes);
       
       return artworks.Select(a =>
         new ArtworkDTO
@@ -36,7 +38,8 @@ namespace Artportable.API.Services
           PrimaryFile = a.PrimaryFile.Name,
           SecondaryFile = a.SecondaryFile != null ? a.SecondaryFile.Name : null,
           TertiaryFile = a.TertiaryFile != null ? a.TertiaryFile.Name : null,
-          Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()
+          Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
+          Likes = a.Likes.Count()
         })
         .ToList();
     }
@@ -48,6 +51,7 @@ namespace Artportable.API.Services
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
+        .Include(a => a.Likes)
         .Where(a => a.PublicId == id)
         .SingleOrDefault();
 
@@ -66,8 +70,59 @@ namespace Artportable.API.Services
           PrimaryFile = artwork.PrimaryFile.Name,
           SecondaryFile = artwork.SecondaryFile != null ? artwork.SecondaryFile.Name : null,
           TertiaryFile = artwork.TertiaryFile != null ? artwork.TertiaryFile.Name : null,
-          Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>()
+          Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
+          Likes = artwork.Likes.Count()
         };
+    }
+
+    public bool Like(Guid artworkId, Guid userId)
+    {
+      var aId = _context.Artworks.FirstOrDefault(a => a.PublicId == artworkId)?.Id;
+      var uId = _context.Users.FirstOrDefault(u => u.PublicId == userId)?.Id;
+
+      if (aId == null || uId == null) {
+        return false;
+      }
+
+      var exists = _context.Likes
+        .Count(l => l.ArtworkId == aId && l.UserId == uId);
+
+      if (exists > 1)
+      {
+        Console.WriteLine("WARN: There are more than one ({0}) copies of likes for user {1} on artwork {2}", exists, uId, aId);
+        return true;
+      }
+      else if (exists > 0)
+      {
+        return true;
+      }
+
+      _context.Likes.Add(
+        new Like
+        {
+          ArtworkId = (int) aId,
+          UserId = (int) uId
+        }
+      );
+      _context.SaveChanges();
+
+      return true;
+    }
+
+    public void Unlike(Guid artworkId, Guid userId)
+    {
+      var record = _context.Likes
+        .Include(l => l.Artwork)
+        .Include(l => l.User)
+        .Where(l => l.Artwork.PublicId == artworkId && l.User.PublicId == userId)
+        .FirstOrDefault();
+
+      if (record == null) {
+        return;
+      }
+
+      _context.Likes.Remove(record);
+      _context.SaveChanges();
     }
   }
 }
