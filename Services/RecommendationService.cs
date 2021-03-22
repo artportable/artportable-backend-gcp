@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
 {
@@ -21,29 +22,34 @@ namespace Artportable.API.Services
     /// </summary>
     public List<RecommendationDTO> Get(Guid id) 
     {
-      var recommendedUsers = _context.Users
-        .Where(i => i.PublicId != id)
-        .Take(30)
-        .Join(_context.UserProfiles,
-          user => user.Id,
-          profile => profile.UserId,
-          (user, profile) => new { User = user, Profile = profile });
+      List<int> unRecommendableUsersId = new List<int>(); 
+
+      var myId = _context.Users.FirstOrDefault(u => u.PublicId == id).Id;
+
+      unRecommendableUsersId.Add(myId);
       
-      return recommendedUsers
-        .Select(x => new RecommendationDTO() 
+      var usersIFollow = _context.Connections
+        .Where(c => c.FollowerId == myId)
+        .Select(c => c.FolloweeId)
+        .ToList();
+
+      unRecommendableUsersId.AddRange(usersIFollow);
+      
+      var allUsersExceptUnRecommendable = _context.Users
+        .Where(u => unRecommendableUsersId.Any(id => id != u.Id));
+
+      var users = allUsersExceptUnRecommendable
+        .Include(u => u.UserProfile)
+        .Take(30)
+        .Select(u => new RecommendationDTO() 
         {
-          UserId = x.User.Id,
-          Username = x.User.Username,
-          Location = x.Profile.Location,
+          UserId = u.Id,
+          Username = u.Username,
+          Location = u.UserProfile.Location,
         })
         .ToList();
-      
-      
-      // .Select(user => 
-      //    new RecommendationDTO() {
 
-      //    }
-      // );
+      return users;
     }
   }
 }
