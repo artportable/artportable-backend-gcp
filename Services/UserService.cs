@@ -160,5 +160,12 @@ namespace Artportable.API.Services
 
       return publicId;
     }
+    public Guid? Login(string email)
+    {
+      return _context.Users
+        .Where(u => u.Email == email)
+        .SingleOrDefault()
+        ?.PublicId;
+    }
   }
 }

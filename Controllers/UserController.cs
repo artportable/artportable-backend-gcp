@@ -159,5 +159,25 @@ namespace Artportable.API.Controllers
 
       return Ok(userProfile);
     }
+
+
+    [HttpGet("login")]
+    public IActionResult Login(string email)
+    {
+      var userId = _userService.Login(email);
+
+      if (userId == null) {
+        return NotFound();
+      }
+
+      var res = new UserId() { Id = (Guid) userId };
+
+      return Ok(res);
+    }
+  }
+
+  public class UserId
+  {
+    public Guid Id { get; set; }
   }
 }
