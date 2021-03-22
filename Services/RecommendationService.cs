@@ -36,7 +36,7 @@ namespace Artportable.API.Services
       unRecommendableUsersId.AddRange(usersIFollow);
       
       var allUsersExceptUnRecommendable = _context.Users
-        .Where(u => unRecommendableUsersId.Any(id => id != u.Id));
+        .Where(u => !unRecommendableUsersId.Contains(u.Id));
 
       var users = allUsersExceptUnRecommendable
         .Include(u => u.UserProfile)
@@ -50,6 +50,7 @@ namespace Artportable.API.Services
         .ToList();
 
       return users;
+        
     }
   }
 }
