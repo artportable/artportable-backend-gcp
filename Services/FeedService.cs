@@ -18,7 +18,7 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(apContext));
     }
 
-    public List<FeedItemDTO<ArtworkPostDTO>> Get()
+    public List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize)
     {
       var artworks = _context.Artworks
         .Include(a => a.User)
@@ -28,7 +28,11 @@ namespace Artportable.API.Services
         .Include(a => a.TertiaryFile)
         .Include(a => a.Likes);
 
-      var res = artworks.Select(a =>
+      var res = artworks
+        .OrderByDescending(a => a.Published)
+        .Skip(pageSize * (page-1))
+        .Take(pageSize)
+        .Select(a =>
           new FeedItemDTO<ArtworkPostDTO>
           {
             Type = FeedItemType.Artwork,
