@@ -4,42 +4,48 @@ namespace Artportable.API.Testing
 {
   public partial class Data
   {
+    private Tag[] getTags() {
+      var tags = new Tag[TagList.Length];
+
+      for (int i = 0; i < TagList.Length; i++) {
+        tags[i] = new Tag() {
+          Id = i+1,
+          Title = TagList[i]
+        };
+      }
+
+      return tags;
+    }
+
     public Tag[] Tags
     {
-      get =>
-        new Tag[]
-        {
-          new Tag
-          {
-            Id = 1,
-            Title = "oil"
-          },
-          new Tag
-          {
-            Id = 2,
-            Title = "acrylic"
-          },
-          new Tag
-          {
-            Id = 3,
-            Title = "forest"
-          },
-          new Tag
-          {
-            Id = 4,
-            Title = "self-portrait"
-          },
-          new Tag
-          {
-            Id = 5,
-            Title = "sea"
-          },
-          new Tag
-          {
-            Id = 6,
-            Title = "fruit"
-          }
-        };
+      get => getTags();
     }
+
+    private string[] TagList = {
+      "oil",
+      "acrylic",
+      "forest",
+      "self-portrait",
+      "sea",
+      "fruit",
+      "animal",
+      "landscape",
+      "mountains",
+      "modern",
+      "classic",
+      "art-noveau",
+      "cubism",
+      "contemporary",
+      "abstract",
+      "colors",
+      "sky",
+      "horse",
+      "summer",
+      "spring",
+      "winter",
+      "historical",
+      "photography",
+    };
   }
 }
