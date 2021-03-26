@@ -23,10 +23,14 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public IActionResult Get()
+    public IActionResult Get(int page, int pageSize = 10)
     {
+      if (page < 1 || pageSize < 1) {
+        return BadRequest();
+      }
+
       try {
-        var feedItems = _feedService.Get();
+        var feedItems = _feedService.Get(page, pageSize);
 
         return Ok(feedItems);
       }
