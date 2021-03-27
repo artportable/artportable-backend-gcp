@@ -93,8 +93,8 @@ namespace Artportable.API.Testing
             PublicId = new Guid("e35a7bc6-3d87-4fd4-a954-d6aa7cd4f33e"),
             SubscriptionId = 8,
             FileId = 29,
-            Username = "picasso",
-            Email = "pablo.r.picasso@louvre.fr",
+            Username = "leonardo",
+            Email = "leonardo.da.vinci@louvre.fr",
             Created = new DateTime(2021, 01, 18, 17, 05, 42),
             Language = "sv"
           },
@@ -184,6 +184,28 @@ namespace Artportable.API.Testing
             Username = "cartoonguy",
             Email = "hello@cartoonguy.com",
             Created = new DateTime(2021, 02, 18, 16, 45, 55),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 17,
+            PublicId = new Guid("3df14e7f-7e10-4bb3-b8b4-095cac8ec778"),
+            SubscriptionId = 17,
+            FileId = 1,
+            Username = "picasso",
+            Email = "pablo.r.picasso@vetintevadenmejlar.com",
+            Created = new DateTime(2021, 02, 18, 16, 45, 55),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 18,
+            PublicId = new Guid("906a84cf-6b4e-43e9-ab10-fdc6c2d63c7a"),
+            SubscriptionId = 18,
+            FileId = 27,
+            Username = "photographer22",
+            Email = "uloui@geemaiiil.com",
+            Created = new DateTime(2021, 01, 01, 12, 51, 05),
             Language = "sv"
           }
         };

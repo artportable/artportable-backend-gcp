@@ -91,10 +91,10 @@ namespace Artportable.API.Testing
           {
             Id = 8,
             UserId = 8,
-            Name = "Pablo",
-            Surname = "Picasso",
-            DateOfBirth = new DateTime(1881, 10, 25),
-            Location = "Mougins",
+            Name = "Leonardo",
+            Surname = "da Vinci",
+            DateOfBirth = new DateTime(1452, 04, 15),
+            Location = "Florens",
             Title = "Konstnär",
             Headline = "Målar porträtt av människor med dubbel-namn och sånt"
           },
@@ -185,6 +185,28 @@ namespace Artportable.API.Testing
             Location = "Nacka",
             Title = "Serietecknare",
             Headline = "Tecknar serier"
+          },
+          new UserProfile
+          {
+            Id = 17,
+            UserId = 17,
+            Name = "Pablo",
+            Surname = "Picasso",
+            DateOfBirth = new DateTime(1881, 10, 25),
+            Location = "Mougins",
+            Title = "Konstnär",
+            Headline = "Målar rätt mycket"
+          },
+          new UserProfile
+          {
+            Id = 18,
+            UserId = 18,
+            Name = "Urban",
+            Surname = "Loui",
+            DateOfBirth = new DateTime(1990, 07, 12),
+            Location = "Mariestad",
+            Title = "Fotograf",
+            Headline = "Åker runt i världen och knäpper bilder"
           }
         };
     }
