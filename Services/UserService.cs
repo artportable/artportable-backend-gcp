@@ -44,6 +44,7 @@ namespace Artportable.API.Services
     {
       var user = _context.Users
         .Include(u => u.UserProfile)
+        .Include(u => u.File)
         .Include(u => u.FollowerRef)
         .Include(u => u.FolloweeRef)
         .Where(i => i.PublicId == id)
