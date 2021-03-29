@@ -18,17 +18,20 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(apContext));
     }
 
-    public List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize)
+    public List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize, Guid publicUserId)
     {
+      var userId = _context.Users.FirstOrDefault(u => u.PublicId == publicUserId).Id;
+
       var artworks = _context.Artworks
-        .Include(a => a.User)
-        .ThenInclude(u => u.UserProfile)
+        .Include(a => a.User).ThenInclude(u => u.UserProfile)
+        .Include(a => a.User.FolloweeRef)
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
         .Include(a => a.Likes);
 
       var res = artworks
+        .Where(a => a.UserId == userId || a.User.FolloweeRef.Any(f => f.FollowerId == userId))
         .OrderByDescending(a => a.Published)
         .Skip(pageSize * (page-1))
         .Take(pageSize)
