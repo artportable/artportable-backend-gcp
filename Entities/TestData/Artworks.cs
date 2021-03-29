@@ -128,11 +128,10 @@ namespace Artportable.API.Testing
             Id = 12,
             PublicId = new Guid("d38a9805-0aea-4e4b-a882-5a91406d3287"),
             UserId = 6,
-            PrimaryFileId = 15,
-            SecondaryFileId = 16,
-            TertiaryFileId = 17,
-            Title = "An Artwork by Claire",
-            Description = "A delicious piece of art",
+            PrimaryFileId = 17,
+            SecondaryFileId = 20,
+            Title = "Street in Birmingham",
+            Description = "A busy street in Birmingham in the early 1900s",
             Published = DateTime.Now
           },
           new Artwork()
@@ -141,10 +140,8 @@ namespace Artportable.API.Testing
             PublicId = new Guid("9d5a7c23-86b6-4e90-b305-e8349894e26c"),
             UserId = 6,
             PrimaryFileId = 18,
-            SecondaryFileId = 19,
-            TertiaryFileId = 20,
-            Title = "An Artwork by Claire",
-            Description = "A delicious piece of art",
+            Title = "Flicka på äng",
+            Description = "Akvarellmålning av en liten flicka som sitter på knä på en äng och plockar blommor",
             Published = DateTime.Now
           },
           new Artwork()
@@ -1041,11 +1038,22 @@ namespace Artportable.API.Testing
           {
             Id = 102,
             PublicId = new Guid("ac721b2c-e6af-433d-9d44-55f955f0a9ba"),
-            UserId = 12,
-            PrimaryFileId = 93,
-            SecondaryFileId = 122,
+            UserId = 9,
+            PrimaryFileId = 16,
+            SecondaryFileId = 93,
+            TertiaryFileId = 122,
             Title = "Solrosor",
             Description = "Solrosor i vas",
+            Published = DateTime.Now
+          },
+          new Artwork()
+          {
+            Id = 103,
+            PublicId = new Guid("e4eb6096-4123-450f-8392-4f96abd64090"),
+            UserId = 12,
+            PrimaryFileId = 19,
+            Title = "Vinterhöst",
+            Description = "Träd med höstlöv som speglas i vattnet",
             Published = DateTime.Now
           },
         };
