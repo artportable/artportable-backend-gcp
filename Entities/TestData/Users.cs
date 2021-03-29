@@ -191,7 +191,7 @@ namespace Artportable.API.Testing
             Id = 17,
             PublicId = new Guid("3df14e7f-7e10-4bb3-b8b4-095cac8ec778"),
             SubscriptionId = 17,
-            FileId = 106,
+            FileId = 15,
             Username = "picasso",
             Email = "pablo.r.picasso@vetintevadenmejlar.com",
             Created = new DateTime(2021, 02, 18, 16, 45, 55),
