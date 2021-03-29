@@ -1,4 +1,5 @@
 using System;
+using Artportable.API.DTOs;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public IActionResult Get(Guid userId)
+    public ActionResult<RecommendationDTO> Get(Guid userId)
     {
       try {
         var recommendations = _recommendationService.Get(userId);

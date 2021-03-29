@@ -40,12 +40,14 @@ namespace Artportable.API.Services
 
       var users = allUsersExceptUnRecommendable
         .Include(u => u.UserProfile)
+        .Include(u => u.File)
         .Take(30)
         .Select(u => new RecommendationDTO() 
         {
           UserId = u.Id,
           Username = u.Username,
           Location = u.UserProfile.Location,
+          ProfilePicture = u.File.Name
         })
         .ToList();
 

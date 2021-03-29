@@ -25,6 +25,7 @@ namespace Artportable.API.Services
       var artworks = _context.Artworks
         .Include(a => a.User).ThenInclude(u => u.UserProfile)
         .Include(a => a.User.FolloweeRef)
+        .Include(a => a.User.File)
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
@@ -40,6 +41,7 @@ namespace Artportable.API.Services
           {
             Type = FeedItemType.Artwork,
             User = a.User.Username,
+            ProfilePicture = a.User.File.Name,
             Location = a.User.UserProfile.Location,
             Published = a.Published,
             Likes = a.Likes.Count(),
