@@ -14,113 +14,113 @@ namespace Artportable.API.Testing
           {
             Id = 1,
             PublicId = new Guid("25320c5e-f58a-4b1f-b63a-8ee07a840bdf"),
-            UserId = 2,
+            UserId = 10,
             PrimaryFileId = 1,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            Title = "Bergskvinna",
+            Description = "Kvinna blickar ut över en lång bergskedja",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 2,
             PublicId = new Guid("1efe7a31-8dcc-4ff0-9b2d-5f148e2989cc"),
-            UserId = 2,
-            PrimaryFileId = 2,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            UserId = 8,
+            PrimaryFileId = 3,
+            Title = "Nattvarden",
+            Description = "Målad ca år 1495–1498 i klostret Santa Maria delle Grazie i Milano och föreställer Jesus sista måltid",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 3,
             PublicId = new Guid("b24e3df5-0394-468d-9c1d-db1252fea920"),
-            UserId = 2,
-            PrimaryFileId = 3,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            UserId = 17,
+            PrimaryFileId = 4,
+            Title = "Blue Nude",
+            Description = "Ett av mina tidigaste mästerverk från min blåa period",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 4,
             PublicId = new Guid("9f35e705-637a-4bbe-8c35-402b2ecf7128"),
-            UserId = 3,
-            PrimaryFileId = 4,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            UserId = 17,
+            PrimaryFileId = 5,
+            Title = "The Old Guitarist",
+            Description = "Oljemålning skapad år 1903-1904. Föreställer en äldre, blind man lutad över sin gitarr medan han spelar på gatorna i Barcelona. Tavlan finns utställd på Art Institute of Chicago.",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 5,
             PublicId = new Guid("939df3fd-de57-4caf-96dc-c5e110322a96"),
-            UserId = 3,
-            PrimaryFileId = 5,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            UserId = 2,
+            PrimaryFileId = 6,
+            Title = "Antibes",
+            Description = "Mordern målning av Antibes",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 6,
             PublicId = new Guid("d70f656d-75a7-45fc-b385-e4daa834e6a8"),
-            UserId = 3,
-            PrimaryFileId = 6,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            UserId = 14,
+            PrimaryFileId = 7,
+            Title = "Stonehenge",
+            Description = "Mordern målning av Stonehenge",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 7,
             PublicId = new Guid("ce1d2b1c-7869-4df5-9a32-2cbaca8c3234"),
-            UserId = 3,
-            PrimaryFileId = 7,
-            Title = "An Artwork by Frank",
-            Description = "A delicious piece of art",
+            UserId = 9,
+            PrimaryFileId = 9,
+            Title = "Stjärnenatt",
+            Description = "Stjärnenatt i Saint-Rémy föreställer en nattlig sydfransk vy med solrosor och en virvlande natthimmel. Tavlan finns idag i Museum of Modern Art i New York.",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 8,
             PublicId = new Guid("2645bd94-3624-43fc-b21f-1209d730fc71"),
-            UserId = 6,
-            PrimaryFileId = 8,
-            Title = "An Artwork by Claire",
-            Description = "A delicious piece of art",
+            UserId = 15,
+            PrimaryFileId = 12,
+            Title = "At Cap d'Antibes",
+            Description = "Ett av alla tallträd längs Cap d'Antibes. Originalverk av Claude Monet.",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 9,
             PublicId = new Guid("3f41dc87-e8de-42ee-ac8d-355e4d3e1a2d"),
-            UserId = 2,
-            PrimaryFileId = 9,
-            Title = "An Artwork by Claire",
-            Description = "A delicious piece of art",
+            UserId = 9,
+            PrimaryFileId = 14,
+            Title = "Potatisätarna",
+            Description = "Oljemålning som skildrar proletär- och bondelivet i byn Neuen",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 10,
             PublicId = new Guid("d3118665-43e3-4905-8848-5e335a428dd5"),
-            UserId = 3,
-            PrimaryFileId = 10,
+            UserId = 10,
+            PrimaryFileId = 8,
             SecondaryFileId = 11,
-            Title = "An Artwork by Claire",
-            Description = "A delicious piece of art",
+            Title = "Jovialisk",
+            Description = "Abstrakt entusiasm fångad av en miljon penseldrag. I min studio har jag målat hundratals verk som detta.",
             Published = DateTime.Now
           },
           new Artwork()
           {
             Id = 11,
             PublicId = new Guid("136f358d-98fb-4961-855c-59d5a6d1fa19"),
-            UserId = 6,
-            PrimaryFileId = 12,
+            UserId = 1,
+            PrimaryFileId = 2,
             SecondaryFileId = 13,
-            TertiaryFileId = 14,
-            Title = "An Artwork by Claire",
-            Description = "A delicious piece of art",
+            TertiaryFileId = 10,
+            Title = "Vitlökskök",
+            Description = "En vitlök som jag plockade från köket och målade av",
             Published = DateTime.Now
           },
           new Artwork()
@@ -1028,10 +1028,10 @@ namespace Artportable.API.Testing
           {
             Id = 101,
             PublicId = new Guid("bd19f38b-d2c5-4e4c-90cf-36fffecccb43"),
-            UserId = 12,
+            UserId = 8,
             PrimaryFileId = 106,
             Title = "Se upp!",
-            Description = "Kille pekar på någoting intressant",
+            Description = "Kille pekar på någoting intressant. Originaltitel Saint John the Baptist. Oljemålning på valnötsträ.",
             Published = DateTime.Now
           },
           new Artwork()
