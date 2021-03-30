@@ -10,13 +10,13 @@ namespace Artportable.API.Controllers
   [Route("api/[controller]")]
   [ApiController]
   // [Authorize]
-  public class RecommendationsController : ControllerBase
+  public class ConnectionsController : ControllerBase
   {
-    private readonly IRecommendationService _recommendationService;
+    private readonly IConnectionService _connectionService;
 
-    public RecommendationsController(IRecommendationService recommendationService)
+    public ConnectionsController(IConnectionService connectionService)
     {
-      _recommendationService = recommendationService;
+      _connectionService = connectionService;
     }
 
     /// <summary>
@@ -24,11 +24,15 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("")]
     [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
     public ActionResult<RecommendationDTO> Get(Guid userId)
     {
       try {
-        var recommendations = _recommendationService.Get(userId);
-        
+        var recommendations = _connectionService.GetRecommendations(userId);
+
+        if (recommendations == null)
+          return BadRequest();
+
         return Ok(recommendations);
       }
       catch (Exception e) {

@@ -4,8 +4,8 @@ using Artportable.API.DTOs;
 
 namespace Artportable.API.Services
 {
-  public interface IRecommendationService
+  public interface IConnectionService
   {
-    List<RecommendationDTO> Get(Guid id);
+    List<RecommendationDTO> GetRecommendations(Guid id);
   }
 }

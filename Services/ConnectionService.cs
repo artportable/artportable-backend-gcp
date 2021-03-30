@@ -7,26 +7,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
 {
-  public class RecommendationService : IRecommendationService
+  public class ConnectionService : IConnectionService
   {
      private APContext _context;
 
-    public RecommendationService(APContext apContext)
+    public ConnectionService(APContext apContext)
     {
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
     }
 
     /// <summary>
-    /// Get recommendation
+    /// Get recommendations
     /// </summary>
-    public List<RecommendationDTO> Get(Guid id) 
+    public List<RecommendationDTO> GetRecommendations(Guid id) 
     {
       List<int> unRecommendableUsersId = new List<int>(); 
 
-      var myId = _context.Users.FirstOrDefault(u => u.PublicId == id).Id;
+      var myId = _context.Users.FirstOrDefault(u => u.PublicId == id)?.Id;
 
-      unRecommendableUsersId.Add(myId);
+      if (myId == null) {
+        return null;
+      }
+
+      unRecommendableUsersId.Add((int) myId);
       
       var usersIFollow = _context.Connections
         .Where(c => c.FollowerId == myId)
@@ -52,7 +56,6 @@ namespace Artportable.API.Services
         .ToList();
 
       return users;
-        
     }
   }
 }
