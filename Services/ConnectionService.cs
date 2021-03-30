@@ -48,7 +48,7 @@ namespace Artportable.API.Services
         .Take(30)
         .Select(u => new RecommendationDTO() 
         {
-          UserId = u.Id,
+          UserId = u.PublicId,
           Username = u.Username,
           Location = u.UserProfile.Location,
           ProfilePicture = u.File.Name
