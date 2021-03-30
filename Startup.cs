@@ -46,7 +46,7 @@ namespace Artportable.API
       services.AddScoped<IStripeService, StripeService>();
       services.AddScoped<IArtworkService, ArtworkService>();
       services.AddScoped<IFeedService, FeedService>();
-      services.AddScoped<IRecommendationService, RecommendationService>();
+      services.AddScoped<IConnectionService, ConnectionService>();
 
       services.AddAuthorization(authorizationOptions =>
       {
