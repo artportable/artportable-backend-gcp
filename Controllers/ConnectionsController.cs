@@ -40,5 +40,27 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Follow a user
+    /// </summary>
+    [HttpPost("{id}")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    public IActionResult Follow(Guid id, Guid userId)
+    {
+      try {
+        var result = _connectionService.Follow(id, userId);
+
+        if (!result)
+          return BadRequest();
+
+        return Ok();
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

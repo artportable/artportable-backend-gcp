@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
+using Artportable.API.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
@@ -56,6 +57,32 @@ namespace Artportable.API.Services
         .ToList();
 
       return users;
+    }
+
+    public bool Follow(Guid id, Guid userId)
+    {
+      var followeeId = _context.Users.FirstOrDefault(u => u.PublicId == id)?.Id;
+      var myId = _context.Users.FirstOrDefault(u => u.PublicId == userId)?.Id;
+
+      if (myId == null || followeeId == null || myId == followeeId) {
+        return false;
+      }
+
+      if (_context.Connections.Any(c => c.FollowerId == (int) myId && c.FolloweeId == (int) followeeId))
+      {
+        return true;
+      }
+
+      _context.Connections.Add(
+        new Connection
+        {
+          FollowerId = (int) myId,
+          FolloweeId = (int) followeeId
+        }
+      );
+      _context.SaveChanges();
+
+      return true;
     }
   }
 }
