@@ -84,5 +84,23 @@ namespace Artportable.API.Services
 
       return true;
     }
+
+    public void Unfollow(Guid id, Guid userId)
+    {
+      var record = _context.Connections
+        .Include(c => c.Followee)
+        .Include(c => c.Follower)
+        .Where(c => c.Followee.PublicId == id && c.Follower.PublicId == userId)
+        .FirstOrDefault();
+
+      if (record == null) {
+        return;
+      }
+
+      _context.Connections.Remove(record);
+      _context.SaveChanges();
+
+      return;
+    }
   }
 }

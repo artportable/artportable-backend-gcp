@@ -62,5 +62,23 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Unfollow a user
+    /// </summary>
+    [HttpDelete("{id}")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public IActionResult Unfollow(Guid id, Guid userId)
+    {
+      try {
+        _connectionService.Unfollow(id, userId);
+
+        return Ok();
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

@@ -8,5 +8,6 @@ namespace Artportable.API.Services
   {
     List<RecommendationDTO> GetRecommendations(Guid id);
     bool Follow(Guid id, Guid userId);
+    void Unfollow(Guid id, Guid userId);
   }
 }
