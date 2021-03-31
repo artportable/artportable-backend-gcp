@@ -45,6 +45,7 @@ namespace Artportable.API.Services
             Location = a.User.UserProfile.Location,
             Published = a.Published,
             Likes = a.Likes.Count(),
+            LikedByMe = a.Likes.Any(l => l.UserId == userId),
             Item = new ArtworkPostDTO
             {
               Id = a.PublicId,

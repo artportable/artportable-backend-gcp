@@ -11,6 +11,7 @@ namespace Artportable.API.DTOs
     public string Location { get; set; }
     public DateTime Published { get; set; }
     public int Likes { get; set; }
+    public bool LikedByMe { get; set; }
     public T Item { get; set; }
   }
 }
