@@ -35,6 +35,27 @@ namespace Artportable.API.Entities.Models
     [MaxLength(140)]
     public string Headline { get; set; }
 
+    [MaxLength(140)]
+    public string InspiredBy { get; set; }
+
+    [MaxLength(140)]
+    public string Website { get; set; }
+
+    [MaxLength(140)]
+    public string InstagramUrl { get; set; }
+
+    [MaxLength(140)]
+    public string FacebookUrl { get; set; }
+
+    [MaxLength(140)]
+    public string LinkedInUrl { get; set; }
+
+    [MaxLength(140)]
+    public string BehanceUrl { get; set; }
+
+    [MaxLength(140)]
+    public string DribbleUrl { get; set; }
+
 
     public User User { get; set; }
   }
