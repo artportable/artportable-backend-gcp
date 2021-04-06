@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities.Models
@@ -34,6 +35,9 @@ namespace Artportable.API.Entities.Models
 
     [MaxLength(140)]
     public string Headline { get; set; }
+
+    [Column(TypeName = "Text")]
+    public string About { get; set; }
 
     [MaxLength(140)]
     public string InspiredBy { get; set; }
