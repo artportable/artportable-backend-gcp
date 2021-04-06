@@ -18,7 +18,7 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(apContext));
     }
 
-    public List<ArtworkDTO> Get()
+    public List<ArtworkDTO> Get(Guid? ownerId)
     {
       var artworks = _context.Artworks
         .Include(a => a.User)
@@ -27,7 +27,9 @@ namespace Artportable.API.Services
         .Include(a => a.TertiaryFile)
         .Include(a => a.Likes);
       
-      return artworks.Select(a =>
+      return artworks
+        .Where(a => ownerId != null ? a.User.PublicId == ownerId : true)
+        .Select(a =>
         new ArtworkDTO
         {
           Id = a.PublicId,
