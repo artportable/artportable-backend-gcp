@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -62,5 +63,6 @@ namespace Artportable.API.Entities.Models
 
 
     public User User { get; set; }
+    public IEnumerable<Education> Educations { get; set; }
   }
 }

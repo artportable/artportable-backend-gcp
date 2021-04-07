@@ -24,6 +24,7 @@ namespace Artportable.API.Entities
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Connection> Connections { get; set; }
     public DbSet<Like> Likes { get; set; }
+    public DbSet<Education> Educations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,6 +63,7 @@ namespace Artportable.API.Entities
         modelBuilder.Entity<Tag>().HasData(_testData.Tags);
         modelBuilder.Entity<Connection>().HasData(_testData.Connections);
         modelBuilder.Entity<Like>().HasData(_testData.Likes);
+        modelBuilder.Entity<Education>().HasData(_testData.Educations);
       }
     }
   }
