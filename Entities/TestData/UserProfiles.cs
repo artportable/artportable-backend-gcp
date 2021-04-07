@@ -22,6 +22,8 @@ namespace Artportable.API.Testing
             Headline = "Inspirerad av naturens krafter, målar gärna skog",
             About = "I am an experienced joiner with well developed skills and experience in groundwork, concrete finishing and steel fixing and have worked in the construction industry since 1982. I am also a skilled labourer who has supported many different trades over the years. I have a full clean UK driving licence with entitlement of up to 7.5 tonne. I am keen to return to work after a period of training and personal development which has broadened my skills and experiences.",
             InspiredBy = "Långa månskenspromenader",
+            StudioText = "Min ataljé",
+            StudioLocation = "S:t Eriksplan 89, Stockholm",
             Website = "jimmylord.com",
             InstagramUrl = "www.instagram.com/jimmy",
             FacebookUrl = "www.facebook.com/jimmy",
@@ -40,6 +42,8 @@ namespace Artportable.API.Testing
             Title = "Konstintresserad",
             Headline = "Intresserad av historiska personer och fruktskålar",
             InspiredBy = "Frukt, historiska personer och god mat",
+            StudioText = "Välkommen till min ataljé i stan! Öppet alla vardagar 11-16.",
+            StudioLocation = "Valhallavägen 171, Stockholm",
             Website = "www.andersmålarstudio.se"
           },
           new UserProfile
@@ -64,6 +68,8 @@ namespace Artportable.API.Testing
             Title = "Konstnär",
             Headline = "Ambitös och kreativ konstnär som målar på heltid",
             InspiredBy = "Världen runt omkring mig",
+            StudioText = "Min målarbod ligger i utkanten av Nynäshamn och det är här jag skapar alla mina mästerverk. Ring för besök.",
+            StudioLocation = "Bagaregatan 20, Nynäshamn",
             Website = "niclasbod.se"
           },
           new UserProfile
@@ -150,7 +156,8 @@ namespace Artportable.API.Testing
             Title = "Målare & kock",
             Headline = "Matglad tjej som gärna målar djur",
             About = "I am a flexible and experienced insurance administrator with excellent time management skills. I am a good communicator with proven inter personal skills and am used to working in a team whilst also being capable of using own initiative. I am skilled In dealing with problems in a resourceful manner and negotiating to achieve beneficial agreement. I am always enthusiastic to learn and undertake new challenges.",
-            InspiredBy = "Alla sorters mat men främst italiensk"
+            InspiredBy = "Alla sorters mat men främst italiensk",
+            StudioLocation = "Pellevägen 11, Kramfors"
           },
           new UserProfile
           {

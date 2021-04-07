@@ -44,6 +44,12 @@ namespace Artportable.API.Entities.Models
     public string InspiredBy { get; set; }
 
     [MaxLength(140)]
+    public string StudioText { get; set; }
+
+    [MaxLength(140)]
+    public string StudioLocation { get; set; }
+
+    [MaxLength(140)]
     public string Website { get; set; }
 
     [MaxLength(140)]
