@@ -20,6 +20,31 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
+    /// Gets a user profile summary by ID for the
+    /// profile summary card
+    /// </summary>
+    /// <param name="id"></param>
+    [HttpGet("{id}/summary")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<ProfileSummaryDTO> GetProfileSummary(Guid id)
+    {
+      try {
+        var user = _userService.GetProfileSummary(id);
+
+        if (user == null) {
+          return StatusCode(StatusCodes.Status404NotFound);
+        }
+
+        return Ok(user);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
     /// Gets a specific user profile by ID
     /// </summary>
     /// <param name="id"></param>
