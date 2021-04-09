@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities.Models
@@ -35,7 +37,39 @@ namespace Artportable.API.Entities.Models
     [MaxLength(140)]
     public string Headline { get; set; }
 
+    [Column(TypeName = "Text")]
+    public string About { get; set; }
+
+    [MaxLength(140)]
+    public string InspiredBy { get; set; }
+
+    [MaxLength(140)]
+    public string StudioText { get; set; }
+
+    [MaxLength(140)]
+    public string StudioLocation { get; set; }
+
+    [MaxLength(140)]
+    public string Website { get; set; }
+
+    [MaxLength(140)]
+    public string InstagramUrl { get; set; }
+
+    [MaxLength(140)]
+    public string FacebookUrl { get; set; }
+
+    [MaxLength(140)]
+    public string LinkedInUrl { get; set; }
+
+    [MaxLength(140)]
+    public string BehanceUrl { get; set; }
+
+    [MaxLength(140)]
+    public string DribbleUrl { get; set; }
+
 
     public User User { get; set; }
+    public IEnumerable<Education> Educations { get; set; }
+    public IEnumerable<Exhibition> Exhibitions { get; set; }
   }
 }

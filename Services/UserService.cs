@@ -40,7 +40,7 @@ namespace Artportable.API.Services
       null;
     }
 
-    public ProfileDTO GetProfile(Guid id)
+    public ProfileSummaryDTO GetProfileSummary(Guid id)
     {
       var user = _context.Users
         .Include(u => u.UserProfile)
@@ -54,7 +54,7 @@ namespace Artportable.API.Services
         return null;
       }
 
-      return new ProfileDTO()
+      return new ProfileSummaryDTO()
       {
         Username = user.Username,
         ProfilePicture = user.File?.Name,
@@ -64,6 +64,56 @@ namespace Artportable.API.Services
         Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),
         Artworks = _context.Artworks.Count(a => a.UserId == user.Id)
+      };
+    }
+
+    public ProfileDTO GetProfile(Guid id)
+    {
+      var profile = _context.UserProfiles
+        .Include(up => up.User)
+        .ThenInclude(u => u.File)
+        .Include(up => up.User.CoverPhotoFile)
+        .Include(up => up.Educations)
+        .Include(up => up.Exhibitions)
+        .Where(i => i.User.PublicId == id)
+        .SingleOrDefault();
+
+      if (profile == null) {
+        return null;
+      }
+
+      return new ProfileDTO()
+      {
+        Username = profile.User.Username,
+        ProfilePicture = profile.User.File?.Name,
+        Headline = profile.Headline,
+        Title = profile.Title,
+        Location = profile.Location,
+
+        CoverPhoto = profile.User.CoverPhotoFile?.Name,
+        Name = profile.Name,
+        Surname = profile.Surname,
+        About = profile.About,
+        InspiredBy = profile.InspiredBy,
+        StudioText = profile.StudioText,
+        StudioLocation = profile.StudioLocation,
+        Website = profile.Website,
+        InstagramUrl = profile.InstagramUrl,
+        FacebookUrl = profile.FacebookUrl,
+        LinkedInUrl = profile.LinkedInUrl,
+        BehanceUrl = profile.BehanceUrl,
+        DribbleUrl = profile.DribbleUrl,
+        Educations = profile.Educations.Select(e => new EducationDTO {
+          Name = e.Name,
+          From = e.From,
+          To = e.To
+        }).ToList(),
+        Exhibitions = profile.Exhibitions.Select(e => new ExhibitionDTO {
+          Name = e.Name,
+          Place = e.Place,
+          From = e.From,
+          To = e.To
+        }).ToList()
       };
     }
 
@@ -101,9 +151,6 @@ namespace Artportable.API.Services
         Headline = profile.Headline,
         Title = profile.Title,
         Location = profile.Location,
-        Followers = profile.User.FollowerRef.Count(),
-        Followees = profile.User.FolloweeRef.Count(),
-        Artworks = _context.Artworks.Count(a => a.UserId == profile.User.Id)
       };
     }
 

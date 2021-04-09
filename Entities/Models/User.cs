@@ -14,6 +14,7 @@ namespace Artportable.API.Entities.Models
 
     public int SubscriptionId { get; set; }
     public int? FileId { get; set; }
+    public int? CoverPhotoFileId { get; set; }
 
 
     [Required]
@@ -36,6 +37,7 @@ namespace Artportable.API.Entities.Models
     public UserProfile UserProfile {get; set; }
     public Subscription Subscription { get; set; }
     public File File { get; set; }
+    public File CoverPhotoFile { get; set; }
     public ICollection<Connection> FollowerRef { get; set; }
     public ICollection<Connection> FolloweeRef { get; set; }
     public ICollection<Like> Likes { get; set; }

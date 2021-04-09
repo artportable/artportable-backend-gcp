@@ -6,6 +6,7 @@ namespace Artportable.API.Services
   public interface IUserService
   {
     UserDTO Get(Guid id);
+    ProfileSummaryDTO GetProfileSummary(Guid id);
     ProfileDTO GetProfile(Guid id);
     ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile);
     bool UserExists(Guid id);
