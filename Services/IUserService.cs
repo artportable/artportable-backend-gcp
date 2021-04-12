@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Artportable.API.DTOs;
 
 namespace Artportable.API.Services
@@ -9,6 +10,7 @@ namespace Artportable.API.Services
     ProfileSummaryDTO GetProfileSummary(Guid id);
     ProfileDTO GetProfile(Guid id);
     ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile);
+    List<SimilarProfileDTO> GetSimilarProfiles(Guid id);
     bool UserExists(Guid id);
     bool UserExists(UserDTO user);
     bool UsernameExists(string username);

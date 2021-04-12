@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
+using System.Collections.Generic;
 
 namespace Artportable.API.Controllers
 {
@@ -85,6 +86,24 @@ namespace Artportable.API.Controllers
       }
 
       return Ok(userProfile);
+    }
+
+    /// <summary>
+    /// Get a list of similar profiles
+    /// </summary>
+    /// <param name="id"></param>
+    [HttpGet("{id}/similar")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<List<SimilarProfileDTO>> GetSimilarProfiles(Guid id)
+    {
+      var profiles = _userService.GetSimilarProfiles(id);
+
+      if (profiles == null) {
+        return NotFound();
+      }
+
+      return Ok(profiles);
     }
   }
 }
