@@ -4,6 +4,7 @@ using Artportable.API.Entities.Models;
 using Artportable.API.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Artportable.API.Services
@@ -103,12 +104,12 @@ namespace Artportable.API.Services
         LinkedInUrl = profile.LinkedInUrl,
         BehanceUrl = profile.BehanceUrl,
         DribbleUrl = profile.DribbleUrl,
-        Educations = profile.Educations.Select(e => new EducationDTO {
+        Educations = profile.Educations?.Select(e => new EducationDTO {
           Name = e.Name,
           From = e.From,
           To = e.To
         }).ToList(),
-        Exhibitions = profile.Exhibitions.Select(e => new ExhibitionDTO {
+        Exhibitions = profile.Exhibitions?.Select(e => new ExhibitionDTO {
           Name = e.Name,
           Place = e.Place,
           From = e.From,
@@ -117,41 +118,95 @@ namespace Artportable.API.Services
       };
     }
 
-    public ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile) {
-      var profile = _context.UserProfiles
+    public ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile)
+    {
+      var rowToUpdate = _context.UserProfiles
         .Include(up => up.User)
-        .Include(u => u.User.FollowerRef)
-        .Include(u => u.User.FolloweeRef)
-        .SingleOrDefault(up => up.User.PublicId == id);
+        .Include(up => up.User.File)
+        .Include(up => up.User.CoverPhotoFile)
+        .Include(up => up.Educations)
+        .Include(up => up.Exhibitions)
+        .FirstOrDefault(up => up.User.PublicId == id);
 
-      if(profile == null) 
+      if (rowToUpdate == null)
       {
         return null;
       }
 
+      setSafely(updatedProfile.Headline, val => { rowToUpdate.Headline = val; });
+      setSafely(updatedProfile.Title, val => { rowToUpdate.Title = val; });
+      setSafely(updatedProfile.Location, val => { rowToUpdate.Location = val; });
+      setSafely(updatedProfile.Name, val => { rowToUpdate.Name = val; });
+      setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
+      setSafely(updatedProfile.About, val => { rowToUpdate.About = val; });
+      setSafely(updatedProfile.InspiredBy, val => { rowToUpdate.InspiredBy = val; });
+      setSafely(updatedProfile.StudioText, val => { rowToUpdate.StudioText = val; });
+      setSafely(updatedProfile.StudioLocation, val => { rowToUpdate.StudioLocation = val; });
+      setSafely(updatedProfile.Website, val => { rowToUpdate.Website = val; });
+      setSafely(updatedProfile.InstagramUrl, val => { rowToUpdate.InstagramUrl = val; });
+      setSafely(updatedProfile.FacebookUrl, val => { rowToUpdate.FacebookUrl = val; });
+      setSafely(updatedProfile.LinkedInUrl, val => { rowToUpdate.LinkedInUrl = val; });
+      setSafely(updatedProfile.BehanceUrl, val => { rowToUpdate.BehanceUrl = val; });
+      setSafely(updatedProfile.DribbleUrl, val => { rowToUpdate.DribbleUrl = val; });
 
-      void setSafely<T>(T value, Action<T> setAction) {
-        if(value != null) {
-          setAction(value);
-        }
-      } 
+      if (updatedProfile.Educations != null)
+      {
+        rowToUpdate.Educations = updatedProfile.Educations.Select(e => new Education()
+          {
+            Name = e.Name,
+            From = e.From,
+            To = e.To
+          }
+        ).ToList();
+      }
 
-      setSafely(updatedProfile.Headline, h => { profile.Headline = h; });
-      setSafely(updatedProfile.Title, t => { profile.Title = t; });
-      setSafely(updatedProfile.Location, l => { profile.Location = l; });
-      //TODO: Profile picture?
-      //profile.User.File = updatedProfile.ProfilePicture;
+      if (updatedProfile.Exhibitions != null)
+      {
+        rowToUpdate.Exhibitions = updatedProfile.Exhibitions.Select(e => new Exhibition()
+          {
+            Name = e.Name,
+            Place = e.Place,
+            From = e.From,
+            To = e.To
+          }
+        ).ToList();
+      }
 
       _context.SaveChanges();
 
-      return new ProfileDTO()
+      return new ProfileDTO() // TODO: Automap this
       {
-        Username = profile.User.Username,
-        ProfilePicture = profile.User.File?.Name,
-        Headline = profile.Headline,
-        Title = profile.Title,
-        Location = profile.Location,
-      };
+        Username = rowToUpdate.User.Username,
+        ProfilePicture = rowToUpdate.User.File?.Name,
+        Headline = rowToUpdate.Headline,
+        Title = rowToUpdate.Title,
+        Location = rowToUpdate.Location,
+
+        CoverPhoto = rowToUpdate.User.CoverPhotoFile?.Name,
+        Name = rowToUpdate.Name,
+        Surname = rowToUpdate.Surname,
+        About = rowToUpdate.About,
+        InspiredBy = rowToUpdate.InspiredBy,
+        StudioText = rowToUpdate.StudioText,
+        StudioLocation = rowToUpdate.StudioLocation,
+        Website = rowToUpdate.Website,
+        InstagramUrl = rowToUpdate.InstagramUrl,
+        FacebookUrl = rowToUpdate.FacebookUrl,
+        LinkedInUrl = rowToUpdate.LinkedInUrl,
+        BehanceUrl = rowToUpdate.BehanceUrl,
+        DribbleUrl = rowToUpdate.DribbleUrl,
+        Educations = rowToUpdate.Educations?.Select(e => new EducationDTO {
+          Name = e.Name,
+          From = e.From,
+          To = e.To
+        }).ToList(),
+        Exhibitions = rowToUpdate.Exhibitions?.Select(e => new ExhibitionDTO {
+          Name = e.Name,
+          Place = e.Place,
+          From = e.From,
+          To = e.To
+        }).ToList()
+      };;
     }
 
     public bool UserExists(Guid id)
@@ -214,6 +269,12 @@ namespace Artportable.API.Services
         .Where(u => u.Email == email)
         .SingleOrDefault()
         ?.PublicId;
+    }
+
+    private void setSafely<T>(T value, Action<T> setAction) {
+      if(value != null) {
+        setAction(value);
+      }
     }
   }
 }
