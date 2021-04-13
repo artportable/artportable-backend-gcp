@@ -2,6 +2,7 @@
 using Artportable.API.Entities;
 using Artportable.API.Entities.Models;
 using Artportable.API.Enums;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,14 @@ namespace Artportable.API.Services
   public class UserService : IUserService
   {
     private APContext _context;
+    private readonly IMapper _mapper;
 
-    public UserService(APContext apContext)
+    public UserService(APContext apContext, IMapper mapper)
     {
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
+      _mapper = mapper ??
+        throw new ArgumentNullException(nameof(mapper));
     }
 
     public UserDTO Get(Guid id)
@@ -83,39 +87,9 @@ namespace Artportable.API.Services
         return null;
       }
 
-      return new ProfileDTO()
-      {
-        Username = profile.User.Username,
-        ProfilePicture = profile.User.File?.Name,
-        Headline = profile.Headline,
-        Title = profile.Title,
-        Location = profile.Location,
+      var dto = _mapper.Map<ProfileDTO>(profile);
 
-        CoverPhoto = profile.User.CoverPhotoFile?.Name,
-        Name = profile.Name,
-        Surname = profile.Surname,
-        About = profile.About,
-        InspiredBy = profile.InspiredBy,
-        StudioText = profile.StudioText,
-        StudioLocation = profile.StudioLocation,
-        Website = profile.Website,
-        InstagramUrl = profile.InstagramUrl,
-        FacebookUrl = profile.FacebookUrl,
-        LinkedInUrl = profile.LinkedInUrl,
-        BehanceUrl = profile.BehanceUrl,
-        DribbleUrl = profile.DribbleUrl,
-        Educations = profile.Educations?.Select(e => new EducationDTO {
-          Name = e.Name,
-          From = e.From,
-          To = e.To
-        }).ToList(),
-        Exhibitions = profile.Exhibitions?.Select(e => new ExhibitionDTO {
-          Name = e.Name,
-          Place = e.Place,
-          From = e.From,
-          To = e.To
-        }).ToList()
-      };
+      return dto;
     }
 
     public ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile)
@@ -174,39 +148,9 @@ namespace Artportable.API.Services
 
       _context.SaveChanges();
 
-      return new ProfileDTO() // TODO: Automap this
-      {
-        Username = rowToUpdate.User.Username,
-        ProfilePicture = rowToUpdate.User.File?.Name,
-        Headline = rowToUpdate.Headline,
-        Title = rowToUpdate.Title,
-        Location = rowToUpdate.Location,
+      var dto = _mapper.Map<ProfileDTO>(rowToUpdate);
 
-        CoverPhoto = rowToUpdate.User.CoverPhotoFile?.Name,
-        Name = rowToUpdate.Name,
-        Surname = rowToUpdate.Surname,
-        About = rowToUpdate.About,
-        InspiredBy = rowToUpdate.InspiredBy,
-        StudioText = rowToUpdate.StudioText,
-        StudioLocation = rowToUpdate.StudioLocation,
-        Website = rowToUpdate.Website,
-        InstagramUrl = rowToUpdate.InstagramUrl,
-        FacebookUrl = rowToUpdate.FacebookUrl,
-        LinkedInUrl = rowToUpdate.LinkedInUrl,
-        BehanceUrl = rowToUpdate.BehanceUrl,
-        DribbleUrl = rowToUpdate.DribbleUrl,
-        Educations = rowToUpdate.Educations?.Select(e => new EducationDTO {
-          Name = e.Name,
-          From = e.From,
-          To = e.To
-        }).ToList(),
-        Exhibitions = rowToUpdate.Exhibitions?.Select(e => new ExhibitionDTO {
-          Name = e.Name,
-          Place = e.Place,
-          From = e.From,
-          To = e.To
-        }).ToList()
-      };;
+      return dto;
     }
 
     public bool UserExists(Guid id)
