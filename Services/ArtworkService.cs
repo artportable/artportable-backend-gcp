@@ -49,6 +49,7 @@ namespace Artportable.API.Services
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
         .Include(a => a.Likes)
+        .Include(a => a.Tags)
         .Where(a => a.PublicId == id)
         .SingleOrDefault();
 
