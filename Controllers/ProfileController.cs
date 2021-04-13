@@ -48,13 +48,14 @@ namespace Artportable.API.Controllers
     /// Gets a specific user profile by ID
     /// </summary>
     /// <param name="id"></param>
+    /// <param name="userId">OPTIONAL</param>
     [HttpGet("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ProfileDTO> GetProfile(Guid id)
+    public ActionResult<ProfileDTO> GetProfile(Guid id, Guid? userId = null)
     {
       try {
-        var user = _userService.GetProfile(id);
+        var user = _userService.GetProfile(id, userId);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);

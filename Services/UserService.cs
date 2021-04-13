@@ -72,7 +72,7 @@ namespace Artportable.API.Services
       };
     }
 
-    public ProfileDTO GetProfile(Guid id)
+    public ProfileDTO GetProfile(Guid id, Guid? userId)
     {
       var profile = _context.UserProfiles
         .Include(up => up.User)
@@ -88,6 +88,11 @@ namespace Artportable.API.Services
       }
 
       var dto = _mapper.Map<ProfileDTO>(profile);
+
+      if (userId != null)
+      {
+        dto.FollowedByMe = _context.Connections.Any(c => c.Followee.PublicId == id && c.Follower.PublicId == userId);
+      }
 
       return dto;
     }
