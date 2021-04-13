@@ -15,5 +15,6 @@ namespace Artportable.API.DTOs
     public string TertiaryFile { get; set; }
     public List<string> Tags { get; set; }
     public int Likes { get; set; }
+    public bool LikedByMe { get; set; }
   }
 }

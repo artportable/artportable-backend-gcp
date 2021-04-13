@@ -25,10 +25,10 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
-    public ActionResult<List<ArtworkDTO>> Get(Guid? ownerId = null)
+    public ActionResult<List<ArtworkDTO>> Get(Guid? ownerId = null, Guid? userId = null)
     {
       try {
-        var artworks = _artworkService.Get(ownerId);
+        var artworks = _artworkService.Get(ownerId, userId);
 
         return Ok(artworks);
       }
