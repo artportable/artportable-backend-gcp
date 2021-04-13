@@ -22,6 +22,7 @@ namespace Artportable.API.Services
     {
       return _context.Artworks
         .Where(a => ownerId != null ? a.User.PublicId == ownerId : true)
+        .OrderByDescending(a => a.Published)
         .Select(a =>
         new ArtworkDTO
         {
