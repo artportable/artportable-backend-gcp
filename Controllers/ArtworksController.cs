@@ -63,6 +63,30 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
+    /// Get the tags of a specific artwork
+    /// </summary>
+    [HttpGet("{id}/tags")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(TagDTO))]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<List<TagDTO>> GetTags(Guid id)
+    {
+      try {
+        var tags = _artworkService.GetTags(id);
+
+        if (tags == null)
+        {
+          return NotFound();
+        }
+
+        return Ok(tags);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
     /// Like a specific artwork
     /// </summary>
     [HttpPost("{id}/like")]

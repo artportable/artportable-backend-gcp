@@ -73,6 +73,24 @@ namespace Artportable.API.Services
         };
     }
 
+    public List<TagDTO> GetTags(Guid id)
+    {
+      var artwork = _context.Artworks
+        .Include(a => a.Tags)
+        .FirstOrDefault(a => a.PublicId == id);
+
+      if (artwork == null)
+      {
+        return null;
+      }
+
+      var tags = artwork.Tags
+        .Select(t => new TagDTO { Tag = t.Title })
+        .ToList();
+
+      return tags;
+    }
+
     public bool Like(Guid artworkId, Guid userId)
     {
       var aId = _context.Artworks.FirstOrDefault(a => a.PublicId == artworkId)?.Id;
