@@ -6,12 +6,12 @@ namespace Artportable.API.Services
 {
   public interface IUserService
   {
-    UserDTO Get(Guid id);
-    ProfileSummaryDTO GetProfileSummary(Guid id);
-    ProfileDTO GetProfile(Guid id, Guid? userId);
-    ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile);
-    List<SimilarProfileDTO> GetSimilarProfiles(Guid id);
-    List<TagDTO> GetTags(Guid id);
+    UserDTO Get(string username);
+    ProfileSummaryDTO GetProfileSummary(string username);
+    ProfileDTO GetProfile(string username, Guid? userId);
+    ProfileDTO UpdateProfile(string username, UpdateProfileDTO updatedProfile);
+    List<SimilarProfileDTO> GetSimilarProfiles(string username);
+    List<TagDTO> GetTags(string username);
     bool UserExists(Guid id);
     bool UserExists(UserDTO user);
     bool UsernameExists(string username);

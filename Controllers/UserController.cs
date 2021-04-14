@@ -51,16 +51,16 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Gets a specific user by ID
+    /// Gets a specific user by username
     /// </summary>
-    /// <param name="id"></param>
-    [HttpGet("{id}")]
+    /// <param name="username"></param>
+    [HttpGet("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<UserDTO> Get(Guid id)
+    public ActionResult<UserDTO> Get(string username)
     {
       try {
-        var user = _userService.Get(id);
+        var user = _userService.Get(username);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);

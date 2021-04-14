@@ -21,17 +21,17 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Gets a user profile summary by ID for the
+    /// Gets a user profile summary by username for the
     /// profile summary card
     /// </summary>
-    /// <param name="id"></param>
-    [HttpGet("{id}/summary")]
+    /// <param name="username"></param>
+    [HttpGet("{username}/summary")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ProfileSummaryDTO> GetProfileSummary(Guid id)
+    public ActionResult<ProfileSummaryDTO> GetProfileSummary(string username)
     {
       try {
-        var user = _userService.GetProfileSummary(id);
+        var user = _userService.GetProfileSummary(username);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);
@@ -46,17 +46,17 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Gets a specific user profile by ID
+    /// Gets a specific user profile by username
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="username"></param>
     /// <param name="userId">OPTIONAL</param>
-    [HttpGet("{id}")]
+    [HttpGet("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ProfileDTO> GetProfile(Guid id, Guid? userId = null)
+    public ActionResult<ProfileDTO> GetProfile(string username, Guid? userId = null)
     {
       try {
-        var user = _userService.GetProfile(id, userId);
+        var user = _userService.GetProfile(username, userId);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);
@@ -73,14 +73,14 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Put (update) to a specific user profile by ID
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="username"></param>
     /// <param name="body"></param>
-    [HttpPut("{id}")]
+    [HttpPut("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ProfileDTO> UpdateProfile(Guid id, [FromBody]UpdateProfileDTO body)
+    public ActionResult<ProfileDTO> UpdateProfile(string username, [FromBody]UpdateProfileDTO body)
     {
-      var userProfile = _userService.UpdateProfile(id, body);
+      var userProfile = _userService.UpdateProfile(username, body);
 
       if (userProfile == null) {
         return NotFound();
@@ -92,13 +92,13 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Get a list of similar profiles
     /// </summary>
-    /// <param name="id"></param>
-    [HttpGet("{id}/similar")]
+    /// <param name="username"></param>
+    [HttpGet("{username}/similar")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<List<SimilarProfileDTO>> GetSimilarProfiles(Guid id)
+    public ActionResult<List<SimilarProfileDTO>> GetSimilarProfiles(String username)
     {
-      var profiles = _userService.GetSimilarProfiles(id);
+      var profiles = _userService.GetSimilarProfiles(username);
 
       if (profiles == null) {
         return NotFound();
@@ -110,14 +110,14 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Gets all tags that are associated with a user through his artworks
     /// </summary>
-    /// <param name="id"></param>
-    [HttpGet("{id}/tags")]
+    /// <param name="username"></param>
+    [HttpGet("{username}/tags")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<List<TagDTO>> GetTags(Guid id)
+    public ActionResult<List<TagDTO>> GetTags(string username)
     {
       try {
-        var user = _userService.GetTags(id);
+        var user = _userService.GetTags(username);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);
