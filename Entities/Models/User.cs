@@ -38,6 +38,7 @@ namespace Artportable.API.Entities.Models
     public Subscription Subscription { get; set; }
     public File File { get; set; }
     public File CoverPhotoFile { get; set; }
+    public ICollection<Artwork> Artworks { get; set; }
     public ICollection<Connection> FollowerRef { get; set; }
     public ICollection<Connection> FolloweeRef { get; set; }
     public ICollection<Like> Likes { get; set; }

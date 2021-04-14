@@ -158,6 +158,30 @@ namespace Artportable.API.Services
       return dto;
     }
 
+    public List<SimilarProfileDTO> GetSimilarProfiles(Guid id)
+    {
+      return _context.Users // TODO: Order by relevance (tags)
+        .Include(u => u.File)
+        .Include(u => u.Artworks)
+        .Where(u => u.PublicId != id)
+        .Where(u => u.Artworks.Any())
+        .Take(3)
+        .Select(u =>
+        new SimilarProfileDTO
+        {
+          Id = u.PublicId,
+          Username = u.Username,
+          ProfilePicture = u.File.Name,
+          Artworks = _context.Artworks
+            .Include(a => a.PrimaryFile)
+            .Where(a => a.UserId == u.Id)
+            .Take(5)
+            .Select(a => a.PrimaryFile.Name)
+            .ToList()
+        })
+        .ToList();
+    }
+
     public bool UserExists(Guid id)
     {
       return _context.Users.Any(u => u.PublicId == id);
