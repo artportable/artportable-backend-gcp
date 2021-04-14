@@ -49,14 +49,14 @@ namespace Artportable.API.Controllers
     /// Gets a specific user profile by username
     /// </summary>
     /// <param name="username"></param>
-    /// <param name="userId">OPTIONAL</param>
+    /// <param name="myUsername">OPTIONAL</param>
     [HttpGet("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ProfileDTO> GetProfile(string username, Guid? userId = null)
+    public ActionResult<ProfileDTO> GetProfile(string username, string myUsername = null)
     {
       try {
-        var user = _userService.GetProfile(username, userId);
+        var user = _userService.GetProfile(username, myUsername);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);
@@ -96,7 +96,7 @@ namespace Artportable.API.Controllers
     [HttpGet("{username}/similar")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<List<SimilarProfileDTO>> GetSimilarProfiles(String username)
+    public ActionResult<List<SimilarProfileDTO>> GetSimilarProfiles(string username)
     {
       var profiles = _userService.GetSimilarProfiles(username);
 

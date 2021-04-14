@@ -8,7 +8,7 @@ namespace Artportable.API.Services
   {
     UserDTO Get(string username);
     ProfileSummaryDTO GetProfileSummary(string username);
-    ProfileDTO GetProfile(string username, Guid? userId);
+    ProfileDTO GetProfile(string username, string myUsername);
     ProfileDTO UpdateProfile(string username, UpdateProfileDTO updatedProfile);
     List<SimilarProfileDTO> GetSimilarProfiles(string username);
     List<TagDTO> GetTags(string username);
