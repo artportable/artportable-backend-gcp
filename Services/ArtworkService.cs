@@ -18,17 +18,11 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(apContext));
     }
 
-    public List<ArtworkDTO> Get(Guid? ownerId)
+    public List<ArtworkDTO> Get(Guid? ownerId, Guid? userId)
     {
-      var artworks = _context.Artworks
-        .Include(a => a.User)
-        .Include(a => a.PrimaryFile)
-        .Include(a => a.SecondaryFile)
-        .Include(a => a.TertiaryFile)
-        .Include(a => a.Likes);
-      
-      return artworks
+      return _context.Artworks
         .Where(a => ownerId != null ? a.User.PublicId == ownerId : true)
+        .OrderByDescending(a => a.Published)
         .Select(a =>
         new ArtworkDTO
         {
@@ -41,7 +35,8 @@ namespace Artportable.API.Services
           SecondaryFile = a.SecondaryFile != null ? a.SecondaryFile.Name : null,
           TertiaryFile = a.TertiaryFile != null ? a.TertiaryFile.Name : null,
           Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
-          Likes = a.Likes.Count()
+          Likes = a.Likes.Count(),
+          LikedByMe = userId != null ? a.Likes.Any(l => l.User.PublicId == userId) : false
         })
         .ToList();
     }

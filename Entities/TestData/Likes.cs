@@ -43,7 +43,7 @@ namespace Artportable.API.Testing
           {
             Id = 6,
             UserId = 5,
-            ArtworkId = 4
+            ArtworkId = 1
           }
         };
     }
