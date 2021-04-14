@@ -169,7 +169,6 @@ namespace Artportable.API.Services
         .Select(u =>
         new SimilarProfileDTO
         {
-          Id = u.PublicId,
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Artworks = _context.Artworks
@@ -188,11 +187,6 @@ namespace Artportable.API.Services
         .Where(t => t.Artworks.Any(a => a.User.Username == username))
         .Select(t => new TagDTO { Tag = t.Title })
         .ToList();
-    }
-
-    public bool UserExists(Guid id)
-    {
-      return _context.Users.Any(u => u.PublicId == id);
     }
 
     public bool UserExists(UserDTO user)

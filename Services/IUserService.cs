@@ -12,7 +12,6 @@ namespace Artportable.API.Services
     ProfileDTO UpdateProfile(string username, UpdateProfileDTO updatedProfile);
     List<SimilarProfileDTO> GetSimilarProfiles(string username);
     List<TagDTO> GetTags(string username);
-    bool UserExists(Guid id);
     bool UserExists(UserDTO user);
     bool UsernameExists(string username);
     bool EmailExists(string email);
