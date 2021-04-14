@@ -182,6 +182,14 @@ namespace Artportable.API.Services
         .ToList();
     }
 
+    public List<TagDTO> GetTags(Guid id)
+    {
+      return _context.Tags
+        .Where(t => t.Artworks.Any(a => a.User.PublicId == id))
+        .Select(t => new TagDTO { Tag = t.Title })
+        .ToList();
+    }
+
     public bool UserExists(Guid id)
     {
       return _context.Users.Any(u => u.PublicId == id);

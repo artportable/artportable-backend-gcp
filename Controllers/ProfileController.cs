@@ -106,5 +106,29 @@ namespace Artportable.API.Controllers
 
       return Ok(profiles);
     }
+
+    /// <summary>
+    /// Gets all tags that are associated with a user through his artworks
+    /// </summary>
+    /// <param name="id"></param>
+    [HttpGet("{id}/tags")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<List<TagDTO>> GetTags(Guid id)
+    {
+      try {
+        var user = _userService.GetTags(id);
+
+        if (user == null) {
+          return StatusCode(StatusCodes.Status404NotFound);
+        }
+
+        return Ok(user);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

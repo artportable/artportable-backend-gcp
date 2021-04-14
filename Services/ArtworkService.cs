@@ -49,6 +49,7 @@ namespace Artportable.API.Services
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
         .Include(a => a.Likes)
+        .Include(a => a.Tags)
         .Where(a => a.PublicId == id)
         .SingleOrDefault();
 
@@ -70,6 +71,24 @@ namespace Artportable.API.Services
           Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
           Likes = artwork.Likes.Count()
         };
+    }
+
+    public List<TagDTO> GetTags(Guid id)
+    {
+      var artwork = _context.Artworks
+        .Include(a => a.Tags)
+        .FirstOrDefault(a => a.PublicId == id);
+
+      if (artwork == null)
+      {
+        return null;
+      }
+
+      var tags = artwork.Tags
+        .Select(t => new TagDTO { Tag = t.Title })
+        .ToList();
+
+      return tags;
     }
 
     public bool Like(Guid artworkId, Guid userId)

@@ -66,6 +66,12 @@ namespace Artportable.API.Entities
         modelBuilder.Entity<Like>().HasData(_testData.Likes);
         modelBuilder.Entity<Education>().HasData(_testData.Educations);
         modelBuilder.Entity<Exhibition>().HasData(_testData.Exhibitions);
+
+        // Seed Artwork-Tag associative entity
+        modelBuilder.Entity<Artwork>()
+          .HasMany(a => a.Tags)
+          .WithMany(t => t.Artworks)
+          .UsingEntity(j => j.HasData(_testData.ArtworksTags));
       }
     }
   }
