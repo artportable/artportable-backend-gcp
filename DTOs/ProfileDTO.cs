@@ -25,5 +25,7 @@ namespace Artportable.API.DTOs
     public string DribbleUrl { get; set; }
     public List<EducationDTO> Educations { get; set; }
     public List<ExhibitionDTO> Exhibitions { get; set; }
+
+    public bool FollowedByMe { get; set; }
   }
 }

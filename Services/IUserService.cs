@@ -7,7 +7,7 @@ namespace Artportable.API.Services
   {
     UserDTO Get(Guid id);
     ProfileSummaryDTO GetProfileSummary(Guid id);
-    ProfileDTO GetProfile(Guid id);
+    ProfileDTO GetProfile(Guid id, Guid? userId);
     ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile);
     bool UserExists(Guid id);
     bool UserExists(UserDTO user);
