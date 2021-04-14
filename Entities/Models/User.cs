@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities.Models
 {
+  [Index(nameof(Username), IsUnique = true)]
   public class User
   {
     [Key]
