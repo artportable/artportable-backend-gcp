@@ -9,7 +9,6 @@ namespace Artportable.API.Entities.Models
   {
     [Key]
     public int Id { get; set; }
-    public Guid PublicId { get; set; }
 
 
     public int SubscriptionId { get; set; }

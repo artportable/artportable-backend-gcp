@@ -15,7 +15,7 @@ namespace Artportable.API.Services
     bool UserExists(UserDTO user);
     bool UsernameExists(string username);
     bool EmailExists(string email);
-    Guid CreateUser(UserDTO user);
-    Guid? Login(string email);
+    string CreateUser(UserDTO user);
+    string Login(string email);
   }
 }

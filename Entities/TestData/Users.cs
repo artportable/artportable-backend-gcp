@@ -13,7 +13,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 1,
-            PublicId = new Guid("b2ca9be2-f852-4d65-9498-c43366996352"),
             SubscriptionId = 1,
             FileId = 124,
             CoverPhotoFileId = 62,
@@ -25,7 +24,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 2,
-            PublicId = new Guid("39d044e3-6936-4c18-85d0-9d0b1ed5164e"),
             SubscriptionId = 2,
             FileId = 144,
             CoverPhotoFileId = 6,
@@ -37,7 +35,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 3,
-            PublicId = new Guid("6b4282b6-3014-40cd-9de3-a3f29f10bb31"),
             SubscriptionId = 3,
             FileId = 40,
             Username = "ludde",
@@ -48,7 +45,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 4,
-            PublicId = new Guid("857ce515-b7dd-4eae-991b-20468cf33ec3"),
             SubscriptionId = 4,
             FileId = 34,
             CoverPhotoFileId = 91,
@@ -60,7 +56,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 5,
-            PublicId = new Guid("820d9ee1-573e-4c4b-aeec-b077a793e26f"),
             SubscriptionId = 5,
             FileId = 139,
             CoverPhotoFileId = 116,
@@ -72,7 +67,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 6,
-            PublicId = new Guid("939dbb39-9250-43c7-b1d5-fe879ccf4167"),
             SubscriptionId = 6,
             FileId = 63,
             Username = "svennebanan",
@@ -83,7 +77,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 7,
-            PublicId = new Guid("0dfa4504-7369-4669-ba26-aa390161d573"),
             SubscriptionId = 7,
             FileId = 149,
             CoverPhotoFileId = 28,
@@ -95,7 +88,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 8,
-            PublicId = new Guid("e35a7bc6-3d87-4fd4-a954-d6aa7cd4f33e"),
             SubscriptionId = 8,
             FileId = 39,
             CoverPhotoFileId = 94,
@@ -107,7 +99,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 9,
-            PublicId = new Guid("6c8f43b4-bd72-40f5-a0cd-0b2c386f02d0"),
             SubscriptionId = 9,
             FileId = 98,
             CoverPhotoFileId = 9,
@@ -119,7 +110,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 10,
-            PublicId = new Guid("7594fde4-2e74-4d4f-a60a-548be2d09460"),
             SubscriptionId = 10,
             FileId = 49,
             Username = "konstnarssjal",
@@ -130,7 +120,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 11,
-            PublicId = new Guid("60f8ba1d-7468-45f3-876e-add0809fc760"),
             SubscriptionId = 11,
             FileId = 64,
             CoverPhotoFileId = 25,
@@ -142,7 +131,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 12,
-            PublicId = new Guid("eef3bbe3-5b1d-4c03-88a2-1b1c42acaf5d"),
             SubscriptionId = 12,
             FileId = 33,
             CoverPhotoFileId = 58,
@@ -154,7 +142,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 13,
-            PublicId = new Guid("fb54dbb3-c885-4fbb-9f78-77cdfe89855e"),
             SubscriptionId = 13,
             FileId = 82,
             Username = "vilhelminah",
@@ -165,7 +152,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 14,
-            PublicId = new Guid("80a2bdc3-ba99-4f1c-a6bd-8c31ea1f02c9"),
             SubscriptionId = 14,
             FileId = 55,
             Username = "kaja",
@@ -176,7 +162,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 15,
-            PublicId = new Guid("c29ebbf0-ebdd-4f96-952c-6ab96e888f1e"),
             SubscriptionId = 15,
             FileId = 120,
             CoverPhotoFileId = 78,
@@ -188,7 +173,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 16,
-            PublicId = new Guid("182fa258-53c2-4000-8f6e-581c69caf561"),
             SubscriptionId = 16,
             FileId = 140,
             Username = "cartoonguy",
@@ -199,7 +183,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 17,
-            PublicId = new Guid("3df14e7f-7e10-4bb3-b8b4-095cac8ec778"),
             SubscriptionId = 17,
             FileId = 15,
             Username = "picasso",
@@ -210,7 +193,6 @@ namespace Artportable.API.Testing
           new User
           {
             Id = 18,
-            PublicId = new Guid("906a84cf-6b4e-43e9-ab10-fdc6c2d63c7a"),
             SubscriptionId = 18,
             FileId = 37,
             Username = "photographer22",

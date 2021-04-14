@@ -204,7 +204,7 @@ namespace Artportable.API.Services
       return _context.Users.Any(u => u.Email == email);
     }
 
-    public Guid CreateUser(UserDTO user)
+    public string CreateUser(UserDTO user)
     {
       var subscriptionDb = new Entities.Models.Subscription
       {
@@ -213,10 +213,8 @@ namespace Artportable.API.Services
         ExpirationDate = null
       };
 
-      var publicId = Guid.NewGuid();
       var userDb = new User
       {
-        PublicId = publicId,
         Subscription = subscriptionDb,
         Username = user.Username,
         Email = user.Email,
@@ -236,14 +234,14 @@ namespace Artportable.API.Services
 
       _context.SaveChanges();
 
-      return publicId;
+      return user.Username;
     }
-    public Guid? Login(string email)
+    public string Login(string email)
     {
       return _context.Users
         .Where(u => u.Email == email)
         .SingleOrDefault()
-        ?.PublicId;
+        ?.Username;
     }
 
     private void setSafely<T>(T value, Action<T> setAction) {
