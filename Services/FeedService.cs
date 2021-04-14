@@ -18,9 +18,9 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(apContext));
     }
 
-    public List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize, Guid publicUserId)
+    public List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize, string myUsername)
     {
-      var userId = _context.Users.FirstOrDefault(u => u.PublicId == publicUserId).Id;
+      var userId = _context.Users.FirstOrDefault(u => u.Username == myUsername).Id;
 
       var artworks = _context.Artworks
         .Include(a => a.User).ThenInclude(u => u.UserProfile)

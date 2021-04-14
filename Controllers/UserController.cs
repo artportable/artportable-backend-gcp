@@ -51,16 +51,16 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Gets a specific user by ID
+    /// Gets a specific user by username
     /// </summary>
-    /// <param name="id"></param>
-    [HttpGet("{id}")]
+    /// <param name="username"></param>
+    [HttpGet("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<UserDTO> Get(Guid id)
+    public ActionResult<UserDTO> Get(string username)
     {
       try {
-        var user = _userService.Get(id);
+        var user = _userService.Get(username);
 
         if (user == null) {
           return StatusCode(StatusCodes.Status404NotFound);
@@ -103,9 +103,9 @@ namespace Artportable.API.Controllers
       }
 
       try {
-        var publicId = _userService.CreateUser(user);
+        var username = _userService.CreateUser(user);
 
-        return CreatedAtAction(nameof(Get), new { id = publicId }, user);
+        return CreatedAtAction(nameof(Get), new { id = username }, user);
       }
       catch (ArgumentException e) {
         Console.WriteLine("Argument not valid, {0}", e);
@@ -121,20 +121,20 @@ namespace Artportable.API.Controllers
     [HttpGet("login")]
     public IActionResult Login(string email)
     {
-      var userId = _userService.Login(email);
+      var username = _userService.Login(email);
 
-      if (userId == null) {
+      if (username == null) {
         return NotFound();
       }
 
-      var res = new UserId() { Id = (Guid) userId };
+      var res = new UserIdentification() { Username = username };
 
       return Ok(res);
     }
   }
 
-  public class UserId
+  public class UserIdentification
   {
-    public Guid Id { get; set; }
+    public string Username { get; set; }
   }
 }

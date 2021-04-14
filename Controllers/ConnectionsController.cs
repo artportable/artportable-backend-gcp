@@ -25,10 +25,10 @@ namespace Artportable.API.Controllers
     [HttpGet("")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public ActionResult<RecommendationDTO> Get(Guid userId)
+    public ActionResult<RecommendationDTO> Get(string myUsername)
     {
       try {
-        var recommendations = _connectionService.GetRecommendations(userId);
+        var recommendations = _connectionService.GetRecommendations(myUsername);
 
         if (recommendations == null)
           return BadRequest();
@@ -44,13 +44,13 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Follow a user
     /// </summary>
-    [HttpPost("{id}")]
+    [HttpPost("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public IActionResult Follow(Guid id, Guid userId)
+    public IActionResult Follow(string username, string myUsername)
     {
       try {
-        var result = _connectionService.Follow(id, userId);
+        var result = _connectionService.Follow(username, myUsername);
 
         if (!result)
           return BadRequest();
@@ -66,12 +66,12 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Unfollow a user
     /// </summary>
-    [HttpDelete("{id}")]
+    [HttpDelete("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public IActionResult Unfollow(Guid id, Guid userId)
+    public IActionResult Unfollow(string username, string myUsername)
     {
       try {
-        _connectionService.Unfollow(id, userId);
+        _connectionService.Unfollow(username, myUsername);
 
         return Ok();
       }

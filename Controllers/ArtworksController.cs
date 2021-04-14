@@ -25,10 +25,10 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
-    public ActionResult<List<ArtworkDTO>> Get(Guid? ownerId = null, Guid? userId = null)
+    public ActionResult<List<ArtworkDTO>> Get(string owner = null, string myUsername = null)
     {
       try {
-        var artworks = _artworkService.Get(ownerId, userId);
+        var artworks = _artworkService.Get(owner, myUsername);
 
         return Ok(artworks);
       }
@@ -44,10 +44,10 @@ namespace Artportable.API.Controllers
     [HttpGet("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ArtworkDTO> GetArtwork(Guid id)
+    public ActionResult<ArtworkDTO> GetArtwork(Guid id, string myUsername = null)
     {
       try {
-        var artwork = _artworkService.Get(id);
+        var artwork = _artworkService.Get(id, myUsername);
 
         if (artwork == null)
         {
@@ -92,10 +92,10 @@ namespace Artportable.API.Controllers
     [HttpPost("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public IActionResult Like(Guid id, Guid userId)
+    public IActionResult Like(Guid id, string myUsername)
     {
       try {
-        var res = _artworkService.Like(id, userId);
+        var res = _artworkService.Like(id, myUsername);
 
         if (res == false)
         {
@@ -115,10 +115,10 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpDelete("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
-    public IActionResult Unlike(Guid id, Guid userId)
+    public IActionResult Unlike(Guid id, string myUsername)
     {
       try {
-        _artworkService.Unlike(id, userId);
+        _artworkService.Unlike(id, myUsername);
 
         return Ok();
       }

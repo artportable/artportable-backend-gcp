@@ -6,6 +6,6 @@ namespace Artportable.API.Services
 {
   public interface IFeedService
   {
-    List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize, Guid userId);
+    List<FeedItemDTO<ArtworkPostDTO>> Get(int page, int pageSize, string myUsername);
   }
 }

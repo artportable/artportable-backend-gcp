@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities.Models
 {
+  [Index(nameof(Username), IsUnique = true)]
   public class User
   {
     [Key]
     public int Id { get; set; }
-    public Guid PublicId { get; set; }
 
 
     public int SubscriptionId { get; set; }

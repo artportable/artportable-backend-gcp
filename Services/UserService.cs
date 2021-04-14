@@ -23,10 +23,10 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(mapper));
     }
 
-    public UserDTO Get(Guid id)
+    public UserDTO Get(string username)
     {
       var user = _context.Users
-        .Where(i => i.PublicId == id)
+        .Where(u => u.Username == username)
         .Join(_context.UserProfiles,
           user => user.Id,
           profile => profile.UserId,
@@ -45,14 +45,14 @@ namespace Artportable.API.Services
       null;
     }
 
-    public ProfileSummaryDTO GetProfileSummary(Guid id)
+    public ProfileSummaryDTO GetProfileSummary(string username)
     {
       var user = _context.Users
         .Include(u => u.UserProfile)
         .Include(u => u.File)
         .Include(u => u.FollowerRef)
         .Include(u => u.FolloweeRef)
-        .Where(i => i.PublicId == id)
+        .Where(i => i.Username == username)
         .SingleOrDefault();
 
       if (user == null) {
@@ -72,7 +72,7 @@ namespace Artportable.API.Services
       };
     }
 
-    public ProfileDTO GetProfile(Guid id, Guid? userId)
+    public ProfileDTO GetProfile(string username, string myUsername)
     {
       var profile = _context.UserProfiles
         .Include(up => up.User)
@@ -80,7 +80,7 @@ namespace Artportable.API.Services
         .Include(up => up.User.CoverPhotoFile)
         .Include(up => up.Educations)
         .Include(up => up.Exhibitions)
-        .Where(i => i.User.PublicId == id)
+        .Where(i => i.User.Username == username)
         .SingleOrDefault();
 
       if (profile == null) {
@@ -89,15 +89,15 @@ namespace Artportable.API.Services
 
       var dto = _mapper.Map<ProfileDTO>(profile);
 
-      if (userId != null)
+      if (myUsername != null)
       {
-        dto.FollowedByMe = _context.Connections.Any(c => c.Followee.PublicId == id && c.Follower.PublicId == userId);
+        dto.FollowedByMe = _context.Connections.Any(c => c.Followee.Username == username && c.Follower.Username == myUsername);
       }
 
       return dto;
     }
 
-    public ProfileDTO UpdateProfile(Guid id, UpdateProfileDTO updatedProfile)
+    public ProfileDTO UpdateProfile(string username, UpdateProfileDTO updatedProfile)
     {
       var rowToUpdate = _context.UserProfiles
         .Include(up => up.User)
@@ -105,7 +105,7 @@ namespace Artportable.API.Services
         .Include(up => up.User.CoverPhotoFile)
         .Include(up => up.Educations)
         .Include(up => up.Exhibitions)
-        .FirstOrDefault(up => up.User.PublicId == id);
+        .FirstOrDefault(up => up.User.Username == username);
 
       if (rowToUpdate == null)
       {
@@ -158,18 +158,17 @@ namespace Artportable.API.Services
       return dto;
     }
 
-    public List<SimilarProfileDTO> GetSimilarProfiles(Guid id)
+    public List<SimilarProfileDTO> GetSimilarProfiles(string username)
     {
       return _context.Users // TODO: Order by relevance (tags)
         .Include(u => u.File)
         .Include(u => u.Artworks)
-        .Where(u => u.PublicId != id)
+        .Where(u => u.Username != username)
         .Where(u => u.Artworks.Any())
         .Take(3)
         .Select(u =>
         new SimilarProfileDTO
         {
-          Id = u.PublicId,
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Artworks = _context.Artworks
@@ -182,17 +181,12 @@ namespace Artportable.API.Services
         .ToList();
     }
 
-    public List<TagDTO> GetTags(Guid id)
+    public List<TagDTO> GetTags(string username)
     {
       return _context.Tags
-        .Where(t => t.Artworks.Any(a => a.User.PublicId == id))
+        .Where(t => t.Artworks.Any(a => a.User.Username == username))
         .Select(t => new TagDTO { Tag = t.Title })
         .ToList();
-    }
-
-    public bool UserExists(Guid id)
-    {
-      return _context.Users.Any(u => u.PublicId == id);
     }
 
     public bool UserExists(UserDTO user)
@@ -210,7 +204,7 @@ namespace Artportable.API.Services
       return _context.Users.Any(u => u.Email == email);
     }
 
-    public Guid CreateUser(UserDTO user)
+    public string CreateUser(UserDTO user)
     {
       var subscriptionDb = new Entities.Models.Subscription
       {
@@ -219,10 +213,8 @@ namespace Artportable.API.Services
         ExpirationDate = null
       };
 
-      var publicId = Guid.NewGuid();
       var userDb = new User
       {
-        PublicId = publicId,
         Subscription = subscriptionDb,
         Username = user.Username,
         Email = user.Email,
@@ -242,14 +234,14 @@ namespace Artportable.API.Services
 
       _context.SaveChanges();
 
-      return publicId;
+      return user.Username;
     }
-    public Guid? Login(string email)
+    public string Login(string email)
     {
       return _context.Users
         .Where(u => u.Email == email)
         .SingleOrDefault()
-        ?.PublicId;
+        ?.Username;
     }
 
     private void setSafely<T>(T value, Action<T> setAction) {
