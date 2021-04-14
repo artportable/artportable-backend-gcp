@@ -92,10 +92,10 @@ namespace Artportable.API.Controllers
     [HttpPost("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public IActionResult Like(Guid id, Guid userId)
+    public IActionResult Like(Guid id, string myUsername)
     {
       try {
-        var res = _artworkService.Like(id, userId);
+        var res = _artworkService.Like(id, myUsername);
 
         if (res == false)
         {
@@ -115,10 +115,10 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpDelete("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
-    public IActionResult Unlike(Guid id, Guid userId)
+    public IActionResult Unlike(Guid id, string myUsername)
     {
       try {
-        _artworkService.Unlike(id, userId);
+        _artworkService.Unlike(id, myUsername);
 
         return Ok();
       }

@@ -93,10 +93,10 @@ namespace Artportable.API.Services
       return tags;
     }
 
-    public bool Like(Guid artworkId, Guid userId)
+    public bool Like(Guid artworkId, string myUsername)
     {
       var aId = _context.Artworks.FirstOrDefault(a => a.PublicId == artworkId)?.Id;
-      var uId = _context.Users.FirstOrDefault(u => u.PublicId == userId)?.Id;
+      var uId = _context.Users.FirstOrDefault(u => u.Username == myUsername)?.Id;
 
       if (aId == null || uId == null) {
         return false;
@@ -127,12 +127,12 @@ namespace Artportable.API.Services
       return true;
     }
 
-    public void Unlike(Guid artworkId, Guid userId)
+    public void Unlike(Guid artworkId, string myUsername)
     {
       var record = _context.Likes
         .Include(l => l.Artwork)
         .Include(l => l.User)
-        .Where(l => l.Artwork.PublicId == artworkId && l.User.PublicId == userId)
+        .Where(l => l.Artwork.PublicId == artworkId && l.User.Username == myUsername)
         .FirstOrDefault();
 
       if (record == null) {
