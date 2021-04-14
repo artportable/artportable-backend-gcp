@@ -41,7 +41,7 @@ namespace Artportable.API.Services
         .ToList();
     }
 
-    public ArtworkDTO Get(Guid id)
+    public ArtworkDTO Get(Guid id, string myUsername)
     {
       var artwork = _context.Artworks
         .Include(a => a.User)
@@ -49,6 +49,7 @@ namespace Artportable.API.Services
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
         .Include(a => a.Likes)
+        .ThenInclude(l => l.User)
         .Include(a => a.Tags)
         .Where(a => a.PublicId == id)
         .SingleOrDefault();
@@ -69,7 +70,8 @@ namespace Artportable.API.Services
           SecondaryFile = artwork.SecondaryFile != null ? artwork.SecondaryFile.Name : null,
           TertiaryFile = artwork.TertiaryFile != null ? artwork.TertiaryFile.Name : null,
           Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
-          Likes = artwork.Likes.Count()
+          Likes = artwork.Likes.Count(),
+          LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false
         };
     }
 

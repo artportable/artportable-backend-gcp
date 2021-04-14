@@ -44,10 +44,10 @@ namespace Artportable.API.Controllers
     [HttpGet("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ArtworkDTO> GetArtwork(Guid id)
+    public ActionResult<ArtworkDTO> GetArtwork(Guid id, string myUsername = null)
     {
       try {
-        var artwork = _artworkService.Get(id);
+        var artwork = _artworkService.Get(id, myUsername);
 
         if (artwork == null)
         {
