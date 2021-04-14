@@ -21,11 +21,11 @@ namespace Artportable.API.Services
     /// <summary>
     /// Get recommendations
     /// </summary>
-    public List<RecommendationDTO> GetRecommendations(Guid id) 
+    public List<RecommendationDTO> GetRecommendations(string myUsername) 
     {
       List<int> unRecommendableUsersId = new List<int>(); 
 
-      var myId = _context.Users.FirstOrDefault(u => u.PublicId == id)?.Id;
+      var myId = _context.Users.FirstOrDefault(u => u.Username == myUsername)?.Id;
 
       if (myId == null) {
         return null;
@@ -59,10 +59,10 @@ namespace Artportable.API.Services
       return users;
     }
 
-    public bool Follow(Guid id, Guid userId)
+    public bool Follow(string username, string myUsername)
     {
-      var followeeId = _context.Users.FirstOrDefault(u => u.PublicId == id)?.Id;
-      var myId = _context.Users.FirstOrDefault(u => u.PublicId == userId)?.Id;
+      var followeeId = _context.Users.FirstOrDefault(u => u.Username == username)?.Id;
+      var myId = _context.Users.FirstOrDefault(u => u.Username == myUsername)?.Id;
 
       if (myId == null || followeeId == null || myId == followeeId) {
         return false;
@@ -85,12 +85,12 @@ namespace Artportable.API.Services
       return true;
     }
 
-    public void Unfollow(Guid id, Guid userId)
+    public void Unfollow(string username, string myUsername)
     {
       var record = _context.Connections
         .Include(c => c.Followee)
         .Include(c => c.Follower)
-        .Where(c => c.Followee.PublicId == id && c.Follower.PublicId == userId)
+        .Where(c => c.Followee.Username == username && c.Follower.Username == myUsername)
         .FirstOrDefault();
 
       if (record == null) {
