@@ -6,7 +6,7 @@ namespace Artportable.API.Services
 {
   public interface IArtworkService
   {
-    List<ArtworkDTO> Get(Guid? ownerId, Guid? userId);
+    List<ArtworkDTO> Get(string owner, string myUsername);
     ArtworkDTO Get(Guid id);
     List<TagDTO> GetTags(Guid id);
     bool Like(Guid artworkId, Guid userId);
