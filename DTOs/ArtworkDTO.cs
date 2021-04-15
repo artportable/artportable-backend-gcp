@@ -6,7 +6,7 @@ namespace Artportable.API.DTOs
   public class ArtworkDTO
   {
     public Guid Id { get; set; }
-    public string Owner { get; set; }
+    public OwnerDTO Owner { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime Published { get; set; }

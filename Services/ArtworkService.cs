@@ -27,7 +27,11 @@ namespace Artportable.API.Services
         new ArtworkDTO
         {
           Id = a.PublicId,
-          Owner = a.User.Username,
+          Owner = new OwnerDTO {
+            Username = a.User.Username,
+            ProfilePicture = a.User.File.Name,
+            Location = a.User.UserProfile.Location
+          },
           Title = a.Title,
           Description = a.Description,
           Published = a.Published,
@@ -45,6 +49,8 @@ namespace Artportable.API.Services
     {
       var artwork = _context.Artworks
         .Include(a => a.User)
+        .ThenInclude(u => u.File)
+        .Include(a => a.User.UserProfile)
         .Include(a => a.PrimaryFile)
         .Include(a => a.SecondaryFile)
         .Include(a => a.TertiaryFile)
@@ -62,7 +68,11 @@ namespace Artportable.API.Services
       return new ArtworkDTO
         {
           Id = artwork.PublicId,
-          Owner = artwork.User.Username,
+          Owner = new OwnerDTO {
+            Username = artwork.User.Username,
+            ProfilePicture = artwork.User.File.Name,
+            Location = artwork.User.UserProfile.Location
+          },
           Title = artwork.Title,
           Description = artwork.Description,
           Published = artwork.Published,

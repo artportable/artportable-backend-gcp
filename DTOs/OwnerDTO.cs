@@ -1,0 +1,9 @@
+﻿namespace Artportable.API.DTOs
+{
+  public class OwnerDTO
+  {
+    public string Username { get; set; }
+    public string ProfilePicture { get; set; }
+    public string Location { get; set; }
+  }
+}
