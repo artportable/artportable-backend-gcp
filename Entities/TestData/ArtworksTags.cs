@@ -60,7 +60,164 @@ namespace Artportable.API.Testing
           new { ArtworksId = 18, TagsId = 8 },
           new { ArtworksId = 18, TagsId = 19 },
 
-          new { ArtworksId = 19, TagsId = 4 }
+          new { ArtworksId = 19, TagsId = 4 },
+
+          new { ArtworksId = 20, TagsId = 7 },
+
+          new { ArtworksId = 21, TagsId = 3 },
+          new { ArtworksId = 21, TagsId = 13 },
+
+          new { ArtworksId = 22, TagsId = 1 },
+          new { ArtworksId = 22, TagsId = 16 },
+          new { ArtworksId = 22, TagsId = 19 },
+
+          new { ArtworksId = 23, TagsId = 1 },
+          new { ArtworksId = 23, TagsId = 11 },
+
+          new { ArtworksId = 24, TagsId = 9 },
+          new { ArtworksId = 24, TagsId = 17 },
+
+          new { ArtworksId = 26, TagsId = 2 },
+          new { ArtworksId = 26, TagsId = 6 },
+          new { ArtworksId = 26, TagsId = 12 },
+
+          new { ArtworksId = 27, TagsId = 2 },
+          new { ArtworksId = 27, TagsId = 7 },
+
+          new { ArtworksId = 28, TagsId = 2 },
+          new { ArtworksId = 28, TagsId = 7 },
+
+          new { ArtworksId = 29, TagsId = 1 },
+          new { ArtworksId = 29, TagsId = 8 },
+          new { ArtworksId = 29, TagsId = 19 },
+
+          new { ArtworksId = 30, TagsId = 9 },
+
+          new { ArtworksId = 31, TagsId = 3 },
+          new { ArtworksId = 31, TagsId = 19 },
+
+          new { ArtworksId = 32, TagsId = 2 },
+          new { ArtworksId = 32, TagsId = 8 },
+          new { ArtworksId = 32, TagsId = 9 },
+
+          new { ArtworksId = 34, TagsId = 20 },
+
+          new { ArtworksId = 35, TagsId = 17 },
+
+          new { ArtworksId = 37, TagsId = 2 },
+          new { ArtworksId = 37, TagsId = 15 },
+          new { ArtworksId = 37, TagsId = 16 },
+
+          new { ArtworksId = 38, TagsId = 7 },
+          new { ArtworksId = 38, TagsId = 21 },
+
+          new { ArtworksId = 40, TagsId = 1 },
+          new { ArtworksId = 40, TagsId = 16 },
+
+          new { ArtworksId = 41, TagsId = 13 },
+
+          new { ArtworksId = 43, TagsId = 18 },
+
+          new { ArtworksId = 44, TagsId = 1 },
+          new { ArtworksId = 44, TagsId = 7 },
+
+          new { ArtworksId = 45, TagsId = 23 },
+
+          new { ArtworksId = 46, TagsId = 8 },
+          new { ArtworksId = 46, TagsId = 9 },
+
+          new { ArtworksId = 47, TagsId = 3 },
+
+          new { ArtworksId = 49, TagsId = 11 },
+
+          new { ArtworksId = 50, TagsId = 3 },
+
+          new { ArtworksId = 52, TagsId = 7 },
+
+          new { ArtworksId = 54, TagsId = 18 },
+
+          new { ArtworksId = 56, TagsId = 7 },
+
+          new { ArtworksId = 57, TagsId = 2 },
+
+          new { ArtworksId = 58, TagsId = 2 },
+          new { ArtworksId = 58, TagsId = 7 },
+          new { ArtworksId = 58, TagsId = 20 },
+
+          new { ArtworksId = 60, TagsId = 3 },
+
+          new { ArtworksId = 61, TagsId = 11 },
+
+          new { ArtworksId = 64, TagsId = 11 },
+
+          new { ArtworksId = 65, TagsId = 18 },
+
+          new { ArtworksId = 67, TagsId = 7 },
+
+          new { ArtworksId = 68, TagsId = 1 },
+
+          new { ArtworksId = 69, TagsId = 11 },
+
+          new { ArtworksId = 71, TagsId = 8 },
+
+          new { ArtworksId = 72, TagsId = 1 },
+
+          new { ArtworksId = 73, TagsId = 7 },
+          new { ArtworksId = 73, TagsId = 18 },
+
+          new { ArtworksId = 74, TagsId = 2 },
+          new { ArtworksId = 74, TagsId = 7 },
+
+          new { ArtworksId = 75, TagsId = 15 },
+          new { ArtworksId = 75, TagsId = 16 },
+
+          new { ArtworksId = 76, TagsId = 1 },
+
+          new { ArtworksId = 77, TagsId = 1 },
+
+          new { ArtworksId = 78, TagsId = 14 },
+
+          new { ArtworksId = 79, TagsId = 1 },
+          new { ArtworksId = 79, TagsId = 7 },
+
+          new { ArtworksId = 80, TagsId = 13 },
+          new { ArtworksId = 80, TagsId = 16 },
+
+          new { ArtworksId = 81, TagsId = 8 },
+          new { ArtworksId = 81, TagsId = 9 },
+
+          new { ArtworksId = 82, TagsId = 15 },
+
+          new { ArtworksId = 83, TagsId = 13 },
+
+          new { ArtworksId = 85, TagsId = 1 },
+
+          new { ArtworksId = 86, TagsId = 1 },
+
+          new { ArtworksId = 87, TagsId = 22 },
+
+          new { ArtworksId = 88, TagsId = 7 },
+
+          new { ArtworksId = 89, TagsId = 7 },
+
+          new { ArtworksId = 91, TagsId = 2 },
+
+          new { ArtworksId = 95, TagsId = 2 },
+
+          new { ArtworksId = 96, TagsId = 2 },
+
+          new { ArtworksId = 98, TagsId = 1 },
+
+          new { ArtworksId = 99, TagsId = 15 },
+
+          new { ArtworksId = 100, TagsId = 9 },
+
+          new { ArtworksId = 101, TagsId = 1 },
+
+          new { ArtworksId = 102, TagsId = 1 },
+          new { ArtworksId = 102, TagsId = 11 },
+
+          new { ArtworksId = 103, TagsId = 3 }
         };
     }
   }
