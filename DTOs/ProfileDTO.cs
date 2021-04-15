@@ -15,8 +15,7 @@ namespace Artportable.API.DTOs
     public string Surname { get; set; }
     public string About { get; set; }
     public string InspiredBy { get; set; }
-    public string StudioText { get; set; }
-    public string StudioLocation { get; set; }
+    public StudioDTO Studio { get; set; }
     public string Website { get; set; }
     public string InstagramUrl { get; set; }
     public string FacebookUrl { get; set; }
