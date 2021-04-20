@@ -11,6 +11,8 @@ namespace Artportable.API.Entities.Models
     [Required]
     [MaxLength(200)]
     public string Name { get; set; }
+    public int Width { get; set; }
+    public int Height { get; set; }
 
 
     public Artwork PrimaryFileRef { get; set; }

@@ -35,9 +35,21 @@ namespace Artportable.API.Services
           Title = a.Title,
           Description = a.Description,
           Published = a.Published,
-          PrimaryFile = a.PrimaryFile.Name,
-          SecondaryFile = a.SecondaryFile != null ? a.SecondaryFile.Name : null,
-          TertiaryFile = a.TertiaryFile != null ? a.TertiaryFile.Name : null,
+          PrimaryFile = new FileDTO {
+            Name = a.PrimaryFile.Name,
+            Width = a.PrimaryFile.Width,
+            Height = a.PrimaryFile.Height
+          },
+          SecondaryFile = a.SecondaryFile != null ? new FileDTO {
+            Name = a.SecondaryFile.Name,
+            Width = a.SecondaryFile.Width,
+            Height = a.SecondaryFile.Height
+          } : null,
+          TertiaryFile = a.TertiaryFile != null ? new FileDTO {
+            Name = a.TertiaryFile.Name,
+            Width = a.TertiaryFile.Width,
+            Height = a.TertiaryFile.Height
+          } : null,
           Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
           Likes = a.Likes.Count(),
           LikedByMe = myUsername != null ? a.Likes.Any(l => l.User.Username == myUsername) : false
@@ -76,9 +88,21 @@ namespace Artportable.API.Services
           Title = artwork.Title,
           Description = artwork.Description,
           Published = artwork.Published,
-          PrimaryFile = artwork.PrimaryFile.Name,
-          SecondaryFile = artwork.SecondaryFile != null ? artwork.SecondaryFile.Name : null,
-          TertiaryFile = artwork.TertiaryFile != null ? artwork.TertiaryFile.Name : null,
+          PrimaryFile = new FileDTO {
+            Name = artwork.PrimaryFile.Name,
+            Width = artwork.PrimaryFile.Width,
+            Height = artwork.PrimaryFile.Height
+          },
+          SecondaryFile = artwork.SecondaryFile != null ? new FileDTO {
+            Name = artwork.SecondaryFile.Name,
+            Width = artwork.SecondaryFile.Width,
+            Height = artwork.SecondaryFile.Height
+          } : null,
+          TertiaryFile = artwork.TertiaryFile != null ? new FileDTO {
+            Name = artwork.TertiaryFile.Name,
+            Width = artwork.TertiaryFile.Width,
+            Height = artwork.TertiaryFile.Height
+          } : null,
           Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
           Likes = artwork.Likes.Count(),
           LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false

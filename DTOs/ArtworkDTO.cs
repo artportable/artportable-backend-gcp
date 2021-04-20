@@ -10,9 +10,9 @@ namespace Artportable.API.DTOs
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime Published { get; set; }
-    public string PrimaryFile { get; set; }
-    public string SecondaryFile { get; set; }
-    public string TertiaryFile { get; set; }
+    public FileDTO PrimaryFile { get; set; }
+    public FileDTO SecondaryFile { get; set; }
+    public FileDTO TertiaryFile { get; set; }
     public List<string> Tags { get; set; }
     public int Likes { get; set; }
     public bool LikedByMe { get; set; }
