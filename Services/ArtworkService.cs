@@ -109,6 +109,15 @@ namespace Artportable.API.Services
         };
     }
 
+    public List<string> GetTags()
+    {
+      var tags = _context.Tags
+        .Select(t => t.Title)
+        .ToList();
+
+      return tags;
+    }
+
     public List<TagDTO> GetTags(Guid id)
     {
       var artwork = _context.Artworks
