@@ -144,6 +144,73 @@ namespace Artportable.API.Services
       return artworkDto;
     }
 
+    public ArtworkDTO Update(ArtworkForUpdateDTO dto, Guid id, string myUsername)
+    {
+      var artwork = _context.Artworks
+        .Include(a => a.User)
+        .Include(a => a.PrimaryFile)
+        .Include(a => a.SecondaryFile)
+        .Include(a => a.TertiaryFile)
+        .Include(a => a.Tags)
+        .Include(a => a.Likes)
+        .FirstOrDefault(a => a.PublicId == id && a.User.Username == myUsername);
+
+      if (artwork == null) {
+        return null;
+      }
+
+      artwork.Title = dto.Title;
+      artwork.Description = dto.Description;
+
+      if (artwork.PrimaryFile.Name != dto.PrimaryFile)
+      {
+        var fileToRemove = artwork.PrimaryFile;
+        _context.Files.Remove(fileToRemove);
+        artwork.PrimaryFile = new File { Name = dto.PrimaryFile };
+      }
+      if (artwork.SecondaryFile?.Name != dto.PrimaryFile)
+      {
+        if (artwork?.SecondaryFile != null)
+        {
+          var fileToRemove = artwork?.SecondaryFile;
+          _context.Files.Remove(fileToRemove);
+        }
+        if (dto.SecondaryFile != null)
+        {
+          artwork.SecondaryFile = new File { Name = dto.SecondaryFile };
+        }
+      }
+      if (artwork.TertiaryFile?.Name != dto.TertiaryFile)
+      {
+        if (artwork?.TertiaryFile != null)
+        {
+          var fileToRemove = artwork?.TertiaryFile;
+          _context.Files.Remove(fileToRemove);
+        }
+        if (dto.TertiaryFile != null)
+        {
+          artwork.TertiaryFile = new File { Name = dto.TertiaryFile };
+        }
+      }
+
+      artwork.Tags.Clear();
+      _context.Tags
+        .Where(t => dto.Tags
+        .Contains(t.Title))
+        .ToList()
+        .ForEach(tag => artwork.Tags.Add(tag));
+
+
+      _context.Update(artwork);
+      _context.SaveChanges();
+
+      var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
+      artworkDto.Likes = artwork.Likes.Count();
+      artworkDto.LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false;
+
+      return artworkDto;
+    }
+
     public List<string> GetTags()
     {
       var tags = _context.Tags

@@ -10,6 +10,7 @@ namespace Artportable.API.Services
     ArtworkDTO Get(Guid id, string myUsername);
     List<string> GetTags();
     ArtworkDTO Create(ArtworkForCreationDTO dto, string myUsername);
+    ArtworkDTO Update(ArtworkForUpdateDTO dto, Guid id, string myUsername);
     List<TagDTO> GetTags(Guid id);
     bool Like(Guid artworkId, string myUsername);
     void Unlike(Guid artworkId, string myUsername);
