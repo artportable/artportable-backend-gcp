@@ -63,6 +63,29 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
+    /// Create a new artwork
+    /// </summary>
+    [HttpPost("")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    public ActionResult<ArtworkDTO> CreateArtwork([FromBody] ArtworkForCreationDTO dto, string myUsername = null)
+    {
+      try {
+        var artwork = _artworkService.Create(dto, myUsername);
+
+        if (artwork == null) {
+          return BadRequest();
+        }
+
+        return Ok(artwork);
+        }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
     /// Get all tags
     /// </summary>
     [HttpGet("tags")]
@@ -73,6 +96,43 @@ namespace Artportable.API.Controllers
         var tags = _artworkService.GetTags();
 
         return Ok(tags);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Update an existing artwork
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     PUT /
+    ///     {
+    ///        "title": "Example artwork",
+    ///        "description": "This is an example artwork",
+    ///        "primaryfile": "batman.jpg",
+    ///        "secondaryfile": "robin.jpg",
+    ///        "tertiaryfile": "batmanandrobin.jpg",
+    ///        "tags": ["oil", "acrylic", "landscape"]
+    ///     }
+    ///
+    /// </remarks>
+    [HttpPut("{id}")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<ArtworkDTO> CreateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, string myUsername = null)
+    {
+      try {
+        var artwork = _artworkService.Update(dto, id, myUsername);
+
+        if (artwork == null) {
+          return NotFound();
+        }
+
+        return Ok(artwork);
       }
       catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);

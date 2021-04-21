@@ -4,6 +4,7 @@ using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
 using Artportable.API.Entities.Models;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
@@ -11,11 +12,14 @@ namespace Artportable.API.Services
   public class ArtworkService : IArtworkService
   {
     private APContext _context;
+    private readonly IMapper _mapper;
 
-    public ArtworkService(APContext apContext)
+    public ArtworkService(APContext apContext, IMapper mapper)
     {
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
+      _mapper = mapper ??
+        throw new ArgumentNullException(nameof(mapper));
     }
 
     public List<ArtworkDTO> Get(string owner, string myUsername)
@@ -107,6 +111,104 @@ namespace Artportable.API.Services
           Likes = artwork.Likes.Count(),
           LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false
         };
+    }
+    public ArtworkDTO Create(ArtworkForCreationDTO dto, string myUsername)
+    {
+      var user = _context.Users.FirstOrDefault(u => u.Username == myUsername);
+
+      if (user == null) {
+        return null;
+      }
+
+      var artwork = new Artwork
+      {
+        PublicId = Guid.NewGuid(),
+        User = user,
+        Title = dto.Title,
+        Description = dto.Description,
+        Published = DateTime.Now,
+        PrimaryFile = new File
+        {
+          Name = dto.PrimaryFile,
+        },
+        SecondaryFile = dto.SecondaryFile != null ? new File { Name = dto.SecondaryFile } : null,
+        TertiaryFile = dto.TertiaryFile != null ? new File { Name = dto.TertiaryFile } : null,
+        Tags = _context.Tags.Where(t => dto.Tags.Contains(t.Title)).ToList()
+      };
+
+      _context.Add(artwork);
+      _context.SaveChanges();
+
+      var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
+
+      return artworkDto;
+    }
+
+    public ArtworkDTO Update(ArtworkForUpdateDTO dto, Guid id, string myUsername)
+    {
+      var artwork = _context.Artworks
+        .Include(a => a.User)
+        .Include(a => a.PrimaryFile)
+        .Include(a => a.SecondaryFile)
+        .Include(a => a.TertiaryFile)
+        .Include(a => a.Tags)
+        .Include(a => a.Likes)
+        .FirstOrDefault(a => a.PublicId == id && a.User.Username == myUsername);
+
+      if (artwork == null) {
+        return null;
+      }
+
+      artwork.Title = dto.Title;
+      artwork.Description = dto.Description;
+
+      if (artwork.PrimaryFile.Name != dto.PrimaryFile)
+      {
+        var fileToRemove = artwork.PrimaryFile;
+        _context.Files.Remove(fileToRemove);
+        artwork.PrimaryFile = new File { Name = dto.PrimaryFile };
+      }
+      if (artwork.SecondaryFile?.Name != dto.PrimaryFile)
+      {
+        if (artwork?.SecondaryFile != null)
+        {
+          var fileToRemove = artwork?.SecondaryFile;
+          _context.Files.Remove(fileToRemove);
+        }
+        if (dto.SecondaryFile != null)
+        {
+          artwork.SecondaryFile = new File { Name = dto.SecondaryFile };
+        }
+      }
+      if (artwork.TertiaryFile?.Name != dto.TertiaryFile)
+      {
+        if (artwork?.TertiaryFile != null)
+        {
+          var fileToRemove = artwork?.TertiaryFile;
+          _context.Files.Remove(fileToRemove);
+        }
+        if (dto.TertiaryFile != null)
+        {
+          artwork.TertiaryFile = new File { Name = dto.TertiaryFile };
+        }
+      }
+
+      artwork.Tags.Clear();
+      _context.Tags
+        .Where(t => dto.Tags
+        .Contains(t.Title))
+        .ToList()
+        .ForEach(tag => artwork.Tags.Add(tag));
+
+
+      _context.Update(artwork);
+      _context.SaveChanges();
+
+      var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
+      artworkDto.Likes = artwork.Likes.Count();
+      artworkDto.LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false;
+
+      return artworkDto;
     }
 
     public List<string> GetTags()
