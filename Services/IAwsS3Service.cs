@@ -1,7 +1,10 @@
+using System.IO;
+using System.Threading.Tasks;
+
 namespace Artportable.API.Services
 {
   public interface IAwsS3Service
   {
-    bool Upload(string file);
+    Task UploadAsync(Stream file, string filename);
   }
 }

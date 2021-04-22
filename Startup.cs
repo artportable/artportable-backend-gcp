@@ -41,6 +41,7 @@ namespace Artportable.API
       services.AddHttpContextAccessor();
 
       // Registered services
+      services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
       services.AddScoped<IUserService, UserService>();
       services.AddScoped<IPaymentService, PaymentService>();
       services.AddScoped<IStripeService, StripeService>();
