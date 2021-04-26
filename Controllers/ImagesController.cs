@@ -46,5 +46,28 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Delete an image from AWS S3 bucket
+    /// </summary>
+    [HttpDelete("{filename}")]
+    [SwaggerResponse(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Delete(string filename)
+    {
+      if (filename == null || !filename.EndsWith(".jpg") || !Guid.TryParse(filename.Replace(".jpg", ""), out _))
+      {
+        return BadRequest();
+      }
+
+      try {
+        await _awsS3Service.DeleteAsync(filename);
+
+        return NoContent();
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

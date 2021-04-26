@@ -42,6 +42,20 @@ namespace Artportable.API.Services
       PutObjectResponse response = await _s3client.PutObjectAsync(req);
     }
 
+    /// <summary>
+    /// Delete image
+    /// </summary>
+    public async Task DeleteAsync(string filename)
+    {
+      var req = new DeleteObjectRequest
+      {
+          BucketName = bucketName,
+          Key = "Images/" + filename
+      };
+
+      DeleteObjectResponse response = await _s3client.DeleteObjectAsync(req);
+    }
+
     private byte[] GetArrayBytes(Stream input)
     {
       byte[] buffer = new byte[16 * 1024];
