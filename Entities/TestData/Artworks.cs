@@ -18,7 +18,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 1,
             Title = "Bergskvinna",
             Description = "Kvinna blickar ut över en lång bergskedja",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -28,7 +29,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 3,
             Title = "Nattvarden",
             Description = "Målad ca år 1495–1498 i klostret Santa Maria delle Grazie i Milano och föreställer Jesus sista måltid",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -38,7 +40,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 4,
             Title = "Blue Nude",
             Description = "Ett av mina tidigaste mästerverk från min blåa period",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -48,7 +51,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 5,
             Title = "The Old Guitarist",
             Description = "Oljemålning skapad år 1903-1904. Föreställer en äldre, blind man lutad över sin gitarr medan han spelar på gatorna i Barcelona. Tavlan finns utställd på Art Institute of Chicago.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -58,7 +62,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 6,
             Title = "Antibes",
             Description = "Mordern målning av Antibes",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -68,7 +73,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 7,
             Title = "Stonehenge",
             Description = "Mordern målning av Stonehenge",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -78,7 +84,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 9,
             Title = "Stjärnenatt",
             Description = "Stjärnenatt i Saint-Rémy föreställer en nattlig sydfransk vy med solrosor och en virvlande natthimmel. Tavlan finns idag i Museum of Modern Art i New York.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -88,7 +95,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 12,
             Title = "At Cap d'Antibes",
             Description = "Ett av alla tallträd längs Cap d'Antibes. Originalverk av Claude Monet.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -98,7 +106,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 14,
             Title = "Potatisätarna",
             Description = "Oljemålning som skildrar proletär- och bondelivet i byn Neuen",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -109,7 +118,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 11,
             Title = "Jovialisk",
             Description = "Abstrakt entusiasm fångad av en miljon penseldrag. I min studio har jag målat hundratals verk som detta.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -121,7 +131,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 10,
             Title = "Vitlökskök",
             Description = "En vitlök som jag plockade från köket och målade av",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -132,7 +143,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 20,
             Title = "Street in Birmingham",
             Description = "A busy street in Birmingham in the early 1900s",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -142,7 +154,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 18,
             Title = "Flicka på äng",
             Description = "Akvarellmålning av en liten flicka som sitter på knä på en äng och plockar blommor",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -153,7 +166,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 27,
             Title = "Color explosion",
             Description = "When the watercolors meet",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -162,7 +176,8 @@ namespace Artportable.API.Testing
             UserId = 4,
             PrimaryFileId = 29,
             Title = "Liggande fjäril",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -174,7 +189,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 52,
             Title = "Sommaräng",
             Description = "Grönt.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -184,7 +200,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 46,
             Title = "Vintergård",
             Description = "Sverige År 1752. Tar med familjen på julmarknad.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -195,7 +212,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 87,
             Title = "Blomsterlandet",
             Description = "Stina plockar blommor en somring afton i maj månad. Målad med fingerfärg.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -205,7 +223,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 48,
             Title = "Självporträtt",
             Description = "Jag fast utan armar",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -215,7 +234,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 57,
             SecondaryFileId = 150,
             Title = "Tiger",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -225,7 +245,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 58,
             Title = "Skogsmänniskor",
             Description = "Man och kvinna med arborister som frisörer. Svartvit bild målad i Photoshop.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -234,7 +255,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 65,
             Title = "Blommor i färg",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -244,7 +266,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 21,
             Title = "Mona Lisa",
             Description = "En av världens mest berömda målningar (just saying) som jag målat en gång när jag hade tråkigt i Italien.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -254,7 +277,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 66,
             Title = "Berg",
             Description = "Vacker målning av ett berg med en levande himmel",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -264,7 +288,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 67,
             Title = "Tegelvägg med synfält",
             Description = "Rymdvägg som lämnar mycket åt fantasin",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -276,7 +301,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 126,
             Title = "Blåbär",
             Description = "Blåbär som rymmer från sin skål",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -286,7 +312,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 72,
             Title = "Petit svan",
             Description = "3x6 cm målning av en svan i kvällsljus",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -296,7 +323,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 73,
             Title = "Black panther",
             Description = "Svart panter målad i akvarell",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -306,7 +334,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 79,
             Title = "Rapsfält",
             Description = "Utsikt över rapsfält och ängar",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -316,7 +345,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 80,
             Title = "Blå stad",
             Description = "Porslinsmålad stad i Vietnam med karaktäristiska berg som tornar upp i bakgrunden",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -326,7 +356,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 81,
             Title = "Glänta",
             Description = "Gläntan en sensommarkväll",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -337,7 +368,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 71,
             Title = "Berg och dal-bana",
             Description = "Målning som väcker en berg och dal-bana av känslor",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -347,7 +379,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 89,
             Title = "Old Amsterdam",
             Description = "Amsterdams gator en höstdag 2005",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -356,7 +389,8 @@ namespace Artportable.API.Testing
             UserId = 1,
             PrimaryFileId = 90,
             Title = "Blåklint på ängen",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -366,7 +400,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 91,
             Title = "Glad sol",
             Description = "Ett mästerverk utom dess like",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -375,7 +410,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 26,
             Title = "Traditionell stuga på Island",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -387,7 +423,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 86,
             Title = "Vattendelare",
             Description = "Abstrakt målning gjord med hårt blandade akrylfärger",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -399,7 +436,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 38,
             Title = "Ståtlig kråka",
             Description = "Kråka njuter av den blåa vardagen",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -409,7 +447,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 32,
             Title = "Mitt hus",
             Description = "Mitt hus från när jag växte upp. Färgvalet framhäver dörren på ett sätt man aldrig skulle kunna tänka sig var möjligt.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -420,7 +459,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 60,
             Title = "Blommor i rosa nyanser",
             Description = "Ett vackert urval av blommor i en rosa färgexplosion",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -430,7 +470,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 45,
             Title = "Insidan av ett hus",
             Description = "I huset finns det en säng, två stolar, ett nattduksbord/matbord, sex tavlor, en vas, grönt golv och blåa dörrar. Fönstret kan man inte se ut igenom för det är övermålat. Några krokar finns på väggen så att man kan hänga upp sina kläder efter en lång dag utomhus.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -440,7 +481,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 62,
             Title = "Hus på landet",
             Description = "Mitt hus på landet, precis intill den gamla stadsmuren.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -450,7 +492,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 25,
             Title = "Gnägg",
             Description = "Häst som gnäggar",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -460,7 +503,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 78,
             Title = "Flicka matar får",
             Description = "Historisk bild av en ung flicka som tar hand om familjens får",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -470,7 +514,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 85,
             Title = "Staty i Aten",
             Description = "Fotot föreställer en smutsig staty som jag hittade när jag reste runt i Grekland",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -480,7 +525,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 92,
             Title = "Berg med spegelbild",
             Description = "Mäktigt berg som speglas mot vattenytan i en liten sjö",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -489,7 +535,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 54,
             Title = "Höstträd",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -499,7 +546,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 56,
             Title = "Bukett i vas",
             Description = "En blombukett i en vas som jag fick när jag fyllde jämnt och bestämde mig för att måla av",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -509,7 +557,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 23,
             Title = "Jesus Maria",
             Description = "En nunna från ett lokalt kloster",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -519,7 +568,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 77,
             Title = "Skymningsskog",
             Description = "Trädtoppar som avbildas mot den rödlila himmlen en vårnatt i april",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -529,7 +579,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 31,
             Title = "Espresso",
             Description = "Skylt på café från min resa längs den italienska rivieran",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -539,7 +590,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 61,
             Title = "Nyckelpiga",
             Description = "Formidabel målning av en nyckelpiga med sex prickar avbildad med kritor i rött och svart",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -549,7 +601,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 75,
             Title = "Den perfekta vågen",
             Description = "Surfare fångar den perfekta vågen",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -560,7 +613,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 43,
             Title = "Häst i stall",
             Description = "Ytterligare en häst",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -570,7 +624,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 22,
             Title = "Kråkträd",
             Description = "Ståtligt träd på äng en mörk åsknatt",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -579,7 +634,8 @@ namespace Artportable.API.Testing
             UserId = 15,
             PrimaryFileId = 136,
             Title = "Hund möter igelkott",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -589,7 +645,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 69,
             Title = "Molnig soldag",
             Description = "Solen som sträcker sig genom molnen i akvarell",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -599,7 +656,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 84,
             Title = "Vårfågel",
             Description = "Fågel på gren. Målad i akvarell.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -608,7 +666,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 51,
             Title = "Höstlöv på höstlov",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -618,7 +677,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 42,
             Title = "Skogsglänta",
             Description = "Glänta i skogen får finbesök i form av två ståtliga rådjur",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -628,7 +688,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 94,
             Title = "Can't touch this",
             Description = "Två händer som inte rör vid varandra. Populärt motiv just nu.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -638,7 +699,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 95,
             Title = "Min kompis hus",
             Description = "Huset som min kompis Ludde bor i målad med många fönster och en dörr med ett konstigt handtag",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -649,7 +711,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 142,
             Title = "Träd med sjöutsikt",
             Description = "Björkar vid strandenkanten av Mälaren",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -659,7 +722,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 100,
             Title = "Napoleon Bonaparte",
             Description = "Napoleon Bonaparte vid sin sista erövring",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -669,7 +733,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 103,
             Title = "Två hästar",
             Description = "Ett möte mellan två hästar som itne har setts på länge",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -679,7 +744,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 104,
             Title = "Bi",
             Description = "Enastående avbildande av ett bi, naturens egen Rolls Royce",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -689,7 +755,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 105,
             Title = "Flyttfåglar",
             Description = "Två fåglar sittandes på en pinne målad med lite glitter",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -698,7 +765,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 107,
             Title = "Kvinna från Falun",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -708,7 +776,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 109,
             Title = "Skriet",
             Description = "Min tolkning av Munchs Skriet",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -718,7 +787,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 102,
             Title = "Kingfisher",
             Description = "Bästa fågeln hitills om jag får säga det själv",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -729,7 +799,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 70,
             Title = "Nya Guinea",
             Description = "Landskapsmålning av Nya Guinea",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -739,7 +810,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 108,
             Title = "Landet",
             Description = "Landskapsmålning av hus på landet med en krullig äng framför",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -749,7 +821,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 110,
             Title = "Fler hästar",
             Description = "Hästar och hundar slår följe i jakten på en nedgrävd boll",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -759,7 +832,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 112,
             Title = "Hund",
             Description = "Hund i akvarell",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -769,7 +843,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 113,
             SecondaryFileId = 53,
             Title = "Psychadelic art",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -779,7 +854,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 116,
             Title = "Krullig höstskog",
             Description = "Skog i höstens färger målad på en specialbeställd kanvas med en speciell penselteknik",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -788,7 +864,8 @@ namespace Artportable.API.Testing
             UserId = 5,
             PrimaryFileId = 117,
             Title = "Gäss på ö",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -798,7 +875,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 114,
             Title = "Månbarn",
             Description = "Motiv förestället två barn som tävlar om att inte vara först med att blinka",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -808,7 +886,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 118,
             SecondaryFileId = 36,
             Title = "Räv",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -818,7 +897,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 121,
             Title = "Varmt möter kallt",
             Description = "Ett hav av färger står mot varandra",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -828,7 +908,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 128,
             Title = "Berglandskap",
             Description = "Föreställer ett landskap med stig som leder ner till sjö. I horisonten syns berg med vita toppar.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -838,7 +919,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 129,
             Title = "Abstrakt konst",
             Description = "Ett färgglatt verk skapat på impuls",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -848,7 +930,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 130,
             Title = "Sol",
             Description = "En exakt avbildning av hur solen såg ut när denna målades sommaren 2020",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -859,7 +942,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 74,
             Title = "Stadskärna",
             Description = "Ståtliga hus som sträcker ut sig längs stadens kanal som ringlar genom stadskärnan",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -869,7 +953,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 134,
             Title = "Småbåtshamn",
             Description = "Föreställer småbåtshamnen i Veille Monte",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -879,7 +964,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 132,
             Title = "Tre blommor",
             Description = "Tre röda blommor",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -888,7 +974,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 133,
             Title = "Bosättare",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -898,7 +985,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 135,
             Title = "Björn",
             Description = "Björn gjord i mosaik",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -908,7 +996,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 137,
             Title = "Fjäril",
             Description = "Glad fjäril i fyra färger",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -918,7 +1007,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 138,
             Title = "Vis man",
             Description = "Inspiration hämtad från en av våra resor till Nordafrika",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -929,7 +1019,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 127,
             Title = "Fönster",
             Description = "Fönster avmålat i gamla stan i Madrid",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -939,7 +1030,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 148,
             Title = "Kvinnan på bussen",
             Description = "Avtecknad kvinna som åker buss fyra mot Vevaldsvik i blått och rosa",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -951,7 +1043,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 115,
             Title = "Ögon som ser",
             Description = "Regnbågens ögon som ser det som ses",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -961,7 +1054,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 145,
             Title = "Blå barn",
             Description = "Blå barn med färgglada fåglar målad på en vägg",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -971,7 +1065,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 147,
             Title = "Olivträd",
             Description = "Olivträd avbildat i Greklands varma sommarhetta",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -982,7 +1077,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 111,
             Title = "Huset på kullen",
             Description = "Ett vackert landskap avmålat i akvarell",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -991,7 +1087,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 152,
             Title = "Jakt",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -1002,7 +1099,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 143,
             Title = "Lavendelkvinna",
             Description = "Min vän Katarina plockar lavendel i Provence",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -1013,7 +1111,8 @@ namespace Artportable.API.Testing
             SecondaryFileId = 119,
             Title = "Black box",
             Description = "Ett abstrakt konstverk som jag kallar för black box",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -1022,7 +1121,8 @@ namespace Artportable.API.Testing
             UserId = 12,
             PrimaryFileId = 123,
             Title = "Snowy mountains",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -1032,7 +1132,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 106,
             Title = "Se upp!",
             Description = "Kille pekar på någoting intressant. Originaltitel Saint John the Baptist. Oljemålning på valnötsträ.",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -1044,7 +1145,8 @@ namespace Artportable.API.Testing
             TertiaryFileId = 122,
             Title = "Solrosor",
             Description = "Solrosor i vas",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
           new Artwork()
           {
@@ -1054,7 +1156,8 @@ namespace Artportable.API.Testing
             PrimaryFileId = 19,
             Title = "Vinterhöst",
             Description = "Träd med höstlöv som speglas i vattnet",
-            Published = DateTime.Now
+            Published = DateTime.Now,
+            Price = 9000
           },
         };
     }
