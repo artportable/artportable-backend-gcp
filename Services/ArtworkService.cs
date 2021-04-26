@@ -39,6 +39,7 @@ namespace Artportable.API.Services
           Title = a.Title,
           Description = a.Description,
           Published = a.Published,
+          Price = a.Price,
           PrimaryFile = new FileDTO {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -92,6 +93,7 @@ namespace Artportable.API.Services
           Title = artwork.Title,
           Description = artwork.Description,
           Published = artwork.Published,
+          Price = artwork.Price,
           PrimaryFile = new FileDTO {
             Name = artwork.PrimaryFile.Name,
             Width = artwork.PrimaryFile.Width,
@@ -127,6 +129,7 @@ namespace Artportable.API.Services
         Title = dto.Title,
         Description = dto.Description,
         Published = DateTime.Now,
+        Price = dto.Price,
         PrimaryFile = new File
         {
           Name = dto.PrimaryFile,
@@ -161,6 +164,7 @@ namespace Artportable.API.Services
 
       artwork.Title = dto.Title;
       artwork.Description = dto.Description;
+      artwork.Price = dto.Price;
 
       if (artwork.PrimaryFile.Name != dto.PrimaryFile)
       {
