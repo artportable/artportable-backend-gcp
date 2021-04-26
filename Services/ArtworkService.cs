@@ -214,6 +214,7 @@ namespace Artportable.API.Services
     public List<string> GetTags()
     {
       var tags = _context.Tags
+        .OrderByDescending(t => t.Artworks.Count())
         .Select(t => t.Title)
         .ToList();
 
@@ -232,6 +233,7 @@ namespace Artportable.API.Services
       }
 
       var tags = artwork.Tags
+        .OrderBy(t => t.Title)
         .Select(t => new TagDTO { Tag = t.Title })
         .ToList();
 
