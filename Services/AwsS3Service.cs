@@ -24,28 +24,22 @@ namespace Artportable.API.Services
     /// </summary>
     public async Task UploadAsync(Stream file, string filename)
     {
-      try
+      var bytes = GetArrayBytes(file);
+      if (bytes.Length <= 0)
       {
-        var bytes = GetArrayBytes(file);
+        throw new ArgumentException("No file provided.");
+      }
 
-        var req = new PutObjectRequest
-        {
-            BucketName = bucketName,
-            Key = "Images/" + filename,
-            ContentType = "image/jpeg",
-            InputStream = new MemoryStream(bytes),
+      var req = new PutObjectRequest
+      {
+          BucketName = bucketName,
+          Key = "Images/" + filename,
+          ContentType = "image/jpeg",
+          InputStream = new MemoryStream(bytes),
 
-        };
-        PutObjectResponse response = await _s3client.PutObjectAsync(req);
-      }
-      catch (AmazonS3Exception e)
-      {
-        Console.WriteLine("Error encountered ***. Message:'{0}' when writing an object", e.Message);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
-      }
+      };
+
+      PutObjectResponse response = await _s3client.PutObjectAsync(req);
     }
 
     private byte[] GetArrayBytes(Stream input)

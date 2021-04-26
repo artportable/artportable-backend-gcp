@@ -26,19 +26,20 @@ namespace Artportable.API.Controllers
     /// Upload an image to AWS S3 bucket
     /// </summary>
     [HttpPost("")]
-    [SwaggerResponse(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> Upload(string filename)
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Upload()
     {
+      var filename = Guid.NewGuid() + ".jpg";
       var stream = _contextAccessor?.HttpContext?.Request?.BodyReader.AsStream();
-      if (stream == null || filename == null)
-      {
-        return BadRequest();
-      }
 
       try {
         await _awsS3Service.UploadAsync(stream, filename);
 
-        return NoContent();
+        return Ok(filename);
+      }
+      catch (ArgumentException e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return BadRequest();
       }
       catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);
