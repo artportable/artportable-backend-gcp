@@ -27,6 +27,8 @@ namespace Artportable.API.Entities.Models
     [Required]
     public DateTime Published { get; set; }
 
+    public decimal Price { get; set; }
+
 
     public User User { get; set; }
     public File PrimaryFile { get; set; }

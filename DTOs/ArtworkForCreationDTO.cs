@@ -11,6 +11,7 @@ namespace Artportable.API.DTOs
 
     [MaxLength(400)]
     public string Description { get; set; }
+    public decimal Price { get; set; }
     [Required]
     public string PrimaryFile { get; set; }
     public string SecondaryFile { get; set; }
