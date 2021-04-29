@@ -41,12 +41,14 @@ namespace Artportable.API
       services.AddHttpContextAccessor();
 
       // Registered services
+      services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
       services.AddScoped<IUserService, UserService>();
       services.AddScoped<IPaymentService, PaymentService>();
       services.AddScoped<IStripeService, StripeService>();
       services.AddScoped<IArtworkService, ArtworkService>();
       services.AddScoped<IFeedService, FeedService>();
       services.AddScoped<IConnectionService, ConnectionService>();
+      services.AddScoped<IAwsS3Service, AwsS3Service>();
 
       services.AddAuthorization(authorizationOptions =>
       {
