@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +12,13 @@ namespace Artportable.API.Controllers
   // [Authorize]
   public class ImagesController : ControllerBase
   {
+    private readonly IImageService _imageService;
     private readonly IAwsS3Service _awsS3Service;
     private readonly IHttpContextAccessor _contextAccessor;
 
-    public ImagesController(IAwsS3Service awsS3Service, IHttpContextAccessor contextAccessor)
+    public ImagesController(IImageService imageService, IAwsS3Service awsS3Service, IHttpContextAccessor contextAccessor)
     {
+      _imageService = imageService;
       _awsS3Service = awsS3Service;
       _contextAccessor = contextAccessor;
     }
@@ -25,15 +26,22 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Upload an image to AWS S3 bucket
     /// </summary>
+    /// <param name="w">Width of the image in pixels</param>
+    /// <param name="h">Height of the image in pixels</param>
     [HttpPost("")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Upload()
+    public async Task<IActionResult> Upload(int w, int h)
     {
+      if (w <= 0 || h <= 0) {
+        return BadRequest();
+      }
+
       var filename = Guid.NewGuid() + ".jpg";
       var stream = _contextAccessor?.HttpContext?.Request?.BodyReader.AsStream();
 
       try {
         await _awsS3Service.UploadAsync(stream, filename);
+        _imageService.Add(filename, w, h);
 
         return Ok(filename);
       }
