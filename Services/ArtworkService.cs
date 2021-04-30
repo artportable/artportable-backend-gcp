@@ -130,12 +130,9 @@ namespace Artportable.API.Services
         Description = dto.Description,
         Published = DateTime.Now,
         Price = dto.Price,
-        PrimaryFile = new File
-        {
-          Name = dto.PrimaryFile,
-        },
-        SecondaryFile = dto.SecondaryFile != null ? new File { Name = dto.SecondaryFile } : null,
-        TertiaryFile = dto.TertiaryFile != null ? new File { Name = dto.TertiaryFile } : null,
+        PrimaryFile = _context.Files.Where(f => f.Name == dto.PrimaryFile).SingleOrDefault(),
+        SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
+        TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
         Tags = _context.Tags.Where(t => dto.Tags.Contains(t.Title)).ToList()
       };
 
