@@ -179,6 +179,14 @@ namespace Artportable.API.Testing
       "fa20ad86-b8de-42b4-9f4e-0a624d5e43c6.jpg",
       "fadf72e0-5ddd-42d0-8936-d5d6ae3acf3f.jpg",
       "fc01ad57-d6a2-4ccc-ada9-c167a36e8126.jpg",
+      "0bd87ff8-308c-4485-95fe-9bb82a54d448.jpg", // Profile Pictures (153)
+      "1b2435ff-508b-4b80-80cc-5a0d2c82d597.jpg",
+      "dc90aff9-003a-4545-876d-d5706400b475.jpg",
+      "8c6c8e62-4910-4578-b32e-a72572f44590.jpg",
+      "66111f2f-f03f-4a96-b07b-71a6ffa0d1a0.jpg",
+      "5243227b-c3d9-4097-a699-a86599dda3ef.jpg",
+      "9de697cc-c9b6-43bc-b5a1-9b410ca48187.jpg",
+      "f1913ff8-ef1c-446d-9201-56732f1eeaaf.jpg",
     };
 
     private List<FileSize> FileSizes = new List<FileSize> {
@@ -333,7 +341,15 @@ namespace Artportable.API.Testing
       new FileSize { Name = "fadf72e0-5ddd-42d0-8936-d5d6ae3acf3f.jpg", Width = 960, Height = 540},
       new FileSize { Name = "fb0b3ed4-77b8-4075-8c9c-e701c1e4d827.jpg", Width = 634, Height = 951},
       new FileSize { Name = "fc01ad57-d6a2-4ccc-ada9-c167a36e8126.jpg", Width = 960, Height = 638},
-      new FileSize { Name = "fe7396d3-cc68-4f66-8708-e701d56a1881.jpg", Width = 1023, Height = 727}
+      new FileSize { Name = "fe7396d3-cc68-4f66-8708-e701d56a1881.jpg", Width = 1023, Height = 727},
+      new FileSize { Name = "0bd87ff8-308c-4485-95fe-9bb82a54d448.jpg", Width = 313, Height = 400},
+      new FileSize { Name = "1b2435ff-508b-4b80-80cc-5a0d2c82d597.jpg", Width = 1024, Height = 1326},
+      new FileSize { Name = "dc90aff9-003a-4545-876d-d5706400b475.jpg", Width = 680, Height = 340},
+      new FileSize { Name = "8c6c8e62-4910-4578-b32e-a72572f44590.jpg", Width = 479, Height = 599},
+      new FileSize { Name = "66111f2f-f03f-4a96-b07b-71a6ffa0d1a0.jpg", Width = 1024, Height = 1217},
+      new FileSize { Name = "5243227b-c3d9-4097-a699-a86599dda3ef.jpg", Width = 2021, Height = 2694},
+      new FileSize { Name = "9de697cc-c9b6-43bc-b5a1-9b410ca48187.jpg", Width = 480, Height = 270},
+      new FileSize { Name = "f1913ff8-ef1c-446d-9201-56732f1eeaaf.jpg", Width = 1024, Height = 1186},
     };
   }
 

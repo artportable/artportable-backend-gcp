@@ -46,6 +46,10 @@ namespace Artportable.API.Testing
       "winter",
       "historical",
       "photography",
+      "watercolor",
+      "gouache",
+      "encaustic",
+      "pastel"
     };
   }
 }
