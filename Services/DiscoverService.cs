@@ -54,7 +54,11 @@ namespace Artportable.API.Services
               .Select(t => t.Title)
             )
             .Take(5)
-            .ToList()
+            .ToList(),
+          FollowedByMe = myUsername != null ?
+            _context.Connections
+              .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
+            false
         })
         .ToList();
 
