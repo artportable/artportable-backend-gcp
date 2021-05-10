@@ -25,7 +25,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("artworks")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
-    public ActionResult<List<ArtworkDTO>> Get(int page, int pageSize = 10, string myUsername = null)
+    public ActionResult<List<ArtworkDTO>> GetArtworks(int page, int pageSize = 10, string myUsername = null)
     {
       if (page < 1 || pageSize < 1) {
         return BadRequest();
@@ -47,10 +47,10 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("artists")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtistDTO>))]
-    public ActionResult<List<ArtistDTO>> Get(string myUsername = null)
+    public ActionResult<List<ArtistDTO>> GetArtists(int page, int pageSize = 10, string myUsername = null)
     {
       try {
-        var artists = _discoverService.GetArtists(myUsername);
+        var artists = _discoverService.GetArtists(page, pageSize, myUsername);
 
         return Ok(artists);
       }
