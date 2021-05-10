@@ -62,7 +62,7 @@ namespace Artportable.API.Services
         .ToList();
     }
 
-    public List<ArtistDTO> GetArtists(int page, int pageSize, string myUsername)
+    public List<ArtistDTO> GetArtists(int page, int pageSize, string q, string myUsername)
     {
       var users = _context.Users
         .Include(u => u.UserProfile)
@@ -77,6 +77,7 @@ namespace Artportable.API.Services
       var artists = users
         .Where(u => u.Username != myUsername)
         .Where(u => u.Artworks.Count() > 0)
+        .Where(u => q != null ? u.Username.Contains(q) : true)
         .Skip(pageSize * (page-1))
         .Take(pageSize)
         .Select(u => new ArtistDTO {
