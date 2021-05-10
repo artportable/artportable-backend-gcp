@@ -47,10 +47,10 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpGet("artists")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtistDTO>))]
-    public ActionResult<List<ArtistDTO>> GetArtists(int page, int pageSize = 10, string myUsername = null)
+    public ActionResult<List<ArtistDTO>> GetArtists(int page, int pageSize = 10, string q = null, string myUsername = null)
     {
       try {
-        var artists = _discoverService.GetArtists(page, pageSize, myUsername);
+        var artists = _discoverService.GetArtists(page, pageSize, q, myUsername);
 
         return Ok(artists);
       }
