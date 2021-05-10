@@ -5,6 +5,7 @@ namespace Artportable.API.Services
 {
   public interface IDiscoverService
   {
-    List<ArtistDTO> GetArtists(string myUsername);
+    List<ArtworkDTO> GetArtworks(int page, int pageSize, string myUsername);
+    List<ArtistDTO> GetArtists(int page, int pageSize, string myUsername);
   }
 }
