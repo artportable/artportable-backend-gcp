@@ -21,6 +21,47 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(mapper));
     }
 
+    public List<ArtworkDTO> GetArtworks(int page, int pageSize, string myUsername)
+    {
+      return _context.Artworks
+        .OrderByDescending(a => a.Published)
+        .Skip(pageSize * (page-1))
+        .Take(pageSize)
+        .Select(a =>
+        new ArtworkDTO
+        {
+          Id = a.PublicId,
+          Owner = new OwnerDTO {
+            Username = a.User.Username,
+            ProfilePicture = a.User.File.Name,
+            Location = a.User.UserProfile.Location
+          },
+          Title = a.Title,
+          Description = a.Description,
+          Published = a.Published,
+          Price = a.Price,
+          PrimaryFile = new FileDTO {
+            Name = a.PrimaryFile.Name,
+            Width = a.PrimaryFile.Width,
+            Height = a.PrimaryFile.Height
+          },
+          SecondaryFile = a.SecondaryFile != null ? new FileDTO {
+            Name = a.SecondaryFile.Name,
+            Width = a.SecondaryFile.Width,
+            Height = a.SecondaryFile.Height
+          } : null,
+          TertiaryFile = a.TertiaryFile != null ? new FileDTO {
+            Name = a.TertiaryFile.Name,
+            Width = a.TertiaryFile.Width,
+            Height = a.TertiaryFile.Height
+          } : null,
+          Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
+          Likes = a.Likes.Count(),
+          LikedByMe = myUsername != null ? a.Likes.Any(l => l.User.Username == myUsername) : false
+        })
+        .ToList();
+    }
+
     public List<ArtistDTO> GetArtists(string myUsername)
     {
       var users = _context.Users

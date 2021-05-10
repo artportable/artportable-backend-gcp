@@ -21,6 +21,28 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
+    /// Get a collection of art
+    /// </summary>
+    [HttpGet("artworks")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> Get(int page, int pageSize = 10, string myUsername = null)
+    {
+      if (page < 1 || pageSize < 1) {
+        return BadRequest();
+      }
+
+      try {
+        var artists = _discoverService.GetArtworks(page, pageSize, myUsername);
+
+        return Ok(artists);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
     /// Get a collection of artists
     /// </summary>
     [HttpGet("artists")]
