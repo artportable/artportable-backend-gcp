@@ -21,9 +21,10 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(mapper));
     }
 
-    public List<ArtworkDTO> GetArtworks(int page, int pageSize, string myUsername)
+    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername)
     {
       return _context.Artworks
+        .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
         .OrderByDescending(a => a.Published)
         .Skip(pageSize * (page-1))
         .Take(pageSize)
