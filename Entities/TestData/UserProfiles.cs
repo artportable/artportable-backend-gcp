@@ -246,6 +246,110 @@ namespace Artportable.API.Testing
             Headline = "Åker runt i världen och knäpper bilder",
             About = "I am a dedicated, organized and methodical individual. I have good interpersonal skills, am an excellent team worker and am keen and very willing to learn and develop new skills. I am reliable and dependable and often seek new responsibilities within a wide range of employment areas. I have an active and dynamic approach to work and getting things done. I am determined and decisive. I identify and develop opportunities.",
             LinkedInUrl = "linkedin.com/urban.loui861"
+          },
+          new UserProfile
+          {
+            Id = 19,
+            UserId = 19,
+            Name = "Claude",
+            Surname = "Monet",
+            DateOfBirth = new DateTime(1840, 11, 14),
+            Location = "Paris",
+            Title = "Konstnär",
+            Headline = "Founder of French Impressionist painting",
+            About = "Founder of French Impressionist painting and the most consistent and prolific practitioner of the movement's philosophy of expressing one's perceptions before nature.",
+            InspiredBy = "The French countryside",
+            DribbleUrl = "dribble.com/monet"
+          },
+          new UserProfile
+          {
+            Id = 20,
+            UserId = 20,
+            Name = "Henri",
+            Surname = "Matisse",
+            DateOfBirth = new DateTime(1869, 12, 31),
+            Location = "Nice",
+            Title = "Konstnär",
+            Headline = "French artist, known for both my use of colour and my fluid and original draughtsmanship",
+            About = "My mastery of the expressive language of colour and drawing, displayed in a body of work spanning over a half-century, won me recognition as a leading figure in modern art.",
+            InspiredBy = "Fauves, wild beasts"
+          },
+          new UserProfile
+          {
+            Id = 21,
+            UserId = 21,
+            Name = "Salvador",
+            Surname = "Dalí",
+            DateOfBirth = new DateTime(1904, 05, 11),
+            Location = "Figueres, Spain",
+            Title = "Konstnär",
+            Headline = "Spanish surrealist artist",
+            About = "I'm a Spanish surrealist artist renowned for my technical skill, precise draftsmanship, and the striking and bizarre images in my work. I live in Figueres, Catalonia, Spain. My artistic repertoire includes painting, graphic arts, film, sculpture, design and photography, at times in collaboration with other artists.",
+            InspiredBy = "Impressionism and the Renaissance"
+          },
+          new UserProfile
+          {
+            Id = 22,
+            UserId = 22,
+            Name = "Michelangelo",
+            Surname = "di Lodovico Buonarroti Simoni",
+            DateOfBirth = new DateTime(1475, 03, 06),
+            Location = "Tuscany",
+            Title = "Konstnär",
+            Headline = "Italian sculptor, painter, architect and poet of the High Renaissance",
+            About = "I was born in the Republic of Florence, and exerted an unparalleled influence on the development of Western art. Artistic versatility was of such a high order that I'm often considered a contender for the title of the archetypal Renaissance man, along with my rival and elder contemporary, Leonardo da Vinci. Several scholars have described me as the greatest artist of my age and even as the greatest artist of all time.",
+          },
+          new UserProfile
+          {
+            Id = 23,
+            UserId = 23,
+            Name = "Rembrandt",
+            Surname = "Harmenszoon van Rijn",
+            DateOfBirth = new DateTime(1906, 07, 15),
+            Location = "Leiden",
+            Title = "Konstnär",
+            Headline = "Innovative and prolific master in three media",
+            About = "I'm generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history. Unlike most Dutch masters of the 17th century, my work depict a wide range of style and subject matter, from portraits and self-portraits to landscapes, genre scenes, allegorical and historical scenes, and biblical and mythological themes as well as animal studies. My contributions to art came in a period of great wealth and cultural achievement that historians call the Dutch Golden Age, when Dutch art (especially Dutch painting), although in many ways antithetical to the Baroque style that dominated Europe, was extremely prolific and innovative and gave rise to important new genres. Like many artists of the Dutch Golden Age, such as Jan Vermeer of Delft, I was also an avid art collector and dealer. I have never been abroad.",
+            InspiredBy = "Nederländerna, tulpanerna och väderkvarnanas land"
+          },
+          new UserProfile
+          {
+            Id = 24,
+            UserId = 24,
+            Name = "Edvard",
+            Surname = "Munch",
+            DateOfBirth = new DateTime(1863, 12, 12),
+            Location = "Oslo",
+            Title = "Konstnär",
+            Headline = "Skaparen av Skriet, ett one hit wonder",
+            About = "Jeg er en norsk maler, grafiker, tidlig representant for ekspresjonismen, og den internasjonalt best kjente norske bildende kunstner.",
+            InspiredBy = "Skrik"
+          },
+          new UserProfile
+          {
+            Id = 25,
+            UserId = 25,
+            Name = "Carl Olof",
+            Surname = "Larsson",
+            DateOfBirth = new DateTime(1853, 05, 28),
+            Location = "Stockholm",
+            Title = "Konstnär",
+            Headline = "En av de mest berömda svenska konstnärerna och kanske den mest folkkäre",
+            About = "Jag räknas som en av Sveriges mest betydelsefulla akvarellmålare. Jag är känd för mina akvareller av idylliskt familjeliv.",
+            InspiredBy = "Idylliskt familjeliv"
+          },
+          new UserProfile
+          {
+            Id = 26,
+            UserId = 26,
+            Name = "Anders",
+            Surname = "Zorn",
+            DateOfBirth = new DateTime(1860, 02, 18),
+            Location = "Mora",
+            Title = "Konstnär",
+            Headline = "Svensk konstnär från Dalarna",
+            About = "Jag betraktas som en betydande konstnär i Sverige och är även uppskattad utanför Sverige, inte minst i USA, där jag anlitats som porträttmålare av presidenter, företagsledare och societetsfolk. Namnet Zorn kommer efter min tyska far, som på ett bryggeri i Uppsala träffade den där säsongsarbetande modern.",
+            InspiredBy = "Dalarna"
           }
         };
     }

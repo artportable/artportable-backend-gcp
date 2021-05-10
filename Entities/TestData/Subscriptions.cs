@@ -135,6 +135,62 @@ namespace Artportable.API.Testing
             ProductId = 2,
             ExpirationDate = DateTime.Now.AddDays(92),
             CustomerId = "cus_J6O5Pddd1XfdjD"
+          },
+          new Subscription
+          {
+            Id = 19,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(192),
+            CustomerId = "cus_J6sa41XfdjD"
+          },
+          new Subscription
+          {
+            Id = 20,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(74),
+            CustomerId = "cus_J6O5PddhfXfdjD"
+          },
+          new Subscription
+          {
+            Id = 21,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(39),
+            CustomerId = "cus_J6O5Ps65d1XdjD"
+          },
+          new Subscription
+          {
+            Id = 22,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(29),
+            CustomerId = "cus_J6O5Pdfd1XfdjD"
+          },
+          new Subscription
+          {
+            Id = 23,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(94),
+            CustomerId = "cus_J6O5P634XfdjD"
+          },
+          new Subscription
+          {
+            Id = 24,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(16),
+            CustomerId = "cus_J6Oas4dd1XfdjD"
+          },
+          new Subscription
+          {
+            Id = 25,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(47),
+            CustomerId = "cus_J6O5sddd1XfdjD"
+          },
+          new Subscription
+          {
+            Id = 26,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(93),
+            CustomerId = "cus_J6O5PddfddfdjD"
           }
         };
     }

@@ -199,6 +199,86 @@ namespace Artportable.API.Testing
             Email = "uloui@geemaiiil.com",
             Created = new DateTime(2021, 01, 01, 12, 51, 05),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 19,
+            SubscriptionId = 19,
+            FileId = 158,
+            Username = "therealmonet",
+            Email = "claude@monet.com",
+            Created = new DateTime(2021, 05, 01, 18, 01, 05),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 20,
+            SubscriptionId = 20,
+            FileId = 157,
+            Username = "henrimatisse",
+            Email = "henrimatisse@mail.com",
+            Created = new DateTime(2021, 04, 28, 06, 40, 25),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 21,
+            SubscriptionId = 21,
+            FileId = 153,
+            Username = "salvadordali",
+            Email = "salvadordali@geemaiiil.com",
+            Created = new DateTime(2021, 04, 27, 18, 01, 51),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 22,
+            SubscriptionId = 22,
+            FileId = 160,
+            Username = "michelangelo",
+            Email = "michelangelo@mejl.com",
+            Created = new DateTime(2021, 04, 08, 14, 21, 46),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 23,
+            SubscriptionId = 23,
+            FileId = 154,
+            Username = "rembrandt",
+            Email = "rembrandt@rembrandt.com",
+            Created = new DateTime(2021, 05, 02, 08, 11, 11),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 24,
+            SubscriptionId = 24,
+            FileId = 155,
+            Username = "munch",
+            Email = "edvard@munch.com",
+            Created = new DateTime(2021, 03, 30, 14, 47, 14),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 25,
+            SubscriptionId = 25,
+            FileId = 156,
+            Username = "carllarsson",
+            Email = "kontakt@carllarsson.se",
+            Created = new DateTime(2021, 04, 18, 19, 12, 25),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 26,
+            SubscriptionId = 26,
+            FileId = 159,
+            Username = "anderszorn",
+            Email = "anders@zorn.se",
+            Created = new DateTime(2021, 04, 19, 17, 00, 01),
+            Language = "sv"
           }
         };
     }

@@ -1159,6 +1159,1120 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
+          new Artwork()
+          {
+            Id = 104,
+            PublicId = new Guid("dbb3c4ae-f440-4f5d-be55-268ef83ac5d3"),
+            UserId = 1,
+            PrimaryFileId = 161,
+            Title = "Vintervik",
+            Description = "Vintermorgon i Edshagsberg med det gamla ploahuset i bakgrunden, byggt 1869.",
+            Published = new DateTime(2021, 7, 20, 16, 59, 10),
+            Price = 10000
+          },
+          new Artwork()
+          {
+            Id = 105,
+            PublicId = new Guid("13491531-86a9-4859-962c-165a219e72b4"),
+            UserId = 1,
+            PrimaryFileId = 162,
+            Title = "Solgult ängsträd",
+            Description = "Ett gult träd på en gul äng mot en klarblå himmelsbakgrund",
+            Published = new DateTime(2020, 8, 14, 6, 3, 35),
+            Price = 78000
+          },
+          new Artwork()
+          {
+            Id = 106,
+            PublicId = new Guid("d4b7612e-29f4-418f-859b-53bf785843e2"),
+            UserId = 1,
+            PrimaryFileId = 163,
+            Title = "Vinteräng",
+            Description = "Bistra och kalla vintern har dragit in över Österåkers slätter och biter sig fast i marken. Den vita snötäckta marken lyser upp omgivningen.",
+            Published = new DateTime(2020, 9, 28, 19, 42, 39),
+            Price = 51000
+          },
+          new Artwork()
+          {
+            Id = 107,
+            PublicId = new Guid("8ec9a71f-14cd-477f-b7c5-b10fe26465fc"),
+            UserId = 1,
+            PrimaryFileId = 164,
+            Title = "Golden gate-bron",
+            Description = "En röd ståtlig konstruktion",
+            Published = new DateTime(2021, 4, 2, 14, 5, 58),
+            Price = 46000
+          },
+          new Artwork()
+          {
+            Id = 108,
+            PublicId = new Guid("75711cab-c2cc-40e4-bedf-23a29574c8e2"),
+            UserId = 1,
+            PrimaryFileId = 165,
+            Title = "Tre vita hästar",
+            Description = "Tre vita vildhästar tar ett bad tillsammans i skymnningen",
+            Published = new DateTime(2021, 7, 29, 22, 25, 40),
+            Price = 88000
+          },
+          new Artwork()
+          {
+            Id = 109,
+            PublicId = new Guid("1b961f79-0e3a-4be3-9ffe-022c4a606470"),
+            UserId = 1,
+            PrimaryFileId = 166,
+            Title = "Fyr på Öland målad i vattenfäger",
+            Description = "Ståtlig gammal fyr som står på Öland. Fyren var aktiv mellan år 1810-1928.",
+            Published = new DateTime(2021, 10, 14, 22, 47, 14),
+            Price = 14000
+          },
+          new Artwork()
+          {
+            Id = 110,
+            PublicId = new Guid("85bb4e6b-76f5-47d6-adaf-8c5e69460e6a"),
+            UserId = 1,
+            PrimaryFileId = 167,
+            Title = "Svandamm",
+            Description = "Park i södra Holland där svanarna simmar i dammen",
+            Published = new DateTime(2021, 11, 10, 7, 7, 42),
+            Price = 42000
+          },
+          new Artwork()
+          {
+            Id = 111,
+            PublicId = new Guid("687491b2-e695-48bf-a9c1-3dd79c4492a1"),
+            UserId = 1,
+            PrimaryFileId = 168,
+            Title = "Vy från Alpby",
+            Description = "Flyktiga berg över solblekt hage. Vy från Alpby i södra Tyskland där bergskossor betar i harmoni med byborna.",
+            Published = new DateTime(2021, 3, 29, 17, 0, 39),
+            Price = 54000
+          },
+          new Artwork()
+          {
+            Id = 112,
+            PublicId = new Guid("627acdd7-1d70-4381-ae7b-5a240e4096de"),
+            UserId = 1,
+            PrimaryFileId = 169,
+            Title = "Äppelkorg",
+            Description = "Äppelkorg i blomsterträdgård målad med inspiration av Kiviks höjder.",
+            Published = new DateTime(2021, 4, 23, 5, 25, 8),
+            Price = 12000
+          },
+          new Artwork()
+          {
+            Id = 113,
+            PublicId = new Guid("03b3e16f-0d56-49f2-b7bc-17d4fc235b87"),
+            UserId = 1,
+            PrimaryFileId = 170,
+            Title = "Nyplockade syréner",
+            Description = "Vackra lila syrénblommor i korg",
+            Published = new DateTime(2021, 11, 23, 13, 39, 52),
+            Price = 75000
+          },
+          new Artwork()
+          {
+            Id = 114,
+            PublicId = new Guid("1a7a75ae-b12c-4bba-b784-3a050b5ba021"),
+            UserId = 1,
+            PrimaryFileId = 171,
+            Title = "Pressblomma",
+            Description = "Pressade blommor och ormbunke avmålade i akvarell",
+            Published = new DateTime(2020, 12, 8, 2, 36, 6),
+            Price = 28000
+          },
+          new Artwork()
+          {
+            Id = 115,
+            PublicId = new Guid("99e75456-3915-4f61-b3e2-dc959d0279d7"),
+            UserId = 1,
+            PrimaryFileId = 172,
+            Title = "Bear",
+            Description = "Furry bear watching over the forest, ready to take back the title as king.",
+            Published = new DateTime(2020, 8, 20, 0, 3, 15),
+            Price = 33000
+          },
+          new Artwork()
+          {
+            Id = 116,
+            PublicId = new Guid("451ead9a-39d2-4424-85da-d557d66bc2d8"),
+            UserId = 1,
+            PrimaryFileId = 173,
+            Title = "Vildhäst",
+            Description = "Vildhäst från svensk hage på oljemålning",
+            Published = new DateTime(2020, 1, 8, 17, 43, 31),
+            Price = 64000
+          },
+          new Artwork()
+          {
+            Id = 117,
+            PublicId = new Guid("b5fcf0ee-5f46-4c7c-b18d-628589d30868"),
+            UserId = 1,
+            PrimaryFileId = 174,
+            Title = "Blå vågor",
+            Description = "Blå vågor på ängen",
+            Published = new DateTime(2020, 11, 4, 4, 24, 40),
+            Price = 77000
+          },
+          new Artwork()
+          {
+            Id = 118,
+            PublicId = new Guid("1cbcfb5c-08df-4b6e-90dc-b3e733cf687b"),
+            UserId = 1,
+            PrimaryFileId = 175,
+            Title = "Ståtligt 1600-talsskepp",
+            Description = "Ståtligt skepp byggt på 1600-talet som seglar västerut",
+            Published = new DateTime(2020, 6, 5, 20, 32, 41),
+            Price = 46000
+          },
+          new Artwork()
+          {
+            Id = 119,
+            PublicId = new Guid("33450ef8-db53-403b-a1bc-0c9fe16a4cc3"),
+            UserId = 1,
+            PrimaryFileId = 176,
+            Title = "Höstko",
+            Description = "Höstkossa njuter av årets sista soltimmar medan de brandgula höstlösen knappt klarar av att hålla sig kvar",
+            Published = new DateTime(2021, 12, 9, 19, 2, 11),
+            Price = 19000
+          },
+          new Artwork()
+          {
+            Id = 120,
+            PublicId = new Guid("21861b76-7574-4c5a-9093-23a9b697686f"),
+            UserId = 1,
+            PrimaryFileId = 177,
+            Title = "Indiana split",
+            Published = new DateTime(2021, 12, 14, 2, 50, 1),
+            Price = 66000
+          },
+          new Artwork()
+          {
+            Id = 121,
+            PublicId = new Guid("88f48f30-a742-46ee-b85f-71509200839c"),
+            UserId = 1,
+            PrimaryFileId = 178,
+            Title = "Metarpojke",
+            Description = "Pojke som metar efter fisk på landet",
+            Published = new DateTime(2020, 3, 13, 2, 36, 36),
+            Price = 39000
+          },
+          new Artwork()
+          {
+            Id = 122,
+            PublicId = new Guid("04798a7c-8f90-455f-89a5-680c87e379bd"),
+            UserId = 1,
+            PrimaryFileId = 179,
+            Title = "Japansk trädgård",
+            Description = "Enavmålning av den japanska trädgården ute i danska Røhdegaard",
+            Published = new DateTime(2020, 5, 16, 2, 30, 22),
+            Price = 72000
+          },
+          new Artwork()
+          {
+            Id = 123,
+            PublicId = new Guid("03f04a2c-9271-4bc6-a82e-1948bb76535d"),
+            UserId = 1,
+            PrimaryFileId = 180,
+            Title = "Naturkvinna",
+            Description = "Kvinna tecknad på solblekt papper",
+            Published = new DateTime(2020, 4, 26, 7, 4, 59),
+            Price = 13000
+          },
+          new Artwork()
+          {
+            Id = 124,
+            PublicId = new Guid("edc2acdb-4469-4013-9199-7a61842aa724"),
+            UserId = 1,
+            PrimaryFileId = 181,
+            Title = "Höststuga",
+            Description = "Stugan vid vattenkanten i skogsbrynet speglas mot den blanka vattenytan.",
+            Published = new DateTime(2021, 1, 16, 2, 59, 4),
+            Price = 2000
+          },
+          new Artwork()
+          {
+            Id = 125,
+            PublicId = new Guid("4c83c77f-110c-447b-bee9-ad5b944a7495"),
+            UserId = 1,
+            PrimaryFileId = 182,
+            Title = "Tre bärs, tack!",
+            Description = "En hyllning till den lokala puben",
+            Published = new DateTime(2021, 2, 6, 19, 58, 0),
+            Price = 24000
+          },
+          new Artwork()
+          {
+            Id = 126,
+            PublicId = new Guid("7dac205a-7b3b-4c46-964e-d3cb8f3bcf8e"),
+            UserId = 1,
+            PrimaryFileId = 183,
+            Title = "Paris underifrån",
+            Description = "Paris från ett annorlunda perspektiv. Framför ser man det berömda och ståtliga Notre dame.",
+            Published = new DateTime(2020, 2, 6, 2, 27, 46),
+            Price = 99000
+          },
+          new Artwork()
+          {
+            Id = 127,
+            PublicId = new Guid("7eac34bc-29b3-4a8f-b72a-4e5f0b164702"),
+            UserId = 1,
+            PrimaryFileId = 184,
+            Title = "Gammalt skogshus",
+            Published = new DateTime(2021, 9, 20, 1, 51, 40),
+            Price = 44000
+          },
+          new Artwork()
+          {
+            Id = 128,
+            PublicId = new Guid("58abd842-a4dc-40a7-a17d-678874a0b8a6"),
+            UserId = 1,
+            PrimaryFileId = 185,
+            Title = "Tunnel of darkness",
+            Description = "Please enter the tunnel of... No, not light. Darkness.",
+            Published = new DateTime(2020, 6, 6, 19, 17, 1),
+            Price = 27000
+          },
+          new Artwork()
+          {
+            Id = 129,
+            PublicId = new Guid("d1aa6bef-a4d5-4476-b634-781f066cc760"),
+            UserId = 1,
+            PrimaryFileId = 186,
+            Title = "Landskap",
+            Description = "Häftigt landskap avmålat i olja",
+            Published = new DateTime(2021, 11, 29, 14, 13, 29),
+            Price = 6000
+          },
+          new Artwork()
+          {
+            Id = 130,
+            PublicId = new Guid("ecb721cb-4d92-4a37-aa36-3599afc5916a"),
+            UserId = 1,
+            PrimaryFileId = 187,
+            Title = "Vik",
+            Description = "Djupavik. Under sommaren är det här ett populärt badställe.",
+            Published = new DateTime(2020, 10, 1, 12, 13, 21),
+            Price = 88000
+          },
+          new Artwork()
+          {
+            Id = 131,
+            PublicId = new Guid("c8650c1e-85f9-4e3c-9a4d-5855f45a18f9"),
+            UserId = 1,
+            PrimaryFileId = 188,
+            Title = "Gul allé",
+            Description = "Landsväg längs gula ängar",
+            Published = new DateTime(2020, 4, 19, 18, 9, 48),
+            Price = 9000
+          },
+          new Artwork()
+          {
+            Id = 132,
+            PublicId = new Guid("9d5ab086-1109-4249-ace1-e97636b440f9"),
+            UserId = 1,
+            PrimaryFileId = 189,
+            Title = "Storstad",
+            Description = "Ett gäng höghus jämte varandra som tillsammans bildar en storstad",
+            Published = new DateTime(2021, 9, 20, 23, 52, 5),
+            Price = 69000
+          },
+          new Artwork()
+          {
+            Id = 133,
+            PublicId = new Guid("41c571b9-2ec6-4171-bb8a-30c7de0fa9ea"),
+            UserId = 1,
+            PrimaryFileId = 190,
+            Title = "Tecknad blomma",
+            Description = "Vit blomma sedd från ovan",
+            Published = new DateTime(2020, 2, 11, 4, 0, 13),
+            Price = 16000
+          },
+          new Artwork()
+          {
+            Id = 134,
+            PublicId = new Guid("8eee9498-1c3a-4326-b6e7-79a973f6e2c0"),
+            UserId = 1,
+            PrimaryFileId = 191,
+            Title = "Vindkust",
+            Description = "Blåsigt väder är ingenting för byborna bosatta i den här byn på Englands ostkust. Några segelbåtar seglar ut mot horisonten och en kille i röd mössa är på väg hem.",
+            Published = new DateTime(2021, 6, 20, 2, 45, 53),
+            Price = 20000
+          },
+          new Artwork()
+          {
+            Id = 135,
+            PublicId = new Guid("453ed6ed-5d05-40f2-9c45-3b314bde8219"),
+            UserId = 1,
+            PrimaryFileId = 192,
+            Title = "Brandlandskap",
+            Published = new DateTime(2021, 1, 23, 6, 8, 5),
+            Price = 21000
+          },
+          new Artwork()
+          {
+            Id = 136,
+            PublicId = new Guid("9c819a33-8f82-4e9b-8c11-8326496f7e86"),
+            UserId = 1,
+            PrimaryFileId = 193,
+            Title = "Körsbärstårta",
+            Description = "En riktigt smarrig tårta",
+            Published = new DateTime(2020, 10, 10, 18, 37, 9),
+            Price = 98000
+          },
+          new Artwork()
+          {
+            Id = 137,
+            PublicId = new Guid("94bfc06b-c42c-461f-82d7-b5c2d4649768"),
+            UserId = 1,
+            PrimaryFileId = 194,
+            Title = "Äppelkorg",
+            Description = "Färska plockade gröna äpplen",
+            Published = new DateTime(2020, 11, 1, 12, 58, 0),
+            Price = 70000
+          },
+          new Artwork()
+          {
+            Id = 138,
+            PublicId = new Guid("d28739d1-d5e9-4b44-8b88-363f0ec3de85"),
+            UserId = 1,
+            PrimaryFileId = 195,
+            Title = "Läslus",
+            Description = "Kvinna läser en bok på en knallröd bänk",
+            Published = new DateTime(2020, 5, 24, 0, 16, 16),
+            Price = 45000
+          },
+          new Artwork()
+          {
+            Id = 139,
+            PublicId = new Guid("0a245358-4ca8-4284-b4fb-c415532996df"),
+            UserId = 1,
+            PrimaryFileId = 196,
+            Title = "Slaget vid Rom år 946",
+            Description = "En avbildning av det stora slaget om Rom år 946 som senare kom att bli ett av de mest omskrivna historiska slagen",
+            Published = new DateTime(2021, 3, 10, 8, 3, 40),
+            Price = 75000
+          },
+          new Artwork()
+          {
+            Id = 140,
+            PublicId = new Guid("de06149e-3e13-4126-922a-a32950444f38"),
+            UserId = 1,
+            PrimaryFileId = 197,
+            Title = "Uppvaktande fågel",
+            Description = "Hanfågel som uppvaktar sin honfågel med skönsång",
+            Published = new DateTime(2020, 4, 25, 5, 36, 46),
+            Price = 25000
+          },
+          new Artwork()
+          {
+            Id = 141,
+            PublicId = new Guid("0145ba3b-cf90-469e-bcfd-132f96bd0299"),
+            UserId = 1,
+            PrimaryFileId = 198,
+            Title = "Blomraket",
+            Description = "En raket av blommor som blickar upp mot en blå himmel",
+            Published = new DateTime(2020, 3, 24, 2, 29, 20),
+            Price = 89000
+          },
+          new Artwork()
+          {
+            Id = 142,
+            PublicId = new Guid("4ac249e0-bf9d-473e-a2bb-7a2c842050d0"),
+            UserId = 1,
+            PrimaryFileId = 199,
+            Title = "Husfasader på vattenytan",
+            Description = "Köpenhamns husfasader som speglas mot vattenytan i ån",
+            Published = new DateTime(2020, 9, 20, 6, 11, 24),
+            Price = 26000
+          },
+          new Artwork()
+          {
+            Id = 143,
+            PublicId = new Guid("9ef585ae-ca34-44fc-b200-c55d4e96a47c"),
+            UserId = 1,
+            PrimaryFileId = 200,
+            Title = "Boat town",
+            Description = "Båtstad i sommarens Kroatien",
+            Published = new DateTime(2020, 5, 29, 4, 57, 37),
+            Price = 95000
+          },
+          new Artwork()
+          {
+            Id = 144,
+            PublicId = new Guid("b4310d54-3bc5-4677-93a1-83fc8eb2f773"),
+            UserId = 1,
+            PrimaryFileId = 201,
+            Title = "Varn rider efter get",
+            Description = "En gettransport tar barnen till söndagsmarknaden",
+            Published = new DateTime(2020, 5, 2, 21, 36, 8),
+            Price = 66000
+          },
+          new Artwork()
+          {
+            Id = 145,
+            PublicId = new Guid("78741177-f441-4172-8a1d-3021c1dd8d4f"),
+            UserId = 1,
+            PrimaryFileId = 202,
+            Title = "Lila blommor",
+            Description = "Vackra lila blommor målade i akvarell",
+            Published = new DateTime(2021, 5, 12, 14, 18, 55),
+            Price = 65000
+          },
+          new Artwork()
+          {
+            Id = 146,
+            PublicId = new Guid("eb704f2d-d266-491c-acef-4fe489d3662d"),
+            UserId = 1,
+            PrimaryFileId = 203,
+            Title = "Gammal bro",
+            Description = "Gammal bro i södra Frankrike som sammanbinder den gamla bergsstaden Hostoire med huvudleden",
+            Published = new DateTime(2021, 1, 9, 16, 16, 33),
+            Price = 30000
+          },
+          new Artwork()
+          {
+            Id = 147,
+            PublicId = new Guid("a13f3174-105f-4e4f-989c-ce6aa24c373a"),
+            UserId = 1,
+            PrimaryFileId = 204,
+            Title = "Funky tree",
+            Description = "Detta gamla krokiga träd gick jag förbi varje dag när jag gick till skolan som ung. Nu har det växt till sig och har lättare för att titta fram bakom muren.",
+            Published = new DateTime(2020, 7, 28, 7, 40, 27),
+            Price = 51000
+          },
+          new Artwork()
+          {
+            Id = 148,
+            PublicId = new Guid("13e4925c-20ea-4378-a686-e0ecbe4bf140"),
+            UserId = 1,
+            PrimaryFileId = 205,
+            SecondaryFileId = 235,
+            Title = "Muskelknutte",
+            Description = "Staty av muskelknutte",
+            Published = new DateTime(2021, 1, 4, 9, 7, 7),
+            Price = 99000
+          },
+          new Artwork()
+          {
+            Id = 149,
+            PublicId = new Guid("58bbff2e-a0bb-4762-8841-9edcc5067b6b"),
+            UserId = 1,
+            PrimaryFileId = 206,
+            Title = "Blomsteräng",
+            Description = "Äng med röda blommor på",
+            Published = new DateTime(2021, 4, 13, 14, 52, 21),
+            Price = 51000
+          },
+          new Artwork()
+          {
+            Id = 150,
+            PublicId = new Guid("16b21001-b11d-4e17-9bbb-f8134c0adb26"),
+            UserId = 1,
+            PrimaryFileId = 207,
+            Title = "Grindtjej",
+            Description = "Tjej tittar fram från grinden in till familjens gårdshus",
+            Published = new DateTime(2021, 3, 15, 18, 51, 59),
+            Price = 68000
+          },
+          new Artwork()
+          {
+            Id = 151,
+            PublicId = new Guid("19da593c-8d8d-48d3-885a-03dee21d92d1"),
+            UserId = 1,
+            PrimaryFileId = 208,
+            Title = "Strandad båt",
+            Description = "Gammalt båtvrak som drivit upp på stranden",
+            Published = new DateTime(2020, 11, 8, 11, 59, 50),
+            Price = 69000
+          },
+          new Artwork()
+          {
+            Id = 152,
+            PublicId = new Guid("8568c8ac-60d2-471c-a885-1788d56f31de"),
+            UserId = 1,
+            PrimaryFileId = 209,
+            Title = "Blomster",
+            Description = "Vita blommor som tittar fram i vårsolen",
+            Published = new DateTime(2020, 7, 16, 4, 37, 31),
+            Price = 88000
+          },
+          new Artwork()
+          {
+            Id = 153,
+            PublicId = new Guid("57b657a7-1e1a-4e81-9f6c-3351a8a30c2f"),
+            UserId = 1,
+            PrimaryFileId = 210,
+            Title = "Blomster 2",
+            Description = "Röda blommor som håller på att slå ut",
+            Published = new DateTime(2020, 10, 10, 8, 49, 14),
+            Price = 83000
+          },
+          new Artwork()
+          {
+            Id = 154,
+            PublicId = new Guid("2b1c5936-8e10-4158-b2c6-d9995f42c5d4"),
+            UserId = 1,
+            PrimaryFileId = 211,
+            Title = "Bergsskog",
+            Published = new DateTime(2020, 9, 2, 18, 47, 19),
+            Price = 33000
+          },
+          new Artwork()
+          {
+            Id = 155,
+            PublicId = new Guid("a8e338ce-881d-40e3-a42e-d9e3186d6dcd"),
+            UserId = 1,
+            PrimaryFileId = 212,
+            Title = "Yellowstone",
+            Description = "Ståtliga Yellowstone med en av dess ikoniska brunbjörnar som byfiket tittar fram",
+            Published = new DateTime(2020, 2, 22, 3, 49, 42),
+            Price = 63000
+          },
+          new Artwork()
+          {
+            Id = 156,
+            PublicId = new Guid("2427d2ce-cd0d-4d18-add0-6f55be8a91f8"),
+            UserId = 1,
+            PrimaryFileId = 213,
+            Title = "Fika",
+            Description = "Fika i pastell",
+            Published = new DateTime(2021, 7, 4, 15, 3, 35),
+            Price = 90000
+          },
+          new Artwork()
+          {
+            Id = 157,
+            PublicId = new Guid("bbfb6d20-9c14-4d7e-bf5e-ecdb3aba8cae"),
+            UserId = 1,
+            PrimaryFileId = 214,
+            Title = "Lissabon",
+            Description = "Lissabon under natthimmel",
+            Published = new DateTime(2021, 3, 18, 7, 26, 45),
+            Price = 41000
+          },
+          new Artwork()
+          {
+            Id = 158,
+            PublicId = new Guid("800f0c9f-e83a-420f-9783-0008818c95aa"),
+            UserId = 1,
+            PrimaryFileId = 215,
+            Title = "Enslig stuga",
+            Description = "Ensligt hus vid skogens slut, liten gubbe tittar ut",
+            Published = new DateTime(2021, 1, 30, 8, 34, 23),
+            Price = 21000
+          },
+          new Artwork()
+          {
+            Id = 159,
+            PublicId = new Guid("4e2ed6cf-248a-4da5-9568-49f891cdc6d5"),
+            UserId = 1,
+            PrimaryFileId = 216,
+            Title = "Höstbänk",
+            Description = "Bänk i höstskog med löv som faller ner",
+            Published = new DateTime(2021, 5, 9, 14, 13, 43),
+            Price = 59000
+          },
+          new Artwork()
+          {
+            Id = 160,
+            PublicId = new Guid("810ba5d4-fde7-42bc-bc85-09b11b396c9a"),
+            UserId = 1,
+            PrimaryFileId = 217,
+            Title = "Till häst",
+            Description = "Resande sällskap",
+            Published = new DateTime(2021, 8, 23, 7, 11, 23),
+            Price = 95000
+          },
+          new Artwork()
+          {
+            Id = 161,
+            PublicId = new Guid("f7bd7564-41cf-4a78-92b0-c76ebb3a6b8d"),
+            UserId = 1,
+            PrimaryFileId = 218,
+            Title = "Båtvarv",
+            Description = "En avmålning av ett gammalt båtvarv",
+            Published = new DateTime(2021, 9, 27, 19, 56, 17),
+            Price = 42000
+          },
+          new Artwork()
+          {
+            Id = 162,
+            PublicId = new Guid("f0869654-c223-4c66-9973-98e4fdf6ca38"),
+            UserId = 1,
+            PrimaryFileId = 219,
+            Title = "Horisont i skymning",
+            Published = new DateTime(2021, 1, 4, 4, 21, 45),
+            Price = 94000
+          },
+          new Artwork()
+          {
+            Id = 163,
+            PublicId = new Guid("2ab2259f-1be2-40fc-9f16-3fb5d36bfa4b"),
+            UserId = 1,
+            PrimaryFileId = 220,
+            Title = "London",
+            Description = "London nattetid med Big Ben som ståtligt sträcker sig upp i himmelen",
+            Published = new DateTime(2020, 7, 11, 21, 28, 29),
+            Price = 18000
+          },
+          new Artwork()
+          {
+            Id = 164,
+            PublicId = new Guid("5cb029c4-f8b7-4062-88b3-fed2e78bda75"),
+            UserId = 1,
+            PrimaryFileId = 221,
+            Title = "Italiensk bygata",
+            Description = "Promenadgator i liten by vid den Italienska rivieran",
+            Published = new DateTime(2021, 8, 30, 8, 31, 13),
+            Price = 42000
+          },
+          new Artwork()
+          {
+            Id = 165,
+            PublicId = new Guid("6b5ad199-e282-4ebb-8644-c595bda34a6e"),
+            UserId = 1,
+            PrimaryFileId = 222,
+            Title = "Blad",
+            Published = new DateTime(2021, 11, 13, 7, 43, 1),
+            Price = 13000
+          },
+          new Artwork()
+          {
+            Id = 166,
+            PublicId = new Guid("dde8bbad-d7ef-4c2b-a30d-32d278e1b322"),
+            UserId = 1,
+            PrimaryFileId = 223,
+            Title = "Akustisk gitarr",
+            Published = new DateTime(2020, 6, 19, 9, 47, 34),
+            Price = 88000
+          },
+          new Artwork()
+          {
+            Id = 167,
+            PublicId = new Guid("71195089-5ed8-43de-b9ec-e72dec2da1e3"),
+            UserId = 1,
+            PrimaryFileId = 224,
+            Title = "Flicka med katt",
+            Description = "Flickan Anna och katten Nisse utanför huset på landet",
+            Published = new DateTime(2021, 10, 1, 18, 18, 42),
+            Price = 90000
+          },
+          new Artwork()
+          {
+            Id = 168,
+            PublicId = new Guid("18b41bd6-e895-4a2e-810c-0bdb68eff533"),
+            UserId = 1,
+            PrimaryFileId = 225,
+            Title = "Hus",
+            Description = "Hus i en dal i alperna",
+            Published = new DateTime(2021, 6, 2, 18, 38, 16),
+            Price = 83000
+          },
+          new Artwork()
+          {
+            Id = 169,
+            PublicId = new Guid("3cbcb9cb-8444-4fab-89f5-7b017e762b77"),
+            UserId = 1,
+            PrimaryFileId = 226,
+            Title = "Träd i rad",
+            Description = "Träd uppställda på rad i skymningen",
+            Published = new DateTime(2021, 2, 1, 23, 30, 49),
+            Price = 2000
+          },
+          new Artwork()
+          {
+            Id = 170,
+            PublicId = new Guid("7c6b09d0-7524-4e79-a83e-2ad01b96f57f"),
+            UserId = 1,
+            PrimaryFileId = 227,
+            Title = "Blomsterallé",
+            Description = "Allé fylld av träd med blomster",
+            Published = new DateTime(2021, 7, 7, 7, 31, 13),
+            Price = 77000
+          },
+          new Artwork()
+          {
+            Id = 171,
+            PublicId = new Guid("c2ccc6a2-6776-46ac-9f99-5e19210c9c55"),
+            UserId = 1,
+            PrimaryFileId = 228,
+            Title = "Båten Anna",
+            Description = "Förtöjd vid en brygga",
+            Published = new DateTime(2020, 2, 6, 7, 52, 49),
+            Price = 43000
+          },
+          new Artwork()
+          {
+            Id = 172,
+            PublicId = new Guid("81d60be5-c8d4-48aa-882d-3897ec24f41f"),
+            UserId = 1,
+            PrimaryFileId = 229,
+            Title = "Solur",
+            Description = "Ett konstverk i samspel med solen",
+            Published = new DateTime(2020, 5, 20, 8, 51, 30),
+            Price = 89000
+          },
+          new Artwork()
+          {
+            Id = 173,
+            PublicId = new Guid("65f606d7-d8ab-40ec-bcae-a3cad1c45560"),
+            UserId = 1,
+            PrimaryFileId = 230,
+            Title = "Två blå fåglar",
+            Description = "Två små blå fåglar på en pinne",
+            Published = new DateTime(2021, 9, 23, 1, 40, 5),
+            Price = 10000
+          },
+          new Artwork()
+          {
+            Id = 174,
+            PublicId = new Guid("d87aa624-4c4f-44b9-893c-5b951b11c37c"),
+            UserId = 1,
+            PrimaryFileId = 231,
+            Title = "Stig längs mur",
+            Description = "En solig sommardag på en stig vid en mur",
+            Published = new DateTime(2021, 7, 24, 18, 11, 1),
+            Price = 13000
+          },
+          new Artwork()
+          {
+            Id = 175,
+            PublicId = new Guid("35ff697e-b9d8-4654-9f74-fa9c2a26e860"),
+            UserId = 1,
+            PrimaryFileId = 232,
+            Title = "Blå fönster",
+            Published = new DateTime(2021, 11, 27, 18, 7, 9),
+            Price = 93000
+          },
+          new Artwork()
+          {
+            Id = 176,
+            PublicId = new Guid("4c927bfd-9fc1-4648-8c05-6e6795424dfe"),
+            UserId = 1,
+            PrimaryFileId = 233,
+            Title = "Vinterdroppar i vas",
+            Description = "En vas med vinterdroppar",
+            Published = new DateTime(2020, 12, 24, 8, 40, 21),
+            Price = 72000
+          },
+          new Artwork()
+          {
+            Id = 177,
+            PublicId = new Guid("4ea9d175-08c2-4e3b-b609-17f8a45f2fb2"),
+            UserId = 1,
+            PrimaryFileId = 234,
+            Title = "Blommande träd",
+            Description = "Ett blommande japanskt träd",
+            Published = new DateTime(2021, 12, 5, 4, 7, 0),
+            Price = 20000
+          },
+          // new Artwork() TA BORT
+          // {
+          //   Id = 178,
+          //   PublicId = new Guid("2ad9c5a5-b2ef-4b64-9273-b5ee01d91d96"),
+          //   UserId = 1,
+          //   PrimaryFileId = 235,
+          //   Title = "",
+          //   Description = "",
+          //   Published = new DateTime(2021, 1, 26, 14, 48, 0),
+          //   Price = 99000
+          // },
+          new Artwork()
+          {
+            Id = 179,
+            PublicId = new Guid("d9bb21bc-2e5f-4a10-bb71-d40d74a2089a"),
+            UserId = 1,
+            PrimaryFileId = 236,
+            Title = "Ett glas mjölk och lite frukt",
+            Description = "Ett glas mjölk och lite frukt på ett bord",
+            Published = new DateTime(2020, 7, 4, 7, 53, 53),
+            Price = 22000
+          },
+          new Artwork()
+          {
+            Id = 180,
+            PublicId = new Guid("d9ad962e-106f-4b40-b3e5-f08a9a74660e"),
+            UserId = 1,
+            PrimaryFileId = 237,
+            Title = "Fågel i päronträd",
+            Description = "En vanlig typ av fågel som sitter och vilar i ett päronträd innan det är dags att flyga söderut",
+            Published = new DateTime(2020, 4, 11, 5, 6, 48),
+            Price = 41000
+          },
+          new Artwork()
+          {
+            Id = 181,
+            PublicId = new Guid("6f23877f-8786-491a-8514-60b6d8effb13"),
+            UserId = 1,
+            PrimaryFileId = 238,
+            Title = "Blombukett i vas",
+            Description = "Lila blommor i dans kring en blå och en rosa",
+            Published = new DateTime(2021, 4, 24, 5, 27, 47),
+            Price = 68000
+          },
+          new Artwork()
+          {
+            Id = 182,
+            PublicId = new Guid("002ae42c-214f-46eb-ac8d-662b89f155b9"),
+            UserId = 1,
+            PrimaryFileId = 239,
+            Title = "Gråtande flicka",
+            Description = "Gammal målning av en gråtande flicka i en stad",
+            Published = new DateTime(2021, 7, 2, 23, 21, 31),
+            Price = 69000
+          },
+          new Artwork()
+          {
+            Id = 183,
+            PublicId = new Guid("b600f9e4-f7a7-450e-9cd9-ad60e292d422"),
+            UserId = 1,
+            PrimaryFileId = 240,
+            Title = "Hus vid en bro",
+            Description = "En lugn, stilla å rinner genom det lilla samhället i norra Belgien. Ett hus där någon bos ligger intill ån och över bron cyklar två turister för att komma över till andra sidan.",
+            Published = new DateTime(2021, 9, 18, 12, 44, 30),
+            Price = 50000
+          },
+          new Artwork()
+          {
+            Id = 184,
+            PublicId = new Guid("84b2a6c7-efbd-42d3-b031-6004426cd095"),
+            UserId = 1,
+            PrimaryFileId = 241,
+            Title = "Dans på rosor",
+            Description = "...fast utan rosor",
+            Published = new DateTime(2021, 5, 12, 9, 51, 5),
+            Price = 86000
+          },
+          new Artwork()
+          {
+            Id = 185,
+            PublicId = new Guid("73a84499-76d0-4b46-bfc6-5c5c826de09a"),
+            UserId = 1,
+            PrimaryFileId = 242,
+            Title = "Öl",
+            Description = "En öl i ett glas, jävligt najs",
+            Published = new DateTime(2021, 11, 20, 23, 0, 55),
+            Price = 88000
+          },
+          new Artwork()
+          {
+            Id = 186,
+            PublicId = new Guid("5a7da2a8-803b-45b2-8d30-3c2df22f2c6b"),
+            UserId = 1,
+            PrimaryFileId = 243,
+            Title = "Moskva",
+            Description = "En byggnad i Moskva",
+            Published = new DateTime(2020, 3, 29, 16, 25, 21),
+            Price = 22000
+          },
+          new Artwork()
+          {
+            Id = 187,
+            PublicId = new Guid("963a2900-d713-448a-b124-b98e16f5e7b3"),
+            UserId = 1,
+            PrimaryFileId = 244,
+            Title = "Höstträd i spegelbild",
+            Description = "Höstträd speglas mot vattenytan",
+            Published = new DateTime(2020, 4, 16, 18, 29, 59),
+            Price = 60000
+          },
+          new Artwork()
+          {
+            Id = 188,
+            PublicId = new Guid("37b546fa-cf83-4a57-a43e-d28453b3951c"),
+            UserId = 1,
+            PrimaryFileId = 245,
+            Title = "Balkong i söderläge",
+            Description = "Många fina blommor har växt upp här genom åren",
+            Published = new DateTime(2021, 12, 3, 13, 4, 43),
+            Price = 18000
+          },
+          new Artwork()
+          {
+            Id = 189,
+            PublicId = new Guid("302c3185-081d-46bd-b440-9eb1fbb5b7d5"),
+            UserId = 1,
+            PrimaryFileId = 246,
+            Title = "Getting married",
+            Description = "A bride getting ready for her big day",
+            Published = new DateTime(2020, 9, 17, 17, 7, 54),
+            Price = 97000
+          },
+          new Artwork()
+          {
+            Id = 190,
+            PublicId = new Guid("826c935d-3acf-4f8f-8b9f-5ae8d931392e"),
+            UserId = 1,
+            PrimaryFileId = 247,
+            Title = "Irländska bergsväggen",
+            Description = "Irländska bergsväggen ut mot Atlanten med vågor som slår upp mot den hårda stenkanten",
+            Published = new DateTime(2020, 9, 12, 20, 23, 36),
+            Price = 100000
+          },
+          new Artwork()
+          {
+            Id = 191,
+            PublicId = new Guid("22e89d7a-2d20-4b6c-8e03-8c2b7fb7e97b"),
+            UserId = 1,
+            PrimaryFileId = 248,
+            Title = "Ett café i Paris",
+            Description = "Le Bocal, ett klassiskt franskt litet café i centrala Paris",
+            Published = new DateTime(2020, 11, 17, 4, 22, 43),
+            Price = 82000
+          },
+          new Artwork()
+          {
+            Id = 192,
+            PublicId = new Guid("7a6c62de-05ef-4a95-8811-719124e8495d"),
+            UserId = 1,
+            PrimaryFileId = 249,
+            Title = "Fiskmås",
+            Description = "En dramatisk bild av tre flygande fiskmåsar",
+            Published = new DateTime(2020, 8, 20, 10, 28, 57),
+            Price = 57000
+          },
+          new Artwork()
+          {
+            Id = 193,
+            PublicId = new Guid("c9f47a7c-f781-4118-b6fa-3ddfb509c1bf"),
+            UserId = 1,
+            PrimaryFileId = 250,
+            Title = "Blomvas",
+            Description = "En blomvas till",
+            Published = new DateTime(2021, 3, 18, 7, 56, 44),
+            Price = 69000
+          },
+          new Artwork()
+          {
+            Id = 194,
+            PublicId = new Guid("7988d3d9-a507-4283-8c2e-42bab89cce56"),
+            UserId = 1,
+            PrimaryFileId = 251,
+            Title = "Arkitektur",
+            Description = "Medeltida arkitektur i stor stad",
+            Published = new DateTime(2020, 1, 8, 9, 14, 49),
+            Price = 34000
+          },
+          new Artwork()
+          {
+            Id = 195,
+            PublicId = new Guid("f29c9800-9026-4bf3-aa1f-37a2b5a1ca9f"),
+            UserId = 1,
+            PrimaryFileId = 252,
+            Title = "Korg med mumsiga höstäpplen",
+            Description = "Ett par har trillat ut",
+            Published = new DateTime(2020, 4, 26, 12, 3, 16),
+            Price = 91000
+          },
+          new Artwork()
+          {
+            Id = 196,
+            PublicId = new Guid("49761fdf-3fdd-449b-a90c-e56091a328c3"),
+            UserId = 1,
+            PrimaryFileId = 253,
+            Title = "Liten fiskarbåt",
+            Description = "Gamle Olof står på sin fiskarbåt och gör iordningen nätet",
+            Published = new DateTime(2021, 2, 9, 2, 21, 1),
+            Price = 23000
+          },
+          new Artwork()
+          {
+            Id = 197,
+            PublicId = new Guid("0a501892-d8cb-46df-994b-26a3aa23e574"),
+            UserId = 1,
+            PrimaryFileId = 254,
+            Title = "Höstlöv",
+            Published = new DateTime(2021, 12, 16, 8, 31, 32),
+            Price = 6000
+          },
+          new Artwork()
+          {
+            Id = 198,
+            PublicId = new Guid("fb2d9ef6-c21b-4382-84a5-b02106f2ba79"),
+            UserId = 1,
+            PrimaryFileId = 255,
+            Title = "Landskap i gamla Grekland",
+            Description = "Förestället en liten lokal vingård",
+            Published = new DateTime(2020, 7, 23, 19, 33, 16),
+            Price = 86000
+          },
+          new Artwork()
+          {
+            Id = 199,
+            PublicId = new Guid("fddfa108-9a91-43ab-a502-725932437c64"),
+            UserId = 1,
+            PrimaryFileId = 256,
+            Title = "Blomvas",
+            Description = "Ytterligare en vas fylld med olika blommor",
+            Published = new DateTime(2021, 9, 3, 23, 43, 42),
+            Price = 71000
+          },
+          new Artwork()
+          {
+            Id = 200,
+            PublicId = new Guid("3578d062-268c-40ac-a794-008852bbdccc"),
+            UserId = 1,
+            PrimaryFileId = 257,
+            Title = "Lissabon",
+            Description = "En målning av Lissabon målad i olja",
+            Published = new DateTime(2020, 2, 17, 0, 59, 51),
+            Price = 44000
+          },
+          new Artwork()
+          {
+            Id = 201,
+            PublicId = new Guid("7565c51d-2f30-4183-ac13-a3959a8011c5"),
+            UserId = 1,
+            PrimaryFileId = 258,
+            Title = "Taj Mahal",
+            Description = "En målning av Taj Mahal",
+            Published = new DateTime(2020, 11, 27, 18, 57, 49),
+            Price = 50000
+          },
+          new Artwork()
+          {
+            Id = 202,
+            PublicId = new Guid("93902021-fb17-4fc3-a393-641394c251ad"),
+            UserId = 1,
+            PrimaryFileId = 259,
+            Title = "Fisk i kostym",
+            Description = "Två fiskar i en typ av kostym tittar rakt upp i luften",
+            Published = new DateTime(2020, 3, 19, 6, 0, 4),
+            Price = 83000
+          },
+          new Artwork()
+          {
+            Id = 203,
+            PublicId = new Guid("5627dc8c-3f28-4b3e-b99c-8556b005f2d4"),
+            UserId = 1,
+            PrimaryFileId = 260,
+            Title = "Man med kamel",
+            Description = "Man leder kamel till en oas med vatten",
+            Published = new DateTime(2021, 8, 28, 14, 28, 36),
+            Price = 88000
+          },
+          new Artwork()
+          {
+            Id = 204,
+            PublicId = new Guid("694f2d9c-8c79-4331-824b-f7cab68478b0"),
+            UserId = 1,
+            PrimaryFileId = 261,
+            Title = "Ängen",
+            Description = "En äng med fina blommor målad i olja",
+            Published = new DateTime(2021, 2, 19, 9, 24, 35),
+            Price = 45000
+          },
+          new Artwork()
+          {
+            Id = 205,
+            PublicId = new Guid("b99c37dc-480c-495e-8f26-4f82ad8fe4f7"),
+            UserId = 1,
+            PrimaryFileId = 262,
+            Title = "Skepp",
+            Description = "Ett skeep som seglar in mot en hamn för att lägga till",
+            Published = new DateTime(2020, 2, 9, 12, 51, 35),
+            Price = 5000
+          },
         };
     }
   }
