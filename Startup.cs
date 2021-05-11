@@ -95,7 +95,8 @@ namespace Artportable.API
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
       // Swagger
-      services.AddSwaggerGen(c => {
+      services.AddSwaggerGen(c =>
+      {
         c.SwaggerDoc("v1", new OpenApiInfo
         {
           Version = "v1",
