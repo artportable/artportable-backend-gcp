@@ -21,18 +21,21 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(mapper));
     }
 
-    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername)
+    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed)
     {
       return _context.Artworks
+        .FromSqlInterpolated(
+          $@"SELECT * FROM artworks
+          ORDER BY rand({seed})")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-        .OrderByDescending(a => a.Published)
-        .Skip(pageSize * (page-1))
+        .Skip(pageSize * (page - 1))
         .Take(pageSize)
         .Select(a =>
         new ArtworkDTO
         {
           Id = a.PublicId,
-          Owner = new OwnerDTO {
+          Owner = new OwnerDTO
+          {
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
             Location = a.User.UserProfile.Location
@@ -41,17 +44,20 @@ namespace Artportable.API.Services
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
-          PrimaryFile = new FileDTO {
+          PrimaryFile = new FileDTO
+          {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
             Height = a.PrimaryFile.Height
           },
-          SecondaryFile = a.SecondaryFile != null ? new FileDTO {
+          SecondaryFile = a.SecondaryFile != null ? new FileDTO
+          {
             Name = a.SecondaryFile.Name,
             Width = a.SecondaryFile.Width,
             Height = a.SecondaryFile.Height
           } : null,
-          TertiaryFile = a.TertiaryFile != null ? new FileDTO {
+          TertiaryFile = a.TertiaryFile != null ? new FileDTO
+          {
             Name = a.TertiaryFile.Name,
             Width = a.TertiaryFile.Width,
             Height = a.TertiaryFile.Height
@@ -63,9 +69,12 @@ namespace Artportable.API.Services
         .ToList();
     }
 
-    public List<ArtistDTO> GetArtists(int page, int pageSize, string q, string myUsername)
+    public List<ArtistDTO> GetArtists(int page, int pageSize, string q, string myUsername, int seed)
     {
       var users = _context.Users
+        .FromSqlInterpolated(
+          $@"SELECT * FROM users
+          ORDER BY rand({seed})")
         .Include(u => u.UserProfile)
         .Include(u => u.File)
         .Include(u => u.Artworks)
@@ -79,16 +88,18 @@ namespace Artportable.API.Services
         .Where(u => u.Username != myUsername)
         .Where(u => u.Artworks.Count() > 0)
         .Where(u => q != null ? u.Username.Contains(q) : true)
-        .Skip(pageSize * (page-1))
+        .Skip(pageSize * (page - 1))
         .Take(pageSize)
-        .Select(u => new ArtistDTO {
+        .Select(u => new ArtistDTO
+        {
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
           Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
             .Take(15)
-            .Select(a => new FileDTO {
+            .Select(a => new FileDTO
+            {
               Name = a.PrimaryFile.Name,
               Width = a.PrimaryFile.Width,
               Height = a.PrimaryFile.Height,
