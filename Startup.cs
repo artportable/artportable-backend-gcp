@@ -17,6 +17,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Stripe;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Swagger;
 
 namespace Artportable.API
 {
@@ -94,7 +95,8 @@ namespace Artportable.API
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
       // Swagger
-      services.AddSwaggerGen(c => {
+      services.AddSwaggerGen(c =>
+      {
         c.SwaggerDoc("v1", new OpenApiInfo
         {
           Version = "v1",
@@ -105,6 +107,7 @@ namespace Artportable.API
         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         c.IncludeXmlComments(xmlPath);
+        c.OperationFilter<ImageSwaggerFilter>();
       });
 
       services.AddCors(options =>

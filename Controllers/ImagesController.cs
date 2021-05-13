@@ -28,28 +28,32 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="w">Width of the image in pixels</param>
     /// <param name="h">Height of the image in pixels</param>
-    [HttpPost("")]
+    [HttpPost(Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     public async Task<IActionResult> Upload(int w, int h)
     {
-      if (w <= 0 || h <= 0) {
+      if (w <= 0 || h <= 0)
+      {
         return BadRequest();
       }
 
       var filename = Guid.NewGuid() + ".jpg";
       var stream = _contextAccessor?.HttpContext?.Request?.BodyReader.AsStream();
 
-      try {
+      try
+      {
         await _awsS3Service.UploadAsync(stream, filename);
         _imageService.Add(filename, w, h);
 
         return Ok(filename);
       }
-      catch (ArgumentException e) {
+      catch (ArgumentException e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return BadRequest();
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -67,12 +71,14 @@ namespace Artportable.API.Controllers
         return BadRequest();
       }
 
-      try {
+      try
+      {
         await _awsS3Service.DeleteAsync(filename);
 
         return NoContent();
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
