@@ -7,7 +7,7 @@ namespace Artportable.API.DTOs
     public string Username { get; set; }
     public string ProfilePicture { get; set; }
     public string Location { get; set; }
-    public List<FileDTO> Artworks { get; set; }
+    public List<FileDTO> Images { get; set; }
     public List<string> Tags { get; set; }
     public bool FollowedByMe { get; set; }
   }

@@ -85,7 +85,7 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
-          Artworks = u.Artworks
+          Images = u.Artworks
             .OrderBy(a => a.Likes.Count())
             .Take(15)
             .Select(a => new FileDTO {
