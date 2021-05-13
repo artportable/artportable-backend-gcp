@@ -64,7 +64,7 @@ namespace Artportable.API.Services
           } : null,
           Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
           Likes = a.Likes.Count(),
-          LikedByMe = myUsername != null ? a.Likes.Any(l => l.User.Username == myUsername) : false
+          LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false
         })
         .ToList();
     }
@@ -111,7 +111,7 @@ namespace Artportable.API.Services
             )
             .Take(5)
             .ToList(),
-          FollowedByMe = myUsername != null ?
+          FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
               .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
             false
