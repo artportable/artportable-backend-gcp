@@ -52,6 +52,7 @@ namespace Artportable.API
       services.AddScoped<IImageService, ImageService>();
       services.AddScoped<IAwsS3Service, AwsS3Service>();
       services.AddScoped<IDiscoverService, DiscoverService>();
+      services.AddScoped<IStartService, StartService>();
 
       services.AddAuthorization(authorizationOptions =>
       {
