@@ -86,24 +86,6 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Get all tags
-    /// </summary>
-    [HttpGet("tags")]
-    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<string>))]
-    public ActionResult<List<string>> GetTags()
-    {
-      try {
-        var tags = _artworkService.GetTags();
-
-        return Ok(tags);
-      }
-      catch (Exception e) {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
-
-    /// <summary>
     /// Update an existing artwork
     /// </summary>
     /// <remarks>
@@ -123,7 +105,7 @@ namespace Artportable.API.Controllers
     [HttpPut("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ArtworkDTO> CreateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, string myUsername = null)
+    public ActionResult<ArtworkDTO> UpdateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, string myUsername = null)
     {
       try {
         var artwork = _artworkService.Update(dto, id, myUsername);
@@ -133,6 +115,24 @@ namespace Artportable.API.Controllers
         }
 
         return Ok(artwork);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Get all tags
+    /// </summary>
+    [HttpGet("tags")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<string>))]
+    public ActionResult<List<string>> GetTags()
+    {
+      try {
+        var tags = _artworkService.GetTags();
+
+        return Ok(tags);
       }
       catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);
