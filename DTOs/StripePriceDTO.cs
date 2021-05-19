@@ -15,5 +15,7 @@ namespace Artportable.API.DTOs
     public string RecurringInterval { get; set; }
     [JsonPropertyName("product")]
     public string Product { get; set; }
+    [JsonPropertyName("productKey")]
+    public string ProductKey { get; set; }
   }
 }
