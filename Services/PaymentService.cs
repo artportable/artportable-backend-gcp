@@ -32,7 +32,7 @@ namespace Artportable.API.Services
             p.Active == true &&
             p.Deleted != true &&
             p?.Recurring?.Interval != null &&
-            products.Any(product => p.ProductId == product.Id)
+            products.Any(product => p.ProductId == product.Id && p.Active)
           )
           .Select(p => new StripePriceDTO()
           {
@@ -40,7 +40,8 @@ namespace Artportable.API.Services
             Amount = (decimal) p.UnitAmount / 100,
             Currency = p.Currency,
             RecurringInterval = p.Recurring.Interval,
-            Product = products.First(product => p.ProductId == product.Id).Name
+            Product = products.First(product => p.ProductId == product.Id).Name,
+            ProductKey = products.First(product => p.ProductId == product.Id).Metadata?.GetValueOrDefault("productkey")
           })
           .ToList();
 
