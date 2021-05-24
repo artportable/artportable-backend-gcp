@@ -189,6 +189,15 @@ namespace Artportable.API.Services
         .ToList();
     }
 
+    public string GetProfilePicture(string username)
+    {
+      var user = _context.Users
+        .Include(u => u.File)
+        .SingleOrDefault(u => u.Username == username);
+
+      return user?.File?.Name;
+    }
+
     public bool UserExists(UserDTO user)
     {
       return _context.Users.Any(u => u.Username == user.Username || u.Email == user.Email);

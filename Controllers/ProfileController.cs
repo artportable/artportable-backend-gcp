@@ -130,5 +130,29 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Get the profile picture of a user
+    /// </summary>
+    /// <param name="username"></param>
+    [HttpGet("{username}/profilepicture")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<string> GetProfilePicture(string username)
+    {
+      try {
+        var path = _userService.GetProfilePicture(username);
+
+        if (path == null) {
+          return StatusCode(StatusCodes.Status404NotFound);
+        }
+
+        return Ok(path);
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }
