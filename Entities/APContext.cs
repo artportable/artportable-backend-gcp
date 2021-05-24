@@ -31,6 +31,7 @@ namespace Artportable.API.Entities
     {
       // Tables with multiple references to one table
       // must be configured in Fluent
+
       modelBuilder.Entity<Artwork>()
         .HasOne(a => a.PrimaryFile)
         .WithOne(f => f.PrimaryFileRef)
@@ -44,17 +45,34 @@ namespace Artportable.API.Entities
         .WithOne(f => f.TertiaryFileRef)
         .HasForeignKey<Artwork>(a => a.TertiaryFileId);
 
+      modelBuilder.Entity<Like>()
+        .HasOne(l => l.Artwork)
+        .WithMany(a => a.Likes)
+        .HasForeignKey(l => l.ArtworkId)
+        .OnDelete(DeleteBehavior.Restrict);
+      
+      modelBuilder.Entity<Like>()
+        .HasOne(l => l.User)
+        .WithMany(u => u.Likes)
+        .HasForeignKey(l => l.UserId)
+        .OnDelete(DeleteBehavior.Restrict); 
+
       modelBuilder.Entity<Connection>()
         .HasOne(c => c.Follower)
         .WithMany(u => u.FollowerRef)
-        .HasForeignKey(c => c.FollowerId);
+        .HasForeignKey(c => c.FollowerId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Restrict);
       modelBuilder.Entity<Connection>()
         .HasOne(c => c.Followee)
         .WithMany(u => u.FolloweeRef)
-        .HasForeignKey(c => c.FolloweeId);
+        .HasForeignKey(c => c.FolloweeId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Restrict);
 
       // Seed the database with test data
-      if (true) {
+      if (true)
+      {
         modelBuilder.Entity<File>().HasData(_testData.Files);
         modelBuilder.Entity<User>().HasData(_testData.Users);
         modelBuilder.Entity<UserProfile>().HasData(_testData.UserProfiles);

@@ -11,7 +11,6 @@ namespace Artportable.API.Entities.Models
     public int UserId { get; set; }
     public int ArtworkId { get; set; }
 
-
     public User User { get; set; }
     public Artwork Artwork { get; set; }
   }

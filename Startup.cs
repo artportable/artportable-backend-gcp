@@ -13,7 +13,6 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Stripe;
 using System.Text.Json.Serialization;
 using System.Text.Json;
@@ -76,11 +75,7 @@ namespace Artportable.API
       // Database
       services.AddDbContextPool<APContext>(
         dbContextOptions => dbContextOptions
-          .UseMySql(
-            _configuration.GetConnectionString("DefaultConnection"),
-            new MySqlServerVersion(new Version(8, 0, 21)),
-            mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)
-          )
+          .UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
           .UseSnakeCaseNamingConvention()
           // Everything from this point on is optional but helps with debugging.
           .EnableSensitiveDataLogging()
