@@ -32,7 +32,7 @@ namespace Artportable.API.Services
             p.Active == true &&
             p.Deleted != true &&
             p?.Recurring?.Interval != null &&
-            products.Any(product => p.ProductId == product.Id && p.Active)
+            products.Any(product => p.ProductId == product.Id && product.Active)
           )
           .Select(p => new StripePriceDTO()
           {
