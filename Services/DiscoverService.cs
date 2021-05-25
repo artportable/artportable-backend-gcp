@@ -25,8 +25,8 @@ namespace Artportable.API.Services
     {
       return _context.Artworks
         .FromSqlInterpolated(
-          $@"SELECT * FROM artworks
-          ORDER BY rand({seed})")
+          $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
+          ORDER BY random OFFSET 0 ROWS")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
@@ -73,8 +73,8 @@ namespace Artportable.API.Services
     {
       var users = _context.Users
         .FromSqlInterpolated(
-          $@"SELECT * FROM users
-          ORDER BY rand({seed})")
+          $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
+          ORDER BY random OFFSET 0 ROWS")
         .Include(u => u.UserProfile)
         .Include(u => u.File)
         .Include(u => u.Artworks)
