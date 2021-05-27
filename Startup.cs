@@ -17,6 +17,10 @@ using Stripe;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Swagger;
+using Microsoft.Extensions.Azure;
+using Services;
+using Azure.Storage.Blobs;
+using Options;
 
 namespace Artportable.API
 {
@@ -40,6 +44,11 @@ namespace Artportable.API
 
       services.AddHttpContextAccessor();
 
+      // secOpts available for use in ConfigureServices
+      var blobClientOptions = _configuration
+          .GetSection("BlobContainer")
+          .Get<BlobContainerClientOptions>();
+
       // Registered services
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
       services.AddScoped<IUserService, UserService>();
@@ -49,9 +58,13 @@ namespace Artportable.API
       services.AddScoped<IFeedService, FeedService>();
       services.AddScoped<IConnectionService, ConnectionService>();
       services.AddScoped<IImageService, ImageService>();
-      services.AddScoped<IAwsS3Service, AwsS3Service>();
+      services.AddScoped<IUploadService, BlobService>();
       services.AddScoped<IDiscoverService, DiscoverService>();
       services.AddScoped<IStartService, StartService>();
+      services.AddScoped<BlobContainerClient>(factory =>
+      {
+        return new BlobContainerClient(blobClientOptions.ConnectionString, blobClientOptions.ContainerName);
+      });
 
       services.AddAuthorization(authorizationOptions =>
       {
@@ -81,6 +94,7 @@ namespace Artportable.API
           .EnableSensitiveDataLogging()
           .EnableDetailedErrors()
       );
+
 
       // Stripe
       // This is a sample test API key
