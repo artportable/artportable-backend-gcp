@@ -136,17 +136,12 @@ namespace Artportable.ImageApi.Tests.csproj
       await act.Should().NotThrowAsync("execution to be successful");
     }
 
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async void UploadAsyncInvalidStreamTest(bool useEmptyStream)
+    [Fact]
+    public async void UploadAsyncInvalidStreamTest()
     {
       //Arrange
       Stream stream = null;
-      if (useEmptyStream)
-      {
-        stream = new MemoryStream();
-      }
+      
       var blobService = new BlobService(_blobServiceClientMock.Object);
 
       //Act

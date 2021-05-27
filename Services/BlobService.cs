@@ -47,9 +47,9 @@ namespace Services
       {
         throw new ArgumentException("Provided filename is either null or empty");
       }
-      if (file == null || file.Length == 0)
+      if (file == null)
       {
-        throw new ArgumentException("Provided file is empty or null");
+        throw new ArgumentException("Provided file is null");
       }
 
       try
