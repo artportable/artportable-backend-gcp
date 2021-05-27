@@ -13,13 +13,13 @@ namespace Artportable.API.Controllers
   public class ImagesController : ControllerBase
   {
     private readonly IImageService _imageService;
-    private readonly IAwsS3Service _awsS3Service;
+    private readonly IUploadService _uploadService;
     private readonly IHttpContextAccessor _contextAccessor;
 
-    public ImagesController(IImageService imageService, IAwsS3Service awsS3Service, IHttpContextAccessor contextAccessor)
+    public ImagesController(IImageService imageService, IUploadService uploadService, IHttpContextAccessor contextAccessor)
     {
       _imageService = imageService;
-      _awsS3Service = awsS3Service;
+      _uploadService = uploadService;
       _contextAccessor = contextAccessor;
     }
 
@@ -42,7 +42,7 @@ namespace Artportable.API.Controllers
 
       try
       {
-        await _awsS3Service.UploadAsync(stream, filename);
+        await _uploadService.UploadAsync(stream, filename);
         _imageService.Add(filename, w, h);
 
         return Ok(filename);
@@ -73,7 +73,8 @@ namespace Artportable.API.Controllers
 
       try
       {
-        await _awsS3Service.DeleteAsync(filename);
+        await _uploadService.DeleteAsync(filename);
+        _imageService.Remove(filename);
 
         return NoContent();
       }
