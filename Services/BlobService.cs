@@ -12,7 +12,7 @@ namespace Services
   {
     private readonly BlobContainerClient _blobContainerClient;
     private readonly BlobUploadOptions _blobUploadOptions = new BlobUploadOptions{ 
-      HttpHeaders = new BlobHttpHeaders { ContentType = "image/jpeg", CacheControl = "max-age=120"}};
+      HttpHeaders = new BlobHttpHeaders { ContentType = "image/jpeg", CacheControl = "max-age=86400"}};
     public BlobService(BlobContainerClient blobContainerClient)
     {
       _blobContainerClient = blobContainerClient;
