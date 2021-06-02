@@ -175,7 +175,13 @@ namespace Artportable.API.Services
             .Include(a => a.PrimaryFile)
             .Where(a => a.UserId == u.Id)
             .Take(5)
-            .Select(a => a.PrimaryFile.Name)
+            .Select(a => 
+              new FileDTO() {
+                Name = a.PrimaryFile.Name,
+                Width = a.PrimaryFile.Width,
+                Height = a.PrimaryFile.Height
+              }
+            )
             .ToList()
         })
         .ToList();
