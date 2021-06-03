@@ -86,7 +86,7 @@ namespace Artportable.API.Services
 
       var artists = users
         .Where(u => u.Username != myUsername)
-        .Where(u => u.Artworks.Count() > 0)
+        .Where(u => u.Artworks.Count() > 5)
         .Where(u => q != null ? u.Username.Contains(q) : true)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
