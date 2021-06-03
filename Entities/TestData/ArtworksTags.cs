@@ -48,8 +48,8 @@ namespace Artportable.API.Testing
           new { ArtworksId = 14, TagsId = 15 },
           new { ArtworksId = 14, TagsId = 16 },
 
-          new { ArtworksId = 15, TagsId = 7 },
-          new { ArtworksId = 15, TagsId = 14 },
+          // new { ArtworksId = 15, TagsId = 7 },
+          // new { ArtworksId = 15, TagsId = 14 },
 
           new { ArtworksId = 16, TagsId = 8 },
 
@@ -60,7 +60,7 @@ namespace Artportable.API.Testing
           new { ArtworksId = 18, TagsId = 8 },
           new { ArtworksId = 18, TagsId = 19 },
 
-          new { ArtworksId = 19, TagsId = 4 },
+          // new { ArtworksId = 19, TagsId = 4 },
 
           new { ArtworksId = 20, TagsId = 7 },
 
@@ -102,7 +102,7 @@ namespace Artportable.API.Testing
 
           new { ArtworksId = 34, TagsId = 20 },
 
-          new { ArtworksId = 35, TagsId = 17 },
+          // new { ArtworksId = 35, TagsId = 17 },
 
           new { ArtworksId = 37, TagsId = 2 },
           new { ArtworksId = 37, TagsId = 15 },
@@ -132,7 +132,7 @@ namespace Artportable.API.Testing
 
           new { ArtworksId = 50, TagsId = 3 },
 
-          new { ArtworksId = 52, TagsId = 7 },
+          // new { ArtworksId = 52, TagsId = 7 },
 
           new { ArtworksId = 54, TagsId = 18 },
 
@@ -188,7 +188,7 @@ namespace Artportable.API.Testing
 
           new { ArtworksId = 82, TagsId = 15 },
 
-          new { ArtworksId = 83, TagsId = 13 },
+          // new { ArtworksId = 83, TagsId = 13 },
 
           new { ArtworksId = 85, TagsId = 1 },
 
@@ -198,7 +198,7 @@ namespace Artportable.API.Testing
 
           new { ArtworksId = 88, TagsId = 7 },
 
-          new { ArtworksId = 89, TagsId = 7 },
+          // new { ArtworksId = 89, TagsId = 7 },
 
           new { ArtworksId = 91, TagsId = 2 },
 

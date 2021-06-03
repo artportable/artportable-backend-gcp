@@ -169,16 +169,16 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 15,
-            PublicId = new Guid("ed1c9962-eaa0-454e-ac02-2b0f5cfc8fc4"),
-            UserId = 4,
-            PrimaryFileId = 29,
-            Title = "Liggande fjäril",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 15,
+          //   PublicId = new Guid("ed1c9962-eaa0-454e-ac02-2b0f5cfc8fc4"),
+          //   UserId = 4,
+          //   PrimaryFileId = 29,
+          //   Title = "Liggande fjäril",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 16,
@@ -215,17 +215,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 19,
-            PublicId = new Guid("86d4e142-6d72-4e9b-bd6d-ceeea589b333"),
-            UserId = 4,
-            PrimaryFileId = 48,
-            Title = "Självporträtt",
-            Description = "Jag fast utan armar",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 19,
+          //   PublicId = new Guid("86d4e142-6d72-4e9b-bd6d-ceeea589b333"),
+          //   UserId = 4,
+          //   PrimaryFileId = 48,
+          //   Title = "Självporträtt",
+          //   Description = "Jag fast utan armar",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 20,
@@ -392,17 +392,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 35,
-            PublicId = new Guid("869c3fdf-a24e-40cb-8355-121e4e5bfc6b"),
-            UserId = 4,
-            PrimaryFileId = 91,
-            Title = "Glad sol",
-            Description = "Ett mästerverk utom dess like",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 35,
+          //   PublicId = new Guid("869c3fdf-a24e-40cb-8355-121e4e5bfc6b"),
+          //   UserId = 4,
+          //   PrimaryFileId = 91,
+          //   Title = "Glad sol",
+          //   Description = "Ett mästerverk utom dess like",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 36,
@@ -439,17 +439,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 39,
-            PublicId = new Guid("7512794a-546e-4f06-bc70-0aa4415e5cf5"),
-            UserId = 4,
-            PrimaryFileId = 32,
-            Title = "Mitt hus",
-            Description = "Mitt hus från när jag växte upp. Färgvalet framhäver dörren på ett sätt man aldrig skulle kunna tänka sig var möjligt.",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 39,
+          //   PublicId = new Guid("7512794a-546e-4f06-bc70-0aa4415e5cf5"),
+          //   UserId = 4,
+          //   PrimaryFileId = 32,
+          //   Title = "Mitt hus",
+          //   Description = "Mitt hus från när jag växte upp. Färgvalet framhäver dörren på ett sätt man aldrig skulle kunna tänka sig var möjligt.",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 40,
@@ -582,17 +582,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 52,
-            PublicId = new Guid("3183d9ed-4daa-4be0-8d54-b477ff936cec"),
-            UserId = 4,
-            PrimaryFileId = 61,
-            Title = "Nyckelpiga",
-            Description = "Formidabel målning av en nyckelpiga med sex prickar avbildad med kritor i rött och svart",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 52,
+          //   PublicId = new Guid("3183d9ed-4daa-4be0-8d54-b477ff936cec"),
+          //   UserId = 4,
+          //   PrimaryFileId = 61,
+          //   Title = "Nyckelpiga",
+          //   Description = "Formidabel målning av en nyckelpiga med sex prickar avbildad med kritor i rött och svart",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 53,
@@ -691,17 +691,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 62,
-            PublicId = new Guid("373fb4e9-9d4e-47c5-8a26-f9db600138bf"),
-            UserId = 4,
-            PrimaryFileId = 95,
-            Title = "Min kompis hus",
-            Description = "Huset som min kompis Ludde bor i målad med många fönster och en dörr med ett konstigt handtag",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 62,
+          //   PublicId = new Guid("373fb4e9-9d4e-47c5-8a26-f9db600138bf"),
+          //   UserId = 4,
+          //   PrimaryFileId = 95,
+          //   Title = "Min kompis hus",
+          //   Description = "Huset som min kompis Ludde bor i målad med många fönster och en dörr med ett konstigt handtag",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 63,
@@ -736,17 +736,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 66,
-            PublicId = new Guid("3798154d-fc5c-4c17-89fd-3aa6852c3585"),
-            UserId = 4,
-            PrimaryFileId = 104,
-            Title = "Bi",
-            Description = "Enastående avbildande av ett bi, naturens egen Rolls Royce",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 66,
+          //   PublicId = new Guid("3798154d-fc5c-4c17-89fd-3aa6852c3585"),
+          //   UserId = 4,
+          //   PrimaryFileId = 104,
+          //   Title = "Bi",
+          //   Description = "Enastående avbildande av ett bi, naturens egen Rolls Royce",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 67,
@@ -922,17 +922,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 83,
-            PublicId = new Guid("9dcb575d-8aaf-403c-8991-8fc3d9f7583f"),
-            UserId = 4,
-            PrimaryFileId = 130,
-            Title = "Sol",
-            Description = "En exakt avbildning av hur solen såg ut när denna målades sommaren 2020",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 83,
+          //   PublicId = new Guid("9dcb575d-8aaf-403c-8991-8fc3d9f7583f"),
+          //   UserId = 4,
+          //   PrimaryFileId = 130,
+          //   Title = "Sol",
+          //   Description = "En exakt avbildning av hur solen såg ut när denna målades sommaren 2020",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 84,
@@ -988,17 +988,17 @@ namespace Artportable.API.Testing
             Published = DateTime.Now,
             Price = 9000
           },
-          new Artwork()
-          {
-            Id = 89,
-            PublicId = new Guid("b0f2df3e-c36f-48c1-a29f-d092acb83bdb"),
-            UserId = 4,
-            PrimaryFileId = 137,
-            Title = "Fjäril",
-            Description = "Glad fjäril i fyra färger",
-            Published = DateTime.Now,
-            Price = 9000
-          },
+          // new Artwork()
+          // {
+          //   Id = 89,
+          //   PublicId = new Guid("b0f2df3e-c36f-48c1-a29f-d092acb83bdb"),
+          //   UserId = 4,
+          //   PrimaryFileId = 137,
+          //   Title = "Fjäril",
+          //   Description = "Glad fjäril i fyra färger",
+          //   Published = DateTime.Now,
+          //   Price = 9000
+          // },
           new Artwork()
           {
             Id = 90,
@@ -1043,17 +1043,6 @@ namespace Artportable.API.Testing
             TertiaryFileId = 115,
             Title = "Ögon som ser",
             Description = "Regnbågens ögon som ser det som ses",
-            Published = DateTime.Now,
-            Price = 9000
-          },
-          new Artwork()
-          {
-            Id = 94,
-            PublicId = new Guid("3288e991-288c-43bb-b683-524eecc0a77e"),
-            UserId = 12,
-            PrimaryFileId = 145,
-            Title = "Blå barn",
-            Description = "Blå barn med färgglada fåglar målad på en vägg",
             Published = DateTime.Now,
             Price = 9000
           },
