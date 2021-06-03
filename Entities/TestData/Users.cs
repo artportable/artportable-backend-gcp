@@ -288,6 +288,15 @@ namespace Artportable.API.Testing
             Email = "annelifrisk@artportable.com",
             Created = new DateTime(2021, 06, 02, 11, 50, 01),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 28,
+            SubscriptionId = 28,
+            Username = "michael",
+            Email = "michaelnilssonstrom@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
           }
         };
     }

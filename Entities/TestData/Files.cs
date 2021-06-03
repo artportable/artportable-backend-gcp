@@ -305,7 +305,28 @@ namespace Artportable.API.Testing
       "550e63fe-b033-4cc4-90ae-24b7c6e4e073.jpg",
       "92989e51-f29c-4418-a9bd-2653c25015f2.jpg",
       "b1f5a50a-0e13-4012-9da3-14aa9b9d5f55.jpg",
-      "f8f11957-f867-427c-bcb8-d2fe21dd2262.jpg",
+      "f8f11957-f867-427c-bcb8-d2fe21dd2262.jpg", // 277
+
+      "05b1ea3f-71c8-4132-a279-9a75f86ae645.jpg",
+      "1014bda3-5788-4708-8ede-8342768812ec.jpg",
+      "1bfe6086-d153-462c-a265-2294c449e4f7.jpg",
+      "45e5e8a3-7f10-44e9-a7ec-b7fb525017d1.jpg",
+      "4e85f280-4045-4f66-b91c-a1e94691db70.jpg",
+      "57ea5081-eae1-438c-8ec9-e42a2e8f847c.jpg",
+      "59242895-e452-4183-a1a3-c277fd8fcee3.jpg",
+      "631b4e8a-7b00-4b61-a753-bfce027aed5d.jpg",
+      "6e2b6c23-6764-4d95-af94-66cf7749ee53.jpg",
+      "73c95701-8d0f-4f09-9aeb-c4764f024751.jpg",
+      "887ed3cf-8c86-4bbf-9ee9-835a08758d58.jpg",
+      "8945f20b-6f50-41c8-9e3e-aa83c11e50de.jpg",
+      "ae8b90a0-0569-4877-bab7-4f0975feb6a0.jpg",
+      "b7f3f6a6-3638-4ba7-aebb-7e2b9f514085.jpg",
+      "c03075b1-cf4c-4c9e-b3a8-ef27c771d093.jpg",
+      "c38e7bfc-7d65-4458-9b1d-85ddf06b517f.jpg",
+      "c75da3a9-386b-4401-b8a7-dd91a16b35c9.jpg",
+      "ccc09a71-8781-41bd-a6d9-25c735cb2495.jpg",
+      "f2ad418e-b11a-4a1a-a7c8-9efb78d0879a.jpg",
+      "faa4e495-df16-4304-b95e-2b88009da226.jpg",
     };
 
     private List<FileSize> FileSizes = new List<FileSize> {
@@ -588,6 +609,27 @@ namespace Artportable.API.Testing
       new FileSize { Name = "92989e51-f29c-4418-a9bd-2653c25015f2.jpg", Width = 950, Height = 1000}, // Elefant
       new FileSize { Name = "b1f5a50a-0e13-4012-9da3-14aa9b9d5f55.jpg", Width = 750, Height = 1000}, // Sparris, aubergine, chili
       new FileSize { Name = "f8f11957-f867-427c-bcb8-d2fe21dd2262.jpg", Width = 750, Height = 1000}, // Ananas
+
+      new FileSize { Name = "05b1ea3f-71c8-4132-a279-9a75f86ae645.jpg", Width = 1000, Height = 376},
+      new FileSize { Name = "1014bda3-5788-4708-8ede-8342768812ec.jpg", Width = 1000, Height = 665},
+      new FileSize { Name = "1bfe6086-d153-462c-a265-2294c449e4f7.jpg", Width = 1000, Height = 638},
+      new FileSize { Name = "45e5e8a3-7f10-44e9-a7ec-b7fb525017d1.jpg", Width = 1000, Height = 667},
+      new FileSize { Name = "4e85f280-4045-4f66-b91c-a1e94691db70.jpg", Width = 1000, Height = 665},
+      new FileSize { Name = "57ea5081-eae1-438c-8ec9-e42a2e8f847c.jpg", Width = 1000, Height = 778},
+      new FileSize { Name = "59242895-e452-4183-a1a3-c277fd8fcee3.jpg", Width = 1000, Height = 659},
+      new FileSize { Name = "631b4e8a-7b00-4b61-a753-bfce027aed5d.jpg", Width = 1000, Height = 669},
+      new FileSize { Name = "6e2b6c23-6764-4d95-af94-66cf7749ee53.jpg", Width = 665, Height = 1000},
+      new FileSize { Name = "73c95701-8d0f-4f09-9aeb-c4764f024751.jpg", Width = 1000, Height = 663},
+      new FileSize { Name = "887ed3cf-8c86-4bbf-9ee9-835a08758d58.jpg", Width = 1000, Height = 667},
+      new FileSize { Name = "8945f20b-6f50-41c8-9e3e-aa83c11e50de.jpg", Width = 1000, Height = 627},
+      new FileSize { Name = "ae8b90a0-0569-4877-bab7-4f0975feb6a0.jpg", Width = 1000, Height = 667},
+      new FileSize { Name = "b7f3f6a6-3638-4ba7-aebb-7e2b9f514085.jpg", Width = 1000, Height = 665},
+      new FileSize { Name = "c03075b1-cf4c-4c9e-b3a8-ef27c771d093.jpg", Width = 1000, Height = 676},
+      new FileSize { Name = "c38e7bfc-7d65-4458-9b1d-85ddf06b517f.jpg", Width = 1000, Height = 689},
+      new FileSize { Name = "c75da3a9-386b-4401-b8a7-dd91a16b35c9.jpg", Width = 1000, Height = 762},
+      new FileSize { Name = "ccc09a71-8781-41bd-a6d9-25c735cb2495.jpg", Width = 1000, Height = 667},
+      new FileSize { Name = "f2ad418e-b11a-4a1a-a7c8-9efb78d0879a.jpg", Width = 1000, Height = 668},
+      new FileSize { Name = "faa4e495-df16-4304-b95e-2b88009da226.jpg", Width = 1000, Height = 677},
     };
   }
 

@@ -367,6 +367,21 @@ namespace Artportable.API.Testing
             Website = "https://artbyanneli.se/",
             FacebookUrl = "https://www.facebook.com/artbyanneli",
             InstagramUrl = "https://www.instagram.com/anneliz74/"
+          },
+          new UserProfile
+          {
+            Id = 28,
+            UserId = 28,
+            Name = "Michael",
+            Surname = "Nilsson Ström",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Västerås",
+            Title = "Konstnär & Fotograf",
+            Headline = "Fotograf och konstnär Michael Nilsson-Ström född 1957",
+            About = "Michael har fotograferat sedan barnsben, men under bl.a. Grafic Art studier 1974/75 i San Diego, USA upplevde Michael spelet mellan starka färger och naturligt ljus som spännande och Michael fastnade för impressionismens konstnärer. Under 2000-talet har Michael arbetat med motiv innehållande oftast mer skarpa kontraster och starka färger tillsammans med det naturliga ljuset som ett viktigt redskap. Motiven är hämtade från olika delar av världen. Michael är sedan 1986 bosatt i Västerås och mestadels autodidakt inom foto och konst.",
+            InspiredBy = "Konstnären Monet och övriga inom Impressionismen.",
+            Website = "http://www.artn-s.se/",
+            InstagramUrl = "https://www.instagram.com/artns.se/"
           }
         };
     }
