@@ -426,6 +426,19 @@ namespace Artportable.API.Testing
             About = "I live on Samsø, where I can use the time, calm and the island’s fantastic aura and atmosphere to find brushes and canvases again. I have now been painting for 3 years, following some exciting courses, including from MOMA in NY, and changed my mindset. I have had the courage to challenge the canvases with strong colors and shapes.",
             InspiredBy = "Different artists in a span between German expressionism and pop art",
             Website = "https://www.artbyrejac.com/",
+          },
+          new UserProfile
+          {
+            Id = 32,
+            UserId = 32,
+            Name = "Malin",
+            Surname = "Löfberg",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Strängnäs",
+            Title = "Konstnär",
+            Headline = "Jag älskar att skapa och har varit kreativ sedan barnsben",
+            About = "Jag har provat på många olika sorters konstformer som keramik, gammeldags målning på möbler, tova tavlor och fåglar mm. av ull, porslinsmålning, sy, måla på olika material osv. Det jag mest hållit mig till på senare tid är att måla tavlor och till viss del tovning. Jag arbetar även som speciallärare men har nedsatt tid för att arbeta i min ateljé.",
+            InspiredBy = "Naturen och sjön där jag bor",
           }
         };
     }
