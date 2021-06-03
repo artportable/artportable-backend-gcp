@@ -254,7 +254,23 @@ namespace Artportable.API.Testing
           new { ArtworksId = 236, TagsId = 26 },
           new { ArtworksId = 237, TagsId = 26 },
           new { ArtworksId = 238, TagsId = 26 },
-          new { ArtworksId = 239, TagsId = 26 }
+          new { ArtworksId = 239, TagsId = 26 },
+          new { ArtworksId = 240, TagsId = 26 },
+          new { ArtworksId = 241, TagsId = 26 },
+          new { ArtworksId = 242, TagsId = 26 },
+          new { ArtworksId = 243, TagsId = 26 },
+          new { ArtworksId = 244, TagsId = 26 },
+          new { ArtworksId = 245, TagsId = 26 },
+          new { ArtworksId = 246, TagsId = 26 },
+          new { ArtworksId = 247, TagsId = 26 },
+          new { ArtworksId = 248, TagsId = 26 },
+          new { ArtworksId = 249, TagsId = 26 },
+          new { ArtworksId = 250, TagsId = 26 },
+          new { ArtworksId = 251, TagsId = 26 },
+          new { ArtworksId = 252, TagsId = 26 },
+          new { ArtworksId = 253, TagsId = 26 },
+          new { ArtworksId = 254, TagsId = 26 },
+          new { ArtworksId = 255, TagsId = 26 },
         };
     }
   }

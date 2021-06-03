@@ -297,6 +297,15 @@ namespace Artportable.API.Testing
             Email = "michaelnilssonstrom@artportable.com",
             Created = new DateTime(2021, 06, 02, 11, 50, 01),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 29,
+            SubscriptionId = 29,
+            Username = "khrystyna",
+            Email = "khrystynabarabanova@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
           }
         };
     }

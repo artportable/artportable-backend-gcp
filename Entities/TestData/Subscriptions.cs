@@ -205,6 +205,13 @@ namespace Artportable.API.Testing
             ProductId = 2,
             ExpirationDate = DateTime.Now.AddDays(193),
             CustomerId = "cus_J6O5PdasuifdjD"
+          },
+          new Subscription
+          {
+            Id = 29,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_JaO5PdaauifdjD"
           }
         };
     }

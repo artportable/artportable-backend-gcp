@@ -326,7 +326,23 @@ namespace Artportable.API.Testing
       "c75da3a9-386b-4401-b8a7-dd91a16b35c9.jpg",
       "ccc09a71-8781-41bd-a6d9-25c735cb2495.jpg",
       "f2ad418e-b11a-4a1a-a7c8-9efb78d0879a.jpg",
-      "faa4e495-df16-4304-b95e-2b88009da226.jpg",
+      "faa4e495-df16-4304-b95e-2b88009da226.jpg", // 297
+
+      "08425dca-37b6-4dbb-8605-4c2b51683898.jpg",
+      "0a6ac9a9-40ec-4831-b956-606fe1c99adf.jpg",
+      "1854542a-2abf-4320-b759-7bd7a9e8342d.jpg",
+      "23f01728-d26b-4da4-a3d4-389bd88f2218.jpg",
+      "2637bbfd-69da-4420-afc4-ea9a1d0544d9.jpg",
+      "2bbabbb4-66ff-4716-a90e-bccdf0bdacb3.jpg",
+      "2c0eebc4-e396-428e-9ab6-6e386443f33a.jpg",
+      "50dd3180-a9b1-41fd-8c5b-9b760876f696.jpg",
+      "6e71c17c-73a8-4f30-a20c-4e8636d572f2.jpg",
+      "7025ee9c-e8b5-456a-9e53-16d23be090a6.jpg",
+      "86ca9883-4b61-4551-8c7d-0491e56a21ce.jpg",
+      "ab6bb7f2-e645-45ad-8a25-2451347d9a1b.jpg",
+      "ac83b492-a01e-49be-8fd4-3080fa180de2.jpg",
+      "d42bb906-d7d4-48b7-a381-a9128f299878.jpg",
+      "fa0080e8-12fb-4713-ad6d-874426006845.jpg", // 312
     };
 
     private List<FileSize> FileSizes = new List<FileSize> {
@@ -630,6 +646,22 @@ namespace Artportable.API.Testing
       new FileSize { Name = "ccc09a71-8781-41bd-a6d9-25c735cb2495.jpg", Width = 1000, Height = 667},
       new FileSize { Name = "f2ad418e-b11a-4a1a-a7c8-9efb78d0879a.jpg", Width = 1000, Height = 668},
       new FileSize { Name = "faa4e495-df16-4304-b95e-2b88009da226.jpg", Width = 1000, Height = 677},
+
+      new FileSize { Name = "08425dca-37b6-4dbb-8605-4c2b51683898.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "0a6ac9a9-40ec-4831-b956-606fe1c99adf.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "1854542a-2abf-4320-b759-7bd7a9e8342d.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "23f01728-d26b-4da4-a3d4-389bd88f2218.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "2637bbfd-69da-4420-afc4-ea9a1d0544d9.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "2bbabbb4-66ff-4716-a90e-bccdf0bdacb3.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "2c0eebc4-e396-428e-9ab6-6e386443f33a.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "50dd3180-a9b1-41fd-8c5b-9b760876f696.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "6e71c17c-73a8-4f30-a20c-4e8636d572f2.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "7025ee9c-e8b5-456a-9e53-16d23be090a6.jpg", Width = 727, Height = 1000},
+      new FileSize { Name = "86ca9883-4b61-4551-8c7d-0491e56a21ce.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "ab6bb7f2-e645-45ad-8a25-2451347d9a1b.jpg", Width = 800, Height = 1000},
+      new FileSize { Name = "ac83b492-a01e-49be-8fd4-3080fa180de2.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "d42bb906-d7d4-48b7-a381-a9128f299878.jpg", Width = 667, Height = 1000},
+      new FileSize { Name = "fa0080e8-12fb-4713-ad6d-874426006845.jpg", Width = 667, Height = 1000},
     };
   }
 

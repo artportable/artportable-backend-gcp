@@ -2635,6 +2635,172 @@ namespace Artportable.API.Testing
             Published = new DateTime(2021, 1, 13, 18, 55, 10),
             Price = 37000
           },
+
+          new Artwork()
+          {
+            Id = 241,
+            PublicId = new Guid("21c87279-014b-4a29-b485-d4b3ac5df309"),
+            UserId = 29,
+            PrimaryFileId = 298,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2020, 1, 14, 21, 51, 7),
+            Price = 99000
+          },
+          new Artwork()
+          {
+            Id = 242,
+            PublicId = new Guid("2663c216-6ec1-4aca-b839-e774c39ab7f5"),
+            UserId = 29,
+            PrimaryFileId = 299,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 11, 20, 23, 57, 48),
+            Price = 14000
+          },
+          new Artwork()
+          {
+            Id = 243,
+            PublicId = new Guid("913513ae-c5f3-486d-8979-dea9f0ef0ea0"),
+            UserId = 29,
+            PrimaryFileId = 300,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2020, 10, 3, 4, 53, 38),
+            Price = 59000
+          },
+          new Artwork()
+          {
+            Id = 244,
+            PublicId = new Guid("2aec6a22-dfc2-4178-9c3d-a499fc506141"),
+            UserId = 29,
+            PrimaryFileId = 301,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2020, 11, 10, 2, 8, 11),
+            Price = 22000
+          },
+          new Artwork()
+          {
+            Id = 245,
+            PublicId = new Guid("d6e3b2bd-84c7-469b-909f-36d23c9e85ff"),
+            UserId = 29,
+            PrimaryFileId = 302,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 9, 22, 19, 31, 50),
+            Price = 9000
+          },
+          new Artwork()
+          {
+            Id = 246,
+            PublicId = new Guid("29ae2f0c-602e-47de-885e-f2403a6261ad"),
+            UserId = 29,
+            PrimaryFileId = 303,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 4, 1, 7, 6, 57),
+            Price = 46000
+          },
+          new Artwork()
+          {
+            Id = 247,
+            PublicId = new Guid("abf4403e-f211-4397-afaf-1adcdb534aa9"),
+            UserId = 29,
+            PrimaryFileId = 304,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 4, 18, 8, 25, 56),
+            Price = 4000
+          },
+          new Artwork()
+          {
+            Id = 248,
+            PublicId = new Guid("02235221-25f9-4a31-8e5b-1c351de130b9"),
+            UserId = 29,
+            PrimaryFileId = 305,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 6, 24, 8, 51, 58),
+            Price = 43000
+          },
+          new Artwork()
+          {
+            Id = 249,
+            PublicId = new Guid("d2097236-c9b3-4a24-a7f9-630449bd21f4"),
+            UserId = 29,
+            PrimaryFileId = 306,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 7, 21, 9, 59, 17),
+            Price = 83000
+          },
+          new Artwork()
+          {
+            Id = 250,
+            PublicId = new Guid("7938028d-eadc-4489-849c-ca05d9c5f18d"),
+            UserId = 29,
+            PrimaryFileId = 307,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 12, 24, 8, 9, 10),
+            Price = 31000
+          },
+          new Artwork()
+          {
+            Id = 251,
+            PublicId = new Guid("7d92aded-7171-4677-a685-60a0ed706d96"),
+            UserId = 29,
+            PrimaryFileId = 308,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 3, 24, 2, 17, 44),
+            Price = 82000
+          },
+          new Artwork()
+          {
+            Id = 252,
+            PublicId = new Guid("fa82abca-420f-4761-af17-309517de1845"),
+            UserId = 29,
+            PrimaryFileId = 309,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2020, 7, 30, 14, 24, 29),
+            Price = 96000
+          },
+          new Artwork()
+          {
+            Id = 253,
+            PublicId = new Guid("719c15b6-8341-4fcf-8f31-b4b41e24822b"),
+            UserId = 29,
+            PrimaryFileId = 310,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2021, 9, 1, 13, 53, 33),
+            Price = 3000
+          },
+          new Artwork()
+          {
+            Id = 254,
+            PublicId = new Guid("cc323786-68f2-4f47-a149-2d94bb637dd3"),
+            UserId = 29,
+            PrimaryFileId = 311,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2020, 10, 28, 15, 30, 7),
+            Price = 65000
+          },
+          new Artwork()
+          {
+            Id = 255,
+            PublicId = new Guid("3a5526fc-c968-46c1-8861-729f2fd31e2d"),
+            UserId = 29,
+            PrimaryFileId = 312,
+            Title = "Lorem ipsum dolor sit amet",
+            Description = "",
+            Published = new DateTime(2020, 10, 6, 11, 12, 7),
+            Price = 37000
+          },
         };
     }
   }

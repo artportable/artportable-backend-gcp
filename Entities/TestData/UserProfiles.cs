@@ -382,6 +382,22 @@ namespace Artportable.API.Testing
             InspiredBy = "Konstnären Monet och övriga inom Impressionismen.",
             Website = "http://www.artn-s.se/",
             InstagramUrl = "https://www.instagram.com/artns.se/"
+          },
+          new UserProfile
+          {
+            Id = 29,
+            UserId = 29,
+            Name = "Khrystyna",
+            Surname = "Barabanova",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Stockholm",
+            Title = "Artist",
+            Headline = "I am an aspiring illustrator based in Stockholm, Sweden",
+            About = "I have been shaping my art vision through different materials, but watercolor took a special place in my heart. Watercolor is the main interest for me and the most difficult material I’ve ever used. But I like the challenge. The uniqueness of textures and shapes of aquarelle is something that fascinates me to this day. After moving to Sweden in 2018, I joined Stardoll team as an illustrator. I drew countless outfits inspired by famous designers and my interest in fashion began to grow. I started developing my own artistic way in illustration by painting portrait and figure illustrations. My passion led me towards my own unique art style, which I’m proud to share with the world.",
+            InspiredBy = "Fashion",
+            Website = "https://artbarabanova.com/",
+            FacebookUrl = "https://www.facebook.com/khrystyna.barabanova",
+            InstagramUrl = "https://www.instagram.com/barabanova_artist/"
           }
         };
     }
