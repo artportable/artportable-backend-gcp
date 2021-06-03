@@ -290,6 +290,22 @@ namespace Artportable.API.Testing
       "fba4eb84-4b2e-48a1-8374-5c837c1c5728.jpg",
       "fd767638-019e-4b94-bc05-bb1bb7364abf.jpg",
       "fef8d78c-50ef-44da-aee7-cd3330e22103.jpg",
+
+      "07ef30d0-31f2-4b72-b187-2b6bb2669228.jpg", // New images (263)
+      "316ac518-eae6-4bc7-84b3-98d7e3886bed.jpg",
+      "5f1b3e23-1f3d-4bc2-a627-a17507c46fde.jpg",
+      "a697d370-c916-49d4-b9a3-ff9f56d10860.jpg",
+      "d3c1b13f-b93f-4259-893e-ef5ceb6d143d.jpg",
+      "0ad0e7f8-4bfa-45ce-9fde-dfe2bb4a7bb8.jpg",
+      "4d920af9-bac0-4a79-a05b-f4d99a559222.jpg",
+      "6f1dee3f-ca77-4642-8f34-8d34a9f2396a.jpg",
+      "a83676b6-5531-4d22-8927-c4cf1cfdd4d4.jpg",
+      "e2b46ec9-9f5f-4ebb-b7cc-68bfadae3f87.jpg",
+      "152c85e5-3557-430f-853c-e341fd7c8e47.jpg",
+      "550e63fe-b033-4cc4-90ae-24b7c6e4e073.jpg",
+      "92989e51-f29c-4418-a9bd-2653c25015f2.jpg",
+      "b1f5a50a-0e13-4012-9da3-14aa9b9d5f55.jpg",
+      "f8f11957-f867-427c-bcb8-d2fe21dd2262.jpg",
     };
 
     private List<FileSize> FileSizes = new List<FileSize> {
@@ -556,6 +572,22 @@ namespace Artportable.API.Testing
       new FileSize { Name = "fba4eb84-4b2e-48a1-8374-5c837c1c5728.jpg", Width = 2000, Height = 1500},
       new FileSize { Name = "fd767638-019e-4b94-bc05-bb1bb7364abf.jpg", Width = 856, Height = 720},
       new FileSize { Name = "fef8d78c-50ef-44da-aee7-cd3330e22103.jpg", Width = 499, Height = 720},
+
+      new FileSize { Name = "07ef30d0-31f2-4b72-b187-2b6bb2669228.jpg", Width = 750, Height = 1000}, // Säl
+      new FileSize { Name = "316ac518-eae6-4bc7-84b3-98d7e3886bed.jpg", Width = 750, Height = 1000}, // Tiger
+      new FileSize { Name = "5f1b3e23-1f3d-4bc2-a627-a17507c46fde.jpg", Width = 654, Height = 1000}, // Svartvita grönsaker
+      new FileSize { Name = "a697d370-c916-49d4-b9a3-ff9f56d10860.jpg", Width = 750, Height = 1000}, // Cirkusdirektör
+      new FileSize { Name = "d3c1b13f-b93f-4259-893e-ef5ceb6d143d.jpg", Width = 750, Height = 1000}, // Blombukertt med björnbär
+      new FileSize { Name = "0ad0e7f8-4bfa-45ce-9fde-dfe2bb4a7bb8.jpg", Width = 740, Height = 1000}, // Tomater, kronärtskocka
+      new FileSize { Name = "4d920af9-bac0-4a79-a05b-f4d99a559222.jpg", Width = 750, Height = 1000}, // Gröna blad
+      new FileSize { Name = "6f1dee3f-ca77-4642-8f34-8d34a9f2396a.jpg", Width = 750, Height = 1000}, // Blommor med stora blad
+      new FileSize { Name = "a83676b6-5531-4d22-8927-c4cf1cfdd4d4.jpg", Width = 714, Height = 1000}, // Blombukett med nypon
+      new FileSize { Name = "e2b46ec9-9f5f-4ebb-b7cc-68bfadae3f87.jpg", Width = 750, Height = 1000}, // Clown
+      new FileSize { Name = "152c85e5-3557-430f-853c-e341fd7c8e47.jpg", Width = 707, Height = 1000}, // Röda blommor
+      new FileSize { Name = "550e63fe-b033-4cc4-90ae-24b7c6e4e073.jpg", Width = 694, Height = 1000}, // Vita blommor
+      new FileSize { Name = "92989e51-f29c-4418-a9bd-2653c25015f2.jpg", Width = 950, Height = 1000}, // Elefant
+      new FileSize { Name = "b1f5a50a-0e13-4012-9da3-14aa9b9d5f55.jpg", Width = 750, Height = 1000}, // Sparris, aubergine, chili
+      new FileSize { Name = "f8f11957-f867-427c-bcb8-d2fe21dd2262.jpg", Width = 750, Height = 1000}, // Ananas
     };
   }
 

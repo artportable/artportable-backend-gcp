@@ -279,6 +279,15 @@ namespace Artportable.API.Testing
             Email = "anders@zorn.se",
             Created = new DateTime(2021, 04, 19, 17, 00, 01),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 27,
+            SubscriptionId = 27,
+            Username = "anneli",
+            Email = "annelifrisk@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
           }
         };
     }

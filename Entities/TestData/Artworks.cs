@@ -2211,7 +2211,7 @@ namespace Artportable.API.Testing
           {
             Id = 200,
             PublicId = new Guid("3578d062-268c-40ac-a794-008852bbdccc"),
-            UserId = 1,
+            UserId = 2,
             PrimaryFileId = 257,
             Title = "Lissabon",
             Description = "En målning av Lissabon målad i olja",
@@ -2233,7 +2233,7 @@ namespace Artportable.API.Testing
           {
             Id = 202,
             PublicId = new Guid("93902021-fb17-4fc3-a393-641394c251ad"),
-            UserId = 1,
+            UserId = 2,
             PrimaryFileId = 259,
             Title = "Fisk i kostym",
             Description = "Två fiskar i en typ av kostym tittar rakt upp i luften",
@@ -2269,8 +2269,160 @@ namespace Artportable.API.Testing
             UserId = 1,
             PrimaryFileId = 262,
             Title = "Skepp",
-            Description = "Ett skeep som seglar in mot en hamn för att lägga till",
+            Description = "Ett skepp som seglar in mot en hamn för att lägga till",
             Published = new DateTime(2020, 2, 9, 12, 51, 35),
+            Price = 5000
+          },
+
+          // Anneli Frisk
+          new Artwork()
+          {
+            Id = 206,
+            PublicId = new Guid("07ef30d0-31f2-4b72-b187-2b6bb2669221"),
+            UserId = 27,
+            PrimaryFileId = 263,
+            Title = "Sjölejon",
+            Published = new DateTime(2020, 2, 9, 12, 45, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 207,
+            PublicId = new Guid("316ac518-eae6-4bc7-84b3-98d7e3886be1"),
+            UserId = 27,
+            PrimaryFileId = 264,
+            Title = "Tiger",
+            Published = new DateTime(2020, 2, 9, 12, 43, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 208,
+            PublicId = new Guid("5f1b3e23-1f3d-4bc2-a627-a17507c46fd1"),
+            UserId = 27,
+            PrimaryFileId = 265,
+            Title = "Monokrom Amaryllis",
+            Published = new DateTime(2020, 2, 9, 12, 49, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 209,
+            PublicId = new Guid("a697d370-c916-49d4-b9a3-ff9f56d10861"),
+            UserId = 27,
+            PrimaryFileId = 266,
+            Title = "Cirkusdirektör",
+            Published = new DateTime(2020, 2, 9, 12, 48, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 210,
+            PublicId = new Guid("d3c1b13f-b93f-4259-893e-ef5ceb6d1431"),
+            UserId = 27,
+            PrimaryFileId = 267,
+            Title = "Japansk bukett",
+            Published = new DateTime(2020, 2, 9, 12, 13, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 211,
+            PublicId = new Guid("0ad0e7f8-4bfa-45ce-9fde-dfe2bb4a7bb1"),
+            UserId = 27,
+            PrimaryFileId = 268,
+            Title = "Grönsaker",
+            Published = new DateTime(2020, 2, 9, 12, 23, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 212,
+            PublicId = new Guid("4d920af9-bac0-4a79-a05b-f4d99a559221"),
+            UserId = 27,
+            PrimaryFileId = 269,
+            Title = "Sommarblad",
+            Published = new DateTime(2020, 2, 9, 12, 21, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 213,
+            PublicId = new Guid("6f1dee3f-ca77-4642-8f34-8d34a9f23961"),
+            UserId = 27,
+            PrimaryFileId = 270,
+            Title = "Cyklamen",
+            Published = new DateTime(2020, 2, 9, 12, 36, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 214,
+            PublicId = new Guid("a83676b6-5531-4d22-8927-c4cf1cfdd4d1"),
+            UserId = 27,
+            PrimaryFileId = 271,
+            Title = "Engelsk bukett",
+            Published = new DateTime(2020, 2, 9, 12, 59, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 215,
+            PublicId = new Guid("e2b46ec9-9f5f-4ebb-b7cc-68bfadae3f81"),
+            UserId = 27,
+            PrimaryFileId = 272,
+            Title = "Clown",
+            Published = new DateTime(2020, 2, 9, 11, 51, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 216,
+            PublicId = new Guid("152c85e5-3557-430f-853c-e341fd7c8e41"),
+            UserId = 27,
+            PrimaryFileId = 273,
+            Title = "Röda tulpaner",
+            Published = new DateTime(2020, 2, 9, 12, 55, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 217,
+            PublicId = new Guid("550e63fe-b033-4cc4-90ae-24b7c6e4e071"),
+            UserId = 27,
+            PrimaryFileId = 274,
+            Title = "Gula pioner",
+            Published = new DateTime(2020, 2, 9, 12, 54, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 218,
+            PublicId = new Guid("92989e51-f29c-4418-a9bd-2653c25015f1"),
+            UserId = 27,
+            PrimaryFileId = 275,
+            Title = "Elefant",
+            Published = new DateTime(2020, 2, 9, 12, 56, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 219,
+            PublicId = new Guid("b1f5a50a-0e13-4012-9da3-14aa9b9d5f51"),
+            UserId = 27,
+            PrimaryFileId = 276,
+            Title = "Sparris, aubergine och spetspaprika",
+            Published = new DateTime(2020, 2, 9, 12, 57, 35),
+            Price = 5000
+          },
+          new Artwork()
+          {
+            Id = 220,
+            PublicId = new Guid("f8f11957-f867-427c-bcb8-d2fe21dd2261"),
+            UserId = 27,
+            PrimaryFileId = 277,
+            Title = "Päron i sällskap av ananas",
+            Published = new DateTime(2020, 2, 9, 12, 49, 35),
             Price = 5000
           },
         };

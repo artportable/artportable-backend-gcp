@@ -350,6 +350,23 @@ namespace Artportable.API.Testing
             Headline = "Svensk konstnär från Dalarna",
             About = "Jag betraktas som en betydande konstnär i Sverige och är även uppskattad utanför Sverige, inte minst i USA, där jag anlitats som porträttmålare av presidenter, företagsledare och societetsfolk. Namnet Zorn kommer efter min tyska far, som på ett bryggeri i Uppsala träffade den där säsongsarbetande modern.",
             InspiredBy = "Dalarna"
+          },
+          new UserProfile
+          {
+            Id = 27,
+            UserId = 27,
+            Name = "Anneli",
+            Surname = "Frisk",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Stockholm",
+            Title = "Illustratör och Konstnär",
+            Headline = "Jag är en konstnär och illustratör som älskar att måla blommor och frukt från min egen trädgård",
+            About = "Jag har varit verksam sedan början av 2000-talet och illustrerar för bland annat förlag, företag och organisationer. Jag illustrerar högt och brett, allt från utbildningsmaterial till privata uppdrag. På sidan av mitt eget konstnärskap håller jag kurser och arbetar som bildlärare.",
+            InspiredBy = "I livet självt och dess underverk. Jag hittar också inspiration i mina barns inre fantasivärld. De är min största kärlek och motivation.",
+            StudioText = "Ja. Boka en tid med mig så jag är på plats",
+            Website = "https://artbyanneli.se/",
+            FacebookUrl = "https://www.facebook.com/artbyanneli",
+            InstagramUrl = "https://www.instagram.com/anneliz74/"
           }
         };
     }

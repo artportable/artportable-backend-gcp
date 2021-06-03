@@ -135,6 +135,24 @@ namespace Artportable.API.Testing
             From = new DateTime(2021, 05, 08),
             To = new DateTime(2021, 10, 22),
             UserProfileId = 9
+          },
+          new Exhibition
+          {
+            Id = 15,
+            Name = "Skördefesten på Öland",
+            Place = "Galleri Lilla Eden i Eriksöre",
+            From = new DateTime(2021, 08, 08),
+            To = new DateTime(2021, 08, 16),
+            UserProfileId = 27
+          },
+          new Exhibition
+          {
+            Id = 16,
+            Name = "Society of Botanical Artists årliga utställning",
+            Place = "SBA Plantae 2021",
+            From = new DateTime(2021, 09, 03),
+            To = new DateTime(2021, 09, 22),
+            UserProfileId = 27
           }
         };
     }
