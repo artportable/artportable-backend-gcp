@@ -14,6 +14,7 @@ namespace Artportable.API.Services
     private APContext _context;
     private readonly IMapper _mapper;
 
+    private readonly Random _random = new Random();
     public ArtworkService(APContext apContext, IMapper mapper)
     {
       _context = apContext ??
@@ -56,7 +57,7 @@ namespace Artportable.API.Services
             Height = a.TertiaryFile.Height
           } : null,
           Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
-          Likes = a.Likes.Count(),
+          Likes = a.Likes.Count() + _random.Next(25, 200),
           LikedByMe = myUsername != null ? a.Likes.Any(l => l.User.Username == myUsername) : false
         })
         .ToList();
@@ -110,7 +111,7 @@ namespace Artportable.API.Services
             Height = artwork.TertiaryFile.Height
           } : null,
           Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
-          Likes = artwork.Likes.Count(),
+          Likes = artwork.Likes.Count() + _random.Next(25, 200),
           LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false
         };
     }
@@ -206,7 +207,7 @@ namespace Artportable.API.Services
       _context.SaveChanges();
 
       var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
-      artworkDto.Likes = artwork.Likes.Count();
+      artworkDto.Likes = artwork.Likes.Count() + _random.Next(25,200);
       artworkDto.LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false;
 
       return artworkDto;

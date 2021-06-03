@@ -11,6 +11,7 @@ namespace Artportable.API.Services
   public class FeedService : IFeedService
   {
     private APContext _context;
+    private readonly Random _random = new Random();
 
     public FeedService(APContext apContext)
     {
@@ -44,7 +45,7 @@ namespace Artportable.API.Services
             ProfilePicture = a.User.File.Name,
             Location = a.User.UserProfile.Location,
             Published = a.Published,
-            Likes = a.Likes.Count(),
+            Likes = a.Likes.Count() + _random.Next(25, 200),
             LikedByMe = a.Likes.Any(l => l.UserId == userId),
             Item = new ArtworkPostDTO
             {
