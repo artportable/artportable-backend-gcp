@@ -2,17 +2,13 @@
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
+EXPOSE 443
+EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS publish
 WORKDIR /src
-COPY ["src/Artportable.API/Artportable.API.csproj", "src/Artportable.API/"]
-RUN dotnet restore "src/Artportable.API/Artportable.API.csproj"
 COPY . .
-WORKDIR "/src/src/Artportable.API"
-RUN dotnet build "Artportable.API.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "Artportable.API.csproj" -c Release -o /app/publish
+RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
