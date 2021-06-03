@@ -398,6 +398,20 @@ namespace Artportable.API.Testing
             Website = "https://artbarabanova.com/",
             FacebookUrl = "https://www.facebook.com/khrystyna.barabanova",
             InstagramUrl = "https://www.instagram.com/barabanova_artist/"
+          },
+          new UserProfile
+          {
+            Id = 30,
+            UserId = 30,
+            Name = "Maria",
+            Surname = "Segerström",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Falköping",
+            Title = "Grafiker",
+            Headline = "Arbetar och bor på Mössebergs sluttningar i Vilske-Kleva, Falköping",
+            About = "Arbetar i min ateljé samt vid Skaraborgs konstgrafiska verkstad. Arbetar med olika grafiska tekniker som koppargrafik serigrafi. Blandar föreställande bilder med förenklingar för att få olika grafiska uttryck, de starka effekter man kan uppnå genom mönster och upprepningar, innehållsmässigt uttrycka det som finns runt omkring sett genom mina ögon.",
+            InspiredBy = "Människor, djur och natur, det som finns runt omkring. Är intresserad av mönster och kontraster samt äldre målningar och skulpturer",
+            Website = "http://www.mariasegerstrom.se/",
           }
         };
     }
