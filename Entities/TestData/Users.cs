@@ -333,6 +333,15 @@ namespace Artportable.API.Testing
             Email = "malinlofberg@lofberg.com",
             Created = new DateTime(2021, 06, 02, 11, 50, 01),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 33,
+            SubscriptionId = 33,
+            Username = "hasse",
+            Email = "hansmolndahl@lofberg.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
           }
         };
     }

@@ -439,6 +439,19 @@ namespace Artportable.API.Testing
             Headline = "Jag älskar att skapa och har varit kreativ sedan barnsben",
             About = "Jag har provat på många olika sorters konstformer som keramik, gammeldags målning på möbler, tova tavlor och fåglar mm. av ull, porslinsmålning, sy, måla på olika material osv. Det jag mest hållit mig till på senare tid är att måla tavlor och till viss del tovning. Jag arbetar även som speciallärare men har nedsatt tid för att arbeta i min ateljé.",
             InspiredBy = "Naturen och sjön där jag bor",
+          },
+          new UserProfile
+          {
+            Id = 33,
+            UserId = 33,
+            Name = "Hans",
+            Surname = "Molndahl",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Kiruna",
+            Title = "Konstnär",
+            Headline = "Jag älskar att skapa",
+            About = "Jag sysslar med många olika konstformer",
+            InspiredBy = "Naturen kring min ataljé",
           }
         };
     }
