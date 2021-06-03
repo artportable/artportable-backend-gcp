@@ -412,6 +412,20 @@ namespace Artportable.API.Testing
             About = "Arbetar i min ateljé samt vid Skaraborgs konstgrafiska verkstad. Arbetar med olika grafiska tekniker som koppargrafik serigrafi. Blandar föreställande bilder med förenklingar för att få olika grafiska uttryck, de starka effekter man kan uppnå genom mönster och upprepningar, innehållsmässigt uttrycka det som finns runt omkring sett genom mina ögon.",
             InspiredBy = "Människor, djur och natur, det som finns runt omkring. Är intresserad av mönster och kontraster samt äldre målningar och skulpturer",
             Website = "http://www.mariasegerstrom.se/",
+          },
+          new UserProfile
+          {
+            Id = 31,
+            UserId = 31,
+            Name = "René",
+            Surname = "Jacobsen",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Samsø, Denmark",
+            Title = "Artist",
+            Headline = "Art, pictures and music have always been an important part of my life, and as a very young person",
+            About = "I live on Samsø, where I can use the time, calm and the island’s fantastic aura and atmosphere to find brushes and canvases again. I have now been painting for 3 years, following some exciting courses, including from MOMA in NY, and changed my mindset. I have had the courage to challenge the canvases with strong colors and shapes.",
+            InspiredBy = "Different artists in a span between German expressionism and pop art",
+            Website = "https://www.artbyrejac.com/",
           }
         };
     }
