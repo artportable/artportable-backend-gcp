@@ -350,6 +350,108 @@ namespace Artportable.API.Testing
             Headline = "Svensk konstnär från Dalarna",
             About = "Jag betraktas som en betydande konstnär i Sverige och är även uppskattad utanför Sverige, inte minst i USA, där jag anlitats som porträttmålare av presidenter, företagsledare och societetsfolk. Namnet Zorn kommer efter min tyska far, som på ett bryggeri i Uppsala träffade den där säsongsarbetande modern.",
             InspiredBy = "Dalarna"
+          },
+          new UserProfile
+          {
+            Id = 27,
+            UserId = 27,
+            Name = "Anneli",
+            Surname = "Frisk",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Stockholm",
+            Title = "Illustratör och Konstnär",
+            Headline = "Jag är en konstnär och illustratör som älskar att måla blommor och frukt från min egen trädgård",
+            About = "Jag har varit verksam sedan början av 2000-talet och illustrerar för bland annat förlag, företag och organisationer. Jag illustrerar högt och brett, allt från utbildningsmaterial till privata uppdrag. På sidan av mitt eget konstnärskap håller jag kurser och arbetar som bildlärare.",
+            InspiredBy = "I livet självt och dess underverk. Jag hittar också inspiration i mina barns inre fantasivärld. De är min största kärlek och motivation.",
+            StudioText = "Ja. Boka en tid med mig så jag är på plats",
+            Website = "https://artbyanneli.se/",
+            FacebookUrl = "https://www.facebook.com/artbyanneli",
+            InstagramUrl = "https://www.instagram.com/anneliz74/"
+          },
+          new UserProfile
+          {
+            Id = 28,
+            UserId = 28,
+            Name = "Michael",
+            Surname = "Nilsson Ström",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Västerås",
+            Title = "Konstnär & Fotograf",
+            Headline = "Fotograf och konstnär Michael Nilsson-Ström född 1957",
+            About = "Michael har fotograferat sedan barnsben, men under bl.a. Grafic Art studier 1974/75 i San Diego, USA upplevde Michael spelet mellan starka färger och naturligt ljus som spännande och Michael fastnade för impressionismens konstnärer. Under 2000-talet har Michael arbetat med motiv innehållande oftast mer skarpa kontraster och starka färger tillsammans med det naturliga ljuset som ett viktigt redskap. Motiven är hämtade från olika delar av världen. Michael är sedan 1986 bosatt i Västerås och mestadels autodidakt inom foto och konst.",
+            InspiredBy = "Konstnären Monet och övriga inom Impressionismen.",
+            Website = "http://www.artn-s.se/",
+            InstagramUrl = "https://www.instagram.com/artns.se/"
+          },
+          new UserProfile
+          {
+            Id = 29,
+            UserId = 29,
+            Name = "Khrystyna",
+            Surname = "Barabanova",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Stockholm",
+            Title = "Artist",
+            Headline = "I am an aspiring illustrator based in Stockholm, Sweden",
+            About = "I have been shaping my art vision through different materials, but watercolor took a special place in my heart. Watercolor is the main interest for me and the most difficult material I’ve ever used. But I like the challenge. The uniqueness of textures and shapes of aquarelle is something that fascinates me to this day. After moving to Sweden in 2018, I joined Stardoll team as an illustrator. I drew countless outfits inspired by famous designers and my interest in fashion began to grow. I started developing my own artistic way in illustration by painting portrait and figure illustrations. My passion led me towards my own unique art style, which I’m proud to share with the world.",
+            InspiredBy = "Fashion",
+            Website = "https://artbarabanova.com/",
+            FacebookUrl = "https://www.facebook.com/khrystyna.barabanova",
+            InstagramUrl = "https://www.instagram.com/barabanova_artist/"
+          },
+          new UserProfile
+          {
+            Id = 30,
+            UserId = 30,
+            Name = "Maria",
+            Surname = "Segerström",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Falköping",
+            Title = "Grafiker",
+            Headline = "Arbetar och bor på Mössebergs sluttningar i Vilske-Kleva, Falköping",
+            About = "Arbetar i min ateljé samt vid Skaraborgs konstgrafiska verkstad. Arbetar med olika grafiska tekniker som koppargrafik serigrafi. Blandar föreställande bilder med förenklingar för att få olika grafiska uttryck, de starka effekter man kan uppnå genom mönster och upprepningar, innehållsmässigt uttrycka det som finns runt omkring sett genom mina ögon.",
+            InspiredBy = "Människor, djur och natur, det som finns runt omkring. Är intresserad av mönster och kontraster samt äldre målningar och skulpturer",
+            Website = "http://www.mariasegerstrom.se/",
+          },
+          new UserProfile
+          {
+            Id = 31,
+            UserId = 31,
+            Name = "René",
+            Surname = "Jacobsen",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Samsø, Denmark",
+            Title = "Artist",
+            Headline = "Art, pictures and music have always been an important part of my life, and as a very young person",
+            About = "I live on Samsø, where I can use the time, calm and the island’s fantastic aura and atmosphere to find brushes and canvases again. I have now been painting for 3 years, following some exciting courses, including from MOMA in NY, and changed my mindset. I have had the courage to challenge the canvases with strong colors and shapes.",
+            InspiredBy = "Different artists in a span between German expressionism and pop art",
+            Website = "https://www.artbyrejac.com/",
+          },
+          new UserProfile
+          {
+            Id = 32,
+            UserId = 32,
+            Name = "Malin",
+            Surname = "Löfberg",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Strängnäs",
+            Title = "Konstnär",
+            Headline = "Jag älskar att skapa och har varit kreativ sedan barnsben",
+            About = "Jag har provat på många olika sorters konstformer som keramik, gammeldags målning på möbler, tova tavlor och fåglar mm. av ull, porslinsmålning, sy, måla på olika material osv. Det jag mest hållit mig till på senare tid är att måla tavlor och till viss del tovning. Jag arbetar även som speciallärare men har nedsatt tid för att arbeta i min ateljé.",
+            InspiredBy = "Naturen och sjön där jag bor",
+          },
+          new UserProfile
+          {
+            Id = 33,
+            UserId = 33,
+            Name = "Hans",
+            Surname = "Molndahl",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Kiruna",
+            Title = "Konstnär",
+            Headline = "Jag älskar att skapa",
+            About = "Jag sysslar med många olika konstformer",
+            InspiredBy = "Naturen kring min ataljé",
           }
         };
     }

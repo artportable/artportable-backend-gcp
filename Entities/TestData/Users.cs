@@ -279,6 +279,69 @@ namespace Artportable.API.Testing
             Email = "anders@zorn.se",
             Created = new DateTime(2021, 04, 19, 17, 00, 01),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 27,
+            SubscriptionId = 27,
+            Username = "anneli",
+            Email = "annelifrisk@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 28,
+            SubscriptionId = 28,
+            Username = "michael",
+            Email = "michaelnilssonstrom@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 29,
+            SubscriptionId = 29,
+            Username = "khrystyna",
+            Email = "khrystynabarabanova@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 30,
+            SubscriptionId = 30,
+            Username = "maria",
+            Email = "mariasegerstrom@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 31,
+            SubscriptionId = 31,
+            Username = "rene",
+            Email = "renejacobsen@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 32,
+            SubscriptionId = 32,
+            Username = "malin",
+            Email = "malinlofberg@lofberg.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
+          },
+          new User
+          {
+            Id = 33,
+            SubscriptionId = 33,
+            Username = "hasse",
+            Email = "hansmolndahl@lofberg.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
           }
         };
     }

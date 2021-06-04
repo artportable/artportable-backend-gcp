@@ -191,6 +191,55 @@ namespace Artportable.API.Testing
             ProductId = 2,
             ExpirationDate = DateTime.Now.AddDays(93),
             CustomerId = "cus_J6O5PddfddfdjD"
+          },
+          new Subscription
+          {
+            Id = 27,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_J6O5PddsuifdjD"
+          },
+          new Subscription
+          {
+            Id = 28,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_J6O5PdasuifdjD"
+          },
+          new Subscription
+          {
+            Id = 29,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_JaO5PdaauifdjD"
+          },
+          new Subscription
+          {
+            Id = 30,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_JaO5P90auifdjD"
+          },
+          new Subscription
+          {
+            Id = 31,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_JaO5P90au8fdjD"
+          },
+          new Subscription
+          {
+            Id = 32,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_JaOds90au8fdjD"
+          },
+          new Subscription
+          {
+            Id = 33,
+            ProductId = 2,
+            ExpirationDate = DateTime.Now.AddDays(193),
+            CustomerId = "cus_JaOds90ad8fdjD"
           }
         };
     }

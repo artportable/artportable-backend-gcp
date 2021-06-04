@@ -152,6 +152,14 @@ namespace Artportable.API.Testing
             From = 2011,
             To = 2012,
             UserProfileId = 10
+          },
+          new Education
+          {
+            Id = 19,
+            Name = "Informativ illustration, Society of Botanical Artists UK Diploma Course",
+            From = 2011,
+            To = 2012,
+            UserProfileId = 27
           }
         };
     }
