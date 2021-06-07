@@ -47,6 +47,7 @@ stages:
         codeCoverageTool: 'Cobertura'
         summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
     - task: Docker@2
+      condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request 
       displayName: 'Build docker image'
       inputs:
         containerRegistry: 'artportable-image-repository'
