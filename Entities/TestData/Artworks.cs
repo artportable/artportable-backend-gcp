@@ -7326,6 +7326,138 @@ namespace Artportable.API.Testing
             Published = new DateTime(2020, 2, 26, 13, 38, 45),
             Price = 20000
           },
+          new Artwork()
+          {
+            Id = 667,
+            PublicId = new Guid("f4486c50-f6ec-4d57-ae58-fe99802a4804"),
+            UserId = 34,
+            PrimaryFileId = 725,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 2, 10, 11, 41, 27),
+            Price = 30000
+          },
+          new Artwork()
+          {
+            Id = 668,
+            PublicId = new Guid("ab305d7b-5800-460c-aa2e-57e88e4dd9af"),
+            UserId = 34,
+            PrimaryFileId = 726,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2020, 3, 10, 13, 6, 4),
+            Price = 56000
+          },
+          new Artwork()
+          {
+            Id = 669,
+            PublicId = new Guid("eafa2308-765e-46a8-9ad5-e1ebe3e869f9"),
+            UserId = 34,
+            PrimaryFileId = 727,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 7, 7, 6, 20, 50),
+            Price = 2000
+          },
+          new Artwork()
+          {
+            Id = 670,
+            PublicId = new Guid("0f993fc5-c589-462e-a653-a07f63a0c06e"),
+            UserId = 34,
+            PrimaryFileId = 728,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2020, 5, 4, 23, 42, 5),
+            Price = 39000
+          },
+          new Artwork()
+          {
+            Id = 671,
+            PublicId = new Guid("e04e6ee1-d257-4d56-885d-6431db5a29ba"),
+            UserId = 34,
+            PrimaryFileId = 729,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 11, 10, 19, 45, 5),
+            Price = 31000
+          },
+          new Artwork()
+          {
+            Id = 672,
+            PublicId = new Guid("996763be-1e83-405f-95ef-7b8cd48cd8ec"),
+            UserId = 34,
+            PrimaryFileId = 730,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 6, 3, 12, 8, 3),
+            Price = 25000
+          },
+          new Artwork()
+          {
+            Id = 673,
+            PublicId = new Guid("e5b5ad02-3322-4864-a1a6-2b45e5093d94"),
+            UserId = 34,
+            PrimaryFileId = 731,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 7, 17, 4, 14, 39),
+            Price = 37000
+          },
+          new Artwork()
+          {
+            Id = 674,
+            PublicId = new Guid("fb41119e-b2c3-4b9e-b494-582a62e999d5"),
+            UserId = 34,
+            PrimaryFileId = 732,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 8, 5, 13, 44, 48),
+            Price = 20000
+          },
+          new Artwork()
+          {
+            Id = 675,
+            PublicId = new Guid("87e6f6c6-b7e4-4327-adaf-bb002fca6764"),
+            UserId = 34,
+            PrimaryFileId = 733,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 10, 11, 1, 36, 24),
+            Price = 93000
+          },
+          new Artwork()
+          {
+            Id = 676,
+            PublicId = new Guid("51b330ce-c83a-4455-9a6f-216e7b4b10db"),
+            UserId = 34,
+            PrimaryFileId = 734,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2020, 11, 22, 17, 10, 49),
+            Price = 61000
+          },
+          new Artwork()
+          {
+            Id = 677,
+            PublicId = new Guid("8a20e0d3-c4dc-455c-bd74-c4e8c64ac6f6"),
+            UserId = 34,
+            PrimaryFileId = 735,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2020, 9, 11, 7, 40, 25),
+            Price = 41000
+          },
+          new Artwork()
+          {
+            Id = 678,
+            PublicId = new Guid("2683137a-00d2-4217-9e16-21eb274af5e2"),
+            UserId = 34,
+            PrimaryFileId = 736,
+            Title = "",
+            Description = "",
+            Published = new DateTime(2021, 11, 20, 10, 4, 43),
+            Price = 30000
+          },
         };
     }
   }

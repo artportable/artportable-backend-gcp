@@ -452,6 +452,21 @@ namespace Artportable.API.Testing
             Headline = "Jag älskar att skapa",
             About = "Jag sysslar med många olika konstformer",
             InspiredBy = "Naturen kring min ataljé",
+          },
+          new UserProfile
+          {
+            Id = 34,
+            UserId = 34,
+            Name = "Natalia",
+            Surname = "Joanna Bieganska",
+            DateOfBirth = new DateTime(1970, 01, 01),
+            Location = "Warsaw",
+            Title = "Artist",
+            Headline = "International contemporary artist",
+            About = "Natalia Joanna Bieganska has been creating and refining her art skills since a very young age and later on fine-tuning during art classes and Academy of Fine Arts graduate studies. Natalia has lived in and traveled to over 20 countries immersing herself in variety of cultures. This abundant experience has shaped Natalia’s art competency as well as opened vast spheres of influence. Not only has she been inspired by the broad differences in geographies and people, but also by the multitude of colours and patterns each country had to offer. Natalia views art as a common language that is universal in nature and just like a mother’s homemade meal can bring so much joy to any person; her art generates a real sense of inspiration and comfort. Natalia feels lucky to live in the times when art could easily travel by being sent from a small post office and reach one’s heart upon artwork’s arrival. This limitless merge of feelings and emotions is simply everything.",
+            InspiredBy = "As a person who has lived eternal journey for over eight years, I became addicted to traveling. In these moments, I create the best",
+            Website = "https://www.nataliabieganska.com/",
+            InstagramUrl = "https://www.instagram.com/nataliajoannab/",
           }
         };
     }

@@ -758,6 +758,20 @@ namespace Artportable.API.Testing
       "fe175a1c-8e00-46e1-8664-74de8c6a6ddd.jpg",
       "fe4f4345-d881-4c35-9fe4-b74c18fc3e7f.jpg",
       "fe7ea7b6-21fd-460b-9a6a-47cf2b4c0db1.jpg",
+
+      "0f1f2a06-b435-4dcb-bd83-6badad285ad2.jpg",
+      "2234b13b-eb0c-4375-9c3e-b18b0cbdfbe3.jpg",
+      "2adc4127-136a-4172-a9e3-d71be3f778ea.jpg",
+      "87bed454-b52c-44aa-a035-c71f1e52af46.jpg",
+      "8e9c3e3d-c50b-491c-87d7-c88a962906c4.jpg",
+      "9c20ec34-0c19-4980-93ca-4d8c8c1f9c5e.jpg",
+      "b77fff0c-99c3-411e-9b90-ca58f8c85a85.jpg",
+      "dd034799-1898-4d30-8487-da32ee319b48.jpg",
+      "e4317051-a49a-4a20-953e-23d19d08f273.jpg",
+      "f240d100-ea21-4d9c-9fa5-5877dcec3832.jpg",
+      "f2c418f7-5255-4f70-9fee-4e09429ea338.jpg",
+      "f600b34a-4c0c-4150-b040-1da9064d37b9.jpg",
+      "f940c564-40bb-4228-9a2b-5b6f1c52f00b.jpg",
     };
 
     private List<FileSize> FileSizes = new List<FileSize> {
@@ -1492,6 +1506,19 @@ namespace Artportable.API.Testing
       new FileSize { Name = "fe175a1c-8e00-46e1-8664-74de8c6a6ddd.jpg", Width = 791, Height = 1000},
       new FileSize { Name = "fe4f4345-d881-4c35-9fe4-b74c18fc3e7f.jpg", Width = 711, Height = 1000},
       new FileSize { Name = "fe7ea7b6-21fd-460b-9a6a-47cf2b4c0db1.jpg", Width = 749, Height = 1000},
+      new FileSize { Name = "0f1f2a06-b435-4dcb-bd83-6badad285ad2.jpg", Width = 300, Height = 400},
+      new FileSize { Name = "2234b13b-eb0c-4375-9c3e-b18b0cbdfbe3.jpg", Width = 812, Height = 1000},
+      new FileSize { Name = "2adc4127-136a-4172-a9e3-d71be3f778ea.jpg", Width = 1000, Height = 720},
+      new FileSize { Name = "87bed454-b52c-44aa-a035-c71f1e52af46.jpg", Width = 1000, Height = 330},
+      new FileSize { Name = "8e9c3e3d-c50b-491c-87d7-c88a962906c4.jpg", Width = 1000, Height = 786},
+      new FileSize { Name = "9c20ec34-0c19-4980-93ca-4d8c8c1f9c5e.jpg", Width = 777, Height = 1000},
+      new FileSize { Name = "b77fff0c-99c3-411e-9b90-ca58f8c85a85.jpg", Width = 755, Height = 1000},
+      new FileSize { Name = "dd034799-1898-4d30-8487-da32ee319b48.jpg", Width = 752, Height = 1000},
+      new FileSize { Name = "e4317051-a49a-4a20-953e-23d19d08f273.jpg", Width = 752, Height = 1000},
+      new FileSize { Name = "f240d100-ea21-4d9c-9fa5-5877dcec3832.jpg", Width = 1000, Height = 482},
+      new FileSize { Name = "f2c418f7-5255-4f70-9fee-4e09429ea338.jpg", Width = 1000, Height = 642},
+      new FileSize { Name = "f600b34a-4c0c-4150-b040-1da9064d37b9.jpg", Width = 1000, Height = 681},
+      new FileSize { Name = "f940c564-40bb-4228-9a2b-5b6f1c52f00b.jpg", Width = 680, Height = 1000},
     };
   }
 
