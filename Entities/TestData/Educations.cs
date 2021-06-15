@@ -160,6 +160,30 @@ namespace Artportable.API.Testing
             From = 2011,
             To = 2012,
             UserProfileId = 27
+          },
+          new Education
+          {
+            Id = 20,
+            Name = "Art World Basics for Artists, Sotheby’s Institute of Art, NY, USA",
+            From = 2018,
+            To = 2018,
+            UserProfileId = 34
+          },
+          new Education
+          {
+            Id = 21,
+            Name = "Art World Marketing, PR and Communication, Sotheby’s Institute of Art, NY, USA",
+            From = 2018,
+            To = 2018,
+            UserProfileId = 34
+          },
+          new Education
+          {
+            Id = 22,
+            Name = "BA Design, Major in Fashion, The Wladyslaw Strzeminski Academy of Fine Arts, Lodz, PL",
+            From = 2012,
+            To = 2012,
+            UserProfileId = 34
           }
         };
     }

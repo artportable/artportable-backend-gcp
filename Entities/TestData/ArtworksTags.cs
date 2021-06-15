@@ -683,6 +683,18 @@ namespace Artportable.API.Testing
           new { ArtworksId = 664, TagsId = 26 },
           new { ArtworksId = 665, TagsId = 26 },
           new { ArtworksId = 666, TagsId = 26 },
+          new { ArtworksId = 667, TagsId = 26 },
+          new { ArtworksId = 668, TagsId = 26 },
+          new { ArtworksId = 669, TagsId = 26 },
+          new { ArtworksId = 670, TagsId = 26 },
+          new { ArtworksId = 671, TagsId = 26 },
+          new { ArtworksId = 672, TagsId = 26 },
+          new { ArtworksId = 673, TagsId = 26 },
+          new { ArtworksId = 674, TagsId = 26 },
+          new { ArtworksId = 675, TagsId = 26 },
+          new { ArtworksId = 676, TagsId = 26 },
+          new { ArtworksId = 677, TagsId = 26 },
+          new { ArtworksId = 678, TagsId = 26 },
         };
     }
   }

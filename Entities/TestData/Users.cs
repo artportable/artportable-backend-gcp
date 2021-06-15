@@ -342,6 +342,16 @@ namespace Artportable.API.Testing
             Email = "hansmolndahl@lofberg.com",
             Created = new DateTime(2021, 06, 02, 11, 50, 01),
             Language = "sv"
+          },
+          new User
+          {
+            Id = 34,
+            SubscriptionId = 34,
+            FileId = 724,
+            Username = "natalia",
+            Email = "nataliajoannabieganska@artportable.com",
+            Created = new DateTime(2021, 06, 02, 11, 50, 01),
+            Language = "sv"
           }
         };
     }
