@@ -10,7 +10,7 @@ namespace Services
     private readonly Client _streamChatClient;
     public MessageService()
     {
-      _streamChatClient = new Client("tqqdjfyxfwjm", "jwk46ru5wattrzt2642xugnj7g4uzp5sv6vkmd3m6yxtxcukhcq8tv2jthxgwmt4"); 
+      _streamChatClient = new Client("x595terv4p22", "knmjmhh6uxxe6khxtzaaxjp9vawmqskyxwhyrm86jd4vkjcjgkbk69uvc3c37tpr");
     }
     public TokenDTO ConnectUser(string username)
     {
