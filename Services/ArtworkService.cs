@@ -88,7 +88,7 @@ namespace Artportable.API.Services
           Id = artwork.PublicId,
           Owner = new OwnerDTO {
             Username = artwork.User.Username,
-            ProfilePicture = artwork.User.File.Name,
+            ProfilePicture = artwork.User.File?.Name,
             Location = artwork.User.UserProfile.Location
           },
           Title = artwork.Title,
