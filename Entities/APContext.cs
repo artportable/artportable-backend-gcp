@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Artportable.API.Entities.Models;
 using Artportable.API.Testing;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities
 {
+  [ExcludeFromCodeCoverage]
   public class APContext : DbContext
   {
     Data _testData;
