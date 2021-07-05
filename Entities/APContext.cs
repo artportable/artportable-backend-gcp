@@ -15,17 +15,17 @@ namespace Artportable.API.Entities
       _testData = new Data();
     }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<Subscription> Subscriptions { get; set; }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<File> Files { get; set; }
-    public DbSet<Artwork> Artworks { get; set; }
-    public DbSet<Tag> Tags { get; set; }
-    public DbSet<Connection> Connections { get; set; }
-    public DbSet<Like> Likes { get; set; }
-    public DbSet<Education> Educations { get; set; }
-    public DbSet<Exhibition> Exhibitions { get; set; }
+    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<UserProfile> UserProfiles { get; set; }
+    public virtual DbSet<Subscription> Subscriptions { get; set; }
+    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<File> Files { get; set; }
+    public virtual DbSet<Artwork> Artworks { get; set; }
+    public virtual DbSet<Tag> Tags { get; set; }
+    public virtual DbSet<Connection> Connections { get; set; }
+    public virtual DbSet<Like> Likes { get; set; }
+    public virtual DbSet<Education> Educations { get; set; }
+    public virtual DbSet<Exhibition> Exhibitions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
