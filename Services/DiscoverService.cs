@@ -12,7 +12,6 @@ namespace Artportable.API.Services
   {
     private APContext _context;
     private readonly IMapper _mapper;
-    private readonly Random _random = new Random();
 
     public DiscoverService(APContext apContext, IMapper mapper)
     {
@@ -64,7 +63,7 @@ namespace Artportable.API.Services
             Height = a.TertiaryFile.Height
           } : null,
           Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
-          Likes = a.Likes.Count() + _random.Next(25, 200),
+          Likes = a.Likes.Count(),
           LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false
         })
         .ToList();
