@@ -15,7 +15,7 @@ using Azure.Storage;
 using System.Text;
 using Xunit.Extensions;
 
-namespace Artportable.ImageApi.Tests.csproj
+namespace Artportable.ImageApi.Tests
 {
   public class BlobServiceTests
   {

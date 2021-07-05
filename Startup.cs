@@ -21,9 +21,11 @@ using Microsoft.Extensions.Azure;
 using Services;
 using Azure.Storage.Blobs;
 using Options;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Artportable.API
 {
+  [ExcludeFromCodeCoverage]
   public class Startup
   {
     private IConfiguration _configuration { get; }
