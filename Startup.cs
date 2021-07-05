@@ -22,6 +22,10 @@ using Services;
 using Azure.Storage.Blobs;
 using Options;
 using System.Diagnostics.CodeAnalysis;
+using Artportable.API.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Artportable.API
 {
@@ -29,10 +33,12 @@ namespace Artportable.API
   public class Startup
   {
     private IConfiguration _configuration { get; }
+    private IHostEnvironment _env { get; }
 
-    public Startup(IConfiguration configuration)
+    public Startup(IConfiguration configuration, IHostEnvironment environment)
     {
       _configuration = configuration;
+      _env = environment;
     }
 
     public void ConfigureServices(IServiceCollection services)
@@ -79,14 +85,43 @@ namespace Artportable.API
           });
       });
 
-      services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-        .AddIdentityServerAuthentication(options =>
+      var authSettings = _configuration.GetSection("Auth").Get<Auth>();
+      services.AddAuthentication(opt =>
+      {
+        opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      }).AddJwtBearer(opt =>
+      {
+        opt.Authority = authSettings.Issuer;
+        opt.TokenValidationParameters = new TokenValidationParameters
         {
-          options.Authority = "https://artportable.idp.com:44395/";
-          options.ApiName = "Artportableapi";
-          options.RequireHttpsMetadata = false;
-          options.ApiSecret = "apisecret";
-        });
+          ValidateIssuer = true,
+          ValidIssuer = authSettings.Issuer,
+          ValidateIssuerSigningKey = false,
+          ValidAudience = "account",
+          ValidateAudience = true,
+          ValidateLifetime = true,
+          ClockSkew = TimeSpan.FromMinutes(1)
+        };
+        opt.Events = new JwtBearerEvents()
+        {
+          OnAuthenticationFailed = c =>
+          {
+            c.NoResult();
+
+            c.Response.StatusCode = 500;
+            c.Response.ContentType = "text/plain";
+
+            if (_env.IsDevelopment())
+            {
+              return c.Response.WriteAsync(c.Exception.ToString());
+            }
+
+            return c.Response.WriteAsync("An error occured processing your authentication.");
+          }
+        };
+        opt.RequireHttpsMetadata = false;
+      });
 
       // Database
       services.AddDbContextPool<APContext>(

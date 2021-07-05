@@ -5,6 +5,7 @@ using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Artportable.API.Controllers
 {
@@ -117,6 +118,7 @@ namespace Artportable.API.Controllers
     [HttpPost("")]
     [SwaggerResponse(StatusCodes.Status201Created)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
+    [Authorize]
     public IActionResult Create([FromBody] UserDTO user)
     {
       if (_userService.UserExists(user))
