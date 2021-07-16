@@ -56,7 +56,7 @@ stages:
         Dockerfile: 'Dockerfile'
         tags: |
           $(Build.BuildId)
-          $(Build.SourceBranchName)
+          $(Build.BuildId)-$(Build.SourceBranchName)
 
 
 
