@@ -20,30 +20,8 @@ namespace Artportable.API.DTOs
 
     [MaxLength(140)]
     public string InspiredBy { get; set; }
-
-    [MaxLength(140)]
-    public string StudioText { get; set; }
-
-    [MaxLength(140)]
-    public string StudioLocation { get; set; }
-
-    [MaxLength(140)]
-    public string Website { get; set; }
-
-    [MaxLength(140)]
-    public string InstagramUrl { get; set; }
-
-    [MaxLength(140)]
-    public string FacebookUrl { get; set; }
-
-    [MaxLength(140)]
-    public string LinkedInUrl { get; set; }
-
-    [MaxLength(140)]
-    public string BehanceUrl { get; set; }
-
-    [MaxLength(140)]
-    public string DribbleUrl { get; set; }
+    public StudioDTO Studio { get; set; }
+    public SocialMediaDTO SocialMedia { get; set; }
 
     public ICollection<EducationDTO> Educations { get; set; }
 
