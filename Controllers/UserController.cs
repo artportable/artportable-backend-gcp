@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
+using System.Collections.Generic;
 
 namespace Artportable.API.Controllers
 {
@@ -21,12 +22,12 @@ namespace Artportable.API.Controllers
 
     /// <summary>
     /// Checks whether the given input (username OR email) is free or already in use
-    /// Example: GET /api/user?email=kalle@artportable.com
+    /// Example: GET /api/user/exists?email=kalle@artportable.com
     /// </summary>
     /// <param name="username"></param>
     /// <param name="email"></param>
     /// <returns>True if it's free, false otherwise</returns>
-    [HttpGet("")]
+    [HttpGet("exists")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     public IActionResult Get(string username = null, string email = null)
     {
@@ -43,6 +44,29 @@ namespace Artportable.API.Controllers
         {
           return BadRequest();
         }
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Gets all users matching the given criterias
+    /// </summary>
+    /// <param name="q"></param>
+    [HttpGet("")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public ActionResult<List<TinyUserDTO>> Search(string q)
+    {
+      try {
+        if (String.IsNullOrWhiteSpace(q)) {
+          return new List<TinyUserDTO>();
+        }
+
+        var users = _userService.Search(q);
+
+        return Ok(users);
       }
       catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);

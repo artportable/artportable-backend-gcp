@@ -45,6 +45,21 @@ namespace Artportable.API.Services
       null;
     }
 
+
+    public List<TinyUserDTO> Search(string q)
+    {
+      var users = _context.Users
+        .Include(u => u.File)
+        .Where(u => u.Username.Contains(q));
+
+      return users.Select(u =>
+        new TinyUserDTO {
+          Username = u.Username,
+          ProfilePicture = u.File.Name
+        })
+        .ToList();
+    }
+
     public ProfileSummaryDTO GetProfileSummary(string username)
     {
       var user = _context.Users
