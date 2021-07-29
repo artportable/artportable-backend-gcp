@@ -119,14 +119,14 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
       setSafely(updatedProfile.About, val => { rowToUpdate.About = val; });
       setSafely(updatedProfile.InspiredBy, val => { rowToUpdate.InspiredBy = val; });
-      setSafely(updatedProfile.StudioText, val => { rowToUpdate.StudioText = val; });
-      setSafely(updatedProfile.StudioLocation, val => { rowToUpdate.StudioLocation = val; });
-      setSafely(updatedProfile.Website, val => { rowToUpdate.Website = val; });
-      setSafely(updatedProfile.InstagramUrl, val => { rowToUpdate.InstagramUrl = val; });
-      setSafely(updatedProfile.FacebookUrl, val => { rowToUpdate.FacebookUrl = val; });
-      setSafely(updatedProfile.LinkedInUrl, val => { rowToUpdate.LinkedInUrl = val; });
-      setSafely(updatedProfile.BehanceUrl, val => { rowToUpdate.BehanceUrl = val; });
-      setSafely(updatedProfile.DribbleUrl, val => { rowToUpdate.DribbleUrl = val; });
+      setSafely(updatedProfile.Studio?.Text, val => { rowToUpdate.StudioText = val; });
+      setSafely(updatedProfile.Studio?.Location, val => { rowToUpdate.StudioLocation = val; });
+      setSafely(updatedProfile.SocialMedia?.Website, val => { rowToUpdate.Website = val; });
+      setSafely(updatedProfile.SocialMedia?.Instagram, val => { rowToUpdate.InstagramUrl = val; });
+      setSafely(updatedProfile.SocialMedia?.Facebook, val => { rowToUpdate.FacebookUrl = val; });
+      setSafely(updatedProfile.SocialMedia?.LinkedIn, val => { rowToUpdate.LinkedInUrl = val; });
+      setSafely(updatedProfile.SocialMedia?.Behance, val => { rowToUpdate.BehanceUrl = val; });
+      setSafely(updatedProfile.SocialMedia?.Dribble, val => { rowToUpdate.DribbleUrl = val; });
 
       if (updatedProfile.Educations != null)
       {
