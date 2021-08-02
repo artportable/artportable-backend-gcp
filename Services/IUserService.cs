@@ -7,6 +7,7 @@ namespace Artportable.API.Services
   public interface IUserService
   {
     UserDTO Get(string username);
+    List<TinyUserDTO> Search(string q);
     ProfileSummaryDTO GetProfileSummary(string username);
     ProfileDTO GetProfile(string username, string myUsername);
     ProfileDTO UpdateProfile(string username, UpdateProfileDTO updatedProfile);
