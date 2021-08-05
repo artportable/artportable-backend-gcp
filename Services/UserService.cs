@@ -270,7 +270,7 @@ namespace Artportable.API.Services
     {
       return _context.Users
         .Where(u => u.Email == email)
-        .Select(u => new TinyUserDTO() { Username = u.Username, ProfilePicture = u.File.Name })
+        .Select(u => new TinyUserDTO() { Username = u.Username, ProfilePicture = u.File?.Name })
         .FirstOrDefault();
         
     }

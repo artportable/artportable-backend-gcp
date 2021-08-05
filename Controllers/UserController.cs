@@ -147,10 +147,6 @@ namespace Artportable.API.Controllers
     {
       var tinyUser = _userService.Login(email);
 
-      if (tinyUser == null) {
-        return null;
-      }
-
       return Ok(tinyUser);
     }
   }
