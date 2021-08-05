@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Artportable.API.Entities.Models;
+using Artportable.API.SeedData;
 using Artportable.API.Testing;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +10,15 @@ namespace Artportable.API.Entities
   [ExcludeFromCodeCoverage]
   public class APContext : DbContext
   {
+    TagData _tagData;
+    ProductData _productData;
     Data _testData;
 
     public APContext(DbContextOptions<APContext> options)
       : base(options)
     {
+      _tagData = new TagData();
+      _productData = new ProductData();
       _testData = new Data();
     }
 
@@ -72,16 +77,19 @@ namespace Artportable.API.Entities
         .IsRequired()
         .OnDelete(DeleteBehavior.Restrict);
 
+      // Seed database
+      modelBuilder.Entity<Tag>().HasData(_tagData.Tags);
+      modelBuilder.Entity<Product>().HasData(_productData.Products);
+
+
       // Seed the database with test data
-      if (true)
+      if (false)
       {
         modelBuilder.Entity<File>().HasData(_testData.Files);
         modelBuilder.Entity<User>().HasData(_testData.Users);
         modelBuilder.Entity<UserProfile>().HasData(_testData.UserProfiles);
-        modelBuilder.Entity<Product>().HasData(_testData.Products);
         modelBuilder.Entity<Subscription>().HasData(_testData.Subscriptions);
         modelBuilder.Entity<Artwork>().HasData(_testData.Artworks);
-        modelBuilder.Entity<Tag>().HasData(_testData.Tags);
         modelBuilder.Entity<Connection>().HasData(_testData.Connections);
         modelBuilder.Entity<Like>().HasData(_testData.Likes);
         modelBuilder.Entity<Education>().HasData(_testData.Educations);
