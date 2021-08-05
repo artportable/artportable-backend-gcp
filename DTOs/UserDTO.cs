@@ -13,9 +13,8 @@ namespace Artportable.API.DTOs
     public string Surname { get; set; }
     [Required, StringLength(254), EmailAddress]
     public string Email { get; set; }
-    [Required]
-    public DateTime DateOfBirth { get; set; }
-    [Required, StringLength(50)]
+    public DateTime? DateOfBirth { get; set; }
+    [StringLength(50)]
     public string Location { get; set; }
   }
 }
