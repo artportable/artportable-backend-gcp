@@ -1,8 +1,8 @@
 using Artportable.API.Entities.Models;
 
-namespace Artportable.API.Testing
+namespace Artportable.API.SeedData
 {
-  public partial class Data
+  public partial class ProductData
   {
     public Product[] Products
     {
