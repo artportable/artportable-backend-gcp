@@ -85,9 +85,7 @@ namespace Artportable.API.Controllers
     ///        "username": "batman",
     ///        "name": "Bat",
     ///        "surname": "Man",
-    ///        "email": "batman@artportable.com",
-    ///        "dateofbirth": "1979-01-01",
-    ///        "location": "Stockholm"
+    ///        "email": "batman@artportable.com"
     ///     }
     ///
     /// </remarks>

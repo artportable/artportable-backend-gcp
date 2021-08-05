@@ -24,10 +24,8 @@ namespace Artportable.API.Entities.Models
     [MaxLength(50)]
     public string Surname { get; set; }
 
-    [Required]
-    public DateTime DateOfBirth { get; set; }
+    public DateTime? DateOfBirth { get; set; }
 
-    [Required]
     [MaxLength(50)]
     public string Location { get; set; }
 
