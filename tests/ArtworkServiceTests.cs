@@ -12,7 +12,7 @@ using Artportable.API.Entities.Models;
 using EntityFrameworkCoreMock;
 using File = Artportable.API.Entities.Models.File;
 
-namespace Artportable.ImageApi.Tests.csproj
+namespace Artportable.ImageApi.Tests
 {
   public class ArtworkServiceTests
   {
