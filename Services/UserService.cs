@@ -266,12 +266,15 @@ namespace Artportable.API.Services
 
       return user.Username;
     }
-    public string Login(string email)
+    public TinyUserDTO Login(string email)
     {
       return _context.Users
         .Where(u => u.Email == email)
-        .SingleOrDefault()
-        ?.Username;
+        .Select(u => new TinyUserDTO() { 
+          Username = u.Username,
+          ProfilePicture = u.File != null ? u.File.Name : null })
+        .FirstOrDefault();
+        
     }
 
     private void setSafely<T>(T value, Action<T> setAction) {

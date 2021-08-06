@@ -18,6 +18,6 @@ namespace Artportable.API.Services
     bool UsernameExists(string username);
     bool EmailExists(string email);
     string CreateUser(UserDTO user);
-    string Login(string email);
+    TinyUserDTO Login(string email);
   }
 }

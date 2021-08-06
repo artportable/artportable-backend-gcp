@@ -141,17 +141,11 @@ namespace Artportable.API.Controllers
 
 
     [HttpGet("login")]
-    public IActionResult Login(string email)
+    public ActionResult<TinyUserDTO> Login(string email)
     {
-      var username = _userService.Login(email);
+      var tinyUser = _userService.Login(email);
 
-      if (username == null) {
-        return NotFound();
-      }
-
-      var res = new UserIdentification() { Username = username };
-
-      return Ok(res);
+      return Ok(tinyUser);
     }
   }
 
