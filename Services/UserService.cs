@@ -14,13 +14,14 @@ namespace Artportable.API.Services
   {
     private APContext _context;
     private readonly IMapper _mapper;
-
+    private readonly Random _random;
     public UserService(APContext apContext, IMapper mapper)
     {
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
       _mapper = mapper ??
         throw new ArgumentNullException(nameof(mapper));
+      _random = new Random();
     }
 
     public UserDTO Get(string username)
@@ -53,7 +54,8 @@ namespace Artportable.API.Services
         .Where(u => u.Username.Contains(q));
 
       return users.Select(u =>
-        new TinyUserDTO {
+        new TinyUserDTO
+        {
           Username = u.Username,
           ProfilePicture = u.File.Name
         })
@@ -70,7 +72,8 @@ namespace Artportable.API.Services
         .Where(i => i.Username == username)
         .SingleOrDefault();
 
-      if (user == null) {
+      if (user == null)
+      {
         return null;
       }
 
@@ -98,7 +101,8 @@ namespace Artportable.API.Services
         .Where(i => i.User.Username == username)
         .SingleOrDefault();
 
-      if (profile == null) {
+      if (profile == null)
+      {
         return null;
       }
 
@@ -146,23 +150,23 @@ namespace Artportable.API.Services
       if (updatedProfile.Educations != null)
       {
         rowToUpdate.Educations = updatedProfile.Educations.Select(e => new Education()
-          {
-            Name = e.Name,
-            From = e.From,
-            To = e.To
-          }
+        {
+          Name = e.Name,
+          From = e.From,
+          To = e.To
+        }
         ).ToList();
       }
 
       if (updatedProfile.Exhibitions != null)
       {
         rowToUpdate.Exhibitions = updatedProfile.Exhibitions.Select(e => new Exhibition()
-          {
-            Name = e.Name,
-            Place = e.Place,
-            From = e.From,
-            To = e.To
-          }
+        {
+          Name = e.Name,
+          Place = e.Place,
+          From = e.From,
+          To = e.To
+        }
         ).ToList();
       }
 
@@ -175,30 +179,81 @@ namespace Artportable.API.Services
 
     public List<SimilarProfileDTO> GetSimilarProfiles(string username)
     {
-      return _context.Users // TODO: Order by relevance (tags)
+      //Get all tags used by user
+      var tagsUsedByUser = _context.Tags
+        .Include(t => t.Artworks)
+        .ThenInclude(a => a.User)
+        .ThenInclude(u => u.File)
+        .Where(t => t.Artworks.Any(a => a.User.Username == username))
+        .ToList();
+
+      //Get 3 random artists if no tags returned
+      if (!tagsUsedByUser.Any())
+      {
+        return _context.Users
+        .FromSqlInterpolated(
+          $@"SELECT *, HASHBYTES('md5',cast(id+{_random.Next()} as varchar)) AS random FROM users
+          ORDER BY random OFFSET 0 ROWS")
         .Include(u => u.File)
         .Include(u => u.Artworks)
         .Where(u => u.Username != username)
-        .Where(u => u.Artworks.Any())
+        .Where(u => u.Artworks.Count() >= 5)
         .Take(3)
         .Select(u =>
-        new SimilarProfileDTO
-        {
-          Username = u.Username,
-          ProfilePicture = u.File.Name,
-          Artworks = _context.Artworks
-            .Include(a => a.PrimaryFile)
-            .Where(a => a.UserId == u.Id)
-            .Take(5)
-            .Select(a => 
-              new FileDTO() {
-                Name = a.PrimaryFile.Name,
-                Width = a.PrimaryFile.Width,
-                Height = a.PrimaryFile.Height
-              }
-            )
-            .ToList()
-        })
+          new SimilarProfileDTO
+          {
+            Username = u.Username,
+            ProfilePicture = u.File.Name,
+            Artworks = _context.Artworks
+              .Include(a => a.PrimaryFile)
+              .Where(a => a.UserId == u.Id)
+              .Take(5)
+              .Select(a =>
+                new FileDTO()
+                {
+                  Name = a.PrimaryFile.Name,
+                  Width = a.PrimaryFile.Width,
+                  Height = a.PrimaryFile.Height
+                }
+              )
+              .ToList()
+          })
+        .ToList();
+      }
+
+
+      //Get similar artists
+      var similarUsers = (from t in tagsUsedByUser
+                          from a in t.Artworks
+                          where a.User.Username != username
+
+                          select a.User.Username).Distinct();
+
+      return _context.Users
+        .Include(u => u.File)
+        .Include(u => u.Artworks)
+        .Where(u => similarUsers.Contains(u.Username))
+        .Where(u => u.Artworks.Count() >= 5)
+        .Take(3)
+        .Select(u =>
+          new SimilarProfileDTO
+          {
+            Username = u.Username,
+            ProfilePicture = u.File.Name,
+            Artworks = _context.Artworks
+              .Include(a => a.PrimaryFile)
+              .Where(a => a.UserId == u.Id)
+              .Take(5)
+              .Select(a =>
+                new FileDTO()
+                {
+                  Name = a.PrimaryFile.Name,
+                  Width = a.PrimaryFile.Width,
+                  Height = a.PrimaryFile.Height
+                }
+              )
+              .ToList()
+          })
         .ToList();
     }
 
@@ -238,7 +293,7 @@ namespace Artportable.API.Services
     {
       var subscriptionDb = new Entities.Models.Subscription
       {
-        ProductId = (int) ProductEnum.Bas,
+        ProductId = (int)ProductEnum.Bas,
         CustomerId = null,
         ExpirationDate = null
       };
@@ -270,17 +325,20 @@ namespace Artportable.API.Services
     {
       return _context.Users
         .Where(u => u.Email == email)
-        .Select(u => new TinyUserDTO() { 
+        .Select(u => new TinyUserDTO()
+        {
           Username = u.Username,
           ProfilePicture = u.File != null ? u.File.Name : null,
           Product = u.Subscription != null ? u.Subscription.ProductId : 1
         })
         .FirstOrDefault();
-        
+
     }
 
-    private void setSafely<T>(T value, Action<T> setAction) {
-      if(value != null) {
+    private void setSafely<T>(T value, Action<T> setAction)
+    {
+      if (value != null)
+      {
         setAction(value);
       }
     }

@@ -8,7 +8,7 @@ using Artportable.API.Entities.Models;
 using EntityFrameworkCoreMock;
 using Artportable.API.DTOs;
 
-namespace Artportable.ImageApi.Tests.csproj
+namespace Artportable.ImageApi.Tests
 {
   public class ConnectionServiceTests
   {
