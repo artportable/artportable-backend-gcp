@@ -272,7 +272,9 @@ namespace Artportable.API.Services
         .Where(u => u.Email == email)
         .Select(u => new TinyUserDTO() { 
           Username = u.Username,
-          ProfilePicture = u.File != null ? u.File.Name : null })
+          ProfilePicture = u.File != null ? u.File.Name : null,
+          Product = u.Subscription != null ? u.Subscription.ProductId : 1
+        })
         .FirstOrDefault();
         
     }
