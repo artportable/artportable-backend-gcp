@@ -24,7 +24,7 @@ namespace Artportable.API.Controllers
       // can find the endpoint's secret by running `stripe listen`
       // Otherwise, find your endpoint's secret in your webhook settings
       // in the Developer Dashboard
-      _endpointSecret = "whsec_TGXe95UC9kOPK2ghs26nL5RohJ2ZQ44y";
+      _endpointSecret = "whsec_miPqXPLpnoYlk4na5XVv8IApTltIjYn9";
     }
 
     /// <summary>
