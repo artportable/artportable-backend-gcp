@@ -37,11 +37,14 @@ namespace Artportable.API.Services
       unRecommendableUsersId.Add((int)myId);
 
       var usersIFollow = _context.Connections
+        .Include(c => c.Followee)
+        .ThenInclude(c => c.Artworks)
+        .ThenInclude(a => a.Tags)
         .Where(c => c.FollowerId == myId)
-        .Select(c => c.FolloweeId)
+        .Select(c => c.Followee)
         .ToList();
 
-      unRecommendableUsersId.AddRange(usersIFollow);
+      unRecommendableUsersId.AddRange(usersIFollow.Select(c => c.Id));
 
       var tagsUsedByArtworksILike = _context.Likes
       .Include(l => l.User)
@@ -51,12 +54,8 @@ namespace Artportable.API.Services
       .Where(l => l.User.Username == myUsername)
       .SelectMany(l => l.Artwork.Tags).ToList();
 
-      var tagsUsedByArtistsIFollow = _context.Connections
-      .Include(c => c.Followee)
-      .ThenInclude(c => c.Artworks)
-      .ThenInclude(a => a.Tags)
-      .Where(c => c.FollowerId == myId)
-      .SelectMany(c => c.Followee.Artworks.SelectMany(a => a.Tags))
+      var tagsUsedByArtistsIFollow = usersIFollow
+      .SelectMany(u => u.Artworks.SelectMany(a => a.Tags))
       .ToList();
 
       var tagIds = tagsUsedByArtistsIFollow.Union(tagsUsedByArtworksILike)
@@ -67,12 +66,10 @@ namespace Artportable.API.Services
       if (!tagIds.Any())
       {
         return _context.Users
-          .FromSqlInterpolated(
-            $@"SELECT *, HASHBYTES('md5',cast(id+{_random.Next()} as varchar)) AS random FROM users
-            ORDER BY random OFFSET 0 ROWS")
           .Include(u => u.UserProfile)
           .Include(u => u.File)
           .Where(u => !unRecommendableUsersId.Contains(u.Id))
+          .OrderBy(u => Guid.NewGuid())
           .Take(30)
           .Select(u => new RecommendationDTO()
           {
@@ -101,13 +98,13 @@ namespace Artportable.API.Services
 
       if (users.Count() < 30)
       {
+        var DbF = Microsoft.EntityFrameworkCore.EF.Functions;
         var randomUsers = _context.Users
-          .FromSqlInterpolated(
-            $@"SELECT *, HASHBYTES('md5',cast(id+{_random.Next()} as varchar)) AS random FROM users
-            ORDER BY random OFFSET 0 ROWS")
           .Include(u => u.UserProfile)
           .Include(u => u.File)
           .Where(u => !unRecommendableUsersId.Contains(u.Id))
+          .Where(u => !users.Select(u => u.Username).Contains(u.Username))
+          .OrderBy(u => Guid.NewGuid())
           .Take(30 - users.Count())
           .Select(u => new RecommendationDTO()
           {
