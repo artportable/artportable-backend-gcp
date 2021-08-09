@@ -21,6 +21,8 @@ namespace Artportable.ImageApi.Tests
       _contextMock = new DbContextMock<APContext>(CtxOptions);
       _contextMock.CreateDbSetMock(x => x.Users, GetInitialUserEntities());
       _contextMock.CreateDbSetMock(x => x.Connections, GetInitialConnectionEntities());
+      _contextMock.CreateDbSetMock(x => x.Likes, GetInitialLikesEntities());
+
     }
 
     [Fact]
@@ -30,6 +32,11 @@ namespace Artportable.ImageApi.Tests
       var myUsername = "knatte";
       var connectionService = new ConnectionService(_contextMock.Object);
       var expected = new List<RecommendationDTO> {
+        new RecommendationDTO {
+          Username = "fnatte",
+          Location = "Stockholm",
+          ProfilePicture = "eb52120a-43b5-40e0-a7c0-f5f8042f8e77.jpg"
+        },
         new RecommendationDTO {
           Username = "tjatte",
           Location = "Stockholm",
@@ -93,6 +100,7 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 1,
           Username = "knatte",
+          Artworks = new List<Artwork> ()
         },
         new User {
           Id = 2,
@@ -102,7 +110,58 @@ namespace Artportable.ImageApi.Tests
           },
           File = new File {
             Name = "96ac2c93-a7c5-4ac8-aa66-2ed1d1c59745.jpg"
+          },
+          Artworks = new List<Artwork> ()
+        },
+        new User {
+          Id = 3,
+          Username = "fnatte",
+          UserProfile = new UserProfile {
+            Location = "Stockholm"
+          },
+          File = new File {
+            Name = "eb52120a-43b5-40e0-a7c0-f5f8042f8e77.jpg"
+          },
+          Artworks = new List<Artwork> {
+            new Artwork {
+              Id = 2,
+              User = new User {
+                        Id = 3,
+                        Username = "fnatte",
+              },
+              Tags = new List<Tag> {
+                new Tag {
+                  Id = 1,
+                  Title = "Tag1"
+                }
+              }
+            }
           }
+        },
+        new User {
+          Id = 4,
+          Username = "kalle",
+          UserProfile = new UserProfile {
+            Location = "Stockholm"
+          },
+          File = new File {
+            Name = "eb52120a-43b5-40e0-a7c0-f5f8042f8e77.jpg"
+          },
+          Artworks = new List<Artwork> {
+              new Artwork {
+                Id = 3,
+                User = new User {
+                          Id = 4,
+                          Username = "kalle",
+                },
+                Tags = new List<Tag> {
+                  new Tag {
+                    Id = 1,
+                    Title = "Tag1"
+                  }
+                }
+              }
+            }
         }
       };
     }
@@ -118,7 +177,61 @@ namespace Artportable.ImageApi.Tests
           },
           Follower = new User {
             Id = 2,
-            Username = "tjatte"
+            Username = "tjatte",
+            }
+          },
+        new Connection {
+          Id = 2,
+          Followee = new User {
+            Id = 4,
+            Username = "kalle",
+            Artworks = new List<Artwork> {
+              new Artwork {
+                Id = 3,
+                User = new User {
+                          Id = 3,
+                          Username = "kalle",
+                },
+                Tags = new List<Tag> {
+                  new Tag {
+                    Id = 1,
+                    Title = "Tag1"
+                  }
+                }
+              }
+            }
+          },
+          Follower = new User {
+            Id = 1,
+            Username = "knatte",
+            },
+          FollowerId = 1,
+          FolloweeId = 4
+          },
+        };
+    }
+
+    private List<Like> GetInitialLikesEntities()
+    {
+      return new List<Like> {
+        new Like {
+          Id = 1,
+          User = new User {
+            Id = 1,
+            Username = "knatte",
+          },
+          Artwork = new Artwork {
+            Id = 1,
+            User = new User {
+                       Id = 2,
+                       Username = "tjatte",
+            },
+            Tags = new List<Tag> {
+              new Tag {
+                Id = 1,
+                Title = "Tag1"
+              }
+            }
           }
         }
       };
