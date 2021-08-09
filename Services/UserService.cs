@@ -274,6 +274,23 @@ namespace Artportable.API.Services
       return user?.File?.Name;
     }
 
+    public void UpdateProfilePicture(string filename, string username)
+    {
+      var user = _context.Users
+        .Include(u => u.File)
+        .SingleOrDefault(u => u.Username == username);
+
+      if (user.File != null) {
+        // TODO: delete old file ref
+      }
+
+      var file = _context.Files
+        .SingleOrDefault(f => f.Name == filename);
+
+      user.File = file;
+      _context.SaveChanges();
+    }
+
     public bool UserExists(UserDTO user)
     {
       return _context.Users.Any(u => u.Username == user.Username || u.Email == user.Email);
