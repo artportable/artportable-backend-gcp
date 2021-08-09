@@ -291,6 +291,23 @@ namespace Artportable.API.Services
       _context.SaveChanges();
     }
 
+    public void UpdateCoverPhoto(string filename, string username)
+    {
+      var user = _context.Users
+        .Include(u => u.CoverPhotoFile)
+        .SingleOrDefault(u => u.Username == username);
+
+      if (user.CoverPhotoFile != null) {
+        // TODO: delete old file ref
+      }
+
+      var file = _context.Files
+        .SingleOrDefault(f => f.Name == filename);
+
+      user.CoverPhotoFile = file;
+      _context.SaveChanges();
+    }
+
     public bool UserExists(UserDTO user)
     {
       return _context.Users.Any(u => u.Username == user.Username || u.Email == user.Email);

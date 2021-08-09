@@ -15,6 +15,7 @@ namespace Artportable.API.Services
     List<TagDTO> GetTags(string username);
     string GetProfilePicture(string username);
     void UpdateProfilePicture(string filename, string username);
+    void UpdateCoverPhoto(string filename, string username);
     bool UserExists(UserDTO user);
     bool UsernameExists(string username);
     bool EmailExists(string email);

@@ -175,5 +175,26 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Update the cover photo of a user
+    /// </summary>
+    /// <param name="filename"></param>
+    /// <param name="username"></param>
+    [HttpPut("{username}/coverphoto")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<string> UpdateCoverPhoto(string filename, string username)
+    {
+      try {
+        _userService.UpdateCoverPhoto(filename, username);
+
+        return NoContent();
+      }
+      catch (Exception e) {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }
