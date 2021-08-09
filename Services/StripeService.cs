@@ -13,10 +13,10 @@ namespace Artportable.API.Services
     ImmutableDictionary<string, ProductEnum> _products = new Dictionary<string, ProductEnum>()
     {
       {
-        "prod_J3lQFj6oRprRtJ", ProductEnum.Portfolio
+        "prod_J3lQFj6oRprRtJ", ProductEnum.PortfolioPremium
       },
       {
-        "prod_J3lRKmuP9uzavp", ProductEnum.PortfolioPremium
+        "prod_J3lRKmuP9uzavp", ProductEnum.Portfolio
       }
     }.ToImmutableDictionary();
     private APContext _context;
