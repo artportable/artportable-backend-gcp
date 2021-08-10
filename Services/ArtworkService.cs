@@ -27,7 +27,7 @@ namespace Artportable.API.Services
     {
       var ownerProductId = _context.Users
         .Include(u => u.Subscription)
-        .SingleOrDefault(u => u.Username == owner).Subscription.ProductId;
+        .SingleOrDefault(u => u.Username == owner)?.Subscription?.ProductId;
       if (ownerProductId == (int) ProductEnum.Bas)
       {
         return new List<ArtworkDTO>();
