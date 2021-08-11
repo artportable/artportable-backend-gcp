@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Artportable.API.Enums;
 
 namespace Artportable.API.Services
 {
@@ -28,6 +29,7 @@ namespace Artportable.API.Services
           $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
           ORDER BY random OFFSET 0 ROWS")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+        .Where(a => a.User.Subscription.ProductId != (int)ProductEnum.Bas)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
         .Select(a =>
@@ -87,6 +89,7 @@ namespace Artportable.API.Services
       var artists = users
         .Where(u => u.Username != myUsername)
         .Where(u => u.Artworks.Count() > 5)
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
         .Where(u => q != null ? u.Username.Contains(q) : true)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)

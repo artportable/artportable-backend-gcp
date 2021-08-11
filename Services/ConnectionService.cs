@@ -4,6 +4,7 @@ using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
 using Artportable.API.Entities.Models;
+using Artportable.API.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Services
@@ -69,6 +70,7 @@ namespace Artportable.API.Services
           .Include(u => u.UserProfile)
           .Include(u => u.File)
           .Where(u => !unRecommendableUsersId.Contains(u.Id))
+          .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
           .OrderBy(u => Guid.NewGuid())
           .Take(30)
           .Select(u => new RecommendationDTO()
@@ -87,6 +89,8 @@ namespace Artportable.API.Services
         .Include(u => u.UserProfile)
         .Include(u => u.File)
         .Where(u => u.Artworks.Any(a => a.Tags.Any(t => tagIds.Contains(t.Id))))
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+        .OrderBy(u => Guid.NewGuid())
         .Take(30)
         .Select(u => new RecommendationDTO()
         {
@@ -98,12 +102,12 @@ namespace Artportable.API.Services
 
       if (users.Count() < 30)
       {
-        var DbF = Microsoft.EntityFrameworkCore.EF.Functions;
         var randomUsers = _context.Users
           .Include(u => u.UserProfile)
           .Include(u => u.File)
           .Where(u => !unRecommendableUsersId.Contains(u.Id))
           .Where(u => !users.Select(u => u.Username).Contains(u.Username))
+          .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
           .OrderBy(u => Guid.NewGuid())
           .Take(30 - users.Count())
           .Select(u => new RecommendationDTO()
@@ -113,7 +117,7 @@ namespace Artportable.API.Services
             ProfilePicture = u.File.Name
           })
           .ToList();
-          users.AddRange(randomUsers);
+        users.AddRange(randomUsers);
       }
 
       return users;

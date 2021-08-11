@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Artportable.API.Entities.Models;
 using EntityFrameworkCoreMock;
 using Artportable.API.DTOs;
+using Artportable.API.Enums;
 
 namespace Artportable.ImageApi.Tests
 {
@@ -100,7 +101,11 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 1,
           Username = "knatte",
-          Artworks = new List<Artwork> ()
+          Artworks = new List<Artwork> (),
+          Subscription = new Subscription
+          {
+            Id = (int)ProductEnum.Bas
+          }
         },
         new User {
           Id = 2,
@@ -111,7 +116,11 @@ namespace Artportable.ImageApi.Tests
           File = new File {
             Name = "96ac2c93-a7c5-4ac8-aa66-2ed1d1c59745.jpg"
           },
-          Artworks = new List<Artwork> ()
+          Artworks = new List<Artwork> (),
+          Subscription = new Subscription
+          {
+            Id = (int)ProductEnum.PortfolioPremium
+          }
         },
         new User {
           Id = 3,
@@ -136,6 +145,10 @@ namespace Artportable.ImageApi.Tests
                 }
               }
             }
+          },
+          Subscription = new Subscription
+          {
+            Id = (int)ProductEnum.PortfolioPremium
           }
         },
         new User {
@@ -161,7 +174,11 @@ namespace Artportable.ImageApi.Tests
                   }
                 }
               }
-            }
+            },
+          Subscription = new Subscription
+          {
+            Id = (int)ProductEnum.PortfolioPremium
+          }
         }
       };
     }

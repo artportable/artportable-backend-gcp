@@ -186,7 +186,6 @@ namespace Artportable.API.Services
       var tagsUsedByUser = _context.Tags
         .Include(t => t.Artworks)
         .ThenInclude(a => a.User)
-        .ThenInclude(u => u.File)
         .Where(t => t.Artworks.Any(a => a.User.Username == username))
         .ToList();
 
@@ -194,13 +193,12 @@ namespace Artportable.API.Services
       if (!tagsUsedByUser.Any())
       {
         return _context.Users
-        .FromSqlInterpolated(
-          $@"SELECT *, HASHBYTES('md5',cast(id+{_random.Next()} as varchar)) AS random FROM users
-          ORDER BY random OFFSET 0 ROWS")
         .Include(u => u.File)
         .Include(u => u.Artworks)
         .Where(u => u.Username != username)
         .Where(u => u.Artworks.Count() >= 5)
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+        .OrderBy(u => Guid.NewGuid())
         .Take(3)
         .Select(u =>
           new SimilarProfileDTO
@@ -237,6 +235,8 @@ namespace Artportable.API.Services
         .Include(u => u.Artworks)
         .Where(u => similarUsers.Contains(u.Username))
         .Where(u => u.Artworks.Count() >= 5)
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+        .OrderBy(u => Guid.NewGuid())
         .Take(3)
         .Select(u =>
           new SimilarProfileDTO
