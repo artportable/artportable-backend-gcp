@@ -87,6 +87,7 @@ namespace Artportable.API.Services
         .Include(u => u.UserProfile)
         .Include(u => u.File)
         .Where(u => u.Artworks.Any(a => a.Tags.Any(t => tagIds.Contains(t.Id))))
+        .OrderBy(u => Guid.NewGuid())
         .Take(30)
         .Select(u => new RecommendationDTO()
         {
@@ -98,7 +99,6 @@ namespace Artportable.API.Services
 
       if (users.Count() < 30)
       {
-        var DbF = Microsoft.EntityFrameworkCore.EF.Functions;
         var randomUsers = _context.Users
           .Include(u => u.UserProfile)
           .Include(u => u.File)
