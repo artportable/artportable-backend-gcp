@@ -4,6 +4,7 @@ using System.Linq;
 using Artportable.API.DTOs;
 using Artportable.API.Entities;
 using Artportable.API.Entities.Models;
+using Artportable.API.Enums;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,14 @@ namespace Artportable.API.Services
 
     public List<ArtworkDTO> Get(string owner, string myUsername)
     {
+      var ownerProductId = _context.Users
+        .Include(u => u.Subscription)
+        .SingleOrDefault(u => u.Username == owner)?.Subscription?.ProductId;
+      if (ownerProductId == (int) ProductEnum.Bas)
+      {
+        return new List<ArtworkDTO>();
+      }
+
       return _context.Artworks
         .Where(a => owner != null ? a.User.Username == owner : true)
         .OrderByDescending(a => a.Published)
