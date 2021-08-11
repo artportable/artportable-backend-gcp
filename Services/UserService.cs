@@ -197,6 +197,7 @@ namespace Artportable.API.Services
         .Include(u => u.Artworks)
         .Where(u => u.Username != username)
         .Where(u => u.Artworks.Count() >= 5)
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
         .OrderBy(u => Guid.NewGuid())
         .Take(3)
         .Select(u =>
@@ -234,6 +235,7 @@ namespace Artportable.API.Services
         .Include(u => u.Artworks)
         .Where(u => similarUsers.Contains(u.Username))
         .Where(u => u.Artworks.Count() >= 5)
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
         .OrderBy(u => Guid.NewGuid())
         .Take(3)
         .Select(u =>
