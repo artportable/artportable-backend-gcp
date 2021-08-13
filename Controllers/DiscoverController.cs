@@ -55,7 +55,7 @@ namespace Artportable.API.Controllers
       {
         var artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, seed.Value);
 
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed }, page, pageSize, artworks.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername }, page, pageSize, artworks.Count);
         Response.Headers.Add("Link", string.Join(", ", links));
 
         return Ok(artworks);
@@ -93,7 +93,7 @@ namespace Artportable.API.Controllers
       try
       {
         var artists = _discoverService.GetArtists(page, pageSize, q, myUsername, seed.Value);
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed }, page, pageSize, artists.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = q, myUsername=myUsername }, page, pageSize, artists.Count);
         Response.Headers.Add("Link", string.Join(", ", links));
 
         return Ok(artists);
