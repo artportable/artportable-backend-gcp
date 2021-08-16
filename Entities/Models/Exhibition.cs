@@ -19,10 +19,10 @@ namespace Artportable.API.Entities.Models
     public string Place { get; set; }
 
     [Column(TypeName = "Date")]
-    public DateTime From { get; set; }
+    public DateTime? From { get; set; }
 
     [Column(TypeName = "Date")]
-    public DateTime To { get; set; }
+    public DateTime? To { get; set; }
 
 
     public UserProfile UserProfile { get; set; }

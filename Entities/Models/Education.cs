@@ -13,8 +13,8 @@ namespace Artportable.API.Entities.Models
 
     [MaxLength(140)]
     public string Name { get; set; }
-    public int From { get; set; } 
-    public int To { get; set; }
+    public int? From { get; set; }
+    public int? To { get; set; }
 
 
     public UserProfile UserProfile { get; set; }

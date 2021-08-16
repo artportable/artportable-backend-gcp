@@ -65,6 +65,9 @@ namespace Artportable.API.Entities.Models
     [MaxLength(140)]
     public string DribbleUrl { get; set; }
 
+    [MaxLength(140)]
+    public string Technique { get; set; }
+
 
     public User User { get; set; }
     public IEnumerable<Education> Educations { get; set; }
