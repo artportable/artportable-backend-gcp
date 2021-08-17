@@ -36,6 +36,7 @@ namespace Artportable.API.Services
             Width = a.PrimaryFile.Width,
             Height = a.PrimaryFile.Height,
           },
+          ArtworkId = a.PublicId,
           Username = a.User.Username,
           ProfilePicture = a.User.File.Name
         })
