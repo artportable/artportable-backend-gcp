@@ -1,6 +1,7 @@
 using System;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -8,8 +9,8 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
+  [Authorize]
   [ApiController]
-  // [Authorize]
   public class ConnectionsController : ControllerBase
   {
     private readonly IConnectionService _connectionService;

@@ -11,7 +11,6 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
   public class UserController : ControllerBase
   {
     private readonly IUserService _userService;
@@ -19,37 +18,6 @@ namespace Artportable.API.Controllers
     public UserController(IUserService userService)
     {
       _userService = userService;
-    }
-
-    /// <summary>
-    /// Checks whether the given input (username OR email) is free or already in use
-    /// Example: GET /api/user/exists?email=kalle@artportable.com
-    /// </summary>
-    /// <param name="username"></param>
-    /// <param name="email"></param>
-    /// <returns>True if it's free, false otherwise</returns>
-    [HttpGet("exists")]
-    [SwaggerResponse(StatusCodes.Status200OK)]
-    public IActionResult Get(string username = null, string email = null)
-    {
-      try {
-        if (username != null)
-        {
-          return Ok(!_userService.UsernameExists(username));
-        }
-        else if (email != null)
-        {
-          return Ok(!_userService.EmailExists(email));
-        }
-        else
-        {
-          return BadRequest();
-        }
-      }
-      catch (Exception e) {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
     }
 
     /// <summary>
@@ -115,10 +83,10 @@ namespace Artportable.API.Controllers
     ///
     /// </remarks>
     /// <param name="user"></param>
-    [HttpPost("")]
+    [Authorize]
+    [HttpPost]
     [SwaggerResponse(StatusCodes.Status201Created)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    [Authorize]
     public IActionResult Create([FromBody] UserDTO user)
     {
       if (_userService.UserExists(user))
@@ -141,7 +109,7 @@ namespace Artportable.API.Controllers
       }
     }
 
-
+    [Authorize]
     [HttpGet("login")]
     public ActionResult<TinyUserDTO> Login(string email)
     {
@@ -149,10 +117,5 @@ namespace Artportable.API.Controllers
 
       return Ok(tinyUser);
     }
-  }
-
-  public class UserIdentification
-  {
-    public string Username { get; set; }
   }
 }

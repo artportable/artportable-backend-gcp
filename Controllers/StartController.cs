@@ -10,7 +10,6 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
   public class StartController : ControllerBase
   {
     private readonly IStartService _startService;

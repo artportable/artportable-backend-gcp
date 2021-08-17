@@ -5,12 +5,13 @@ using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
+
   public class PaymentsController : ControllerBase
   {
     private readonly IPaymentService _paymentService;
@@ -43,6 +44,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="customer"></param>
     /// <returns>The Stripe customer ID</returns>
+    [Authorize]
     [HttpPost("customers")]
     public ActionResult<StripeResponseDTO> CreateCustomer([FromBody] StripeCustomerDTO customer)
     {
@@ -65,6 +67,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="req"></param>
     /// <returns>The Stripe subscription ID</returns>
+    [Authorize] 
     [HttpPost("subscriptions")]
     public ActionResult<StripeResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
     {
@@ -85,6 +88,7 @@ namespace Artportable.API.Controllers
     /// Cancels a subscription in Stripe
     /// </summary>
     /// <param name="subscriptionId"></param>
+    [Authorize]
     [HttpDelete("subscriptions")]
     public IActionResult CancelSubscription(string subscriptionId)
     {
@@ -105,6 +109,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="subscriptionId"></param>
     /// <param name="priceId"></param>
+    [Authorize]
     [HttpPut("subscriptions")]
     public IActionResult UpdateSubscription(string subscriptionId, string priceId)
     {

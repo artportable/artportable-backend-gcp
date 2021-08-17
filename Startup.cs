@@ -97,9 +97,9 @@ namespace Artportable.API
         {
           ValidateIssuer = true,
           ValidIssuer = authSettings.Issuer,
-          ValidateIssuerSigningKey = false,
-          ValidAudience = "account",
-          ValidateAudience = true,
+          ValidateIssuerSigningKey = true,
+          ValidAudience = authSettings.Audience,
+          ValidateAudience = false,
           ValidateLifetime = true,
           ClockSkew = TimeSpan.FromMinutes(1)
         };
@@ -109,7 +109,7 @@ namespace Artportable.API
           {
             c.NoResult();
 
-            c.Response.StatusCode = 500;
+            c.Response.StatusCode = 401;
             c.Response.ContentType = "text/plain";
 
             if (_env.IsDevelopment())
@@ -117,7 +117,7 @@ namespace Artportable.API
               return c.Response.WriteAsync(c.Exception.ToString());
             }
 
-            return c.Response.WriteAsync("An error occured processing your authentication.");
+            return c.Response.WriteAsync("Authentication failed.");
           }
         };
         opt.RequireHttpsMetadata = false;
@@ -167,6 +167,7 @@ namespace Artportable.API
               .AllowAnyHeader()
               .AllowAnyMethod();
           }
+
         );
       });
     }
