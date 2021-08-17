@@ -17,19 +17,19 @@ namespace Artportable.API.Entities.Models
 
 
     [Required]
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Name { get; set; }
 
     [Required]
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Surname { get; set; }
 
     public DateTime? DateOfBirth { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Location { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Title { get; set; }
 
     [MaxLength(140)]
@@ -38,10 +38,10 @@ namespace Artportable.API.Entities.Models
     [Column(TypeName = "Text")]
     public string About { get; set; }
 
-    [MaxLength(140)]
+    [Column(TypeName = "Text")]
     public string InspiredBy { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string StudioText { get; set; }
 
     [MaxLength(140)]
@@ -65,7 +65,7 @@ namespace Artportable.API.Entities.Models
     [MaxLength(140)]
     public string DribbleUrl { get; set; }
 
-    [MaxLength(140)]
+    [Column(TypeName = "Text")]
     public string Technique { get; set; }
 
 
