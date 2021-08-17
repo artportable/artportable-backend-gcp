@@ -43,7 +43,11 @@ namespace Artportable.API.Services
           Owner = new OwnerDTO {
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
-            Location = a.User.UserProfile.Location
+            Location = a.User.UserProfile.Location,
+            FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
+            _context.Connections
+              .Any(c => c.Followee.Username == owner && c.Follower.Username == myUsername) :
+            false
           },
           Title = a.Title,
           Description = a.Description,
@@ -97,7 +101,11 @@ namespace Artportable.API.Services
           Owner = new OwnerDTO {
             Username = artwork.User.Username,
             ProfilePicture = artwork.User.File?.Name,
-            Location = artwork.User.UserProfile.Location
+            Location = artwork.User.UserProfile.Location,
+            FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
+            _context.Connections
+              .Any(c => c.Followee.Username == artwork.User.Username && c.Follower.Username == myUsername) :
+            false
           },
           Title = artwork.Title,
           Description = artwork.Description,
