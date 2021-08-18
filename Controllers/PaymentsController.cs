@@ -28,12 +28,14 @@ namespace Artportable.API.Controllers
     [HttpGet("prices")]
     public ActionResult<List<StripePriceDTO>> ListPrices()
     {
-      try {
+      try
+      {
         var prices = _paymentService.GetPrices();
 
         return Ok(prices);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -48,7 +50,8 @@ namespace Artportable.API.Controllers
     [HttpPost("customers")]
     public ActionResult<StripeResponseDTO> CreateCustomer([FromBody] StripeCustomerDTO customer)
     {
-      try {
+      try
+      {
         var id = _paymentService.CreateCustomer(customer.Email, customer.FullName);
         var res = new StripeResponseDTO { Id = id };
 
@@ -67,11 +70,12 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="req"></param>
     /// <returns>The Stripe subscription ID</returns>
-    [Authorize] 
+    [Authorize]
     [HttpPost("subscriptions")]
     public ActionResult<StripeResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
     {
-      try {
+      try
+      {
         var id = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
         var res = new StripeResponseDTO { Id = id };
 
@@ -92,7 +96,8 @@ namespace Artportable.API.Controllers
     [HttpDelete("subscriptions")]
     public IActionResult CancelSubscription(string subscriptionId)
     {
-      try {
+      try
+      {
         _paymentService.CancelSubscription(subscriptionId);
 
         return Ok();
@@ -113,7 +118,8 @@ namespace Artportable.API.Controllers
     [HttpPut("subscriptions")]
     public IActionResult UpdateSubscription(string subscriptionId, string priceId)
     {
-      try {
+      try
+      {
         _paymentService.UpdateSubscription(subscriptionId, priceId);
 
         return Ok();
@@ -129,10 +135,12 @@ namespace Artportable.API.Controllers
     /// Gets the promotion details for a given promotion code
     /// </summary>
     /// <param name="promotionCode"></param>
+    [Authorize]
     [HttpGet("promotions")]
     public IActionResult GetPromotion(string promotionCode)
     {
-      try {
+      try
+      {
         var promotion = _paymentService.GetPromotion(promotionCode);
 
         return Ok(promotion);
