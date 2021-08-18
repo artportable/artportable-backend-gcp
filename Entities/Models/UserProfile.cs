@@ -20,7 +20,6 @@ namespace Artportable.API.Entities.Models
     [MaxLength(140)]
     public string Name { get; set; }
 
-    [Required]
     [MaxLength(140)]
     public string Surname { get; set; }
 
