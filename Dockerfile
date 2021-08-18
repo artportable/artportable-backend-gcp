@@ -12,5 +12,6 @@ RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
+ENV ENVIRONMENT=Development
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Artportable.API.dll"]
+ENTRYPOINT dotnet Artportable.API.dll --environment=${ENVIRONMENT}
