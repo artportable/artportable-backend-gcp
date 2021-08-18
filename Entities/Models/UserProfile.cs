@@ -47,22 +47,22 @@ namespace Artportable.API.Entities.Models
     [MaxLength(140)]
     public string StudioLocation { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string Website { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string InstagramUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string FacebookUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string LinkedInUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string BehanceUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string DribbleUrl { get; set; }
 
     [Column(TypeName = "Text")]
