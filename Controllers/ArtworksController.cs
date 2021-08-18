@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -10,7 +11,6 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
   public class ArtworksController : ControllerBase
   {
     private readonly IArtworkService _artworkService;
@@ -65,6 +65,7 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Create a new artwork
     /// </summary>
+    [Authorize]
     [HttpPost("")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -102,6 +103,7 @@ namespace Artportable.API.Controllers
     ///     }
     ///
     /// </remarks>
+    [Authorize]
     [HttpPut("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
@@ -167,6 +169,7 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Like a specific artwork
     /// </summary>
+    [Authorize]
     [HttpPost("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
@@ -191,6 +194,7 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Unike a liked artwork
     /// </summary>
+    [Authorize]
     [HttpDelete("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     public IActionResult Unlike(Guid id, string myUsername)

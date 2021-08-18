@@ -5,12 +5,12 @@ using Artportable.API.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
   public class ProfileController : ControllerBase
   {
     private readonly IUserService _userService;
@@ -75,6 +75,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="username"></param>
     /// <param name="body"></param>
+    [Authorize]
     [HttpPut("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
@@ -160,6 +161,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="filename"></param>
     /// <param name="username"></param>
+    [Authorize]
     [HttpPut("{username}/profilepicture")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
@@ -181,6 +183,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="filename"></param>
     /// <param name="username"></param>
+    [Authorize]
     [HttpPut("{username}/coverphoto")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]

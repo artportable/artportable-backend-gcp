@@ -11,7 +11,6 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
   public class DiscoverController : ControllerBase
   {
     private readonly IDiscoverService _discoverService;

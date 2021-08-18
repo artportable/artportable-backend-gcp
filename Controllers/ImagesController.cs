@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -9,7 +10,7 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
+  [Authorize]
   public class ImagesController : ControllerBase
   {
     private readonly IImageService _imageService;

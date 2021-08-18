@@ -1,5 +1,6 @@
 using System;
 using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,7 @@ namespace Artportable.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  // [Authorize]
+  [Authorize]
   public class MessagesController : ControllerBase
   {
     private readonly IMessageService _messageService;
