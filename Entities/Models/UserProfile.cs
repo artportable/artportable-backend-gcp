@@ -17,19 +17,18 @@ namespace Artportable.API.Entities.Models
 
 
     [Required]
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Name { get; set; }
 
-    [Required]
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Surname { get; set; }
 
     public DateTime? DateOfBirth { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Location { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Title { get; set; }
 
     [MaxLength(140)]
@@ -38,32 +37,35 @@ namespace Artportable.API.Entities.Models
     [Column(TypeName = "Text")]
     public string About { get; set; }
 
-    [MaxLength(140)]
+    [Column(TypeName = "Text")]
     public string InspiredBy { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string StudioText { get; set; }
 
     [MaxLength(140)]
     public string StudioLocation { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string Website { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string InstagramUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string FacebookUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string LinkedInUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string BehanceUrl { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string DribbleUrl { get; set; }
+
+    [Column(TypeName = "Text")]
+    public string Technique { get; set; }
 
 
     public User User { get; set; }

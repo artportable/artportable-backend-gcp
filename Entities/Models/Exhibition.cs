@@ -12,17 +12,17 @@ namespace Artportable.API.Entities.Models
     public int UserProfileId { get; set; }
 
 
-    [MaxLength(140)]
+    [Column(TypeName = "Text")]
     public string Name { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Place { get; set; }
 
     [Column(TypeName = "Date")]
-    public DateTime From { get; set; }
+    public DateTime? From { get; set; }
 
     [Column(TypeName = "Date")]
-    public DateTime To { get; set; }
+    public DateTime? To { get; set; }
 
 
     public UserProfile UserProfile { get; set; }

@@ -11,10 +11,10 @@ namespace Artportable.API.Entities.Models
     public int UserProfileId { get; set; }
 
 
-    [MaxLength(140)]
+    [Column(TypeName = "Text")]
     public string Name { get; set; }
-    public int From { get; set; } 
-    public int To { get; set; }
+    public int? From { get; set; }
+    public int? To { get; set; }
 
 
     public UserProfile UserProfile { get; set; }
