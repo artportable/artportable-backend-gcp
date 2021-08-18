@@ -17,7 +17,7 @@ namespace Artportable.API.Entities.Models
     public int? TertiaryFileId { get; set; }
 
 
-    [MaxLength(200)]
+    [MaxLength(240)]
     public string Title { get; set; }
 
     [MaxLength(400)]
