@@ -25,7 +25,7 @@ namespace Artportable.API.Entities.Models
 
     public DateTime? DateOfBirth { get; set; }
 
-    [MaxLength(140)]
+    [MaxLength(280)]
     public string Location { get; set; }
 
     [MaxLength(140)]
