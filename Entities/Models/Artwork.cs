@@ -20,7 +20,7 @@ namespace Artportable.API.Entities.Models
     [MaxLength(200)]
     public string Title { get; set; }
 
-    [MaxLength(400)]
+    [MaxLength(800)]
     public string Description { get; set; }
 
     [Required]
