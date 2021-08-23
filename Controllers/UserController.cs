@@ -97,7 +97,7 @@ namespace Artportable.API.Controllers
       try {
         var username = _userService.CreateUser(user);
 
-        return CreatedAtAction(nameof(Get), new { id = username }, user);
+        return CreatedAtAction(nameof(Get), new { username = username }, user);
       }
       catch (ArgumentException e) {
         Console.WriteLine("Argument not valid, {0}", e);
