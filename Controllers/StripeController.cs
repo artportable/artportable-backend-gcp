@@ -6,6 +6,8 @@ using System.IO;
 using Artportable.API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
+using Options;
 
 namespace Artportable.API.Controllers
 {
@@ -16,7 +18,7 @@ namespace Artportable.API.Controllers
     private readonly IStripeService _stripeService;
     private readonly string _endpointSecret;
 
-    public StripeController(IStripeService stripeService)
+    public StripeController(IStripeService stripeService, IOptions<StripeOptions> stripeSettings)
     {
       _stripeService = stripeService;
 
@@ -24,7 +26,7 @@ namespace Artportable.API.Controllers
       // can find the endpoint's secret by running `stripe listen`
       // Otherwise, find your endpoint's secret in your webhook settings
       // in the Developer Dashboard
-      _endpointSecret = "whsec_miPqXPLpnoYlk4na5XVv8IApTltIjYn9";
+      _endpointSecret = stripeSettings.Value.WebhookSecret;
     }
 
     /// <summary>

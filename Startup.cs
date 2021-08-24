@@ -56,6 +56,9 @@ namespace Artportable.API
       var blobClientOptions = _configuration
           .GetSection("BlobContainer")
           .Get<BlobContainerClientOptions>();
+      services.Configure<ProductCodes>(_configuration.GetSection("Stripe:Products"));
+      services.Configure<StripeOptions>(_configuration.GetSection("Stripe"));
+      services.Configure<StreamOptions>(_configuration.GetSection("Stream"));
 
       // Registered services
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -135,8 +138,7 @@ namespace Artportable.API
 
 
       // Stripe
-      // This is a sample test API key
-      StripeConfiguration.ApiKey = "sk_test_51IRGljA3UXZjjLWxv4sO6lHEF0mNBqAfXWn9wpsWgOK3bS2zy2UYglHeMe6P3IZ2SSGKcrMxYrrftyVq4xwi6MZJ00mOgmNvxW";
+      StripeConfiguration.ApiKey = _configuration.GetValue<string>("Stripe:ApiKey");
 
 
       // register AutoMapper-related services
