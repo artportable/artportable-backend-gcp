@@ -1,6 +1,8 @@
 using System;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
+using Microsoft.Extensions.Options;
+using Options;
 using StreamChat;
 
 namespace Services
@@ -8,10 +10,11 @@ namespace Services
   public class MessageService : IMessageService
   {
     private readonly Client _streamChatClient;
-    public MessageService()
+    public MessageService(IOptions<StreamOptions> streamSettings)
     {
-      _streamChatClient = new Client("x595terv4p22", "knmjmhh6uxxe6khxtzaaxjp9vawmqskyxwhyrm86jd4vkjcjgkbk69uvc3c37tpr");
+      _streamChatClient = new Client(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
     }
+
     public TokenDTO ConnectUser(string username)
     {
       try

@@ -4,27 +4,31 @@ using System.Collections.Immutable;
 using System.Linq;
 using Artportable.API.Entities;
 using Artportable.API.Enums;
+using Microsoft.Extensions.Options;
+using Options;
 using Stripe;
 
 namespace Artportable.API.Services
 {
   public class StripeService : IStripeService
   {
-    ImmutableDictionary<string, ProductEnum> _products = new Dictionary<string, ProductEnum>()
-    {
-      {
-        "prod_J3lQFj6oRprRtJ", ProductEnum.PortfolioPremium
-      },
-      {
-        "prod_J3lRKmuP9uzavp", ProductEnum.Portfolio
-      }
-    }.ToImmutableDictionary();
+    ImmutableDictionary<string, ProductEnum> _products;
     private APContext _context;
 
-    public StripeService(APContext apContext)
+    public StripeService(APContext apContext, IOptions<ProductCodes> productCodes)
     {
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
+
+      _products = new Dictionary<string, ProductEnum>()
+      {
+        {
+          productCodes.Value.PortfolioPremium, ProductEnum.PortfolioPremium
+        },
+        {
+          productCodes.Value.Portfolio, ProductEnum.Portfolio
+        }
+      }.ToImmutableDictionary();
     }
 
     public void HandleEvent(Event e)
