@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Artportable.API.Services;
 using Azure;
@@ -41,7 +40,7 @@ namespace Services
       }
     }
 
-    public async Task UploadAsync(Stream file, string fileName)
+    public async Task UploadAsync(System.IO.Stream file, string fileName)
     {
       if (string.IsNullOrWhiteSpace(fileName))
       {
