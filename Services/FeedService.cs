@@ -49,6 +49,7 @@ namespace Artportable.API.Services
             Item = new ArtworkPostDTO
             {
               Id = a.PublicId,
+              Title = a.Title,
               PrimaryFile = new FileDTO {
                 Name = a.PrimaryFile.Name,
                 Width = a.PrimaryFile.Width,
