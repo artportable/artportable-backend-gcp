@@ -214,9 +214,11 @@ namespace Artportable.ImageApi.Tests
       var artworkId = new Guid("19459c8f-9b88-4c8f-b314-fb8cec67e225");
       var username = "tjatte";
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
+      
 
       //Act
-      bool act = artworkService.Like(artworkId, username);
+      string randomString;
+      bool act = artworkService.Like(artworkId, username, out randomString);
 
       //Assert
       act.Should().Be(true);
@@ -230,7 +232,8 @@ namespace Artportable.ImageApi.Tests
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
 
       //Act
-      bool act = artworkService.Like(artworkId, null);
+      string randomString;
+      bool act = artworkService.Like(artworkId, null, out randomString);
 
       //Assert
       act.Should().Be(false);
@@ -245,7 +248,8 @@ namespace Artportable.ImageApi.Tests
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
 
       //Act&Assert
-      artworkService.Unlike(artworkId, username);
+      string owner;
+      artworkService.Unlike(artworkId, username, out owner);
     }
 
 

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
 using Stream;
@@ -18,7 +20,8 @@ namespace Services
       {
         var token = _streamClient.CreateUserToken(username);
 
-        return new TokenDTO {
+        return new TokenDTO
+        {
           Token = token
         };
       }
@@ -28,56 +31,81 @@ namespace Services
         throw new Exception($"Unknown error when trying to register user with username {username}", e);
       }
     }
-
-    public void CreateActivity()
+    public async Task Follow(string follower, string followee)
     {
-      // var userFeed = _streamClient.Feed("notification", "jimpa");
-      var userFeed2 = _streamClient.Feed("user", "ronnyconny");
-      
-      var activity = new Activity("1", "like", "3")
+      var followerFeed = _streamClient.Feed("user_timeline", follower);
+      await followerFeed.FollowFeed($"user", followee);
+      var followeeFeed = _streamClient.Feed("notification", followee);
+      var followActivity = new Activity($"{follower}", "follow", followee)
       {
-        ForeignId = "post:42"
+        ForeignId = $"{follower}:follow:{followee}",
+        Time = DateTime.Now.ToUniversalTime(),
+        To = new List<string>(){
+          $"user:{follower}"
+        }
       };
-
-      // var feed = userFeed.FollowFeed(userFeed2);
-      userFeed2.AddActivity(activity);
+      await followeeFeed.AddActivity(followActivity);
+    }
+    public async Task UnFollow(string follower, string followee)
+    {
+      var followerFeed = _streamClient.Feed("user_timeline", follower);
+      var followeeFeed = _streamClient.Feed("notification", followee);
+      await followerFeed.UnfollowFeed($"user", followee);
+      await followeeFeed.RemoveActivity($"{follower}:follow:{followee}", true);
+    }
+    public async Task LikeArtwork(Guid id, string myUsername, string owner)
+    {
+      var activity = new Activity($"{myUsername}", "like", $"artwork:{id.ToString()}")
+      {
+        ForeignId = $"like:artwork-{id.ToString()}:{myUsername}",
+        Time = DateTime.Now.ToUniversalTime(),
+        To = new List<string>(){
+          $"notification:{owner}"
+        }
+      };
+      var artwork = new Dictionary<string, object>();
+      artwork.Add("id", id);
+      activity.SetData("artwork", artwork);
+      var myFeed = _streamClient.Feed("user", myUsername);
+      await myFeed.AddActivity(activity);
     }
 
-    // public void CreateNotificationFeed()
-    // {
-    //   var userFeed = _streamClient.
-    //   var activity = new Activity("1", "like", "3")
-    //   {
-    //     ForeignId = "post:42"
-    //   };
 
-    //   userFeed.AddActivity(activity);
-    // }
-
-    public FeedDTO GetFeed(string username)
+    public async Task UnLikeArtwork(Guid id, string myUsername, string owner)
     {
-      var userFeed = _streamClient.Feed("jimpa", "jimpa");
-      var activity = new Activity("1", "like", "3")
+      var myFeed = _streamClient.Feed("user", myUsername);
+      var ownerFeed = _streamClient.Feed("notification", owner);
+      await myFeed.RemoveActivity($"like:artwork-{id.ToString()}:{myUsername}", true);
+      await ownerFeed.RemoveActivity($"like:artwork-{id.ToString()}:{myUsername}", true);
+    }
+    public async Task CreateArtwork(Guid id, string title, string myUsername)
+    {
+      var myFeed = _streamClient.Feed("user", myUsername);
+      var activity = new Activity($"{myUsername}", "upload", $"artwork:{id.ToString()}")
       {
-        ForeignId = "post:42"
+        ForeignId = $"artwork:{id.ToString()}",
+        Time = DateTime.Now.ToUniversalTime()
       };
-
-      userFeed.AddActivity(activity);
-
-      return new FeedDTO();
+      var artwork = new Dictionary<string, object>();
+      artwork.Add("id", id);
+      artwork.Add("title", title);
+      activity.SetData("artwork", artwork);
+      await myFeed.AddActivity(activity);
     }
 
-    public void Follow(string username) {
-      var userFeed = _streamClient.Feed("jimpa", "jimpa");
-      var userFeed2 = _streamClient.Feed("ronnyconny", "ronnyconny");
-      userFeed.FollowFeed(userFeed2);
-
-      // var activity = new Activity("1", "like", "3")
-      // {
-      //   ForeignId = "post:42"
-      // };
-
-      // userFeed.AddActivity(activity);
+    public async Task UpdateArtwork(Guid id, string title, string myUsername)
+    {
+      var myFeed = _streamClient.Feed("user", myUsername);
+      var activity = new Activity($"{myUsername}", "update", $"artwork:{id.ToString()}")
+      {
+        ForeignId = $"artwork:{id.ToString()}",
+        Time = DateTime.Now.ToUniversalTime()
+      };
+      var artwork = new Dictionary<string, object>();
+      artwork.Add("id", id);
+      artwork.Add("title", title);
+      activity.SetData("artwork", artwork);
+      await myFeed.AddActivity(activity);
     }
   }
 }
