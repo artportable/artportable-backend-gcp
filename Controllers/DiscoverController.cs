@@ -32,6 +32,7 @@ namespace Artportable.API.Controllers
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
+      string q = null,
       int? seed = null
     )
     {
@@ -52,7 +53,7 @@ namespace Artportable.API.Controllers
 
       try
       {
-        var artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, seed.Value);
+        var artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, q, seed.Value);
 
         var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername }, page, pageSize, artworks.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
