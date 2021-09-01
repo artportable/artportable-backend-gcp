@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
+using Microsoft.Extensions.Options;
+using Options;
 using Stream;
 
 namespace Services
@@ -10,9 +12,9 @@ namespace Services
   public class ActivityService : IActivityService
   {
     private readonly StreamClient _streamClient;
-    public ActivityService()
+    public ActivityService(IOptions<StreamOptions> streamSettings)
     {
-      _streamClient = new StreamClient("x595terv4p22", "knmjmhh6uxxe6khxtzaaxjp9vawmqskyxwhyrm86jd4vkjcjgkbk69uvc3c37tpr");
+      _streamClient = new StreamClient(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
     }
     public TokenDTO ConnectUser(string username)
     {
