@@ -22,7 +22,7 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(mapper));
     }
 
-    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed)
+    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, string q, int seed)
     {
       return _context.Artworks
         .FromSqlInterpolated(
@@ -30,6 +30,7 @@ namespace Artportable.API.Services
           ORDER BY random OFFSET 0 ROWS")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
         .Where(a => a.User.Subscription.ProductId != (int)ProductEnum.Bas)
+        .Where(a => q != null ? a.User.Username.Contains(q) : true)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
         .Select(a =>
