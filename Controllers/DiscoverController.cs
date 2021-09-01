@@ -55,7 +55,7 @@ namespace Artportable.API.Controllers
       {
         var artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, q, seed.Value);
 
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername }, page, pageSize, artworks.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = q }, page, pageSize, artworks.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
