@@ -143,11 +143,7 @@ namespace Artportable.API.Controllers
     {
       try {
         var path = _userService.GetProfilePicture(username);
-
-        if (path == null) {
-          return StatusCode(StatusCodes.Status404NotFound);
-        }
-
+        
         return Ok(path);
       }
       catch (Exception e) {

@@ -77,6 +77,7 @@ namespace Artportable.API
         return new BlobContainerClient(blobClientOptions.ConnectionString, blobClientOptions.ContainerName);
       });
       services.AddSingleton<IMessageService, MessageService>();
+      services.AddSingleton<IActivityService, ActivityService>();
 
       services.AddAuthorization(authorizationOptions =>
       {

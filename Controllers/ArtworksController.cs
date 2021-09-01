@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +15,13 @@ namespace Artportable.API.Controllers
   public class ArtworksController : ControllerBase
   {
     private readonly IArtworkService _artworkService;
+    private readonly IActivityService _activityService;
 
-    public ArtworksController(IArtworkService artworkService)
+
+    public ArtworksController(IArtworkService artworkService, IActivityService activityService)
     {
       _artworkService = artworkService;
+      _activityService = activityService;
     }
 
     /// <summary>
@@ -27,12 +31,14 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> Get(string owner = null, string myUsername = null)
     {
-      try {
+      try
+      {
         var artworks = _artworkService.Get(owner, myUsername);
 
         return Ok(artworks);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -46,7 +52,8 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status404NotFound)]
     public ActionResult<ArtworkDTO> GetArtwork(Guid id, string myUsername = null)
     {
-      try {
+      try
+      {
         var artwork = _artworkService.Get(id, myUsername);
 
         if (artwork == null)
@@ -56,7 +63,8 @@ namespace Artportable.API.Controllers
 
         return Ok(artwork);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -69,18 +77,22 @@ namespace Artportable.API.Controllers
     [HttpPost("")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public ActionResult<ArtworkDTO> CreateArtwork([FromBody] ArtworkForCreationDTO dto, string myUsername = null)
+    public async Task<ActionResult<ArtworkDTO>> CreateArtwork([FromBody] ArtworkForCreationDTO dto, string myUsername = null)
     {
-      try {
+      try
+      {
         var artwork = _artworkService.Create(dto, myUsername);
 
-        if (artwork == null) {
+        if (artwork == null)
+        {
           return BadRequest();
         }
+        await _activityService.CreateArtwork(artwork.Id, artwork.Title, myUsername);
 
         return Ok(artwork);
-        }
-      catch (Exception e) {
+      }
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -107,18 +119,22 @@ namespace Artportable.API.Controllers
     [HttpPut("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<ArtworkDTO> UpdateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, string myUsername = null)
+    public async Task<ActionResult<ArtworkDTO>> UpdateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, string myUsername = null)
     {
-      try {
+      try
+      {
         var artwork = _artworkService.Update(dto, id, myUsername);
 
-        if (artwork == null) {
+        if (artwork == null)
+        {
           return NotFound();
         }
+        await _activityService.UpdateArtwork(artwork.Id, artwork.Title, myUsername);
 
         return Ok(artwork);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -131,12 +147,14 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<string>))]
     public ActionResult<List<string>> GetTags()
     {
-      try {
+      try
+      {
         var tags = _artworkService.GetTags();
 
         return Ok(tags);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -150,7 +168,8 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status404NotFound)]
     public ActionResult<List<TagDTO>> GetTags(Guid id)
     {
-      try {
+      try
+      {
         var tags = _artworkService.GetTags(id);
 
         if (tags == null)
@@ -160,7 +179,8 @@ namespace Artportable.API.Controllers
 
         return Ok(tags);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -175,17 +195,20 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status404NotFound)]
     public IActionResult Like(Guid id, string myUsername)
     {
-      try {
-        var res = _artworkService.Like(id, myUsername);
+      try
+      {
+        string creator;
 
-        if (res == false)
+        if (_artworkService.Like(id, myUsername, out creator))
         {
-          return NotFound();
+          _activityService.LikeArtwork(id, myUsername, creator);
+          return Ok();
         }
 
-        return Ok();
+        return NotFound();
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -199,12 +222,18 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     public IActionResult Unlike(Guid id, string myUsername)
     {
-      try {
-        _artworkService.Unlike(id, myUsername);
-
-        return Ok();
+      try
+      {
+        string owner;
+        if (_artworkService.Unlike(id, myUsername, out owner))
+        {
+          _activityService.UnLikeArtwork(id, myUsername, owner);
+          return Ok();
+        }
+        return NotFound();
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }

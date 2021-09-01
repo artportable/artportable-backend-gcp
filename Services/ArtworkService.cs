@@ -28,7 +28,7 @@ namespace Artportable.API.Services
       var ownerProductId = _context.Users
         .Include(u => u.Subscription)
         .SingleOrDefault(u => u.Username == owner)?.Subscription?.ProductId;
-      if (ownerProductId == (int) ProductEnum.Bas)
+      if (ownerProductId == (int)ProductEnum.Bas)
       {
         return new List<ArtworkDTO>();
       }
@@ -40,7 +40,8 @@ namespace Artportable.API.Services
         new ArtworkDTO
         {
           Id = a.PublicId,
-          Owner = new OwnerDTO {
+          Owner = new OwnerDTO
+          {
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
             Location = a.User.UserProfile.Location,
@@ -53,17 +54,20 @@ namespace Artportable.API.Services
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
-          PrimaryFile = new FileDTO {
+          PrimaryFile = new FileDTO
+          {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
             Height = a.PrimaryFile.Height
           },
-          SecondaryFile = a.SecondaryFile != null ? new FileDTO {
+          SecondaryFile = a.SecondaryFile != null ? new FileDTO
+          {
             Name = a.SecondaryFile.Name,
             Width = a.SecondaryFile.Width,
             Height = a.SecondaryFile.Height
           } : null,
-          TertiaryFile = a.TertiaryFile != null ? new FileDTO {
+          TertiaryFile = a.TertiaryFile != null ? new FileDTO
+          {
             Name = a.TertiaryFile.Name,
             Width = a.TertiaryFile.Width,
             Height = a.TertiaryFile.Height
@@ -96,46 +100,51 @@ namespace Artportable.API.Services
       }
 
       return new ArtworkDTO
+      {
+        Id = artwork.PublicId,
+        Owner = new OwnerDTO
         {
-          Id = artwork.PublicId,
-          Owner = new OwnerDTO {
-            Username = artwork.User.Username,
-            ProfilePicture = artwork.User.File?.Name,
-            Location = artwork.User.UserProfile.Location,
-            FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
+          Username = artwork.User.Username,
+          ProfilePicture = artwork.User.File?.Name,
+          Location = artwork.User.UserProfile.Location,
+          FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
               .Any(c => c.Followee.Username == artwork.User.Username && c.Follower.Username == myUsername) :
             false
-          },
-          Title = artwork.Title,
-          Description = artwork.Description,
-          Published = artwork.Published,
-          Price = artwork.Price,
-          PrimaryFile = new FileDTO {
-            Name = artwork.PrimaryFile.Name,
-            Width = artwork.PrimaryFile.Width,
-            Height = artwork.PrimaryFile.Height
-          },
-          SecondaryFile = artwork.SecondaryFile != null ? new FileDTO {
-            Name = artwork.SecondaryFile.Name,
-            Width = artwork.SecondaryFile.Width,
-            Height = artwork.SecondaryFile.Height
-          } : null,
-          TertiaryFile = artwork.TertiaryFile != null ? new FileDTO {
-            Name = artwork.TertiaryFile.Name,
-            Width = artwork.TertiaryFile.Width,
-            Height = artwork.TertiaryFile.Height
-          } : null,
-          Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
-          Likes = artwork.Likes.Count(),
-          LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false
-        };
+        },
+        Title = artwork.Title,
+        Description = artwork.Description,
+        Published = artwork.Published,
+        Price = artwork.Price,
+        PrimaryFile = new FileDTO
+        {
+          Name = artwork.PrimaryFile.Name,
+          Width = artwork.PrimaryFile.Width,
+          Height = artwork.PrimaryFile.Height
+        },
+        SecondaryFile = artwork.SecondaryFile != null ? new FileDTO
+        {
+          Name = artwork.SecondaryFile.Name,
+          Width = artwork.SecondaryFile.Width,
+          Height = artwork.SecondaryFile.Height
+        } : null,
+        TertiaryFile = artwork.TertiaryFile != null ? new FileDTO
+        {
+          Name = artwork.TertiaryFile.Name,
+          Width = artwork.TertiaryFile.Width,
+          Height = artwork.TertiaryFile.Height
+        } : null,
+        Tags = artwork.Tags != null ? artwork.Tags?.Select(t => t.Title).ToList() : new List<string>(),
+        Likes = artwork.Likes.Count(),
+        LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false
+      };
     }
     public ArtworkDTO Create(ArtworkForCreationDTO dto, string myUsername)
     {
       var user = _context.Users.FirstOrDefault(u => u.Username == myUsername);
 
-      if (user == null) {
+      if (user == null)
+      {
         return null;
       }
 
@@ -172,7 +181,8 @@ namespace Artportable.API.Services
         .Include(a => a.Likes)
         .FirstOrDefault(a => a.PublicId == id && a.User.Username == myUsername);
 
-      if (artwork == null) {
+      if (artwork == null)
+      {
         return null;
       }
 
@@ -258,21 +268,23 @@ namespace Artportable.API.Services
       return tags;
     }
 
-    public bool Like(Guid artworkId, string myUsername)
+    public bool Like(Guid artworkId, string myUsername, out string owner)
     {
-      var aId = _context.Artworks.FirstOrDefault(a => a.PublicId == artworkId)?.Id;
-      var uId = _context.Users.FirstOrDefault(u => u.Username == myUsername)?.Id;
+      owner = null;
+      var artwork = _context.Artworks.Include(a => a.User).FirstOrDefault(a => a.PublicId == artworkId);
+      var user = _context.Users.FirstOrDefault(u => u.Username == myUsername);
 
-      if (aId == null || uId == null) {
+      if (artwork == null || user == null)
+      {
         return false;
       }
-
+      owner = artwork.User.Username;
       var exists = _context.Likes
-        .Count(l => l.ArtworkId == aId && l.UserId == uId);
+        .Count(l => l.ArtworkId == artwork.Id && l.UserId == user.Id);
 
       if (exists > 1)
       {
-        Console.WriteLine("WARN: There are more than one ({0}) copies of likes for user {1} on artwork {2}", exists, uId, aId);
+        Console.WriteLine("WARN: There are more than one ({0}) copies of likes for user {1} on artwork {2}", exists, user, artwork);
         return true;
       }
       else if (exists > 0)
@@ -283,29 +295,32 @@ namespace Artportable.API.Services
       _context.Likes.Add(
         new Like
         {
-          ArtworkId = (int) aId,
-          UserId = (int) uId
+          ArtworkId = (int)artwork.Id,
+          UserId = (int)user.Id
         }
       );
       _context.SaveChanges();
-
       return true;
     }
 
-    public void Unlike(Guid artworkId, string myUsername)
+    public bool Unlike(Guid artworkId, string myUsername, out string owner)
     {
+      owner = null;
       var record = _context.Likes
         .Include(l => l.Artwork)
+        .ThenInclude(a => a.User)
         .Include(l => l.User)
         .Where(l => l.Artwork.PublicId == artworkId && l.User.Username == myUsername)
         .FirstOrDefault();
-
-      if (record == null) {
-        return;
+      
+      if (record == null)
+      {
+        return false;
       }
-
+      owner = record.Artwork.User.Username;
       _context.Likes.Remove(record);
       _context.SaveChanges();
+      return true;
     }
   }
 }

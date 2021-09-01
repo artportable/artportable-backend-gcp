@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +15,12 @@ namespace Artportable.API.Controllers
   public class ConnectionsController : ControllerBase
   {
     private readonly IConnectionService _connectionService;
+    private readonly IActivityService _activityService;
 
-    public ConnectionsController(IConnectionService connectionService)
+    public ConnectionsController(IConnectionService connectionService, IActivityService activityService)
     {
       _connectionService = connectionService;
+      _activityService = activityService;
     }
 
     /// <summary>
@@ -28,7 +31,8 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     public ActionResult<RecommendationDTO> Get(string myUsername)
     {
-      try {
+      try
+      {
         var recommendations = _connectionService.GetRecommendations(myUsername);
 
         if (recommendations == null)
@@ -36,7 +40,8 @@ namespace Artportable.API.Controllers
 
         return Ok(recommendations);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -48,17 +53,20 @@ namespace Artportable.API.Controllers
     [HttpPost("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public IActionResult Follow(string username, string myUsername)
+    public async Task<IActionResult> Follow(string username, string myUsername)
     {
-      try {
+      try
+      {
         var result = _connectionService.Follow(username, myUsername);
+        await _activityService.Follow(myUsername, username);
 
         if (!result)
           return BadRequest();
 
         return Ok();
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -69,14 +77,17 @@ namespace Artportable.API.Controllers
     /// </summary>
     [HttpDelete("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public IActionResult Unfollow(string username, string myUsername)
+    public async Task<IActionResult> Unfollow(string username, string myUsername)
     {
-      try {
+      try
+      {
         _connectionService.Unfollow(username, myUsername);
+        await _activityService.UnFollow(myUsername, username);
 
         return Ok();
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
