@@ -30,7 +30,7 @@ namespace Artportable.API.Services
           ORDER BY random OFFSET 0 ROWS")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
         .Where(a => a.User.Subscription.ProductId != (int)ProductEnum.Bas)
-        .Where(a => q != null ? a.User.Username.Contains(q) : true)
+        .Where(a => q != null ? a.Title.Contains(q) || a.User.Username.Contains(q) : true)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
         .Select(a =>
