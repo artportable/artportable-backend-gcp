@@ -28,8 +28,10 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status200OK)]
     public ActionResult<List<TinyUserDTO>> Search(string q)
     {
-      try {
-        if (String.IsNullOrWhiteSpace(q)) {
+      try
+      {
+        if (String.IsNullOrWhiteSpace(q))
+        {
           return new List<TinyUserDTO>();
         }
 
@@ -37,7 +39,62 @@ namespace Artportable.API.Controllers
 
         return Ok(users);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Get followers of a user
+    /// </summary>
+    /// <param name="username"></param>
+    [HttpGet("{username}/followers")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<List<TinyUserDTO>> GetFollowers(string username)
+    {
+      try
+      {
+        if (String.IsNullOrWhiteSpace(username))
+        {
+          return NotFound();
+        }
+
+        var users = _userService.GetFollowers(username);
+
+        return Ok(users);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Gets all users that a user is following
+    /// </summary>
+    /// <param name="username"></param>
+    [HttpGet("{username}/followees")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<List<TinyUserDTO>> GetFollewees(string username)
+    {
+      try
+      {
+        if (String.IsNullOrWhiteSpace(username))
+        {
+          return NotFound();
+        }
+
+        var users = _userService.GetFollowees(username);
+
+        return Ok(users);
+      }
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -52,16 +109,19 @@ namespace Artportable.API.Controllers
     [SwaggerResponse(StatusCodes.Status404NotFound)]
     public ActionResult<UserDTO> Get(string username)
     {
-      try {
+      try
+      {
         var user = _userService.Get(username);
 
-        if (user == null) {
+        if (user == null)
+        {
           return StatusCode(StatusCodes.Status404NotFound);
         }
 
         return Ok(user);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
@@ -94,16 +154,19 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status409Conflict, "User already exists");
       }
 
-      try {
+      try
+      {
         var username = _userService.CreateUser(user);
 
         return CreatedAtAction(nameof(Get), new { username = username }, user);
       }
-      catch (ArgumentException e) {
+      catch (ArgumentException e)
+      {
         Console.WriteLine("Argument not valid, {0}", e);
         return StatusCode(StatusCodes.Status400BadRequest);
       }
-      catch (Exception e) {
+      catch (Exception e)
+      {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
