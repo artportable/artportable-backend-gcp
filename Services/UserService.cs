@@ -62,21 +62,26 @@ namespace Artportable.API.Services
         .ToList();
     }
 
-    public List<TinyUserDTO> GetFollowers(string username)
+    public IEnumerable<TinyUserDTO> GetFollowers(string username)
     {
       var users = _context.Connections.Where(c => c.Followee.Username == username);
 
-      return users.ToList();
+      return users.Select(c => new TinyUserDTO()
+      {
+        Username = c.Follower.Username,
+        ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null
+      });
     }
 
-    public List<TinyUserDTO> GetFollowing(string username)
+    public IEnumerable<TinyUserDTO> GetFollowing(string username)
     {
       var users = _context.Connections.Where(c => c.Follower.Username == username);
 
 
-      return users.Select(u => new TinyUserDTO()
+      return users.Select(c => new TinyUserDTO()
       {
-
+        Username = c.Followee.Username,
+        ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null
       });
     }
 

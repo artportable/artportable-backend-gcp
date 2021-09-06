@@ -57,7 +57,7 @@ namespace Artportable.API.Controllers
     {
       try
       {
-        if (String.IsNullOrWhiteSpace(q))
+        if (String.IsNullOrWhiteSpace(username))
         {
           return new List<TinyUserDTO>();
         }
