@@ -62,6 +62,24 @@ namespace Artportable.API.Services
         .ToList();
     }
 
+    public List<TinyUserDTO> GetFollowers(string username)
+    {
+      var users = _context.Connections.Where(c => c.Followee.Username == username);
+
+      return users.ToList();
+    }
+
+    public List<TinyUserDTO> GetFollowing(string username)
+    {
+      var users = _context.Connections.Where(c => c.Follower.Username == username);
+
+
+      return users.Select(u => new TinyUserDTO()
+      {
+
+      });
+    }
+
     public ProfileSummaryDTO GetProfileSummary(string username)
     {
       var user = _context.Users
@@ -87,7 +105,7 @@ namespace Artportable.API.Services
         Location = user.UserProfile.Location,
         Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),
-        Artworks = user.Subscription.ProductId != (int) ProductEnum.Bas ?
+        Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
           0
       };
@@ -283,7 +301,8 @@ namespace Artportable.API.Services
         .Include(u => u.File)
         .SingleOrDefault(u => u.Username == username);
 
-      if (user.File != null) {
+      if (user.File != null)
+      {
         // TODO: delete old file ref
       }
 
@@ -300,7 +319,8 @@ namespace Artportable.API.Services
         .Include(u => u.CoverPhotoFile)
         .SingleOrDefault(u => u.Username == username);
 
-      if (user.CoverPhotoFile != null) {
+      if (user.CoverPhotoFile != null)
+      {
         // TODO: delete old file ref
       }
 
