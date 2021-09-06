@@ -22,6 +22,6 @@ namespace Artportable.API.Services
     string CreateUser(UserDTO user);
     TinyUserDTO Login(string email);
     IEnumerable<TinyUserDTO> GetFollowers(string username);
-    IEnumerable<TinyUserDTO> GetFollowing(string username);
+    IEnumerable<TinyUserDTO> GetFollowees(string username);
   }
 }

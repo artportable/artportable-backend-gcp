@@ -73,10 +73,9 @@ namespace Artportable.API.Services
       });
     }
 
-    public IEnumerable<TinyUserDTO> GetFollowing(string username)
+    public IEnumerable<TinyUserDTO> GetFollowees(string username)
     {
       var users = _context.Connections.Where(c => c.Follower.Username == username);
-
 
       return users.Select(c => new TinyUserDTO()
       {

@@ -59,7 +59,7 @@ namespace Artportable.API.Controllers
       {
         if (String.IsNullOrWhiteSpace(username))
         {
-          return new List<TinyUserDTO>();
+          return NotFound();
         }
 
         var users = _userService.GetFollowers(username);
@@ -77,19 +77,19 @@ namespace Artportable.API.Controllers
     /// Gets all users that a user is following
     /// </summary>
     /// <param name="username"></param>
-    [HttpGet("{username}/following")]
+    [HttpGet("{username}/followees")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public ActionResult<List<TinyUserDTO>> GetFollowing(string username)
+    public ActionResult<List<TinyUserDTO>> GetFollewees(string username)
     {
       try
       {
         if (String.IsNullOrWhiteSpace(username))
         {
-          return new List<TinyUserDTO>();
+          return NotFound();
         }
 
-        var users = _userService.GetFollowing(username);
+        var users = _userService.GetFollowees(username);
 
         return Ok(users);
       }
