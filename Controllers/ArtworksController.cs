@@ -108,6 +108,7 @@ namespace Artportable.API.Controllers
     ///     {
     ///        "title": "Example artwork",
     ///        "description": "This is an example artwork",
+    ///        "price": 2000,
     ///        "primaryfile": "batman.jpg",
     ///        "secondaryfile": "robin.jpg",
     ///        "tertiaryfile": "batmanandrobin.jpg",
@@ -135,6 +136,26 @@ namespace Artportable.API.Controllers
       }
       catch (Exception e)
       {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Delete an artwork
+    /// </summary>
+    // [Authorize]
+    [HttpDelete("{id}")]
+    [SwaggerResponse(StatusCodes.Status204NoContent)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public IActionResult DeleteArtwork(Guid id, string myUsername = null)
+    {
+      try {
+        _artworkService.Delete(id, myUsername);
+
+        return NoContent();
+      }
+      catch (Exception e) {
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
