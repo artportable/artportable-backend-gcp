@@ -12,7 +12,19 @@
 ## Development
 The API is written in ASP.NET Core 3.1 (latest LTS). It's a RESTful API supporting the ArtPortable WebApp.
 ### Database
-A MySQL database is hosted in AWS RDS. The database is accessed and modified using a code-first approach through EF Core 5 (Entity Framework).
+An SQL database is hosted in Azure. The database is accessed and modified using a code-first approach through EF Core 5 (Entity Framework).
+
+#### Local DB
+A local database runnning in a Docker container can be used for development.
+To get it up and running:
+* `docker pull mcr.microsoft.com/mssql/server:2019-latest`
+* `sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssw0rd" -p 1433:1433 --name sql1 -h sql1 -d mcr.microsoft.com/mssql/server:2019-latest`
+
+To create table structure:
+* `dotnet ef migrations add <NAME>`
+* `dotnet ef database update`
+
+The database can be accessed using the connection string called DockerConnection in `appsettings.Development.json`.
 
 #### Update database
 The structure of the database can be changed using the EF Core CLI tools and migrations.
