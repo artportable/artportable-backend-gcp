@@ -239,6 +239,22 @@ namespace Artportable.API.Services
       return artworkDto;
     }
 
+    public void Delete(Guid id, string myUsername)
+    {
+      var record = _context.Artworks
+        .Include(a => a.User)
+        .Include(e => e.Likes)
+        .Where(a => a.PublicId == id && a.User.Username == myUsername)
+        .FirstOrDefault();
+
+      if (record == null) {
+        return;
+      }
+
+      _context.Artworks.Remove(record);
+      _context.SaveChanges();
+    }
+
     public List<string> GetTags()
     {
       var tags = _context.Tags

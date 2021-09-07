@@ -55,27 +55,26 @@ namespace Artportable.API.Entities
       modelBuilder.Entity<Like>()
         .HasOne(l => l.Artwork)
         .WithMany(a => a.Likes)
-        .HasForeignKey(l => l.ArtworkId)
-        .OnDelete(DeleteBehavior.Restrict);
+        .HasForeignKey(l => l.ArtworkId);
       
       modelBuilder.Entity<Like>()
         .HasOne(l => l.User)
         .WithMany(u => u.Likes)
         .HasForeignKey(l => l.UserId)
-        .OnDelete(DeleteBehavior.Restrict); 
+        .OnDelete(DeleteBehavior.ClientCascade);
 
       modelBuilder.Entity<Connection>()
         .HasOne(c => c.Follower)
         .WithMany(u => u.FollowerRef)
         .HasForeignKey(c => c.FollowerId)
-        .IsRequired()
-        .OnDelete(DeleteBehavior.Restrict);
+        .OnDelete(DeleteBehavior.ClientCascade)
+        .IsRequired();
       modelBuilder.Entity<Connection>()
         .HasOne(c => c.Followee)
         .WithMany(u => u.FolloweeRef)
         .HasForeignKey(c => c.FolloweeId)
-        .IsRequired()
-        .OnDelete(DeleteBehavior.Restrict);
+        .OnDelete(DeleteBehavior.ClientCascade)
+        .IsRequired();
 
       // Seed database
       modelBuilder.Entity<Tag>().HasData(_tagData.Tags);

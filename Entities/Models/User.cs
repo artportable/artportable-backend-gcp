@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities.Models
@@ -39,8 +40,11 @@ namespace Artportable.API.Entities.Models
     public File File { get; set; }
     public File CoverPhotoFile { get; set; }
     public ICollection<Artwork> Artworks { get; set; }
+    [InverseProperty("Follower")]
     public ICollection<Connection> FollowerRef { get; set; }
+    [InverseProperty("Followee")]
     public ICollection<Connection> FolloweeRef { get; set; }
+    [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
   }
 }
