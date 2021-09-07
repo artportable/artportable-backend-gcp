@@ -144,7 +144,7 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Delete an artwork
     /// </summary>
-    // [Authorize]
+    [Authorize]
     [HttpDelete("{id}")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
