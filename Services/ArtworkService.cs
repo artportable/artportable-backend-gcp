@@ -234,7 +234,7 @@ namespace Artportable.API.Services
 
       var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
       artworkDto.Likes = artwork.Likes.Count();
-      artworkDto.LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User.Username == myUsername) : false;
+      artworkDto.LikedByMe = myUsername != null ? artwork.Likes.Any(l => l.User?.Username == myUsername) : false;
 
       return artworkDto;
     }
