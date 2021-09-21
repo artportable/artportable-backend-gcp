@@ -99,14 +99,19 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
-          Images = u.Artworks
+          Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
             .Take(15)
-            .Select(a => new FileDTO
+            .Select(a => new TinyArtworkDTO
             {
-              Name = a.PrimaryFile.Name,
-              Width = a.PrimaryFile.Width,
-              Height = a.PrimaryFile.Height,
+              Id = a.PublicId,
+              Title = a.Title,
+              PrimaryFile = new FileDTO
+              {
+                Name = a.PrimaryFile.Name,
+                Width = a.PrimaryFile.Width,
+                Height = a.PrimaryFile.Height
+              }
             })
             .ToList(),
           Tags = u.Artworks
