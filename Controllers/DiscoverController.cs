@@ -54,8 +54,10 @@ namespace Artportable.API.Controllers
       try
       {
         var artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, q, seed.Value);
+        
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = q }, page, pageSize, artworks.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
@@ -94,7 +96,9 @@ namespace Artportable.API.Controllers
       try
       {
         var artists = _discoverService.GetArtists(page, pageSize, q, myUsername, seed.Value);
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = q, myUsername = myUsername }, page, pageSize, artists.Count);
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = urlEncodedQuery, myUsername = myUsername }, page, pageSize, artists.Count);
         Response.Headers.Add("Access-Control-Expose-Headers","Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
