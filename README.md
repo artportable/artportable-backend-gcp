@@ -20,6 +20,9 @@ To get it up and running:
 * `docker pull mcr.microsoft.com/mssql/server:2019-latest`
 * `sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssw0rd" -p 1433:1433 --name sql1 -h sql1 -d mcr.microsoft.com/mssql/server:2019-latest`
 
+To migrate database install dotnet-ef:
+* `dotnet tool install --global dotnet-ef`
+
 To create table structure:
 * `dotnet ef migrations add <NAME>`
 * `dotnet ef database update`
