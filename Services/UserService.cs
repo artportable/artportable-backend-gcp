@@ -365,7 +365,8 @@ namespace Artportable.API.Services
         Username = user.Username,
         Email = user.Email,
         Created = DateTime.Now,
-        Language = "en"
+        Language = "en",
+        SocialId = new Guid(),
       };
 
       var profileDb = new UserProfile
@@ -384,16 +385,26 @@ namespace Artportable.API.Services
     }
     public TinyUserDTO Login(string email)
     {
-      return _context.Users
-        .Where(u => u.Email == email)
-        .Select(u => new TinyUserDTO()
-        {
-          Username = u.Username,
-          ProfilePicture = u.File != null ? u.File.Name : null,
-          Product = u.Subscription != null ? u.Subscription.ProductId : 1
-        })
-        .FirstOrDefault();
+      var user = _context.Users
+        .Where(u => u.Email == email).FirstOrDefault();
 
+      if(user == null) {
+        return null;
+      }
+
+      if(user.SocialId == null) {
+        user.SocialId = new Guid();
+      }
+
+      _context.SaveChanges();
+      
+      return new TinyUserDTO()
+      {
+        Username = user.Username,
+        ProfilePicture = user.File != null ? user.File.Name : null,
+        Product = user.Subscription != null ? user.Subscription.ProductId : 1,
+        SocialId = user.SocialId,
+      };
     }
 
     private void setSafely<T>(T value, Action<T> setAction)
