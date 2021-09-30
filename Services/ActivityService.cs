@@ -12,19 +12,23 @@ namespace Services
   public class ActivityService : IActivityService
   {
     private readonly StreamClient _streamClient;
-    public ActivityService(IOptions<StreamOptions> streamSettings)
+    private readonly IUserService _userService;
+    public ActivityService(IOptions<StreamOptions> streamSettings, IUserService userService)
     {
       _streamClient = new StreamClient(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
+      _userService = userService;
     }
     public TokenDTO ConnectUser(string username)
     {
       try
       {
-        var token = _streamClient.CreateUserToken(username);
+        var socialId = _userService.GetSocialId(username);
+        var token = _streamClient.CreateUserToken(socialId.ToString());
 
         return new TokenDTO
         {
-          Token = token
+          Token = token,
+          SocialId = socialId
         };
       }
       catch (Exception e)
