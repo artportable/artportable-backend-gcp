@@ -23,6 +23,5 @@ namespace Artportable.API.Services
     TinyUserDTO Login(string email);
     IEnumerable<TinyUserDTO> GetFollowers(string username);
     IEnumerable<TinyUserDTO> GetFollowees(string username);
-    Guid GetSocialId(string username);
   }
 }

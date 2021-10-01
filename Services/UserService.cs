@@ -365,8 +365,7 @@ namespace Artportable.API.Services
         Username = user.Username,
         Email = user.Email,
         Created = DateTime.Now,
-        Language = "en",
-        SocialId = new Guid(),
+        Language = "en"
       };
 
       var profileDb = new UserProfile
@@ -385,42 +384,16 @@ namespace Artportable.API.Services
     }
     public TinyUserDTO Login(string email)
     {
-      var user = _context.Users
-        .Where(u => u.Email == email).FirstOrDefault();
+      return _context.Users
+        .Where(u => u.Email == email)
+        .Select(u => new TinyUserDTO()
+        {
+          Username = u.Username,
+          ProfilePicture = u.File != null ? u.File.Name : null,
+          Product = u.Subscription != null ? u.Subscription.ProductId : 1
+        })
+        .FirstOrDefault();
 
-      if(user == null) {
-        return null;
-      }
-
-      if(user.SocialId == null) {
-        user.SocialId = new Guid();
-      }
-
-      _context.SaveChanges();
-      
-      return new TinyUserDTO()
-      {
-        Username = user.Username,
-        ProfilePicture = user.File != null ? user.File.Name : null,
-        Product = user.Subscription != null ? user.Subscription.ProductId : 1,
-        SocialId = user.SocialId,
-      };
-    }
-
-    public Guid GetSocialId(string username) {
-      var user = _context.Users.FirstOrDefault(u => u.Username == username);
-
-      if (user == null) {
-        throw new Exception("User not found");
-      }
-
-      if (user.SocialId == null) {
-        user.SocialId = new Guid();
-      }
-
-      _context.SaveChanges();
-
-      return (Guid)user.SocialId;
     }
 
     private void setSafely<T>(T value, Action<T> setAction)

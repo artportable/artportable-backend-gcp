@@ -708,10 +708,6 @@ namespace Artportable.API.Migrations
                         .HasColumnName("language")
                         .HasComment("According to the ISO 639-1 standard");
 
-                    b.Property<Guid?>("SocialId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("social_id");
-
                     b.Property<int>("SubscriptionId")
                         .HasColumnType("int")
                         .HasColumnName("subscription_id");
