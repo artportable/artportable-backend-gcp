@@ -407,22 +407,6 @@ namespace Artportable.API.Services
       };
     }
 
-    public Guid GetSocialId(string username) {
-      var user = _context.Users.FirstOrDefault(u => u.Username == username);
-
-      if (user == null) {
-        throw new Exception("User not found");
-      }
-
-      if (user.SocialId == null) {
-        user.SocialId = new Guid();
-      }
-
-      _context.SaveChanges();
-
-      return (Guid)user.SocialId;
-    }
-
     private void setSafely<T>(T value, Action<T> setAction)
     {
       if (value != null)

@@ -10,23 +10,19 @@ namespace Services
   public class MessageService : IMessageService
   {
     private readonly Client _streamChatClient;
-    private readonly IUserService _userService; 
-    public MessageService(IOptions<StreamOptions> streamSettings, IUserService userService)
+    public MessageService(IOptions<StreamOptions> streamSettings)
     {
       _streamChatClient = new Client(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
-      _userService = userService;
     }
 
     public TokenDTO ConnectUser(string username)
     {
       try
       {
-        var socialId = _userService.GetSocialId(username);
-        var token = _streamChatClient.CreateToken(socialId.ToString());
+        var token = _streamChatClient.CreateToken(username);
 
         return new TokenDTO {
-          Token = token,
-          SocialId = socialId
+          Token = token
         };
       }
       catch (Exception e)
