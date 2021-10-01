@@ -22,10 +22,10 @@ namespace Artportable.API.Controllers
     /// TEST: Register user
     /// </summary>
     [HttpGet("connect")]
-    public ActionResult<string> Connect(string username)
+    public ActionResult<string> Connect(string userId)
     {
       try {
-        var token = _activityService.ConnectUser(username);
+        var token = _activityService.ConnectUser(userId);
 
         return Ok(token);
       }

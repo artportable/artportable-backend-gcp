@@ -16,11 +16,11 @@ namespace Services
     {
       _streamClient = new StreamClient(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
     }
-    public TokenDTO ConnectUser(string username)
+    public TokenDTO ConnectUser(string userId)
     {
       try
       {
-        var token = _streamClient.CreateUserToken(username);
+        var token = _streamClient.CreateUserToken(userId);
 
         return new TokenDTO
         {
@@ -30,7 +30,7 @@ namespace Services
       catch (Exception e)
       {
         //Add logging
-        throw new Exception($"Unknown error when trying to register user with username {username}", e);
+        throw new Exception($"Unknown error when trying to register user with username {userId}", e);
       }
     }
     public async Task Follow(string follower, string followee)
