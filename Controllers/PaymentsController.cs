@@ -72,12 +72,22 @@ namespace Artportable.API.Controllers
     /// <returns>The Stripe subscription ID</returns>
     [Authorize]
     [HttpPost("subscriptions")]
-    public ActionResult<StripeResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
+    public ActionResult<StripeSubscriptionResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
     {
       try
       {
-        var id = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
-        var res = new StripeResponseDTO { Id = id };
+        var subscription = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
+
+        if (subscription?.LatestInvoice?.PaymentIntent == null) {
+          return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        var res = new StripeSubscriptionResponseDTO {
+          Status = subscription.LatestInvoice.PaymentIntent.Status,
+          Id = subscription.LatestInvoice.PaymentIntent.Status == "requires_action" ?
+            subscription.LatestInvoice.PaymentIntent.ClientSecret :
+            subscription.Id
+        };
 
         return Ok(res);
       }
