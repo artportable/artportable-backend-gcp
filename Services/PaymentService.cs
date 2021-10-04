@@ -67,7 +67,7 @@ namespace Artportable.API.Services
       return response.Id;
     }
 
-    public string CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId)
+    public Subscription CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId)
     {
       // Attach payment method
       var options = new PaymentMethodAttachOptions
@@ -105,7 +105,7 @@ namespace Artportable.API.Services
       var subscriptionService = new SubscriptionService();
 
       Subscription subscription = subscriptionService.Create(subscriptionOptions);
-      return subscription.Id;
+      return subscription;
     }
 
     public void CancelSubscription(string subscriptionId)
