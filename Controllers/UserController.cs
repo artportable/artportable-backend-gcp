@@ -174,9 +174,9 @@ namespace Artportable.API.Controllers
 
     [Authorize]
     [HttpGet("login")]
-    public ActionResult<TinyUserDTO> Login(string email)
+    public ActionResult<TinyUserDTO> Login(string email, Guid keycloakId)
     {
-      var tinyUser = _userService.Login(email);
+      var tinyUser = _userService.Login(email, keycloakId);
 
       return Ok(tinyUser);
     }
