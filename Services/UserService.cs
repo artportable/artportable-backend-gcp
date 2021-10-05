@@ -386,21 +386,24 @@ namespace Artportable.API.Services
     }
     public TinyUserDTO Login(string email, Guid keycloakId)
     {
-      var user = _context.Users
-        .FirstOrDefault(u => u.Email == email);
+      var singleUser = _context.Users
+        .Where(u => u.Email == email);
+
+      var user = singleUser.FirstOrDefault();
 
       if(user.KeycloakId == null) {
         user.KeycloakId = keycloakId;
         _context.SaveChanges();
       }
 
-      return new TinyUserDTO()
-      {
-        Username = user.Username,
-        ProfilePicture = user.File != null ? user.File.Name : null,
-        Product = user.Subscription != null ? user.Subscription.ProductId : 1
-      };
-
+      return singleUser
+        .Select(u => new TinyUserDTO()
+        {
+          Username = u.Username,
+          ProfilePicture = u.File != null ? u.File.Name : null,
+          Product = u.Subscription != null ? u.Subscription.ProductId : 1
+        })
+        .FirstOrDefault();
     }
 
     private void setSafely<T>(T value, Action<T> setAction)
