@@ -105,6 +105,7 @@ namespace Artportable.API.Services
         Owner = new OwnerDTO
         {
           Username = artwork.User.Username,
+          KeycloakId = artwork.User.KeycloakId,
           ProfilePicture = artwork.User.File?.Name,
           Location = artwork.User.UserProfile.Location,
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?

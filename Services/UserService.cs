@@ -103,6 +103,7 @@ namespace Artportable.API.Services
       return new ProfileSummaryDTO()
       {
         Username = user.Username,
+        KeycloakId = user.KeycloakId,
         ProfilePicture = user.File?.Name,
         Headline = user.UserProfile.Headline,
         Title = user.UserProfile.Title,
@@ -362,6 +363,7 @@ namespace Artportable.API.Services
       var userDb = new User
       {
         Subscription = subscriptionDb,
+        KeycloakId = user.KeycloakId,
         Username = user.Username,
         Email = user.Email,
         Created = DateTime.Now,
@@ -382,17 +384,22 @@ namespace Artportable.API.Services
 
       return user.Username;
     }
-    public TinyUserDTO Login(string email)
+    public TinyUserDTO Login(string email, Guid keycloakId)
     {
-      return _context.Users
-        .Where(u => u.Email == email)
-        .Select(u => new TinyUserDTO()
-        {
-          Username = u.Username,
-          ProfilePicture = u.File != null ? u.File.Name : null,
-          Product = u.Subscription != null ? u.Subscription.ProductId : 1
-        })
-        .FirstOrDefault();
+      var user = _context.Users
+        .FirstOrDefault(u => u.Email == email);
+
+      if(user.KeycloakId == null) {
+        user.KeycloakId = keycloakId;
+        _context.SaveChanges();
+      }
+
+      return new TinyUserDTO()
+      {
+        Username = user.Username,
+        ProfilePicture = user.File != null ? user.File.Name : null,
+        Product = user.Subscription != null ? user.Subscription.ProductId : 1
+      };
 
     }
 
