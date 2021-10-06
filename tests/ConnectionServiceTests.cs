@@ -1,4 +1,5 @@
 using Xunit;
+using System;
 using FluentAssertions;
 using Artportable.API.Services;
 using Artportable.API.Entities;
@@ -35,11 +36,13 @@ namespace Artportable.ImageApi.Tests
       var expected = new List<RecommendationDTO> {
         new RecommendationDTO {
           Username = "fnatte",
+          SocialId = Guid.NewGuid(),
           Location = "Stockholm",
           ProfilePicture = "eb52120a-43b5-40e0-a7c0-f5f8042f8e77.jpg"
         },
         new RecommendationDTO {
           Username = "tjatte",
+          SocialId = Guid.NewGuid(),
           Location = "Stockholm",
           ProfilePicture = "96ac2c93-a7c5-4ac8-aa66-2ed1d1c59745.jpg"
         }
@@ -56,12 +59,12 @@ namespace Artportable.ImageApi.Tests
     public void FollowTest()
     {
       //Arrange
-      var username = "tjatte";
-      var myUsername = "knatte";
+      var socialId = Guid.NewGuid();
+      var mySocialId = Guid.NewGuid();
       var connectionService = new ConnectionService(_contextMock.Object);
 
       //Act
-      bool act = connectionService.Follow(username, myUsername);
+      bool act = connectionService.Follow(socialId, mySocialId);
 
       //Assert
       act.Should().Be(true);
@@ -71,11 +74,11 @@ namespace Artportable.ImageApi.Tests
     public void FollowithoutUsernameTest()
     {
       //Arrange
-      var username = "tjatte";
+      var socialId = Guid.NewGuid();
       var connectionService = new ConnectionService(_contextMock.Object);
 
       //Act
-      bool act = connectionService.Follow(username, null);
+      bool act = connectionService.Follow(socialId, null);
 
       //Assert
       act.Should().Be(false);
@@ -85,12 +88,12 @@ namespace Artportable.ImageApi.Tests
     public void UnfollowTest()
     {
       //Arrange
-      var username = "tjatte";
-      var myUsername = "knatte";
+      var socialId = Guid.NewGuid();
+      var mySocialId = Guid.NewGuid();
       var connectionService = new ConnectionService(_contextMock.Object);
 
       //Act&Assert
-      connectionService.Unfollow(username, myUsername);
+      connectionService.Unfollow(socialId, mySocialId);
     }
 
 

@@ -50,15 +50,15 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Follow a user
     /// </summary>
-    [HttpPost("{username}")]
+    [HttpPost("{socialId}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Follow(string username, string myUsername)
+    public async Task<IActionResult> Follow(Guid socialId, Guid mySocialId)
     {
       try
       {
-        var result = _connectionService.Follow(username, myUsername);
-        await _activityService.Follow(myUsername, username);
+        var result = _connectionService.Follow(socialId, mySocialId);
+        await _activityService.Follow(mySocialId, socialId);
 
         if (!result)
           return BadRequest();
@@ -75,14 +75,14 @@ namespace Artportable.API.Controllers
     /// <summary>
     /// Unfollow a user
     /// </summary>
-    [HttpDelete("{username}")]
+    [HttpDelete("{socialId}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Unfollow(string username, string myUsername)
+    public async Task<IActionResult> Unfollow(Guid socialId, Guid mySocialId)
     {
       try
       {
-        _connectionService.Unfollow(username, myUsername);
-        await _activityService.UnFollow(myUsername, username);
+        _connectionService.Unfollow(socialId, mySocialId);
+        await _activityService.UnFollow(mySocialId, socialId);
 
         return Ok();
       }
