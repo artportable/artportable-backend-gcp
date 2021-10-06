@@ -20,7 +20,7 @@ namespace Artportable.API.Services
     bool UsernameExists(string username);
     bool EmailExists(string email);
     string CreateUser(UserDTO user);
-    TinyUserDTO Login(string email, Guid keycloakId);
+    TinyUserDTO Login(string email);
     IEnumerable<TinyUserDTO> GetFollowers(string username);
     IEnumerable<TinyUserDTO> GetFollowees(string username);
   }

@@ -30,7 +30,7 @@ namespace Services
       catch (Exception e)
       {
         //Add logging
-        throw new Exception($"Unknown error when trying to register user with username {userId}", e);
+        throw new Exception($"Unknown error when trying to register user with socialId {userId}", e);
       }
     }
     public async Task Follow(string follower, string followee)

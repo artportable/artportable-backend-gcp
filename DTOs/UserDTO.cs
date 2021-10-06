@@ -7,8 +7,6 @@ namespace Artportable.API.DTOs
   {
     [Required, StringLength(50, MinimumLength = 2)]
     public string Username { get; set; }
-    [Required]
-    public Guid KeycloakId { get; set; }
     [Required, StringLength(50)]
     public string Name { get; set; }
     [Required, StringLength(50)]
