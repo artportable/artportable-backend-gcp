@@ -22,7 +22,9 @@ namespace Artportable.API.Entities.Models
     [MaxLength(50)]
     public string Username { get; set; }
 
-    public Guid? KeycloakId { get; set; }
+    [Required]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public Guid SocialId { get; set; }
 
     [Required]
     [MaxLength(254)]

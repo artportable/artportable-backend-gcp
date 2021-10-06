@@ -3,21 +3,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Artportable.API.Migrations
 {
-    public partial class AddKeycloakIdToUser : Migration
+    public partial class AddSocialId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<Guid>(
-                name: "keycloak_id",
+                name: "social_id",
                 table: "users",
                 type: "uniqueidentifier",
-                nullable: true);
+                nullable: false,
+                defaultValueSql: "NEWID()");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "keycloak_id",
+                name: "social_id",
                 table: "users");
         }
     }

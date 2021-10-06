@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    [Migration("20211005110122_AddKeycloakIdToUser")]
-    partial class AddKeycloakIdToUser
+    [Migration("20211006093929_AddSocialId")]
+    partial class AddSocialId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -703,16 +703,17 @@ namespace Artportable.API.Migrations
                         .HasColumnType("int")
                         .HasColumnName("file_id");
 
-                    b.Property<Guid?>("KeycloakId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("keycloak_id");
-
                     b.Property<string>("Language")
                         .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)")
                         .HasColumnName("language")
                         .HasComment("According to the ISO 639-1 standard");
+
+                    b.Property<Guid>("SocialId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("social_id");
 
                     b.Property<int>("SubscriptionId")
                         .HasColumnType("int")
