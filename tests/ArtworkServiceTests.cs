@@ -63,7 +63,8 @@ namespace Artportable.ImageApi.Tests
         {
           Location = "Stockholm",
           ProfilePicture = "873c48f4-c353-4c75-b05d-f11167682187.jpg",
-          Username = "knatte"
+          Username = "knatte",
+          SocialId = new Guid("5185fe67-a161-468f-ae16-575972553509")
         },
         Price = (decimal) 20000,
         PrimaryFile = new FileDTO
@@ -97,7 +98,7 @@ namespace Artportable.ImageApi.Tests
         PrimaryFile = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         Tags = new List<string>()
       };
-      var username = "knatte";
+      var socialId = new Guid("5185fe67-a161-468f-ae16-575972553509");
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
       var expected = new ArtworkDTO() {
         Description = "Föreställer en bil och en ananas",
@@ -114,14 +115,14 @@ namespace Artportable.ImageApi.Tests
       };
 
       //Act
-      ArtworkDTO act = artworkService.Create(artworkToCreate, username);
+      ArtworkDTO act = artworkService.Create(artworkToCreate, socialId);
 
       //Assert
       act.Should().BeEquivalentTo(expected, options => options.Excluding(o => o.Id).Excluding(o => o.Published));
     }
 
     [Fact]
-    public void CreateArtworkWithoutUsernameTest()
+    public void CreateArtworkWithoutSocialIdTest()
     {
       //Arrange
       var artworkToCreate = new ArtworkForCreationDTO {
@@ -135,7 +136,7 @@ namespace Artportable.ImageApi.Tests
       ArtworkDTO expected = null;
 
       //Act
-      ArtworkDTO act = artworkService.Create(artworkToCreate, null);
+      ArtworkDTO act = artworkService.Create(artworkToCreate, new Guid());
 
       //Assert
       act.Should().BeEquivalentTo(expected);
@@ -152,7 +153,7 @@ namespace Artportable.ImageApi.Tests
         Price = 9000,
         Tags = new List<string>() { "summer" }
       };
-      var username = "knatte";
+      var mySocialId = new Guid("5185fe67-a161-468f-ae16-575972553509");
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
       var expected = new ArtworkDTO() {
         Description = "Föreställer en bil och en ananas",
@@ -169,7 +170,7 @@ namespace Artportable.ImageApi.Tests
       };
 
       //Act
-      ArtworkDTO act = artworkService.Update(artworkToUpdate, artworkId, username);
+      ArtworkDTO act = artworkService.Update(artworkToUpdate, artworkId, mySocialId);
 
       //Assert
       act.Should().BeEquivalentTo(expected, options => options.Excluding(o => o.Id).Excluding(o => o.Published));
@@ -212,28 +213,28 @@ namespace Artportable.ImageApi.Tests
     {
       //Arrange
       var artworkId = new Guid("19459c8f-9b88-4c8f-b314-fb8cec67e225");
-      var username = "tjatte";
+      var socialId = new Guid("5185fe67-a161-468f-ae16-575972553509");
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
       
 
       //Act
-      string randomString;
-      bool act = artworkService.Like(artworkId, username, out randomString);
+      Guid randomString;
+      bool act = artworkService.Like(artworkId, socialId, out randomString);
 
       //Assert
       act.Should().Be(true);
     }
 
     [Fact]
-    public void LikeWithoutUsernameTest()
+    public void LikeWithoutSocialIdTest()
     {
       //Arrange
       var artworkId = new Guid("19459c8f-9b88-4c8f-b314-fb8cec67e225");
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
 
       //Act
-      string randomString;
-      bool act = artworkService.Like(artworkId, null, out randomString);
+      Guid randomString;
+      bool act = artworkService.Like(artworkId, new Guid(), out randomString);
 
       //Assert
       act.Should().Be(false);
@@ -244,12 +245,12 @@ namespace Artportable.ImageApi.Tests
     {
       //Arrange
       var artworkId = new Guid("19459c8f-9b88-4c8f-b314-fb8cec67e225");
-      var username = "tjatte";
+      var socialId = Guid.NewGuid();
       var artworkService = new ArtworkService(_contextMock.Object, _mapperMock.Object);
 
       //Act&Assert
-      string owner;
-      artworkService.Unlike(artworkId, username, out owner);
+      Guid owner;
+      artworkService.Unlike(artworkId, socialId, out owner);
     }
 
 
@@ -262,6 +263,7 @@ namespace Artportable.ImageApi.Tests
           PublicId = new Guid("19459c8f-9b88-4c8f-b314-fb8cec67e225"),
           User = new User {
             Username = "knatte",
+            SocialId = new Guid("5185fe67-a161-468f-ae16-575972553509"),
             File = new File {
               Name = "873c48f4-c353-4c75-b05d-f11167682187.jpg"
             },
@@ -296,10 +298,12 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 1,
           Username = "knatte",
+          SocialId = new Guid("5185fe67-a161-468f-ae16-575972553509"),
         },
         new User {
           Id = 2,
           Username = "tjatte",
+          SocialId = new Guid("7e776776-4f76-44c1-95cf-4a2e0fc2b156"),
         }
       };
     }

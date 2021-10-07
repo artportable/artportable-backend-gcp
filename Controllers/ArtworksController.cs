@@ -77,17 +77,17 @@ namespace Artportable.API.Controllers
     [HttpPost("")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ArtworkDTO>> CreateArtwork([FromBody] ArtworkForCreationDTO dto, string myUsername = null)
+    public async Task<ActionResult<ArtworkDTO>> CreateArtwork([FromBody] ArtworkForCreationDTO dto, Guid mySocialId)
     {
       try
       {
-        var artwork = _artworkService.Create(dto, myUsername);
+        var artwork = _artworkService.Create(dto, mySocialId);
 
         if (artwork == null)
         {
           return BadRequest();
         }
-        await _activityService.CreateArtwork(artwork.Id, artwork.Title, myUsername);
+        await _activityService.CreateArtwork(artwork.Id, artwork.Title, mySocialId);
 
         return Ok(artwork);
       }
@@ -120,17 +120,17 @@ namespace Artportable.API.Controllers
     [HttpPut("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<ArtworkDTO>> UpdateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, string myUsername = null)
+    public async Task<ActionResult<ArtworkDTO>> UpdateArtwork([FromBody] ArtworkForUpdateDTO dto, Guid id, Guid mySocialId)
     {
       try
       {
-        var artwork = _artworkService.Update(dto, id, myUsername);
+        var artwork = _artworkService.Update(dto, id, mySocialId);
 
         if (artwork == null)
         {
           return NotFound();
         }
-        await _activityService.UpdateArtwork(artwork.Id, artwork.Title, myUsername);
+        await _activityService.UpdateArtwork(artwork.Id, artwork.Title, mySocialId);
 
         return Ok(artwork);
       }
@@ -214,15 +214,15 @@ namespace Artportable.API.Controllers
     [HttpPost("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public IActionResult Like(Guid id, string myUsername)
+    public IActionResult Like(Guid id, Guid mySocialId)
     {
       try
       {
-        string creator;
+        Guid creator;
 
-        if (_artworkService.Like(id, myUsername, out creator))
+        if (_artworkService.Like(id, mySocialId, out creator))
         {
-          _activityService.LikeArtwork(id, myUsername, creator);
+          _activityService.LikeArtwork(id, mySocialId, creator);
           return Ok();
         }
 
@@ -241,14 +241,14 @@ namespace Artportable.API.Controllers
     [Authorize]
     [HttpDelete("{id}/like")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
-    public IActionResult Unlike(Guid id, string myUsername)
+    public IActionResult Unlike(Guid id, Guid mySocialId)
     {
       try
       {
-        string owner;
-        if (_artworkService.Unlike(id, myUsername, out owner))
+        Guid owner;
+        if (_artworkService.Unlike(id, mySocialId, out owner))
         {
-          _activityService.UnLikeArtwork(id, myUsername, owner);
+          _activityService.UnLikeArtwork(id, mySocialId, owner);
           return Ok();
         }
         return NotFound();
