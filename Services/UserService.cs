@@ -351,6 +351,11 @@ namespace Artportable.API.Services
       return _context.Users.Any(u => u.Email == email);
     }
 
+    public string GetUsername(Guid socialId)
+    {
+      return _context.Users.FirstOrDefault(u => u.SocialId == socialId)?.Username;
+    }
+
     public string CreateUser(UserDTO user)
     {
       var subscriptionDb = new Entities.Models.Subscription

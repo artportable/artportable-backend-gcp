@@ -128,6 +128,38 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
+    /// Gets a username by socialId
+    /// </summary>
+    /// <param name="socialId"></param>
+    [HttpGet("username")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<string> Get(Guid socialId)
+    {
+      try
+      {
+        if (socialId.Equals(new Guid()))
+        {
+          return StatusCode(StatusCodes.Status404NotFound);
+        }
+
+        var username = _userService.GetUsername(socialId);
+
+        if(username == null)
+        {
+          return StatusCode(StatusCodes.Status404NotFound);
+        }
+
+        return Ok(username);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
     /// Creates a new user
     /// </summary>
     /// <remarks>
