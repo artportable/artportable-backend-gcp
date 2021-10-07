@@ -71,7 +71,7 @@ namespace Artportable.ImageApi.Tests
     }
 
     [Fact]
-    public void FollowithoutUsernameTest()
+    public void FollowithoutSocialIdTest()
     {
       //Arrange
       var socialId = Guid.NewGuid();

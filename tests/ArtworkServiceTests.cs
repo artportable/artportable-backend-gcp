@@ -122,7 +122,7 @@ namespace Artportable.ImageApi.Tests
     }
 
     [Fact]
-    public void CreateArtworkWithoutUsernameTest()
+    public void CreateArtworkWithoutSocialIdTest()
     {
       //Arrange
       var artworkToCreate = new ArtworkForCreationDTO {
@@ -226,7 +226,7 @@ namespace Artportable.ImageApi.Tests
     }
 
     [Fact]
-    public void LikeWithoutUsernameTest()
+    public void LikeWithoutSocialIdTest()
     {
       //Arrange
       var artworkId = new Guid("19459c8f-9b88-4c8f-b314-fb8cec67e225");

@@ -50,7 +50,7 @@ namespace Artportable.ImageApi.Tests
               PrimaryFile = "test1",
               Tags = new List<string>(),
             },
-            "test"
+            Guid.NewGuid()
           },
           new object[]
           {
@@ -62,7 +62,7 @@ namespace Artportable.ImageApi.Tests
               PrimaryFile = "test1",
               Tags = new List<string>(),
             },
-            null
+            Guid.NewGuid()
           }
       };
 
@@ -86,7 +86,7 @@ namespace Artportable.ImageApi.Tests
               Tags = new List<string>(),
             },
             Guid.NewGuid(),
-            "test"
+            Guid.NewGuid()
           },
           new object[]
           {
@@ -99,7 +99,7 @@ namespace Artportable.ImageApi.Tests
               Tags = new List<string>(),
             },
             Guid.NewGuid(),
-            null
+            Guid.NewGuid()
         }
       };
 
