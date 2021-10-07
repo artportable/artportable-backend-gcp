@@ -103,6 +103,7 @@ namespace Artportable.API.Services
       return new ProfileSummaryDTO()
       {
         Username = user.Username,
+        SocialId = user.SocialId,
         ProfilePicture = user.File?.Name,
         Headline = user.UserProfile.Headline,
         Title = user.UserProfile.Title,
@@ -350,6 +351,11 @@ namespace Artportable.API.Services
       return _context.Users.Any(u => u.Email == email);
     }
 
+    public string GetUsername(Guid socialId)
+    {
+      return _context.Users.FirstOrDefault(u => u.SocialId == socialId)?.Username;
+    }
+
     public string CreateUser(UserDTO user)
     {
       var subscriptionDb = new Entities.Models.Subscription
@@ -362,6 +368,7 @@ namespace Artportable.API.Services
       var userDb = new User
       {
         Subscription = subscriptionDb,
+        SocialId = Guid.NewGuid(),
         Username = user.Username,
         Email = user.Email,
         Created = DateTime.Now,
@@ -390,10 +397,10 @@ namespace Artportable.API.Services
         {
           Username = u.Username,
           ProfilePicture = u.File != null ? u.File.Name : null,
-          Product = u.Subscription != null ? u.Subscription.ProductId : 1
+          Product = u.Subscription != null ? u.Subscription.ProductId : 1,
+          SocialId = u.SocialId
         })
         .FirstOrDefault();
-
     }
 
     private void setSafely<T>(T value, Action<T> setAction)

@@ -7,7 +7,7 @@ namespace Artportable.API.Services
   public interface IConnectionService
   {
     List<RecommendationDTO> GetRecommendations(string myUsername);
-    bool Follow(string username, string myUsername);
-    void Unfollow(string username, string myUsernamerId);
+    bool Follow(Guid username, Guid? myUsername);
+    void Unfollow(Guid username, Guid myUsernamerId);
   }
 }

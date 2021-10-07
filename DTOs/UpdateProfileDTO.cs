@@ -18,7 +18,6 @@ namespace Artportable.API.DTOs
     public string Surname { get; set; }
     public string About { get; set; }
 
-    [MaxLength(140)]
     public string InspiredBy { get; set; }
     public StudioDTO Studio { get; set; }
     public SocialMediaDTO SocialMedia { get; set; }

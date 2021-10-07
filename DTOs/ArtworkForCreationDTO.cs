@@ -5,7 +5,6 @@ namespace Artportable.API.DTOs
 {
   public class ArtworkForCreationDTO
   {
-    [Required]
     [MaxLength(200)]
     public string Title { get; set; }
 

@@ -15,11 +15,11 @@ namespace Services
       _streamChatClient = new Client(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
     }
 
-    public TokenDTO ConnectUser(string username)
+    public TokenDTO ConnectUser(string userId)
     {
       try
       {
-        var token = _streamChatClient.CreateToken(username);
+        var token = _streamChatClient.CreateToken(userId);
 
         return new TokenDTO {
           Token = token
@@ -28,7 +28,7 @@ namespace Services
       catch (Exception e)
       {
         //Add logging
-        throw new Exception($"Unknown error when trying to register user with username {username}", e);
+        throw new Exception($"Unknown error when trying to register user with social id {userId}", e);
       }
     }
 

@@ -11,7 +11,8 @@ namespace Artportable.API.Migrations
                 name: "social_id",
                 table: "users",
                 type: "uniqueidentifier",
-                nullable: true);
+                nullable: false,
+                defaultValueSql: "NEWID()");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

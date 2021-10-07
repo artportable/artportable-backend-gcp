@@ -76,6 +76,7 @@ namespace Artportable.API.Services
           .Select(u => new RecommendationDTO()
           {
             Username = u.Username,
+            SocialId = u.SocialId,
             Location = u.UserProfile.Location,
             ProfilePicture = u.File.Name
           })
@@ -95,6 +96,7 @@ namespace Artportable.API.Services
         .Select(u => new RecommendationDTO()
         {
           Username = u.Username,
+          SocialId = u.SocialId,
           Location = u.UserProfile.Location,
           ProfilePicture = u.File.Name
         })
@@ -113,6 +115,7 @@ namespace Artportable.API.Services
           .Select(u => new RecommendationDTO()
           {
             Username = u.Username,
+            SocialId = u.SocialId,
             Location = u.UserProfile.Location,
             ProfilePicture = u.File.Name
           })
@@ -123,10 +126,10 @@ namespace Artportable.API.Services
       return users;
     }
 
-    public bool Follow(string username, string myUsername)
+    public bool Follow(Guid socialId, Guid? mySocialId)
     {
-      var followeeId = _context.Users.FirstOrDefault(u => u.Username == username)?.Id;
-      var myId = _context.Users.FirstOrDefault(u => u.Username == myUsername)?.Id;
+      var followeeId = _context.Users.FirstOrDefault(u => u.SocialId == socialId)?.Id;
+      var myId = _context.Users.FirstOrDefault(u => u.SocialId == mySocialId)?.Id;
 
       if (myId == null || followeeId == null || myId == followeeId)
       {
@@ -150,12 +153,12 @@ namespace Artportable.API.Services
       return true;
     }
 
-    public void Unfollow(string username, string myUsername)
+    public void Unfollow(Guid socialId, Guid mySocialId)
     {
       var record = _context.Connections
         .Include(c => c.Followee)
         .Include(c => c.Follower)
-        .Where(c => c.Followee.Username == username && c.Follower.Username == myUsername)
+        .Where(c => c.Followee.SocialId == socialId && c.Follower.SocialId == mySocialId)
         .FirstOrDefault();
 
       if (record == null)

@@ -11,6 +11,8 @@ namespace Artportable.API.Entities.Models
   {
     [Key]
     public int Id { get; set; }
+
+
     public int SubscriptionId { get; set; }
     public int? FileId { get; set; }
     public int? CoverPhotoFileId { get; set; }
@@ -19,6 +21,10 @@ namespace Artportable.API.Entities.Models
     [Required]
     [MaxLength(50)]
     public string Username { get; set; }
+
+    [Required]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public Guid SocialId { get; set; }
 
     [Required]
     [MaxLength(254)]
@@ -31,6 +37,8 @@ namespace Artportable.API.Entities.Models
     [MaxLength(2)]
     [Comment("According to the ISO 639-1 standard")]
     public string Language { get; set; }
+
+
     public UserProfile UserProfile {get; set; }
     public Subscription Subscription { get; set; }
     public File File { get; set; }
@@ -42,6 +50,5 @@ namespace Artportable.API.Entities.Models
     public ICollection<Connection> FolloweeRef { get; set; }
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
-    public Guid? SocialId { get; set; }
   }
 }

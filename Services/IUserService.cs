@@ -19,6 +19,7 @@ namespace Artportable.API.Services
     bool UserExists(UserDTO user);
     bool UsernameExists(string username);
     bool EmailExists(string email);
+    string GetUsername(Guid socialId);
     string CreateUser(UserDTO user);
     TinyUserDTO Login(string email);
     IEnumerable<TinyUserDTO> GetFollowers(string username);
