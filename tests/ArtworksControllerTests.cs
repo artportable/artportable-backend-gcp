@@ -216,10 +216,10 @@ namespace Artportable.ImageApi.Tests
       var objectResult = result.Result as StatusCodeResult;
       objectResult.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError, "expected result to be unsuccessful");
     }
-
+    
     [Theory]
     [ClassData(typeof(CreateArtWorkCases))]
-    public async void CreateArtworkTest(ArtworkForCreationDTO artwork, string myUsername)
+    public async void CreateArtworkTest(ArtworkForCreationDTO artwork, Guid mySocialId)
     {
       var expected = new ArtworkDTO()
       {
@@ -244,16 +244,16 @@ namespace Artportable.ImageApi.Tests
         Likes = 0,
         Owner = new OwnerDTO()
         {
-          Username = myUsername,
+          SocialId = mySocialId,
           ProfilePicture = "test",
           Location = "test"
         }
       };
-      _artworksServiceMock.Setup(x => x.Create(It.IsAny<ArtworkForCreationDTO>(), It.IsAny<string>())).Returns(expected);
+      _artworksServiceMock.Setup(x => x.Create(It.IsAny<ArtworkForCreationDTO>(), It.IsAny<Guid>())).Returns(expected);
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = await artworksController.CreateArtwork(artwork, myUsername);
+      var result = await artworksController.CreateArtwork(artwork, mySocialId);
 
       //Assert
       var objectResult = result.Result as ObjectResult;
@@ -273,13 +273,13 @@ namespace Artportable.ImageApi.Tests
 
     [Theory]
     [ClassData(typeof(CreateArtWorkCases))]
-    public async void CreateArtworkBadRequestTest(ArtworkForCreationDTO artwork, string myUsername)
+    public async void CreateArtworkBadRequestTest(ArtworkForCreationDTO artwork, Guid mySocialId)
     {
-      _artworksServiceMock.Setup(x => x.Create(It.IsAny<ArtworkForCreationDTO>(), It.IsAny<string>())).Returns<ArtworkDTO>(null);
+      _artworksServiceMock.Setup(x => x.Create(It.IsAny<ArtworkForCreationDTO>(), It.IsAny<Guid>())).Returns<ArtworkDTO>(null);
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = await artworksController.CreateArtwork(artwork, myUsername);
+      var result = await artworksController.CreateArtwork(artwork, mySocialId);
 
       //Assert
       var objectResult = result.Result as StatusCodeResult;
@@ -288,13 +288,13 @@ namespace Artportable.ImageApi.Tests
 
     [Theory]
     [ClassData(typeof(CreateArtWorkCases))]
-    public async void CreateArtworkExceptionTest(ArtworkForCreationDTO artwork, string myUsername)
+    public async void CreateArtworkExceptionTest(ArtworkForCreationDTO artwork, Guid mySocialId)
     {
-      _artworksServiceMock.Setup(x => x.Create(It.IsAny<ArtworkForCreationDTO>(), It.IsAny<string>())).Throws(new Exception());
+      _artworksServiceMock.Setup(x => x.Create(It.IsAny<ArtworkForCreationDTO>(), It.IsAny<Guid>())).Throws(new Exception());
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = await artworksController.CreateArtwork(artwork, myUsername);
+      var result = await artworksController.CreateArtwork(artwork, mySocialId);
 
       //Assert
       var objectResult = result.Result as StatusCodeResult;
@@ -303,7 +303,7 @@ namespace Artportable.ImageApi.Tests
 
     [Theory]
     [ClassData(typeof(UpdateArtWorkCases))]
-    public async void UpdateArtworkTest(ArtworkForUpdateDTO artwork, Guid id, string myUsername)
+    public async void UpdateArtworkTest(ArtworkForUpdateDTO artwork, Guid id, Guid mySocialId)
     {
       var expected = new ArtworkDTO()
       {
@@ -328,16 +328,16 @@ namespace Artportable.ImageApi.Tests
         Likes = 0,
         Owner = new OwnerDTO()
         {
-          Username = myUsername,
+          Username = "test",
           ProfilePicture = "test",
           Location = "test"
         }
       };
-      _artworksServiceMock.Setup(x => x.Update(It.IsAny<ArtworkForUpdateDTO>(), It.IsAny<Guid>(), It.IsAny<string>())).Returns(expected);
+      _artworksServiceMock.Setup(x => x.Update(It.IsAny<ArtworkForUpdateDTO>(), It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(expected);
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = await artworksController.UpdateArtwork(artwork, id, myUsername);
+      var result = await artworksController.UpdateArtwork(artwork, id, mySocialId);
 
       //Assert
       var objectResult = result.Result as ObjectResult;
@@ -357,13 +357,13 @@ namespace Artportable.ImageApi.Tests
 
     [Theory]
     [ClassData(typeof(UpdateArtWorkCases))]
-    public async void UpdateArtworkNotFoundTest(ArtworkForUpdateDTO artwork, Guid id, string myUsername)
+    public async void UpdateArtworkNotFoundTest(ArtworkForUpdateDTO artwork, Guid id, Guid mySocialId)
     {
-      _artworksServiceMock.Setup(x => x.Update(It.IsAny<ArtworkForUpdateDTO>(), It.IsAny<Guid>(), It.IsAny<string>())).Returns<ArtworkDTO>(null);
+      _artworksServiceMock.Setup(x => x.Update(It.IsAny<ArtworkForUpdateDTO>(), It.IsAny<Guid>(), It.IsAny<Guid>())).Returns<ArtworkDTO>(null);
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = await artworksController.UpdateArtwork(artwork, id, myUsername);
+      var result = await artworksController.UpdateArtwork(artwork, id, mySocialId);
 
       //Assert
       var objectResult = result.Result as StatusCodeResult;
@@ -372,13 +372,13 @@ namespace Artportable.ImageApi.Tests
 
     [Theory]
     [ClassData(typeof(UpdateArtWorkCases))]
-    public async void UpdateArtworkExceptionTest(ArtworkForUpdateDTO artwork, Guid id, string myUsername)
+    public async void UpdateArtworkExceptionTest(ArtworkForUpdateDTO artwork, Guid id, Guid mySocialId)
     {
-      _artworksServiceMock.Setup(x => x.Update(It.IsAny<ArtworkForUpdateDTO>(), It.IsAny<Guid>(), It.IsAny<string>())).Throws(new Exception());
+      _artworksServiceMock.Setup(x => x.Update(It.IsAny<ArtworkForUpdateDTO>(), It.IsAny<Guid>(), It.IsAny<Guid>())).Throws(new Exception());
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = await artworksController.UpdateArtwork(artwork, id, myUsername);
+      var result = await artworksController.UpdateArtwork(artwork, id, mySocialId);
 
       //Assert
       var objectResult = result.Result as StatusCodeResult;
@@ -473,12 +473,12 @@ namespace Artportable.ImageApi.Tests
     [Fact]
     public void LikeArtworkTest()
     {
-      var randomString = "random";
-      _artworksServiceMock.Setup(x => x.Like(It.IsAny<Guid>(), It.IsAny<string>(), out randomString)).Returns(true);
+      var randomString = default(Guid);
+      _artworksServiceMock.Setup(x => x.Like(It.IsAny<Guid>(), It.IsAny<Guid>(), out randomString)).Returns(true);
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = artworksController.Like(Guid.NewGuid(), "test");
+      var result = artworksController.Like(Guid.NewGuid(), Guid.NewGuid());
 
       //Assert
       var objectResult = result as StatusCodeResult;
@@ -488,12 +488,12 @@ namespace Artportable.ImageApi.Tests
     [Fact]
     public void LikeArtworkNotFoundTest()
     {
-      var randomString = "random";
-      _artworksServiceMock.Setup(x => x.Like(It.IsAny<Guid>(), It.IsAny<string>(), out randomString)).Returns(false);
+      var randomString = default(Guid);
+      _artworksServiceMock.Setup(x => x.Like(It.IsAny<Guid>(), It.IsAny<Guid>(), out randomString)).Returns(false);
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = artworksController.Like(Guid.NewGuid(), "test");
+      var result = artworksController.Like(Guid.NewGuid(), Guid.NewGuid());
 
       //Assert
       var objectResult = result as StatusCodeResult;
@@ -504,12 +504,12 @@ namespace Artportable.ImageApi.Tests
     [Fact]
     public void LikeArtworkExceptionTest()
     {
-      var randomString = "random";
-      _artworksServiceMock.Setup(x => x.Like(It.IsAny<Guid>(), It.IsAny<string>(), out randomString)).Throws(new Exception());
+      var randomString = default(Guid);
+      _artworksServiceMock.Setup(x => x.Like(It.IsAny<Guid>(), It.IsAny<Guid>(), out randomString)).Throws(new Exception());
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = artworksController.Like(Guid.NewGuid(), "test");
+      var result = artworksController.Like(Guid.NewGuid(), Guid.NewGuid());
 
       //Assert
       var objectResult = result as StatusCodeResult;
@@ -520,11 +520,11 @@ namespace Artportable.ImageApi.Tests
     public void UnlikeArtworkTest()
     {
       //Arrange
-      string randomString;
-      _artworksServiceMock.Setup(x => x.Unlike(It.IsAny<Guid>(), It.IsAny<string>(), out randomString)).Returns(true);
+      Guid randomString;
+      _artworksServiceMock.Setup(x => x.Unlike(It.IsAny<Guid>(), It.IsAny<Guid>(), out randomString)).Returns(true);
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = artworksController.Unlike(Guid.NewGuid(), "test");
+      var result = artworksController.Unlike(Guid.NewGuid(), Guid.NewGuid());
 
       //Assert
       var objectResult = result as StatusCodeResult;
@@ -534,12 +534,12 @@ namespace Artportable.ImageApi.Tests
     [Fact]
     public void UnlikeArtworkExceptionTest()
     {
-      string randomString = "random";
-      _artworksServiceMock.Setup(x => x.Unlike(It.IsAny<Guid>(), It.IsAny<string>(), out randomString)).Throws(new Exception());
+      Guid randomString = default(Guid);
+      _artworksServiceMock.Setup(x => x.Unlike(It.IsAny<Guid>(), It.IsAny<Guid>(), out randomString)).Throws(new Exception());
       //Arrange
       var artworksController = new ArtworksController(_artworksServiceMock.Object, _activityServiceMock.Object);
       //Act
-      var result = artworksController.Unlike(Guid.NewGuid(), "test");
+      var result = artworksController.Unlike(Guid.NewGuid(), Guid.NewGuid());
 
       //Assert
       var objectResult = result as StatusCodeResult;

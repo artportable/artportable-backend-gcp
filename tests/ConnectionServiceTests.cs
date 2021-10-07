@@ -36,13 +36,13 @@ namespace Artportable.ImageApi.Tests
       var expected = new List<RecommendationDTO> {
         new RecommendationDTO {
           Username = "fnatte",
-          SocialId = Guid.NewGuid(),
+          SocialId = new Guid("35c07292-557d-4e67-8637-68cd9c0235a0"),
           Location = "Stockholm",
           ProfilePicture = "eb52120a-43b5-40e0-a7c0-f5f8042f8e77.jpg"
         },
         new RecommendationDTO {
           Username = "tjatte",
-          SocialId = Guid.NewGuid(),
+          SocialId = new Guid("e6ec400b-a0ef-4b0e-8151-1654676ed4ca"),
           Location = "Stockholm",
           ProfilePicture = "96ac2c93-a7c5-4ac8-aa66-2ed1d1c59745.jpg"
         }
@@ -59,8 +59,8 @@ namespace Artportable.ImageApi.Tests
     public void FollowTest()
     {
       //Arrange
-      var socialId = Guid.NewGuid();
-      var mySocialId = Guid.NewGuid();
+      var socialId = new Guid("5185fe67-a161-468f-ae16-575972553509");
+      var mySocialId = new Guid("e6ec400b-a0ef-4b0e-8151-1654676ed4ca");
       var connectionService = new ConnectionService(_contextMock.Object);
 
       //Act
@@ -104,6 +104,7 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 1,
           Username = "knatte",
+          SocialId = new Guid("5185fe67-a161-468f-ae16-575972553509"),
           Artworks = new List<Artwork> (),
           Subscription = new Subscription
           {
@@ -113,6 +114,7 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 2,
           Username = "tjatte",
+          SocialId = new Guid("e6ec400b-a0ef-4b0e-8151-1654676ed4ca"),
           UserProfile = new UserProfile {
             Location = "Stockholm"
           },
@@ -128,6 +130,7 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 3,
           Username = "fnatte",
+          SocialId = new Guid("35c07292-557d-4e67-8637-68cd9c0235a0"),
           UserProfile = new UserProfile {
             Location = "Stockholm"
           },
@@ -157,6 +160,7 @@ namespace Artportable.ImageApi.Tests
         new User {
           Id = 4,
           Username = "kalle",
+          SocialId = new Guid("3852ebe7-484c-4fe9-8cea-69ba3e612a8e"),
           UserProfile = new UserProfile {
             Location = "Stockholm"
           },
