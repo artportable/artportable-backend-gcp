@@ -44,16 +44,25 @@ namespace Artportable.API.Controllers
         var stripeEvent = EventUtility.ConstructEvent(
           json,
           Request.Headers["Stripe-Signature"],
-          _endpointSecret
+          _endpointSecret,
+          throwOnApiVersionMismatch: false // Temporary fix to allow events from older API webhook
         );
 
         _stripeService.HandleEvent(stripeEvent);
 
         return Ok();
       }
-      catch (StripeException)
+      catch (StripeException e)
       {
-        return BadRequest("Failed to verify signature.");
+        if (e.Message.Contains("Received event with API version")) {
+          return BadRequest("Stripe API version error: " + e);
+        } else {
+          return BadRequest("Failed to verify signature.");
+        }
+      }
+      catch (InvalidOperationException)
+      {
+        return BadRequest("No customer with given customer ID found.");
       }
       catch (Exception e) {
         // Log error and send 500 back to Stripe so that they'll retry
