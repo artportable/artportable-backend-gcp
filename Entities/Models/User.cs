@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Artportable.API.Enums;
 
 namespace Artportable.API.Entities.Models
 {
@@ -50,5 +51,7 @@ namespace Artportable.API.Entities.Models
     public ICollection<Connection> FolloweeRef { get; set; }
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
+
+    public AccountBoost MonthlyUser { get; set; }
   }
 }

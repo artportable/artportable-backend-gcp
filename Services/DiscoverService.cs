@@ -129,5 +129,63 @@ namespace Artportable.API.Services
 
       return artists;
     }
+    public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string q, string myUsername, int seed)
+    {
+      var users = _context.Users
+        .FromSqlInterpolated(
+          $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
+          ORDER BY random OFFSET 0 ROWS")
+        .Include(u => u.UserProfile)
+        .Include(u => u.File)
+        .Include(u => u.Artworks)
+        .ThenInclude(a => a.PrimaryFile)
+        .Include(u => u.Artworks)
+        .ThenInclude(a => a.Tags)
+        .Include(u => u.Artworks)
+        .ThenInclude(a => a.Likes);
+
+      var artists = users
+        .Where(u => u.Username != myUsername)
+        .Where(u => u.User == monthlyUser)
+        .Where(u => u.Artworks.Count() > 0)
+        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+        .Where(u => q != null ? u.Username.Contains(q) : true)
+        .Skip(pageSize * (page - 1))
+        .Take(pageSize)
+        .Select(u => new ArtistDTO
+        {
+          Username = u.Username,
+          ProfilePicture = u.File.Name,
+          Location = u.UserProfile.Location,
+          Artworks = u.Artworks
+            .OrderBy(a => a.Likes.Count())
+            .Take(15)
+            .Select(a => new TinyArtworkDTO
+            {
+              Id = a.PublicId,
+              Title = a.Title,
+              PrimaryFile = new FileDTO
+              {
+                Name = a.PrimaryFile.Name,
+                Width = a.PrimaryFile.Width,
+                Height = a.PrimaryFile.Height
+              }
+            })
+            .ToList(),
+          Tags = u.Artworks
+            .SelectMany(a => a.Tags
+              .Select(t => t.Title)
+            )
+            .Take(5)
+            .ToList(),
+          FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
+            _context.Connections
+              .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
+            false
+        })
+        .ToList();
+
+      return artists;
+    }
   }
 }
