@@ -20,5 +20,6 @@ namespace Artportable.API.DTOs
     public List<ExhibitionDTO> Exhibitions { get; set; }
 
     public bool FollowedByMe { get; set; }
+    public bool MonthlyArtist { get; set; }
   }
 }
