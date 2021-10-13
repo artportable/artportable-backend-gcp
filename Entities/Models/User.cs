@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using Artportable.API.Enums;
 
 namespace Artportable.API.Entities.Models
 {
@@ -26,6 +25,8 @@ namespace Artportable.API.Entities.Models
     [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid SocialId { get; set; }
+    
+    public bool MonthlyUser { get; set; }
 
     [Required]
     [MaxLength(254)]
@@ -52,6 +53,5 @@ namespace Artportable.API.Entities.Models
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
 
-    public AccountBoost MonthlyUser { get; set; }
   }
 }
