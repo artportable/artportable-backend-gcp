@@ -133,6 +133,7 @@ namespace Artportable.API.Services
       }
 
       var dto = _mapper.Map<ProfileDTO>(profile);
+      dto.MonthlyArtist = profile.User.MonthlyUser;
 
       if (myUsername != null)
       {
