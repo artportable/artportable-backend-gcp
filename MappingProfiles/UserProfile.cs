@@ -33,7 +33,8 @@ namespace Artportable.API.Profiles
             Behance = src.BehanceUrl,
             Dribble = src.DribbleUrl
           } : null
-        ));
+        ))
+        .ForMember(dest => dest.MonthlyArtist, opt => opt.MapFrom(src => src.User.MonthlyUser));
 
       CreateMap<Education, EducationDTO>().ReverseMap();
       CreateMap<Exhibition, ExhibitionDTO>().ReverseMap();
