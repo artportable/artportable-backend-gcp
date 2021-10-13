@@ -67,7 +67,7 @@ namespace Artportable.API.Services
           } : null,
           Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
           Likes = a.Likes.Count(),
-          LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false
+          LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
         })
         .ToList();
     }
@@ -123,7 +123,8 @@ namespace Artportable.API.Services
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
               .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
-            false
+            false,
+          MonthlyArtist = u.MonthlyUser
         })
         .ToList();
 
@@ -146,7 +147,7 @@ namespace Artportable.API.Services
 
       var artists = users
         .Where(u => u.Username != myUsername)
-        .Where(u => u.User == monthlyUser)
+        .Where(u => u.MonthlyUser)
         .Where(u => u.Artworks.Count() > 0)
         .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
         .Where(u => q != null ? u.Username.Contains(q) : true)
@@ -181,7 +182,8 @@ namespace Artportable.API.Services
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
               .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
-            false
+            false,
+          MonthlyArtist = u.MonthlyUser
         })
         .ToList();
 
