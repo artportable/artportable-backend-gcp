@@ -25,6 +25,8 @@ To migrate database install dotnet-ef:
 
 To create table structure:
 * `dotnet ef migrations add <NAME>`
+
+To update the database manually (usually done automatically when deployed):
 * `dotnet ef database update`
 
 The database can be accessed using the connection string called DockerConnection in `appsettings.Development.json`.
