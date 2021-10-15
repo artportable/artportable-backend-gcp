@@ -9,5 +9,6 @@ namespace Artportable.API.DTOs
     public string ProfilePicture { get; set; }
     public string Location { get; set; }
     public bool FollowedByMe { get; set; }
+    public bool MonthlyArtist { get; set; }
   }
 }

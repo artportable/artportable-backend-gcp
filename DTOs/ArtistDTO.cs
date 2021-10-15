@@ -10,5 +10,6 @@ namespace Artportable.API.DTOs
     public List<TinyArtworkDTO> Artworks { get; set; }
     public List<string> Tags { get; set; }
     public bool FollowedByMe { get; set; }
+    public bool MonthlyArtist { get; set; }
   }
 }

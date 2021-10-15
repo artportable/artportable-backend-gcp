@@ -111,7 +111,8 @@ namespace Artportable.API.Services
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
               .Any(c => c.Followee.Username == artwork.User.Username && c.Follower.Username == myUsername) :
-            false
+            false,
+          MonthlyArtist = artwork.User.MonthlyUser
         },
         Title = artwork.Title,
         Description = artwork.Description,

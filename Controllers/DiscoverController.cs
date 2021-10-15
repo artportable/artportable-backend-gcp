@@ -110,5 +110,46 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    /// <summary>
+    /// Get a collection of monthly artists
+    /// </summary>
+    [HttpGet("monthlyArtists", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtistDTO>))]
+    public ActionResult<List<ArtistDTO>> GetMonthlyArtists(int page = 1, int pageSize = 10, string q = null, string myUsername = null, int? seed = null)
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      if (!seed.HasValue)
+      {
+        seed = _random.Next();
+      }
+
+
+      try
+      {
+        var artists = _discoverService.GetMonthlyArtists(page, pageSize, q, myUsername, seed.Value);
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = urlEncodedQuery, myUsername = myUsername }, page, pageSize, artists.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers","Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artists);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }
