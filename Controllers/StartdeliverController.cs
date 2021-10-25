@@ -21,7 +21,7 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Get a set of artworks for start page
+    /// Endpoint for startdeliver api-sync
     /// </summary>
     [HttpGet("api-sync/users")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<StartDeliverUserSyncDTO>))]

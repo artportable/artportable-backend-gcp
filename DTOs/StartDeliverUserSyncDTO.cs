@@ -8,5 +8,6 @@ namespace Artportable.API.DTOs
     public string email { get; set; }
     [MaxLength(140)]
     public string username { get; set; }
+    public bool active { get; set; }
   }
 }
