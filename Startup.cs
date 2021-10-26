@@ -72,6 +72,7 @@ namespace Artportable.API
       services.AddScoped<IUploadService, BlobService>();
       services.AddScoped<IDiscoverService, DiscoverService>();
       services.AddScoped<IStartService, StartService>();
+      services.AddScoped<IStartDeliverService, StartDeliverService>();
       services.AddScoped<BlobContainerClient>(factory =>
       {
         return new BlobContainerClient(blobClientOptions.ConnectionString, blobClientOptions.ContainerName);

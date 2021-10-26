@@ -8,5 +8,6 @@ namespace Artportable.API.Services
   {
     List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, string q, int seed);
     List<ArtistDTO> GetArtists(int page, int pageSize, string q, string myUsername, int seed);
+    List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string q, string myUsername, int seed);
   }
 }

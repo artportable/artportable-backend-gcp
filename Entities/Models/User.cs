@@ -25,6 +25,8 @@ namespace Artportable.API.Entities.Models
     [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid SocialId { get; set; }
+    
+    public bool MonthlyUser { get; set; }
 
     [Required]
     [MaxLength(254)]
@@ -50,5 +52,6 @@ namespace Artportable.API.Entities.Models
     public ICollection<Connection> FolloweeRef { get; set; }
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
+
   }
 }
