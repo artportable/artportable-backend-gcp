@@ -19,7 +19,7 @@ namespace Artportable.API.Services
 
     public List<StartDeliverUserSyncDTO> GetUsersToSync(int limit, int offset)
     {
-      var users = _context.Users.Where(u => u.Username == "jimpa")
+      var users = _context.Users
         .Skip(offset)
         .Take(limit)
         .Select(u => new StartDeliverUserSyncDTO() 
