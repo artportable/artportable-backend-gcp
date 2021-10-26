@@ -24,9 +24,9 @@ namespace Artportable.API.Services
         .Take(limit)
         .Select(u => new StartDeliverUserSyncDTO() 
         {
-          email = u.Email,
-          username = u.Username,
-          active = true
+          Email = u.Email,
+          Username = u.Username,
+          Active = true
         });
 
       return users.ToList();

@@ -1,13 +1,17 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Artportable.API.DTOs
 {
   public class StartDeliverUserSyncDTO
   {
-    [MaxLength(140)]
-    public string email { get; set; }
-    [MaxLength(140)]
-    public string username { get; set; }
-    public bool active { get; set; }
+    [JsonPropertyName("email")]
+    public string Email { get; set; }
+    
+    [JsonPropertyName("username")]
+    public string Username { get; set; }
+
+    [JsonPropertyName("active")]
+    public bool Active { get; set; }
   }
 }
