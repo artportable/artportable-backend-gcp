@@ -14,10 +14,12 @@ namespace Artportable.API.Controllers
   public class UserController : ControllerBase
   {
     private readonly IUserService _userService;
+    private readonly ITrackService _trackService;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, ITrackService trackService)
     {
       _userService = userService;
+      _trackService = trackService;
     }
 
     /// <summary>
@@ -209,6 +211,8 @@ namespace Artportable.API.Controllers
     public ActionResult<TinyUserDTO> Login(string email)
     {
       var tinyUser = _userService.Login(email);
+
+      _trackService.TrackEvent(Enums.UsageEvent.OpenedApp, email);
 
       return Ok(tinyUser);
     }
