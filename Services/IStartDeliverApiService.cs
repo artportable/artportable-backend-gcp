@@ -4,6 +4,6 @@ namespace Artportable.API.Services
 {
   public interface IStartDeliverApiService
   {
-    Task<string> TrackAppOpenedEvent(string userEmail);
+    Task TrackAppOpenedEvent(string userEmail);
   }
 }

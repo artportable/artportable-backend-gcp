@@ -7,7 +7,7 @@ using Artportable.API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using Options;
+using Artportable.API.Options;
 
 namespace Artportable.API.Controllers
 {

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using IdentityServer4.AccessTokenValidation;
 using Artportable.API.Entities;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Builder;
@@ -17,15 +16,13 @@ using Stripe;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Swagger;
-using Microsoft.Extensions.Azure;
 using Services;
 using Azure.Storage.Blobs;
-using Options;
 using System.Diagnostics.CodeAnalysis;
 using Artportable.API.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Artportable.API.Options;
 
 namespace Artportable.API
 {
@@ -56,9 +53,13 @@ namespace Artportable.API
       var blobClientOptions = _configuration
           .GetSection("BlobContainer")
           .Get<BlobContainerClientOptions>();
+      var startDeliverOptions = _configuration
+          .GetSection("StartDeliver")
+          .Get<StartDeliverOptions>();
       services.Configure<ProductCodes>(_configuration.GetSection("Stripe:Products"));
       services.Configure<StripeOptions>(_configuration.GetSection("Stripe"));
       services.Configure<StreamOptions>(_configuration.GetSection("Stream"));
+      services.Configure<StartDeliverOptions>(_configuration.GetSection("StartDeliver"));
 
       // Registered services
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -74,9 +75,9 @@ namespace Artportable.API
       services.AddScoped<IStartService, StartService>();
       services.AddScoped<IStartDeliverService, StartDeliverService>();
       services.AddScoped<ITrackService, TrackService>();
-      services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c => 
+      services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c =>
       {
-        c.BaseAddress = new Uri("https://e.startdeliver.io/");
+        c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
       });
       services.AddScoped<BlobContainerClient>(factory =>
       {

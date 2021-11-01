@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Routing;
 
-namespace Extentions
+namespace Artportable.API.Extentions
 {
   public static class RouteDataExtension
   {
