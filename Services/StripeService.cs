@@ -4,8 +4,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using Artportable.API.Entities;
 using Artportable.API.Enums;
+using Artportable.API.Options;
 using Microsoft.Extensions.Options;
-using Options;
 using Stripe;
 
 namespace Artportable.API.Services

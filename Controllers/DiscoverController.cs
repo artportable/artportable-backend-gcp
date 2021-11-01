@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Artportable.API.DTOs;
+using Artportable.API.Extentions;
 using Artportable.API.Services;
-using Extentions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;

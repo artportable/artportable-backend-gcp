@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace Extentions
+namespace Artportable.API.Extentions
 {
   public static class UrlHelperExtentions
   {

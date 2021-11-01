@@ -1,4 +1,4 @@
-namespace Options
+namespace Artportable.API.Options
 {
   public class StreamOptions
   {
