@@ -9,5 +9,6 @@ namespace Artportable.API.Options
   {
     public string ApiSyncKey { get; set; }
     public string BaseUrl { get; set; }
+    public string UsageEventKey { get; set; }
   }
 }

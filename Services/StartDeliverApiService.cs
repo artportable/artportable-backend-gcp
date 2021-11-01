@@ -5,8 +5,10 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Artportable.API.Enums;
+using Artportable.API.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Artportable.API.Services
 {
@@ -15,12 +17,14 @@ namespace Artportable.API.Services
     private HttpClient _httpClient;
     private IConfiguration _configuration;
     private IHostEnvironment _env;
+    private readonly StartDeliverOptions _startDeliverOptions;
 
-    public StartDeliverApiService(HttpClient httpClient, IConfiguration configuration, IHostEnvironment environment)
+    public StartDeliverApiService(HttpClient httpClient, IConfiguration configuration, IHostEnvironment environment, IOptions<StartDeliverOptions> startDeliverOptions)
     {
       _configuration = configuration;
       _env = environment;
       _httpClient = httpClient;
+      _startDeliverOptions = startDeliverOptions.Value;
     }
 
     public HttpClient GetClient => _httpClient;
@@ -30,7 +34,7 @@ namespace Artportable.API.Services
       var serialized = JsonSerializer.Serialize(dto);
       var urlEncodedDto = WebUtility.UrlEncode(serialized);
       var queryParams = $"?m={urlEncodedDto}";
-      var response = await _httpClient.GetAsync(queryParams);
+      var response = await _httpClient.GetAsync("");
       if (!response.IsSuccessStatusCode)
       {
         Console.WriteLine("Failed to track event");
@@ -46,7 +50,7 @@ namespace Artportable.API.Services
 
       var dto = new StartDeliverUsageEventDTO()
       {
-        Key = _configuration.GetValue<string>("StartDeliver:UsageEventKey"),
+        Key = _startDeliverOptions.UsageEventKey,
         UsageType = UsageEvent.OpenedApp.ToString(),
         Email = userEmail
       };
