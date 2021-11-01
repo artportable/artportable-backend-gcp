@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Artportable.API.DTOs;
+using Artportable.API.Options;
 using Artportable.API.Services;
 using Microsoft.Extensions.Options;
-using Options;
 using Stream;
 
 namespace Services

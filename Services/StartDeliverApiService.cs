@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -17,35 +18,34 @@ namespace Artportable.API.Services
 
     public StartDeliverApiService(HttpClient httpClient, IConfiguration configuration, IHostEnvironment environment)
     {
-        _configuration = configuration;
-        _env = environment;
-        _httpClient = httpClient;
+      _configuration = configuration;
+      _env = environment;
+      _httpClient = httpClient;
     }
 
     public HttpClient GetClient => _httpClient;
 
-    public async Task<string> TrackUsageEvent(StartDeliverUsageEventDTO dto) 
+    public async Task TrackUsageEvent(StartDeliverUsageEventDTO dto)
     {
       var serialized = JsonSerializer.Serialize(dto);
       var urlEncodedDto = WebUtility.UrlEncode(serialized);
       var queryParams = $"?m={urlEncodedDto}";
-      using (var requestMessage =
-        new HttpRequestMessage(HttpMethod.Get, "")) 
+      var response = await _httpClient.GetAsync(queryParams);
+      if (!response.IsSuccessStatusCode)
       {
-        var response = await _httpClient.SendAsync(requestMessage);
-       
-        return await response.Content.ReadAsStringAsync();
+        Console.WriteLine("Failed to track event");
       }
     }
-    public async Task<string> TrackAppOpenedEvent(string userEmail) 
+    public async Task TrackAppOpenedEvent(string userEmail)
     {
       // There is no test environment at startdeliver as of now. Dont track
-      if(!_env.IsProduction()) {
-        return null;
+      if (!_env.IsProduction())
+      {
+        return;
       }
 
-      var dto = new StartDeliverUsageEventDTO() 
-      { 
+      var dto = new StartDeliverUsageEventDTO()
+      {
         Key = _configuration.GetValue<string>("StartDeliver:UsageEventKey"),
         UsageType = UsageEvent.OpenedApp.ToString(),
         Email = userEmail
@@ -54,13 +54,10 @@ namespace Artportable.API.Services
       var serialized = JsonSerializer.Serialize(dto);
       var urlEncodedDto = WebUtility.UrlEncode(serialized);
       var queryParams = $"?m={urlEncodedDto}";
-
-      using (var requestMessage =
-        new HttpRequestMessage(HttpMethod.Get, queryParams)) 
+      var response = await _httpClient.GetAsync(queryParams);
+      if (!response.IsSuccessStatusCode)
       {
-        var response = await _httpClient.SendAsync(requestMessage);
-       
-        return await response.Content.ReadAsStringAsync();
+        Console.WriteLine("Failed to track event");
       }
     }
   }

@@ -9,6 +9,7 @@
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
+    <RootNamespace>Artportable.API</RootNamespace>
 
   </PropertyGroup>
 
