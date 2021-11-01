@@ -33,7 +33,6 @@ namespace Artportable.API.Services
     {
       var serialized = JsonSerializer.Serialize(dto);
       var urlEncodedDto = WebUtility.UrlEncode(serialized);
-      var queryParams = $"?m={urlEncodedDto}";
       var response = await _httpClient.GetAsync("");
       if (!response.IsSuccessStatusCode)
       {
