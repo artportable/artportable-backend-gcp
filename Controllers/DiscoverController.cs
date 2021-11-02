@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Artportable.API.DTOs;
 using Artportable.API.Extentions;
+using Artportable.API.Interfaces.Services;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace Artportable.API.Controllers
   public class DiscoverController : ControllerBase
   {
     private readonly IDiscoverService _discoverService;
+    private readonly ISearchService _searchService;
     private readonly Random _random;
 
-    public DiscoverController(IDiscoverService discoverService)
+    public DiscoverController(IDiscoverService discoverService, ISearchService searchService)
     {
       _discoverService = discoverService;
+      _searchService = searchService;
       _random = new Random();
     }
 
@@ -46,15 +49,23 @@ namespace Artportable.API.Controllers
         pageSize = 1000;
       }
 
-      if (!seed.HasValue)
+      if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
       {
         seed = _random.Next();
       }
 
       try
       {
-        var artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, q, seed.Value);
-        
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetArtworks(page, pageSize, tags, myUsername, seed.Value);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
         var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
@@ -87,19 +98,27 @@ namespace Artportable.API.Controllers
         pageSize = 1000;
       }
 
-      if (!seed.HasValue)
+      if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
       {
         seed = _random.Next();
       }
 
-
       try
       {
-        var artists = _discoverService.GetArtists(page, pageSize, q, myUsername, seed.Value);
+
+        var artists = new List<ArtistDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artists = _discoverService.GetArtists(page, pageSize, myUsername, seed.Value);
+        }
+        else
+        {
+          artists = _searchService.SearchArtists(page, pageSize, myUsername, q);
+        }
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
         var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = urlEncodedQuery, myUsername = myUsername }, page, pageSize, artists.Count);
-        Response.Headers.Add("Access-Control-Expose-Headers","Link");
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
         return Ok(artists);
@@ -128,7 +147,7 @@ namespace Artportable.API.Controllers
         pageSize = 1000;
       }
 
-      if (!seed.HasValue)
+      if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
       {
         seed = _random.Next();
       }
@@ -136,11 +155,20 @@ namespace Artportable.API.Controllers
 
       try
       {
-        var artists = _discoverService.GetMonthlyArtists(page, pageSize, q, myUsername, seed.Value);
+        var artists = new List<ArtistDTO>();
+
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artists = _discoverService.GetMonthlyArtists(page, pageSize, myUsername, seed.Value);
+        }
+        else
+        {
+          artists = _searchService.SearchMonthlyArtists(page, pageSize, myUsername, q);
+        }
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
         var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = urlEncodedQuery, myUsername = myUsername }, page, pageSize, artists.Count);
-        Response.Headers.Add("Access-Control-Expose-Headers","Link");
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
         return Ok(artists);

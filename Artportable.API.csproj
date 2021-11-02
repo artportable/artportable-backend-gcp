@@ -33,6 +33,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="NinjaNye.SearchExtensions" Version="3.0.1" />
     <PackageReference Include="stream-chat-net" Version="0.14.0" />
     <PackageReference Include="stream-net" Version="4.3.0" />
     <PackageReference Include="Stripe.net" Version="39.39.0" />
