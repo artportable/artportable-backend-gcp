@@ -22,21 +22,14 @@ namespace Artportable.API.Services
         throw new ArgumentNullException(nameof(mapper));
     }
 
-    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, string q, int seed)
+    public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Bas)
     {
       return _context.Artworks
         .FromSqlInterpolated(
           $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
           ORDER BY random OFFSET 0 ROWS")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-        .Where(a => a.User.Subscription.ProductId != (int)ProductEnum.Bas)
-        .Where(a => q != null
-          ?
-            a.Title.Contains(q) || 
-            a.User.Username.Contains(q) ||
-            a.User.UserProfile.Name.Contains(q) ||
-            a.User.UserProfile.Surname.Contains(q)
-          : true)
+        .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
         .Select(a =>
@@ -71,14 +64,14 @@ namespace Artportable.API.Services
             Width = a.TertiaryFile.Width,
             Height = a.TertiaryFile.Height
           } : null,
-          Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
+          Tags = (a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()),
           Likes = a.Likes.Count(),
           LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
         })
         .ToList();
     }
 
-    public List<ArtistDTO> GetArtists(int page, int pageSize, string q, string myUsername, int seed)
+    public List<ArtistDTO> GetArtists(int page, int pageSize, string myUsername, int seed, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio)
     {
       var users = _context.Users
         .FromSqlInterpolated(
@@ -93,112 +86,105 @@ namespace Artportable.API.Services
         .Include(u => u.Artworks)
         .ThenInclude(a => a.Likes);
 
-      var artists = users
-        .Where(u => u.Username != myUsername)
-        .Where(u => u.Artworks.Count() > 0)
-        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
-        .Where(u => q != null 
-          ? 
-            u.Username.Contains(q) ||
-            u.UserProfile.Name.Contains(q) ||
-            u.UserProfile.Surname.Contains(q)
-          : true)
-        .Skip(pageSize * (page - 1))
-        .Take(pageSize)
-        .Select(u => new ArtistDTO
-        {
-          Username = u.Username,
-          ProfilePicture = u.File.Name,
-          Location = u.UserProfile.Location,
-          Artworks = u.Artworks
-            .OrderBy(a => a.Likes.Count())
-            .Take(15)
-            .Select(a => new TinyArtworkDTO
+    var artists = users
+      .Where(u => u.Username != myUsername)
+      .Where(u => u.Artworks.Count() > minArtworks)
+      .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
+      .Skip(pageSize * (page - 1))
+      .Take(pageSize)
+      .Select(u => new ArtistDTO
+      {
+        Username = u.Username,
+        ProfilePicture = u.File.Name,
+        Location = u.UserProfile.Location,
+        Artworks = u.Artworks
+          .OrderBy(a => a.Likes.Count())
+          .Take(15)
+          .Select(a => new TinyArtworkDTO
+          {
+            Id = a.PublicId,
+            Title = a.Title,
+            PrimaryFile = new FileDTO
             {
-              Id = a.PublicId,
-              Title = a.Title,
-              PrimaryFile = new FileDTO
-              {
-                Name = a.PrimaryFile.Name,
-                Width = a.PrimaryFile.Width,
-                Height = a.PrimaryFile.Height
-              }
-            })
-            .ToList(),
-          Tags = u.Artworks
-            .SelectMany(a => a.Tags
-              .Select(t => t.Title)
-            )
-            .Take(5)
-            .ToList(),
-          FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
-            _context.Connections
-              .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
-            false,
-          MonthlyArtist = u.MonthlyUser
-        })
-        .ToList();
+              Name = a.PrimaryFile.Name,
+              Width = a.PrimaryFile.Width,
+              Height = a.PrimaryFile.Height
+            }
+          })
+          .ToList(),
+        Tags = u.Artworks
+          .SelectMany(a => a.Tags
+            .Select(t => t.Title)
+          )
+          .Take(5)
+          .ToList(),
+        FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
+          _context.Connections
+            .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
+          false,
+        MonthlyArtist = u.MonthlyUser
+      })
+      .ToList();
 
       return artists;
     }
-    public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string q, string myUsername, int seed)
-    {
-      var users = _context.Users
-        .FromSqlInterpolated(
-          $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
+  public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string myUsername, int seed)
+  {
+    var users = _context.Users
+      .FromSqlInterpolated(
+        $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
           ORDER BY random OFFSET 0 ROWS")
-        .Include(u => u.UserProfile)
-        .Include(u => u.File)
-        .Include(u => u.Artworks)
-        .ThenInclude(a => a.PrimaryFile)
-        .Include(u => u.Artworks)
-        .ThenInclude(a => a.Tags)
-        .Include(u => u.Artworks)
-        .ThenInclude(a => a.Likes);
+      .Include(u => u.UserProfile)
+      .Include(u => u.File)
+      .Include(u => u.Artworks)
+      .ThenInclude(a => a.PrimaryFile)
+      .Include(u => u.Artworks)
+      .ThenInclude(a => a.Tags)
+      .Include(u => u.Artworks)
+      .ThenInclude(a => a.Likes);
 
-      var artists = users
-        .Where(u => u.Username != myUsername)
-        .Where(u => u.MonthlyUser)
-        .Where(u => u.Artworks.Count() > 0)
-        .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
-        .Where(u => q != null ? u.Username.Contains(q) : true)
-        .Skip(pageSize * (page - 1))
-        .Take(pageSize)
-        .Select(u => new ArtistDTO
-        {
-          Username = u.Username,
-          ProfilePicture = u.File.Name,
-          Location = u.UserProfile.Location,
-          Artworks = u.Artworks
-            .OrderBy(a => a.Likes.Count())
-            .Take(15)
-            .Select(a => new TinyArtworkDTO
+    var artists = users
+      .Where(u => u.Username != myUsername)
+      .Where(u => u.MonthlyUser)
+      .Where(u => u.Artworks.Count() > 0)
+      .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+      .Skip(pageSize * (page - 1))
+      .Take(pageSize)
+      .Select(u => new ArtistDTO
+      {
+        Username = u.Username,
+        ProfilePicture = u.File.Name,
+        Location = u.UserProfile.Location,
+        Artworks = u.Artworks
+          .OrderBy(a => a.Likes.Count())
+          .Take(15)
+          .Select(a => new TinyArtworkDTO
+          {
+            Id = a.PublicId,
+            Title = a.Title,
+            PrimaryFile = new FileDTO
             {
-              Id = a.PublicId,
-              Title = a.Title,
-              PrimaryFile = new FileDTO
-              {
-                Name = a.PrimaryFile.Name,
-                Width = a.PrimaryFile.Width,
-                Height = a.PrimaryFile.Height
-              }
-            })
-            .ToList(),
-          Tags = u.Artworks
-            .SelectMany(a => a.Tags
-              .Select(t => t.Title)
-            )
-            .Take(5)
-            .ToList(),
-          FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
-            _context.Connections
-              .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
-            false,
-          MonthlyArtist = u.MonthlyUser
-        })
-        .ToList();
+              Name = a.PrimaryFile.Name,
+              Width = a.PrimaryFile.Width,
+              Height = a.PrimaryFile.Height
+            }
+          })
+          .ToList(),
+        Tags = u.Artworks
+          .SelectMany(a => a.Tags
+            .Select(t => t.Title)
+          )
+          .Take(5)
+          .ToList(),
+        FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
+          _context.Connections
+            .Any(c => c.Followee.Username == u.Username && c.Follower.Username == myUsername) :
+          false,
+        MonthlyArtist = u.MonthlyUser
+      })
+      .ToList();
 
-      return artists;
-    }
+    return artists;
   }
+}
 }
