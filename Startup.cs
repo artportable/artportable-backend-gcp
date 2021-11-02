@@ -23,6 +23,7 @@ using Artportable.API.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Artportable.API.Options;
+using Artportable.API.Interfaces.Services;
 
 namespace Artportable.API
 {
@@ -72,6 +73,7 @@ namespace Artportable.API
       services.AddScoped<IImageService, ImageService>();
       services.AddScoped<IUploadService, BlobService>();
       services.AddScoped<IDiscoverService, DiscoverService>();
+      services.AddScoped<ISearchService, SearchService>();
       services.AddScoped<IStartService, StartService>();
       services.AddScoped<IStartDeliverService, StartDeliverService>();
       services.AddScoped<ITrackService, TrackService>();
