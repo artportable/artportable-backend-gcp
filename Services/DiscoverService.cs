@@ -87,7 +87,6 @@ namespace Artportable.API.Services
         .ThenInclude(a => a.Likes);
 
     var artists = users
-      .Where(u => u.Username != myUsername)
       .Where(u => u.Artworks.Count() > minArtworks)
       .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
       .Skip(pageSize * (page - 1))
@@ -144,7 +143,6 @@ namespace Artportable.API.Services
       .ThenInclude(a => a.Likes);
 
     var artists = users
-      .Where(u => u.Username != myUsername)
       .Where(u => u.MonthlyUser)
       .Where(u => u.Artworks.Count() > 0)
       .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
