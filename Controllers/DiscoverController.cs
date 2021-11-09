@@ -25,6 +25,7 @@ namespace Artportable.API.Controllers
       _random = new Random();
     }
 
+    #region Artworks
     /// <summary>
     /// Get a collection of art
     /// </summary>
@@ -82,6 +83,60 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
+    /// Get a collection of art ordered by most likes
+    /// </summary>
+    [HttpGet("artworks/top", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetTopArtworks(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetTopArtworks(page, pageSize, tags, myUsername);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    #endregion
+
+    #region Artists
+
+    /// <summary>
     /// Get a collection of artists
     /// </summary>
     [HttpGet("artists", Name = "[controller]_[action]")]
@@ -118,6 +173,50 @@ namespace Artportable.API.Controllers
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
         var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, q = urlEncodedQuery, myUsername = myUsername }, page, pageSize, artists.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artists);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Get a collection of artists ordered by most followers
+    /// </summary>
+    [HttpGet("artists/top", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtistDTO>))]
+    public ActionResult<List<ArtistDTO>> GetTopArtists(int page = 1, int pageSize = 10, string q = null, string myUsername = null)
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+
+        var artists = new List<ArtistDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artists = _discoverService.GetTopArtists(page, pageSize, myUsername);
+        }
+        else
+        {
+          artists = _searchService.SearchArtists(page, pageSize, myUsername, q);
+        }
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { q = urlEncodedQuery, myUsername = myUsername }, page, pageSize, artists.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
@@ -180,4 +279,5 @@ namespace Artportable.API.Controllers
       }
     }
   }
+  #endregion
 }
