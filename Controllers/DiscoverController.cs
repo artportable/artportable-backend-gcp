@@ -16,13 +16,15 @@ namespace Artportable.API.Controllers
   {
     private readonly IDiscoverService _discoverService;
     private readonly ISearchService _searchService;
+    private readonly ICrmService _crmService;
     private readonly Random _random;
 
-    public DiscoverController(IDiscoverService discoverService, ISearchService searchService)
+    public DiscoverController(IDiscoverService discoverService, ISearchService searchService, ICrmService crmService)
     {
       _discoverService = discoverService;
       _searchService = searchService;
       _random = new Random();
+      _crmService = crmService;
     }
 
     #region Artworks
@@ -40,6 +42,8 @@ namespace Artportable.API.Controllers
       int? seed = null
     )
     {
+      _crmService.RegisterPurchase().RunSynchronously();
+
       if (page < 1 || pageSize < 1)
       {
         return BadRequest();

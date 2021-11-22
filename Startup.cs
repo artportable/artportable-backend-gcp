@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Artportable.API.Options;
 using Artportable.API.Interfaces.Services;
+using Artportable.API.Handlers;
 
 namespace Artportable.API
 {
@@ -57,10 +58,14 @@ namespace Artportable.API
       var startDeliverOptions = _configuration
           .GetSection("StartDeliver")
           .Get<StartDeliverOptions>();
+      var upsalesOptions = _configuration
+      .GetSection("Upsales")
+      .Get<UpsalesOptions>();
       services.Configure<ProductCodes>(_configuration.GetSection("Stripe:Products"));
       services.Configure<StripeOptions>(_configuration.GetSection("Stripe"));
       services.Configure<StreamOptions>(_configuration.GetSection("Stream"));
       services.Configure<StartDeliverOptions>(_configuration.GetSection("StartDeliver"));
+
 
       // Registered services
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -81,6 +86,14 @@ namespace Artportable.API
       {
         c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
       });
+
+      services.AddTransient<UpsalesMessageHandler>(
+        s => new UpsalesMessageHandler(upsalesOptions.ApiKey)
+      );
+      services.AddHttpClient<ICrmService, UpsalesService>(c =>
+      {
+        c.BaseAddress = new Uri(upsalesOptions.BaseUrl);
+      }).AddHttpMessageHandler<UpsalesMessageHandler>();
       services.AddScoped<BlobContainerClient>(factory =>
       {
         return new BlobContainerClient(blobClientOptions.ConnectionString, blobClientOptions.ContainerName);
