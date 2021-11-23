@@ -25,6 +25,7 @@ using Microsoft.IdentityModel.Tokens;
 using Artportable.API.Options;
 using Artportable.API.Interfaces.Services;
 using Artportable.API.Handlers;
+using Microsoft.Net.Http.Headers;
 
 namespace Artportable.API
 {
@@ -65,6 +66,7 @@ namespace Artportable.API
       services.Configure<StripeOptions>(_configuration.GetSection("Stripe"));
       services.Configure<StreamOptions>(_configuration.GetSection("Stream"));
       services.Configure<StartDeliverOptions>(_configuration.GetSection("StartDeliver"));
+      services.Configure<UpsalesOptions>(_configuration.GetSection("Upsales"));
 
 
       // Registered services
@@ -85,6 +87,8 @@ namespace Artportable.API
       services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c =>
       {
         c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
+        c.DefaultRequestHeaders.Add(HeaderNames.ContentType, "application/json");
+        c.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
       });
 
       services.AddTransient<UpsalesMessageHandler>(

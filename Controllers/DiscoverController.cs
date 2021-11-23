@@ -42,8 +42,6 @@ namespace Artportable.API.Controllers
       int? seed = null
     )
     {
-      _crmService.RegisterPurchase().RunSynchronously();
-
       if (page < 1 || pageSize < 1)
       {
         return BadRequest();

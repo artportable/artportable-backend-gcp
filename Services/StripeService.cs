@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using Artportable.API.Entities;
 using Artportable.API.Enums;
+using Artportable.API.Interfaces.Services;
 using Artportable.API.Options;
 using Microsoft.Extensions.Options;
 using Stripe;
@@ -13,9 +15,10 @@ namespace Artportable.API.Services
   public class StripeService : IStripeService
   {
     ImmutableDictionary<string, ProductEnum> _products;
-    private APContext _context;
+    private readonly ICrmService _crmService;
+    private readonly APContext _context;
 
-    public StripeService(APContext apContext, IOptions<ProductCodes> productCodes)
+    public StripeService(APContext apContext, IOptions<ProductCodes> productCodes, ICrmService crmService)
     {
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
@@ -29,6 +32,8 @@ namespace Artportable.API.Services
           productCodes.Value.Portfolio, ProductEnum.Portfolio
         }
       }.ToImmutableDictionary();
+
+      _crmService = crmService;
     }
 
     public void HandleEvent(Event e)
@@ -43,24 +48,34 @@ namespace Artportable.API.Services
         case (Events.InvoicePaid):
         case (Events.CustomerSubscriptionUpdated):
           var product = _products.FirstOrDefault(p => p.Key == subscription.Items.Data[0].Price.ProductId).Value;
-          SetSubscripiton(subscription.CustomerId, product, subscription.CurrentPeriodEnd);
+          _ = Task.Run(async () =>
+                {
+                  await _crmService.RegisterPurchase(
+                    subscription.CustomerId,
+                    product,
+                    (Convert.ToDecimal(subscription.Items.Data[0].Price.UnitAmount / 100)),
+                    subscription.Items.Data[0].Price.Currency.ToUpper(),
+                    Enum.TryParse<PaymentIntervalEnum>(subscription.PendingInvoiceItemInterval.Interval, true, out var interval) ? interval : PaymentIntervalEnum.Month);
+                }
+              );
+          SetSubscription(subscription.CustomerId, product, subscription.CurrentPeriodEnd);
           break;
         // Downgrade to Bas
         case (Events.CustomerSubscriptionDeleted):
         case (Events.PaymentIntentPaymentFailed):
         case (Events.PaymentIntentRequiresAction):
         case (Events.InvoicePaymentFailed):
-          SetSubscripiton(subscription.CustomerId, ProductEnum.Bas, null);
+          SetSubscription(subscription.CustomerId, ProductEnum.Bas, null);
           break;
         default:
           return;
       }
     }
 
-    private void SetSubscripiton(string customerId, ProductEnum product, DateTime? expirationDate)
+    private void SetSubscription(string customerId, ProductEnum product, DateTime? expirationDate)
     {
       var subscription = _context.Subscriptions.Where(s => s.CustomerId == customerId).Single();
-      subscription.ProductId = (int) product;
+      subscription.ProductId = (int)product;
       subscription.ExpirationDate = expirationDate;
       _context.SaveChanges();
     }
