@@ -16,15 +16,13 @@ namespace Artportable.API.Controllers
   {
     private readonly IDiscoverService _discoverService;
     private readonly ISearchService _searchService;
-    private readonly ICrmService _crmService;
     private readonly Random _random;
 
-    public DiscoverController(IDiscoverService discoverService, ISearchService searchService, ICrmService crmService)
+    public DiscoverController(IDiscoverService discoverService, ISearchService searchService)
     {
       _discoverService = discoverService;
       _searchService = searchService;
       _random = new Random();
-      _crmService = crmService;
     }
 
     #region Artworks
