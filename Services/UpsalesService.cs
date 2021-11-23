@@ -18,6 +18,7 @@ using ContextUser = Artportable.API.Entities.Models.User;
 using System;
 using User = Artportable.API.DTOs.Upsales.User;
 using Product = Artportable.API.DTOs.Upsales.Product;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Artportable.API.Services
 {
@@ -28,11 +29,11 @@ namespace Artportable.API.Services
     private readonly ILogger<UpsalesService> _logger;
     private readonly UpsalesOptions _config;
     private APContext _context;
-    public UpsalesService(HttpClient httpClient, ILogger<UpsalesService> logger, APContext apContext, IOptions<UpsalesOptions> options)
+    public UpsalesService(HttpClient httpClient, ILogger<UpsalesService> logger, IOptions<UpsalesOptions> options, IServiceProvider serviceProvider)
     {
       _httpClient = httpClient;
       _logger = logger;
-      _context = apContext;
+      _context = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<APContext>();
       _config = options.Value;
     }
     public async Task RegisterPurchase(string subscriptionCustomerId, ProductEnum product, decimal price, string currency, PaymentIntervalEnum intervalEnum)

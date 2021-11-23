@@ -50,12 +50,19 @@ namespace Artportable.API.Services
           var product = _products.FirstOrDefault(p => p.Key == subscription.Items.Data[0].Price.ProductId).Value;
           _ = Task.Run(async () =>
                 {
-                  await _crmService.RegisterPurchase(
-                    subscription.CustomerId,
-                    product,
-                    (Convert.ToDecimal(subscription.Items.Data[0].Price.UnitAmount / 100)),
-                    subscription.Items.Data[0].Price.Currency.ToUpper(),
-                    Enum.TryParse<PaymentIntervalEnum>(subscription.PendingInvoiceItemInterval.Interval, true, out var interval) ? interval : PaymentIntervalEnum.Month);
+                  try
+                  {
+                    await _crmService.RegisterPurchase(
+                      subscription.CustomerId,
+                      product,
+                      (Convert.ToDecimal(subscription.Items.Data[0].Price.UnitAmount / 100)),
+                      subscription.Items.Data[0].Price.Currency.ToUpper(),
+                      Enum.TryParse<PaymentIntervalEnum>(subscription.Items.Data[0].Plan.Interval, true, out var interval) ? interval : PaymentIntervalEnum.Month);
+                  }
+                  catch (System.Exception)
+                  {
+
+                  }
                 }
               );
           SetSubscription(subscription.CustomerId, product, subscription.CurrentPeriodEnd);
