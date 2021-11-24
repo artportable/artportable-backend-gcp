@@ -25,7 +25,6 @@ namespace Artportable.API.Services
   public class UpsalesService : ICrmService
   {
     private readonly HttpClient _httpClient;
-    ImmutableDictionary<string, ProductEnum> _products;
     private readonly ILogger<UpsalesService> _logger;
     private readonly UpsalesOptions _config;
     private APContext _context;
