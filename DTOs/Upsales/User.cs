@@ -1,0 +1,10 @@
+using System.Text.Json.Serialization;
+
+namespace Artportable.API.DTOs.Upsales
+{
+  public class User
+  {
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+  }
+}
