@@ -55,7 +55,7 @@ namespace Artportable.API.Services
         if (upsalesProduct == null)
           return; //unknown product
 
-        await CreateOrder(contact.Client.Id, $"{contact.Client.Name} {product.ToString()} {intervalEnum.ToString()}", upsalesProduct.Id, price, currency);
+        await CreateOrder(contact.Client.Id, $"{contact.Client.Name} {upsalesProduct.Name}", upsalesProduct.Id, price, currency);
       }
     }
 

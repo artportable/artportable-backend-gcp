@@ -38,41 +38,47 @@ namespace Artportable.API.Services
 
     public void HandleEvent(Event e)
     {
-      var subscription = e.Data.Object as Subscription;
-
+      ProductEnum product;
       switch (e.Type)
       {
         // Set new subscription and expiration date
-        case (Events.CustomerSubscriptionCreated):
-        case (Events.PaymentIntentSucceeded):
         case (Events.InvoicePaid):
+          var invoice = e.Data.Object as Invoice;
+          var stripeProduct = _products.FirstOrDefault(p => p.Key == invoice.Lines.Data[0].Price.ProductId);
+          if (stripeProduct.Key != null)
+          {
+            _ = Task.Run(async () =>
+                  {
+                    try
+                    {
+                      await _crmService.RegisterPurchase(
+                        invoice.CustomerId,
+                        stripeProduct.Value,
+                        (Convert.ToDecimal(invoice.Lines.Data[0].Price.UnitAmount / 100)),
+                        invoice.Lines.Data[0].Price.Currency.ToUpper(),
+                        Enum.TryParse<PaymentIntervalEnum>(invoice.Lines.Data[0].Plan.Interval, true, out var interval) ? interval : PaymentIntervalEnum.Month);
+                    }
+                    catch (System.Exception)
+                    {
+                    }
+                  }
+                );
+          }
+          break;
+        case (Events.CustomerSubscriptionCreated):
         case (Events.CustomerSubscriptionUpdated):
-          var product = _products.FirstOrDefault(p => p.Key == subscription.Items.Data[0].Price.ProductId).Value;
-          _ = Task.Run(async () =>
-                {
-                  try
-                  {
-                    await _crmService.RegisterPurchase(
-                      subscription.CustomerId,
-                      product,
-                      (Convert.ToDecimal(subscription.Items.Data[0].Price.UnitAmount / 100)),
-                      subscription.Items.Data[0].Price.Currency.ToUpper(),
-                      Enum.TryParse<PaymentIntervalEnum>(subscription.Items.Data[0].Plan.Interval, true, out var interval) ? interval : PaymentIntervalEnum.Month);
-                  }
-                  catch (System.Exception)
-                  {
-
-                  }
-                }
-              );
+          var subscription = e.Data.Object as Subscription;
+          product = _products.FirstOrDefault(p => p.Key == subscription.Items.Data[0].Price.ProductId).Value;
           SetSubscription(subscription.CustomerId, product, subscription.CurrentPeriodEnd);
           break;
         // Downgrade to Bas
         case (Events.CustomerSubscriptionDeleted):
+          var deletedSubscription = e.Data.Object as Subscription;
+          SetSubscription(deletedSubscription.CustomerId, ProductEnum.Bas, null);
+          break;
         case (Events.PaymentIntentPaymentFailed):
         case (Events.PaymentIntentRequiresAction):
         case (Events.InvoicePaymentFailed):
-          SetSubscription(subscription.CustomerId, ProductEnum.Bas, null);
           break;
         default:
           return;

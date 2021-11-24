@@ -17,6 +17,7 @@ namespace Artportable.API.Options
   public class UpsalesOptionsProduct
   {
     public int Id { get; set; }
+    public string Name { get; set; }
     public PaymentIntervalEnum Interval { get; set; }
     public ProductEnum InternalId { get; set; }
   }
