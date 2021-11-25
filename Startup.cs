@@ -87,7 +87,7 @@ namespace Artportable.API
       services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c =>
       {
         c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
-        c.DefaultRequestHeaders.Add(HeaderNames.ContentType, "application/json");
+        c.DefaultRequestHeaders.TryAddWithoutValidation(HeaderNames.ContentType, "application/json");
         c.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
       });
 
