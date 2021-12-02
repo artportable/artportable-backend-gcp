@@ -48,23 +48,23 @@ namespace Artportable.API.Services
         return res;
     }
 
-    public string CreateCustomer(string email, string fullName)
+     public string CreateCustomer(string email, string fullName)
     {
-      var customerService = new CustomerService();
-      var options = new CustomerCreateOptions
-      {
-          Email = email,
-          Name = fullName
-      };
-      var response = customerService.Create(options);
-
-      _context.Subscriptions
+     var subscription = _context.Subscriptions
         .Where(s => s.User.Email == email)
-        .Single().CustomerId = response.Id;
-
-      _context.SaveChanges();
-
-      return response.Id;
+        .Single();
+        if (string.IsNullOrWhiteSpace(subscription.CustomerId)) {
+        var customerService = new CustomerService();
+        var options = new CustomerCreateOptions
+        {
+            Email = email,
+            Name = fullName
+        };
+        var response = customerService.Create(options);
+        subscription.CustomerId = response.Id;
+       _context.SaveChanges();
+        }
+      return subscription.CustomerId;
     }
 
     public Subscription CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId)
