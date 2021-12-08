@@ -167,7 +167,7 @@ namespace Artportable.API.Services
           },
           Stage = new Stage
           {
-            Id = 12
+            Id = 14
           },
           Probability = 100,
           OrderRow = new List<OrderRow>(){
