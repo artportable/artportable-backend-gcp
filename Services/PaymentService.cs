@@ -20,50 +20,54 @@ namespace Artportable.API.Services
 
     public List<StripePriceDTO> GetPrices()
     {
+      var pricesOptions = new PriceListOptions
+      {
+        Active = true
+      };
+      pricesOptions.AddExpand("data.product");
       var pricesService = new PriceService();
-        var prices = pricesService.List();
+      var prices = pricesService.List(pricesOptions);
 
-        var productService = new ProductService();
-        var products = productService.List();
+      var res = prices.Data
+        .Where(p =>
+          p != null &&
+          p.Active &&
+          p.Deleted != true &&
+          p?.Recurring?.Interval != null &&
+          p.Product.Active &&
+          p.Product.Metadata.ContainsKey("productkey")
+        )
+        .Select(p => new StripePriceDTO()
+        {
+          Id = p.Id,
+          Amount = (decimal)p.UnitAmount / 100,
+          Currency = p.Currency,
+          RecurringInterval = p.Recurring.Interval,
+          Product = p.Product.Name,
+          ProductKey = p.Product.Metadata.GetValueOrDefault("productkey")
+        })
+        .ToList();
 
-        var res = prices.Data
-          .Where(p =>
-            p != null &&
-            p.Active == true &&
-            p.Deleted != true &&
-            p?.Recurring?.Interval != null &&
-            products.Any(product => p.ProductId == product.Id && product.Active)
-          )
-          .Select(p => new StripePriceDTO()
-          {
-            Id = p.Id,
-            Amount = (decimal) p.UnitAmount / 100,
-            Currency = p.Currency,
-            RecurringInterval = p.Recurring.Interval,
-            Product = products.First(product => p.ProductId == product.Id).Name,
-            ProductKey = products.First(product => p.ProductId == product.Id).Metadata?.GetValueOrDefault("productkey")
-          })
-          .ToList();
-
-        return res;
+      return res;
     }
 
-     public string CreateCustomer(string email, string fullName)
+    public string CreateCustomer(string email, string fullName)
     {
-     var subscription = _context.Subscriptions
-        .Where(s => s.User.Email == email)
-        .Single();
-        if (string.IsNullOrWhiteSpace(subscription.CustomerId)) {
+      var subscription = _context.Subscriptions
+         .Where(s => s.User.Email == email)
+         .Single();
+      if (string.IsNullOrWhiteSpace(subscription.CustomerId))
+      {
         var customerService = new CustomerService();
         var options = new CustomerCreateOptions
         {
-            Email = email,
-            Name = fullName
+          Email = email,
+          Name = fullName
         };
         var response = customerService.Create(options);
         subscription.CustomerId = response.Id;
-       _context.SaveChanges();
-        }
+        _context.SaveChanges();
+      }
       return subscription.CustomerId;
     }
 
@@ -127,7 +131,8 @@ namespace Artportable.API.Services
         },
       };
 
-      var options = new SubscriptionUpdateOptions {
+      var options = new SubscriptionUpdateOptions
+      {
         CancelAtPeriodEnd = false,
         ProrationBehavior = "create_prorations",
         Items = items,
@@ -139,7 +144,8 @@ namespace Artportable.API.Services
     public PromotionDTO GetPromotion(string promotionCode)
     {
       var promotionCodeService = new PromotionCodeService();
-      var options = new PromotionCodeListOptions(){
+      var options = new PromotionCodeListOptions()
+      {
         Code = promotionCode
       };
       var promotion = promotionCodeService.List(options)
