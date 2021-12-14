@@ -6,6 +6,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace Artportable.API.Controllers
 {
@@ -78,15 +79,53 @@ namespace Artportable.API.Controllers
       {
         var subscription = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
 
-        if (subscription?.LatestInvoice?.PaymentIntent == null) {
+        if (subscription?.LatestInvoice?.PaymentIntent == null)
+        {
           return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
-        var res = new StripeSubscriptionResponseDTO {
+        var res = new StripeSubscriptionResponseDTO
+        {
           Status = subscription.LatestInvoice.PaymentIntent.Status,
           Id = subscription.LatestInvoice.PaymentIntent.Status == "requires_action" ?
             subscription.LatestInvoice.PaymentIntent.ClientSecret :
             subscription.Id
+        };
+
+        return Ok(res);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary>
+    /// Creates a purchase in Stripe
+    /// for a given customer and price ID
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns>The Stripe subscription ID</returns>
+    [Authorize]
+    [HttpPost("purchases")]
+    public async Task<ActionResult<StripePurchaseResponseDTO>> CreatePurchase([FromBody] SubscriptionRequestDTO req)
+    {
+      try
+      {
+        var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, req.Customer, req.Price);
+
+        if (invoice.PaymentIntent == null)
+        {
+          return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        var res = new StripePurchaseResponseDTO
+        {
+          Status = invoice.PaymentIntent.Status,
+          Id = invoice.PaymentIntent.Status == "requires_action" ?
+            invoice.PaymentIntent.ClientSecret :
+            invoice.Id
         };
 
         return Ok(res);
