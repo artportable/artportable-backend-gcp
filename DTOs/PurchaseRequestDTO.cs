@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Artportable.API.DTOs
@@ -10,7 +11,9 @@ namespace Artportable.API.DTOs
     [JsonPropertyName("customerId")]
     public string Customer { get; set; }
 
-    [JsonPropertyName("priceId")]
-    public string Price { get; set; }
+    [JsonPropertyName("products")]
+    public List<string> Products { get; set; }
+    [JsonPropertyName("promotionCodeId")]
+    public string PromotionCodeId { get; set; } = null;
   }
 }

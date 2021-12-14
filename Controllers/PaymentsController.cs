@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Artportable.API.Controllers
 {
@@ -109,11 +110,15 @@ namespace Artportable.API.Controllers
     /// <returns>The Stripe subscription ID</returns>
     [Authorize]
     [HttpPost("purchases")]
-    public async Task<ActionResult<StripePurchaseResponseDTO>> CreatePurchase([FromBody] SubscriptionRequestDTO req)
+    public async Task<ActionResult<StripePurchaseResponseDTO>> CreatePurchase([FromBody] PurchaseRequestDTO req)
     {
       try
       {
-        var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, req.Customer, req.Price);
+        if (!req.Products.Any())
+        {
+          return BadRequest("No products");
+        }
+        var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, req.Customer, req.Products);
 
         if (invoice.PaymentIntent == null)
         {
