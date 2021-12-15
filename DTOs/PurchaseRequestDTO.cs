@@ -8,8 +8,8 @@ namespace Artportable.API.DTOs
     [JsonPropertyName("paymentMethodId")]
     public string PaymentMethod { get; set; }
 
-    [JsonPropertyName("customerId")]
-    public string Customer { get; set; }
+    [JsonPropertyName("customer")]
+    public StripeCustomerDTO Customer { get; set; }
 
     [JsonPropertyName("products")]
     public List<string> Products { get; set; }

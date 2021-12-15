@@ -181,6 +181,21 @@ namespace Artportable.API.Services
       };
     }
 
+    public async Task<bool> ValidatePaymentMethod(string paymentMethodId)
+    {
+      var paymentMethodService = new PaymentMethodService();
+      try
+      {
+        var paymentMethod = await paymentMethodService.GetAsync(paymentMethodId);
+        return true;
+      }
+      catch (System.Exception)
+      {
+        //throws exception if paymentmethod doesnt exist
+        return false;
+      }
+    }
+
     public async Task<Invoice> CreateInvoice(string paymentMethodId, string customerId, List<string> products)
     {
       var invoiceService = new InvoiceService();
@@ -213,6 +228,14 @@ namespace Artportable.API.Services
           }
           );
       return invoice;
+    }
+
+    public async Task<bool> ValidateProducts(List<string> prices)
+    {
+      var priceService = new PriceService();
+      var pricesObjects = await priceService.ListAsync();
+      var pricesIds = pricesObjects.Select(x => x.Id);
+      return prices.All(x => pricesIds.Contains(x));
     }
   }
 }

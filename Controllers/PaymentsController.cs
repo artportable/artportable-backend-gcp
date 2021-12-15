@@ -108,7 +108,6 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="req"></param>
     /// <returns>The Stripe subscription ID</returns>
-    [Authorize]
     [HttpPost("purchases")]
     public async Task<ActionResult<StripePurchaseResponseDTO>> CreatePurchase([FromBody] PurchaseRequestDTO req)
     {
@@ -118,7 +117,23 @@ namespace Artportable.API.Controllers
         {
           return BadRequest("No products");
         }
-        var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, req.Customer, req.Products);
+
+        if (!await _paymentService.ValidatePaymentMethod(req.PaymentMethod))
+        {
+          return BadRequest("Invalid paymentrequest");
+        }
+
+        if (!await _paymentService.ValidateProducts(req.Products))
+        {
+          return BadRequest("Invalid products");
+        }
+        if (req.Customer == null || string.IsNullOrWhiteSpace(req.Customer.Email) || string.IsNullOrWhiteSpace(req.Customer.FullName))
+        {
+          return BadRequest("Invalid Customer");
+        }
+        var customerId = _paymentService.CreateCustomer(req.Customer.Email, req.Customer.FullName);
+
+        var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, customerId, req.Products);
 
         if (invoice.PaymentIntent == null)
         {
