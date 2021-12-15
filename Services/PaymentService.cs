@@ -198,35 +198,39 @@ namespace Artportable.API.Services
 
     public async Task<Invoice> CreateInvoice(string paymentMethodId, string customerId, List<string> products)
     {
-      var invoiceService = new InvoiceService();
-      var invoiceOptions = new InvoiceCreateOptions()
+      var paymentMethodOptions = new PaymentMethodAttachOptions
       {
-        DefaultPaymentMethod = paymentMethodId,
         Customer = customerId,
-        CollectionMethod = "charge_automatically"
       };
-      var invoice = await invoiceService.CreateAsync(invoiceOptions);
+      var service = new PaymentMethodService();
+      var paymentMethod = service.Attach(paymentMethodId, paymentMethodOptions);
+      var invoiceItemService = new InvoiceItemService();
       foreach (var product in products)
       {
         var options = new InvoiceItemCreateOptions
         {
           Customer = customerId,
           Price = product,
-          Invoice = invoice.Id
         };
-        var invoiceItemService = new InvoiceItemService();
         var invoiceItem = await invoiceItemService.CreateAsync(options);
       }
-      invoice = await invoiceService.FinalizeInvoiceAsync(
-        invoice.Id,
-          new InvoiceFinalizeOptions()
-          {
-            AutoAdvance = true,
-            Expand = new List<string>{
+
+      var invoiceService = new InvoiceService();
+      var invoiceOptions = new InvoiceCreateOptions()
+      {
+        DefaultPaymentMethod = paymentMethodId,
+        Customer = customerId,
+        CollectionMethod = "charge_automatically",
+        AutoAdvance = true,
+      };
+      var invoice = await invoiceService.CreateAsync(invoiceOptions);
+      invoice = await invoiceService.FinalizeInvoiceAsync(invoice.Id,
+      new InvoiceFinalizeOptions
+      {
+        Expand = new List<string>{
             "payment_intent"
-            }
-          }
-          );
+        },
+      });
       return invoice;
     }
 

@@ -143,7 +143,7 @@ namespace Artportable.API.Controllers
         var res = new StripePurchaseResponseDTO
         {
           Status = invoice.PaymentIntent.Status,
-          Id = invoice.PaymentIntent.Status == "requires_action" ?
+          Id = invoice.PaymentIntent.Status == "requires_action" || invoice.PaymentIntent.Status == "requires_confirmation" ?
             invoice.PaymentIntent.ClientSecret :
             invoice.Id
         };
