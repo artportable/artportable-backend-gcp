@@ -5,6 +5,7 @@ using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Artportable.API.Services
 {
@@ -55,18 +56,30 @@ namespace Artportable.API.Services
     {
       var subscription = _context.Subscriptions
          .Where(s => s.User.Email == email)
-         .Single();
-      if (string.IsNullOrWhiteSpace(subscription.CustomerId))
+         .SingleOrDefault();
+      if (string.IsNullOrWhiteSpace(subscription?.CustomerId))
       {
         var customerService = new CustomerService();
-        var options = new CustomerCreateOptions
+        var customers = customerService.List(new CustomerListOptions()
         {
-          Email = email,
-          Name = fullName
-        };
-        var response = customerService.Create(options);
-        subscription.CustomerId = response.Id;
-        _context.SaveChanges();
+          Email = email
+        });
+        var customer = customers.FirstOrDefault();
+        if (customer == null)
+        {
+          var options = new CustomerCreateOptions
+          {
+            Email = email,
+            Name = fullName
+          };
+          customer = customerService.Create(options);
+          if (subscription! != null)
+          {
+            subscription.CustomerId = customer.Id;
+            _context.SaveChanges();
+          }
+        }
+        return customer.Id;
       }
       return subscription.CustomerId;
     }
@@ -166,6 +179,67 @@ namespace Artportable.API.Services
         AmountOff = (discountInPercent ? promotion.Coupon.PercentOff : promotion.Coupon.AmountOff / 100) ?? 0,
         Currency = promotion.Coupon.Currency
       };
+    }
+
+    public async Task<bool> ValidatePaymentMethod(string paymentMethodId)
+    {
+      var paymentMethodService = new PaymentMethodService();
+      try
+      {
+        var paymentMethod = await paymentMethodService.GetAsync(paymentMethodId);
+        return true;
+      }
+      catch (System.Exception)
+      {
+        //throws exception if paymentmethod doesnt exist
+        return false;
+      }
+    }
+
+    public async Task<Invoice> CreateInvoice(string paymentMethodId, string customerId, List<string> products)
+    {
+      var paymentMethodOptions = new PaymentMethodAttachOptions
+      {
+        Customer = customerId,
+      };
+      var service = new PaymentMethodService();
+      var paymentMethod = service.Attach(paymentMethodId, paymentMethodOptions);
+      var invoiceItemService = new InvoiceItemService();
+      foreach (var product in products)
+      {
+        var options = new InvoiceItemCreateOptions
+        {
+          Customer = customerId,
+          Price = product,
+        };
+        var invoiceItem = await invoiceItemService.CreateAsync(options);
+      }
+
+      var invoiceService = new InvoiceService();
+      var invoiceOptions = new InvoiceCreateOptions()
+      {
+        DefaultPaymentMethod = paymentMethodId,
+        Customer = customerId,
+        CollectionMethod = "charge_automatically",
+        AutoAdvance = true,
+      };
+      var invoice = await invoiceService.CreateAsync(invoiceOptions);
+      invoice = await invoiceService.FinalizeInvoiceAsync(invoice.Id,
+      new InvoiceFinalizeOptions
+      {
+        Expand = new List<string>{
+            "payment_intent"
+        },
+      });
+      return invoice;
+    }
+
+    public async Task<bool> ValidateProducts(List<string> prices)
+    {
+      var priceService = new PriceService();
+      var pricesObjects = await priceService.ListAsync();
+      var pricesIds = pricesObjects.Select(x => x.Id);
+      return prices.All(x => pricesIds.Contains(x));
     }
   }
 }
