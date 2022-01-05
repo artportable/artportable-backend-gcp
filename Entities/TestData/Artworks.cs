@@ -19,7 +19,10 @@ namespace Artportable.API.Testing
             Title = "Bergskvinna",
             Description = "Kvinna blickar ut över en lång bergskedja",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -30,7 +33,10 @@ namespace Artportable.API.Testing
             Title = "Nattvarden",
             Description = "Målad ca år 1495–1498 i klostret Santa Maria delle Grazie i Milano och föreställer Jesus sista måltid",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -41,7 +47,10 @@ namespace Artportable.API.Testing
             Title = "Blue Nude",
             Description = "Ett av mina tidigaste mästerverk från min blåa period",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -52,7 +61,10 @@ namespace Artportable.API.Testing
             Title = "The Old Guitarist",
             Description = "Oljemålning skapad år 1903-1904. Föreställer en äldre, blind man lutad över sin gitarr medan han spelar på gatorna i Barcelona. Tavlan finns utställd på Art Institute of Chicago.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -63,7 +75,10 @@ namespace Artportable.API.Testing
             Title = "Antibes",
             Description = "Mordern målning av Antibes",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -74,7 +89,10 @@ namespace Artportable.API.Testing
             Title = "Stonehenge",
             Description = "Mordern målning av Stonehenge",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -85,7 +103,10 @@ namespace Artportable.API.Testing
             Title = "Stjärnenatt",
             Description = "Stjärnenatt i Saint-Rémy föreställer en nattlig sydfransk vy med solrosor och en virvlande natthimmel. Tavlan finns idag i Museum of Modern Art i New York.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -96,7 +117,10 @@ namespace Artportable.API.Testing
             Title = "At Cap d'Antibes",
             Description = "Ett av alla tallträd längs Cap d'Antibes. Originalverk av Claude Monet.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -107,7 +131,10 @@ namespace Artportable.API.Testing
             Title = "Potatisätarna",
             Description = "Oljemålning som skildrar proletär- och bondelivet i byn Neuen",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -119,7 +146,10 @@ namespace Artportable.API.Testing
             Title = "Jovialisk",
             Description = "Abstrakt entusiasm fångad av en miljon penseldrag. I min studio har jag målat hundratals verk som detta.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -132,7 +162,10 @@ namespace Artportable.API.Testing
             Title = "Vitlökskök",
             Description = "En vitlök som jag plockade från köket och målade av",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -144,7 +177,10 @@ namespace Artportable.API.Testing
             Title = "Street in Birmingham",
             Description = "A busy street in Birmingham in the early 1900s",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -155,7 +191,10 @@ namespace Artportable.API.Testing
             Title = "Flicka på äng",
             Description = "Akvarellmålning av en liten flicka som sitter på knä på en äng och plockar blommor",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -167,7 +206,10 @@ namespace Artportable.API.Testing
             Title = "Color explosion",
             Description = "When the watercolors meet",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -190,7 +232,10 @@ namespace Artportable.API.Testing
             Title = "Sommaräng",
             Description = "Grönt.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -201,7 +246,10 @@ namespace Artportable.API.Testing
             Title = "Vintergård",
             Description = "Sverige År 1752. Tar med familjen på julmarknad.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -213,7 +261,10 @@ namespace Artportable.API.Testing
             Title = "Blomsterlandet",
             Description = "Stina plockar blommor en somring afton i maj månad. Målad med fingerfärg.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -235,7 +286,10 @@ namespace Artportable.API.Testing
             SecondaryFileId = 150,
             Title = "Tiger",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -246,7 +300,10 @@ namespace Artportable.API.Testing
             Title = "Skogsmänniskor",
             Description = "Man och kvinna med arborister som frisörer. Svartvit bild målad i Photoshop.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -256,7 +313,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 65,
             Title = "Blommor i färg",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -267,7 +327,10 @@ namespace Artportable.API.Testing
             Title = "Mona Lisa",
             Description = "En av världens mest berömda målningar (just saying) som jag målat en gång när jag hade tråkigt i Italien.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -278,7 +341,10 @@ namespace Artportable.API.Testing
             Title = "Berg",
             Description = "Vacker målning av ett berg med en levande himmel",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -289,7 +355,10 @@ namespace Artportable.API.Testing
             Title = "Tegelvägg med synfält",
             Description = "Rymdvägg som lämnar mycket åt fantasin",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -302,7 +371,10 @@ namespace Artportable.API.Testing
             Title = "Blåbär",
             Description = "Blåbär som rymmer från sin skål",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -313,7 +385,10 @@ namespace Artportable.API.Testing
             Title = "Petit svan",
             Description = "3x6 cm målning av en svan i kvällsljus",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -324,7 +399,10 @@ namespace Artportable.API.Testing
             Title = "Black panther",
             Description = "Svart panter målad i akvarell",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -335,7 +413,10 @@ namespace Artportable.API.Testing
             Title = "Rapsfält",
             Description = "Utsikt över rapsfält och ängar",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -346,7 +427,10 @@ namespace Artportable.API.Testing
             Title = "Blå stad",
             Description = "Porslinsmålad stad i Vietnam med karaktäristiska berg som tornar upp i bakgrunden",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -357,7 +441,10 @@ namespace Artportable.API.Testing
             Title = "Glänta",
             Description = "Gläntan en sensommarkväll",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -369,7 +456,10 @@ namespace Artportable.API.Testing
             Title = "Berg och dal-bana",
             Description = "Målning som väcker en berg och dal-bana av känslor",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -380,7 +470,10 @@ namespace Artportable.API.Testing
             Title = "Old Amsterdam",
             Description = "Amsterdams gator en höstdag 2005",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -390,7 +483,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 90,
             Title = "Blåklint på ängen",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -411,7 +507,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 26,
             Title = "Traditionell stuga på Island",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -424,7 +523,10 @@ namespace Artportable.API.Testing
             Title = "Vattendelare",
             Description = "Abstrakt målning gjord med hårt blandade akrylfärger",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -437,7 +539,10 @@ namespace Artportable.API.Testing
             Title = "Ståtlig kråka",
             Description = "Kråka njuter av den blåa vardagen",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -460,7 +565,10 @@ namespace Artportable.API.Testing
             Title = "Blommor i rosa nyanser",
             Description = "Ett vackert urval av blommor i en rosa färgexplosion",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -471,7 +579,10 @@ namespace Artportable.API.Testing
             Title = "Insidan av ett hus",
             Description = "I huset finns det en säng, två stolar, ett nattduksbord/matbord, sex tavlor, en vas, grönt golv och blåa dörrar. Fönstret kan man inte se ut igenom för det är övermålat. Några krokar finns på väggen så att man kan hänga upp sina kläder efter en lång dag utomhus.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -482,7 +593,10 @@ namespace Artportable.API.Testing
             Title = "Hus på landet",
             Description = "Mitt hus på landet, precis intill den gamla stadsmuren.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -493,7 +607,10 @@ namespace Artportable.API.Testing
             Title = "Gnägg",
             Description = "Häst som gnäggar",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -504,7 +621,10 @@ namespace Artportable.API.Testing
             Title = "Flicka matar får",
             Description = "Historisk bild av en ung flicka som tar hand om familjens får",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -515,7 +635,10 @@ namespace Artportable.API.Testing
             Title = "Staty i Aten",
             Description = "Fotot föreställer en smutsig staty som jag hittade när jag reste runt i Grekland",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -526,7 +649,10 @@ namespace Artportable.API.Testing
             Title = "Berg med spegelbild",
             Description = "Mäktigt berg som speglas mot vattenytan i en liten sjö",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -536,7 +662,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 54,
             Title = "Höstträd",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -547,7 +676,10 @@ namespace Artportable.API.Testing
             Title = "Bukett i vas",
             Description = "En blombukett i en vas som jag fick när jag fyllde jämnt och bestämde mig för att måla av",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -558,7 +690,10 @@ namespace Artportable.API.Testing
             Title = "Jesus Maria",
             Description = "En nunna från ett lokalt kloster",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -569,7 +704,10 @@ namespace Artportable.API.Testing
             Title = "Skymningsskog",
             Description = "Trädtoppar som avbildas mot den rödlila himmlen en vårnatt i april",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -580,7 +718,10 @@ namespace Artportable.API.Testing
             Title = "Espresso",
             Description = "Skylt på café från min resa längs den italienska rivieran",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -591,7 +732,7 @@ namespace Artportable.API.Testing
           //   Title = "Nyckelpiga",
           //   Description = "Formidabel målning av en nyckelpiga med sex prickar avbildad med kritor i rött och svart",
           //   Published = DateTime.Now,
-          //   Price = 9000
+          //   Price = 9000,
           // },
           new Artwork()
           {
@@ -602,7 +743,10 @@ namespace Artportable.API.Testing
             Title = "Den perfekta vågen",
             Description = "Surfare fångar den perfekta vågen",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -614,7 +758,10 @@ namespace Artportable.API.Testing
             Title = "Häst i stall",
             Description = "Ytterligare en häst",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -625,7 +772,10 @@ namespace Artportable.API.Testing
             Title = "Kråkträd",
             Description = "Ståtligt träd på äng en mörk åsknatt",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -635,7 +785,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 136,
             Title = "Hund möter igelkott",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -646,7 +799,10 @@ namespace Artportable.API.Testing
             Title = "Molnig soldag",
             Description = "Solen som sträcker sig genom molnen i akvarell",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -657,7 +813,10 @@ namespace Artportable.API.Testing
             Title = "Vårfågel",
             Description = "Fågel på gren. Målad i akvarell.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -667,7 +826,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 51,
             Title = "Höstlöv på höstlov",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -678,7 +840,10 @@ namespace Artportable.API.Testing
             Title = "Skogsglänta",
             Description = "Glänta i skogen får finbesök i form av två ståtliga rådjur",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -689,7 +854,10 @@ namespace Artportable.API.Testing
             Title = "Can't touch this",
             Description = "Två händer som inte rör vid varandra. Populärt motiv just nu.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -712,7 +880,10 @@ namespace Artportable.API.Testing
             Title = "Träd med sjöutsikt",
             Description = "Björkar vid strandenkanten av Mälaren",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -723,7 +894,10 @@ namespace Artportable.API.Testing
             Title = "Napoleon Bonaparte",
             Description = "Napoleon Bonaparte vid sin sista erövring",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -734,7 +908,10 @@ namespace Artportable.API.Testing
             Title = "Två hästar",
             Description = "Ett möte mellan två hästar som itne har setts på länge",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -756,7 +933,10 @@ namespace Artportable.API.Testing
             Title = "Flyttfåglar",
             Description = "Två fåglar sittandes på en pinne målad med lite glitter",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -766,7 +946,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 107,
             Title = "Kvinna från Falun",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -777,7 +960,10 @@ namespace Artportable.API.Testing
             Title = "Skriet",
             Description = "Min tolkning av Munchs Skriet",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -788,7 +974,10 @@ namespace Artportable.API.Testing
             Title = "Kingfisher",
             Description = "Bästa fågeln hitills om jag får säga det själv",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -800,7 +989,10 @@ namespace Artportable.API.Testing
             Title = "Nya Guinea",
             Description = "Landskapsmålning av Nya Guinea",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -811,7 +1003,10 @@ namespace Artportable.API.Testing
             Title = "Landet",
             Description = "Landskapsmålning av hus på landet med en krullig äng framför",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -822,7 +1017,10 @@ namespace Artportable.API.Testing
             Title = "Fler hästar",
             Description = "Hästar och hundar slår följe i jakten på en nedgrävd boll",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -833,7 +1031,10 @@ namespace Artportable.API.Testing
             Title = "Hund",
             Description = "Hund i akvarell",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -844,7 +1045,10 @@ namespace Artportable.API.Testing
             SecondaryFileId = 53,
             Title = "Psychadelic art",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -855,7 +1059,10 @@ namespace Artportable.API.Testing
             Title = "Krullig höstskog",
             Description = "Skog i höstens färger målad på en specialbeställd kanvas med en speciell penselteknik",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -865,7 +1072,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 117,
             Title = "Gäss på ö",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -876,7 +1086,10 @@ namespace Artportable.API.Testing
             Title = "Månbarn",
             Description = "Motiv förestället två barn som tävlar om att inte vara först med att blinka",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -887,7 +1100,10 @@ namespace Artportable.API.Testing
             SecondaryFileId = 36,
             Title = "Räv",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -898,7 +1114,10 @@ namespace Artportable.API.Testing
             Title = "Varmt möter kallt",
             Description = "Ett hav av färger står mot varandra",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -909,7 +1128,10 @@ namespace Artportable.API.Testing
             Title = "Berglandskap",
             Description = "Föreställer ett landskap med stig som leder ner till sjö. I horisonten syns berg med vita toppar.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -920,7 +1142,10 @@ namespace Artportable.API.Testing
             Title = "Abstrakt konst",
             Description = "Ett färgglatt verk skapat på impuls",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -931,7 +1156,7 @@ namespace Artportable.API.Testing
           //   Title = "Sol",
           //   Description = "En exakt avbildning av hur solen såg ut när denna målades sommaren 2020",
           //   Published = DateTime.Now,
-          //   Price = 9000
+          //   Price = 9000,
           // },
           new Artwork()
           {
@@ -943,7 +1168,10 @@ namespace Artportable.API.Testing
             Title = "Stadskärna",
             Description = "Ståtliga hus som sträcker ut sig längs stadens kanal som ringlar genom stadskärnan",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -954,7 +1182,10 @@ namespace Artportable.API.Testing
             Title = "Småbåtshamn",
             Description = "Föreställer småbåtshamnen i Veille Monte",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -965,7 +1196,10 @@ namespace Artportable.API.Testing
             Title = "Tre blommor",
             Description = "Tre röda blommor",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -975,7 +1209,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 133,
             Title = "Bosättare",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -986,7 +1223,10 @@ namespace Artportable.API.Testing
             Title = "Björn",
             Description = "Björn gjord i mosaik",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork()
           // {
@@ -997,7 +1237,7 @@ namespace Artportable.API.Testing
           //   Title = "Fjäril",
           //   Description = "Glad fjäril i fyra färger",
           //   Published = DateTime.Now,
-          //   Price = 9000
+          //   Price = 9000,
           // },
           new Artwork()
           {
@@ -1008,7 +1248,10 @@ namespace Artportable.API.Testing
             Title = "Vis man",
             Description = "Inspiration hämtad från en av våra resor till Nordafrika",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1020,7 +1263,10 @@ namespace Artportable.API.Testing
             Title = "Fönster",
             Description = "Fönster avmålat i gamla stan i Madrid",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1031,7 +1277,10 @@ namespace Artportable.API.Testing
             Title = "Kvinnan på bussen",
             Description = "Avtecknad kvinna som åker buss fyra mot Vevaldsvik i blått och rosa",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1044,7 +1293,10 @@ namespace Artportable.API.Testing
             Title = "Ögon som ser",
             Description = "Regnbågens ögon som ser det som ses",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1055,7 +1307,10 @@ namespace Artportable.API.Testing
             Title = "Olivträd",
             Description = "Olivträd avbildat i Greklands varma sommarhetta",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1067,7 +1322,10 @@ namespace Artportable.API.Testing
             Title = "Huset på kullen",
             Description = "Ett vackert landskap avmålat i akvarell",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1077,7 +1335,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 152,
             Title = "Jakt",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1089,7 +1350,10 @@ namespace Artportable.API.Testing
             Title = "Lavendelkvinna",
             Description = "Min vän Katarina plockar lavendel i Provence",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1101,7 +1365,10 @@ namespace Artportable.API.Testing
             Title = "Black box",
             Description = "Ett abstrakt konstverk som jag kallar för black box",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1111,7 +1378,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 123,
             Title = "Snowy mountains",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1122,7 +1392,10 @@ namespace Artportable.API.Testing
             Title = "Se upp!",
             Description = "Kille pekar på någoting intressant. Originaltitel Saint John the Baptist. Oljemålning på valnötsträ.",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1135,7 +1408,10 @@ namespace Artportable.API.Testing
             Title = "Solrosor",
             Description = "Solrosor i vas",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1146,7 +1422,10 @@ namespace Artportable.API.Testing
             Title = "Vinterhöst",
             Description = "Träd med höstlöv som speglas i vattnet",
             Published = DateTime.Now,
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1157,7 +1436,10 @@ namespace Artportable.API.Testing
             Title = "Vintervik",
             Description = "Vintermorgon i Edshagsberg med det gamla ploahuset i bakgrunden, byggt 1869.",
             Published = new DateTime(2021, 7, 20, 16, 59, 10),
-            Price = 10000
+            Price = 10000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1168,7 +1450,10 @@ namespace Artportable.API.Testing
             Title = "Solgult ängsträd",
             Description = "Ett gult träd på en gul äng mot en klarblå himmelsbakgrund",
             Published = new DateTime(2020, 8, 14, 6, 3, 35),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1179,7 +1464,10 @@ namespace Artportable.API.Testing
             Title = "Vinteräng",
             Description = "Bistra och kalla vintern har dragit in över Österåkers slätter och biter sig fast i marken. Den vita snötäckta marken lyser upp omgivningen.",
             Published = new DateTime(2020, 9, 28, 19, 42, 39),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1190,7 +1478,10 @@ namespace Artportable.API.Testing
             Title = "Golden gate-bron",
             Description = "En röd ståtlig konstruktion",
             Published = new DateTime(2021, 4, 2, 14, 5, 58),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1201,7 +1492,10 @@ namespace Artportable.API.Testing
             Title = "Tre vita hästar",
             Description = "Tre vita vildhästar tar ett bad tillsammans i skymnningen",
             Published = new DateTime(2021, 7, 29, 22, 25, 40),
-            Price = 88000
+            Price = 88000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1212,7 +1506,10 @@ namespace Artportable.API.Testing
             Title = "Fyr på Öland målad i vattenfäger",
             Description = "Ståtlig gammal fyr som står på Öland. Fyren var aktiv mellan år 1810-1928.",
             Published = new DateTime(2021, 10, 14, 22, 47, 14),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1223,7 +1520,10 @@ namespace Artportable.API.Testing
             Title = "Svandamm",
             Description = "Park i södra Holland där svanarna simmar i dammen",
             Published = new DateTime(2021, 11, 10, 7, 7, 42),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1234,7 +1534,10 @@ namespace Artportable.API.Testing
             Title = "Vy från Alpby",
             Description = "Flyktiga berg över solblekt hage. Vy från Alpby i södra Tyskland där bergskossor betar i harmoni med byborna.",
             Published = new DateTime(2021, 3, 29, 17, 0, 39),
-            Price = 54000
+            Price = 54000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1245,7 +1548,10 @@ namespace Artportable.API.Testing
             Title = "Äppelkorg",
             Description = "Äppelkorg i blomsterträdgård målad med inspiration av Kiviks höjder.",
             Published = new DateTime(2021, 4, 23, 5, 25, 8),
-            Price = 12000
+            Price = 12000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1256,7 +1562,10 @@ namespace Artportable.API.Testing
             Title = "Nyplockade syréner",
             Description = "Vackra lila syrénblommor i korg",
             Published = new DateTime(2021, 11, 23, 13, 39, 52),
-            Price = 75000
+            Price = 75000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1267,7 +1576,10 @@ namespace Artportable.API.Testing
             Title = "Pressblomma",
             Description = "Pressade blommor och ormbunke avmålade i akvarell",
             Published = new DateTime(2020, 12, 8, 2, 36, 6),
-            Price = 28000
+            Price = 28000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1278,7 +1590,10 @@ namespace Artportable.API.Testing
             Title = "Bear",
             Description = "Furry bear watching over the forest, ready to take back the title as king.",
             Published = new DateTime(2020, 8, 20, 0, 3, 15),
-            Price = 33000
+            Price = 33000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1289,7 +1604,10 @@ namespace Artportable.API.Testing
             Title = "Vildhäst",
             Description = "Vildhäst från svensk hage på oljemålning",
             Published = new DateTime(2020, 1, 8, 17, 43, 31),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1300,7 +1618,10 @@ namespace Artportable.API.Testing
             Title = "Blå vågor",
             Description = "Blå vågor på ängen",
             Published = new DateTime(2020, 11, 4, 4, 24, 40),
-            Price = 77000
+            Price = 77000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1311,7 +1632,10 @@ namespace Artportable.API.Testing
             Title = "Ståtligt 1600-talsskepp",
             Description = "Ståtligt skepp byggt på 1600-talet som seglar västerut",
             Published = new DateTime(2020, 6, 5, 20, 32, 41),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1322,7 +1646,10 @@ namespace Artportable.API.Testing
             Title = "Höstko",
             Description = "Höstkossa njuter av årets sista soltimmar medan de brandgula höstlösen knappt klarar av att hålla sig kvar",
             Published = new DateTime(2021, 12, 9, 19, 2, 11),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1332,7 +1659,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 177,
             Title = "Indiana split",
             Published = new DateTime(2021, 12, 14, 2, 50, 1),
-            Price = 66000
+            Price = 66000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1343,7 +1673,10 @@ namespace Artportable.API.Testing
             Title = "Metarpojke",
             Description = "Pojke som metar efter fisk på landet",
             Published = new DateTime(2020, 3, 13, 2, 36, 36),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1354,7 +1687,10 @@ namespace Artportable.API.Testing
             Title = "Japansk trädgård",
             Description = "Enavmålning av den japanska trädgården ute i danska Røhdegaard",
             Published = new DateTime(2020, 5, 16, 2, 30, 22),
-            Price = 72000
+            Price = 72000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1365,7 +1701,10 @@ namespace Artportable.API.Testing
             Title = "Naturkvinna",
             Description = "Kvinna tecknad på solblekt papper",
             Published = new DateTime(2020, 4, 26, 7, 4, 59),
-            Price = 13000
+            Price = 13000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1376,7 +1715,10 @@ namespace Artportable.API.Testing
             Title = "Höststuga",
             Description = "Stugan vid vattenkanten i skogsbrynet speglas mot den blanka vattenytan.",
             Published = new DateTime(2021, 1, 16, 2, 59, 4),
-            Price = 2000
+            Price = 2000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1387,7 +1729,10 @@ namespace Artportable.API.Testing
             Title = "Tre bärs, tack!",
             Description = "En hyllning till den lokala puben",
             Published = new DateTime(2021, 2, 6, 19, 58, 0),
-            Price = 24000
+            Price = 24000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1398,7 +1743,10 @@ namespace Artportable.API.Testing
             Title = "Paris underifrån",
             Description = "Paris från ett annorlunda perspektiv. Framför ser man det berömda och ståtliga Notre dame.",
             Published = new DateTime(2020, 2, 6, 2, 27, 46),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1408,7 +1756,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 184,
             Title = "Gammalt skogshus",
             Published = new DateTime(2021, 9, 20, 1, 51, 40),
-            Price = 44000
+            Price = 44000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1419,7 +1770,10 @@ namespace Artportable.API.Testing
             Title = "Tunnel of darkness",
             Description = "Please enter the tunnel of... No, not light. Darkness.",
             Published = new DateTime(2020, 6, 6, 19, 17, 1),
-            Price = 27000
+            Price = 27000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1430,7 +1784,10 @@ namespace Artportable.API.Testing
             Title = "Landskap",
             Description = "Häftigt landskap avmålat i olja",
             Published = new DateTime(2021, 11, 29, 14, 13, 29),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1441,7 +1798,10 @@ namespace Artportable.API.Testing
             Title = "Vik",
             Description = "Djupavik. Under sommaren är det här ett populärt badställe.",
             Published = new DateTime(2020, 10, 1, 12, 13, 21),
-            Price = 88000
+            Price = 88000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1452,7 +1812,10 @@ namespace Artportable.API.Testing
             Title = "Gul allé",
             Description = "Landsväg längs gula ängar",
             Published = new DateTime(2020, 4, 19, 18, 9, 48),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1463,7 +1826,10 @@ namespace Artportable.API.Testing
             Title = "Storstad",
             Description = "Ett gäng höghus jämte varandra som tillsammans bildar en storstad",
             Published = new DateTime(2021, 9, 20, 23, 52, 5),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1474,7 +1840,10 @@ namespace Artportable.API.Testing
             Title = "Tecknad blomma",
             Description = "Vit blomma sedd från ovan",
             Published = new DateTime(2020, 2, 11, 4, 0, 13),
-            Price = 16000
+            Price = 16000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1485,7 +1854,10 @@ namespace Artportable.API.Testing
             Title = "Vindkust",
             Description = "Blåsigt väder är ingenting för byborna bosatta i den här byn på Englands ostkust. Några segelbåtar seglar ut mot horisonten och en kille i röd mössa är på väg hem.",
             Published = new DateTime(2021, 6, 20, 2, 45, 53),
-            Price = 20000
+            Price = 20000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1495,7 +1867,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 192,
             Title = "Brandlandskap",
             Published = new DateTime(2021, 1, 23, 6, 8, 5),
-            Price = 21000
+            Price = 21000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1506,7 +1881,10 @@ namespace Artportable.API.Testing
             Title = "Körsbärstårta",
             Description = "En riktigt smarrig tårta",
             Published = new DateTime(2020, 10, 10, 18, 37, 9),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1517,7 +1895,10 @@ namespace Artportable.API.Testing
             Title = "Äppelkorg",
             Description = "Färska plockade gröna äpplen",
             Published = new DateTime(2020, 11, 1, 12, 58, 0),
-            Price = 70000
+            Price = 70000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1528,7 +1909,10 @@ namespace Artportable.API.Testing
             Title = "Läslus",
             Description = "Kvinna läser en bok på en knallröd bänk",
             Published = new DateTime(2020, 5, 24, 0, 16, 16),
-            Price = 45000
+            Price = 45000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1539,7 +1923,10 @@ namespace Artportable.API.Testing
             Title = "Slaget vid Rom år 946",
             Description = "En avbildning av det stora slaget om Rom år 946 som senare kom att bli ett av de mest omskrivna historiska slagen",
             Published = new DateTime(2021, 3, 10, 8, 3, 40),
-            Price = 75000
+            Price = 75000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1550,7 +1937,10 @@ namespace Artportable.API.Testing
             Title = "Uppvaktande fågel",
             Description = "Hanfågel som uppvaktar sin honfågel med skönsång",
             Published = new DateTime(2020, 4, 25, 5, 36, 46),
-            Price = 25000
+            Price = 25000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1561,7 +1951,10 @@ namespace Artportable.API.Testing
             Title = "Blomraket",
             Description = "En raket av blommor som blickar upp mot en blå himmel",
             Published = new DateTime(2020, 3, 24, 2, 29, 20),
-            Price = 89000
+            Price = 89000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1572,7 +1965,10 @@ namespace Artportable.API.Testing
             Title = "Husfasader på vattenytan",
             Description = "Köpenhamns husfasader som speglas mot vattenytan i ån",
             Published = new DateTime(2020, 9, 20, 6, 11, 24),
-            Price = 26000
+            Price = 26000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1583,7 +1979,10 @@ namespace Artportable.API.Testing
             Title = "Boat town",
             Description = "Båtstad i sommarens Kroatien",
             Published = new DateTime(2020, 5, 29, 4, 57, 37),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1594,7 +1993,10 @@ namespace Artportable.API.Testing
             Title = "Varn rider efter get",
             Description = "En gettransport tar barnen till söndagsmarknaden",
             Published = new DateTime(2020, 5, 2, 21, 36, 8),
-            Price = 66000
+            Price = 66000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1605,7 +2007,10 @@ namespace Artportable.API.Testing
             Title = "Lila blommor",
             Description = "Vackra lila blommor målade i akvarell",
             Published = new DateTime(2021, 5, 12, 14, 18, 55),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1616,7 +2021,10 @@ namespace Artportable.API.Testing
             Title = "Gammal bro",
             Description = "Gammal bro i södra Frankrike som sammanbinder den gamla bergsstaden Hostoire med huvudleden",
             Published = new DateTime(2021, 1, 9, 16, 16, 33),
-            Price = 30000
+            Price = 30000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1627,7 +2035,10 @@ namespace Artportable.API.Testing
             Title = "Funky tree",
             Description = "Detta gamla krokiga träd gick jag förbi varje dag när jag gick till skolan som ung. Nu har det växt till sig och har lättare för att titta fram bakom muren.",
             Published = new DateTime(2020, 7, 28, 7, 40, 27),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1639,7 +2050,10 @@ namespace Artportable.API.Testing
             Title = "Muskelknutte",
             Description = "Staty av muskelknutte",
             Published = new DateTime(2021, 1, 4, 9, 7, 7),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1650,7 +2064,10 @@ namespace Artportable.API.Testing
             Title = "Blomsteräng",
             Description = "Äng med röda blommor på",
             Published = new DateTime(2021, 4, 13, 14, 52, 21),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1661,7 +2078,10 @@ namespace Artportable.API.Testing
             Title = "Grindtjej",
             Description = "Tjej tittar fram från grinden in till familjens gårdshus",
             Published = new DateTime(2021, 3, 15, 18, 51, 59),
-            Price = 68000
+            Price = 68000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1672,7 +2092,10 @@ namespace Artportable.API.Testing
             Title = "Strandad båt",
             Description = "Gammalt båtvrak som drivit upp på stranden",
             Published = new DateTime(2020, 11, 8, 11, 59, 50),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1683,7 +2106,10 @@ namespace Artportable.API.Testing
             Title = "Blomster",
             Description = "Vita blommor som tittar fram i vårsolen",
             Published = new DateTime(2020, 7, 16, 4, 37, 31),
-            Price = 88000
+            Price = 88000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1694,7 +2120,10 @@ namespace Artportable.API.Testing
             Title = "Blomster 2",
             Description = "Röda blommor som håller på att slå ut",
             Published = new DateTime(2020, 10, 10, 8, 49, 14),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1704,7 +2133,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 211,
             Title = "Bergsskog",
             Published = new DateTime(2020, 9, 2, 18, 47, 19),
-            Price = 33000
+            Price = 33000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1715,7 +2147,10 @@ namespace Artportable.API.Testing
             Title = "Yellowstone",
             Description = "Ståtliga Yellowstone med en av dess ikoniska brunbjörnar som byfiket tittar fram",
             Published = new DateTime(2020, 2, 22, 3, 49, 42),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1726,7 +2161,10 @@ namespace Artportable.API.Testing
             Title = "Fika",
             Description = "Fika i pastell",
             Published = new DateTime(2021, 7, 4, 15, 3, 35),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -1737,7 +2175,10 @@ namespace Artportable.API.Testing
             Title = "Lissabon",
             Description = "Lissabon under natthimmel",
             Published = new DateTime(2021, 3, 18, 7, 26, 45),
-            Price = 41000
+            Price = 41000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1748,7 +2189,10 @@ namespace Artportable.API.Testing
             Title = "Enslig stuga",
             Description = "Ensligt hus vid skogens slut, liten gubbe tittar ut",
             Published = new DateTime(2021, 1, 30, 8, 34, 23),
-            Price = 21000
+            Price = 21000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1759,7 +2203,10 @@ namespace Artportable.API.Testing
             Title = "Höstbänk",
             Description = "Bänk i höstskog med löv som faller ner",
             Published = new DateTime(2021, 5, 9, 14, 13, 43),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1770,7 +2217,10 @@ namespace Artportable.API.Testing
             Title = "Till häst",
             Description = "Resande sällskap",
             Published = new DateTime(2021, 8, 23, 7, 11, 23),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1781,7 +2231,10 @@ namespace Artportable.API.Testing
             Title = "Båtvarv",
             Description = "En avmålning av ett gammalt båtvarv",
             Published = new DateTime(2021, 9, 27, 19, 56, 17),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1791,7 +2244,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 219,
             Title = "Horisont i skymning",
             Published = new DateTime(2021, 1, 4, 4, 21, 45),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1802,7 +2258,10 @@ namespace Artportable.API.Testing
             Title = "London",
             Description = "London nattetid med Big Ben som ståtligt sträcker sig upp i himmelen",
             Published = new DateTime(2020, 7, 11, 21, 28, 29),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1813,7 +2272,10 @@ namespace Artportable.API.Testing
             Title = "Italiensk bygata",
             Description = "Promenadgator i liten by vid den Italienska rivieran",
             Published = new DateTime(2021, 8, 30, 8, 31, 13),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1823,7 +2285,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 222,
             Title = "Blad",
             Published = new DateTime(2021, 11, 13, 7, 43, 1),
-            Price = 13000
+            Price = 13000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1833,7 +2298,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 223,
             Title = "Akustisk gitarr",
             Published = new DateTime(2020, 6, 19, 9, 47, 34),
-            Price = 88000
+            Price = 88000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1844,7 +2312,10 @@ namespace Artportable.API.Testing
             Title = "Flicka med katt",
             Description = "Flickan Anna och katten Nisse utanför huset på landet",
             Published = new DateTime(2021, 10, 1, 18, 18, 42),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -1855,7 +2326,10 @@ namespace Artportable.API.Testing
             Title = "Hus",
             Description = "Hus i en dal i alperna",
             Published = new DateTime(2021, 6, 2, 18, 38, 16),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1866,7 +2340,10 @@ namespace Artportable.API.Testing
             Title = "Träd i rad",
             Description = "Träd uppställda på rad i skymningen",
             Published = new DateTime(2021, 2, 1, 23, 30, 49),
-            Price = 2000
+            Price = 2000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1877,7 +2354,10 @@ namespace Artportable.API.Testing
             Title = "Blomsterallé",
             Description = "Allé fylld av träd med blomster",
             Published = new DateTime(2021, 7, 7, 7, 31, 13),
-            Price = 77000
+            Price = 77000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1888,7 +2368,10 @@ namespace Artportable.API.Testing
             Title = "Båten Anna",
             Description = "Förtöjd vid en brygga",
             Published = new DateTime(2020, 2, 6, 7, 52, 49),
-            Price = 43000
+            Price = 43000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1899,7 +2382,10 @@ namespace Artportable.API.Testing
             Title = "Solur",
             Description = "Ett konstverk i samspel med solen",
             Published = new DateTime(2020, 5, 20, 8, 51, 30),
-            Price = 89000
+            Price = 89000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1910,7 +2396,10 @@ namespace Artportable.API.Testing
             Title = "Två blå fåglar",
             Description = "Två små blå fåglar på en pinne",
             Published = new DateTime(2021, 9, 23, 1, 40, 5),
-            Price = 10000
+            Price = 10000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1921,7 +2410,10 @@ namespace Artportable.API.Testing
             Title = "Stig längs mur",
             Description = "En solig sommardag på en stig vid en mur",
             Published = new DateTime(2021, 7, 24, 18, 11, 1),
-            Price = 13000
+            Price = 13000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1931,7 +2423,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 232,
             Title = "Blå fönster",
             Published = new DateTime(2021, 11, 27, 18, 7, 9),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1942,7 +2437,10 @@ namespace Artportable.API.Testing
             Title = "Vinterdroppar i vas",
             Description = "En vas med vinterdroppar",
             Published = new DateTime(2020, 12, 24, 8, 40, 21),
-            Price = 72000
+            Price = 72000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1953,7 +2451,10 @@ namespace Artportable.API.Testing
             Title = "Blommande träd",
             Description = "Ett blommande japanskt träd",
             Published = new DateTime(2021, 12, 5, 4, 7, 0),
-            Price = 20000
+            Price = 20000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           // new Artwork() TA BORT
           // {
@@ -1975,7 +2476,10 @@ namespace Artportable.API.Testing
             Title = "Ett glas mjölk och lite frukt",
             Description = "Ett glas mjölk och lite frukt på ett bord",
             Published = new DateTime(2020, 7, 4, 7, 53, 53),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1986,7 +2490,10 @@ namespace Artportable.API.Testing
             Title = "Fågel i päronträd",
             Description = "En vanlig typ av fågel som sitter och vilar i ett päronträd innan det är dags att flyga söderut",
             Published = new DateTime(2020, 4, 11, 5, 6, 48),
-            Price = 41000
+            Price = 41000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -1997,7 +2504,10 @@ namespace Artportable.API.Testing
             Title = "Blombukett i vas",
             Description = "Lila blommor i dans kring en blå och en rosa",
             Published = new DateTime(2021, 4, 24, 5, 27, 47),
-            Price = 68000
+            Price = 68000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2008,7 +2518,10 @@ namespace Artportable.API.Testing
             Title = "Gråtande flicka",
             Description = "Gammal målning av en gråtande flicka i en stad",
             Published = new DateTime(2021, 7, 2, 23, 21, 31),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2019,7 +2532,10 @@ namespace Artportable.API.Testing
             Title = "Hus vid en bro",
             Description = "En lugn, stilla å rinner genom det lilla samhället i norra Belgien. Ett hus där någon bos ligger intill ån och över bron cyklar två turister för att komma över till andra sidan.",
             Published = new DateTime(2021, 9, 18, 12, 44, 30),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2030,7 +2546,10 @@ namespace Artportable.API.Testing
             Title = "Dans på rosor",
             Description = "...fast utan rosor",
             Published = new DateTime(2021, 5, 12, 9, 51, 5),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2041,7 +2560,10 @@ namespace Artportable.API.Testing
             Title = "Öl",
             Description = "En öl i ett glas, jävligt najs",
             Published = new DateTime(2021, 11, 20, 23, 0, 55),
-            Price = 88000
+            Price = 88000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2052,7 +2574,10 @@ namespace Artportable.API.Testing
             Title = "Moskva",
             Description = "En byggnad i Moskva",
             Published = new DateTime(2020, 3, 29, 16, 25, 21),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2063,7 +2588,10 @@ namespace Artportable.API.Testing
             Title = "Höstträd i spegelbild",
             Description = "Höstträd speglas mot vattenytan",
             Published = new DateTime(2020, 4, 16, 18, 29, 59),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2074,7 +2602,10 @@ namespace Artportable.API.Testing
             Title = "Balkong i söderläge",
             Description = "Många fina blommor har växt upp här genom åren",
             Published = new DateTime(2021, 12, 3, 13, 4, 43),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2085,7 +2616,10 @@ namespace Artportable.API.Testing
             Title = "Getting married",
             Description = "A bride getting ready for her big day",
             Published = new DateTime(2020, 9, 17, 17, 7, 54),
-            Price = 97000
+            Price = 97000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2096,7 +2630,10 @@ namespace Artportable.API.Testing
             Title = "Irländska bergsväggen",
             Description = "Irländska bergsväggen ut mot Atlanten med vågor som slår upp mot den hårda stenkanten",
             Published = new DateTime(2020, 9, 12, 20, 23, 36),
-            Price = 100000
+            Price = 100000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2107,7 +2644,10 @@ namespace Artportable.API.Testing
             Title = "Ett café i Paris",
             Description = "Le Bocal, ett klassiskt franskt litet café i centrala Paris",
             Published = new DateTime(2020, 11, 17, 4, 22, 43),
-            Price = 82000
+            Price = 82000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2118,7 +2658,10 @@ namespace Artportable.API.Testing
             Title = "Fiskmås",
             Description = "En dramatisk bild av tre flygande fiskmåsar",
             Published = new DateTime(2020, 8, 20, 10, 28, 57),
-            Price = 57000
+            Price = 57000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2129,7 +2672,10 @@ namespace Artportable.API.Testing
             Title = "Blomvas",
             Description = "En blomvas till",
             Published = new DateTime(2021, 3, 18, 7, 56, 44),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2140,7 +2686,10 @@ namespace Artportable.API.Testing
             Title = "Arkitektur",
             Description = "Medeltida arkitektur i stor stad",
             Published = new DateTime(2020, 1, 8, 9, 14, 49),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2151,7 +2700,10 @@ namespace Artportable.API.Testing
             Title = "Korg med mumsiga höstäpplen",
             Description = "Ett par har trillat ut",
             Published = new DateTime(2020, 4, 26, 12, 3, 16),
-            Price = 91000
+            Price = 91000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2162,7 +2714,10 @@ namespace Artportable.API.Testing
             Title = "Liten fiskarbåt",
             Description = "Gamle Olof står på sin fiskarbåt och gör iordningen nätet",
             Published = new DateTime(2021, 2, 9, 2, 21, 1),
-            Price = 23000
+            Price = 23000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2172,7 +2727,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 254,
             Title = "Höstlöv",
             Published = new DateTime(2021, 12, 16, 8, 31, 32),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2183,7 +2741,10 @@ namespace Artportable.API.Testing
             Title = "Landskap i gamla Grekland",
             Description = "Förestället en liten lokal vingård",
             Published = new DateTime(2020, 7, 23, 19, 33, 16),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2194,7 +2755,10 @@ namespace Artportable.API.Testing
             Title = "Blomvas",
             Description = "Ytterligare en vas fylld med olika blommor",
             Published = new DateTime(2021, 9, 3, 23, 43, 42),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2205,7 +2769,10 @@ namespace Artportable.API.Testing
             Title = "Lissabon",
             Description = "En målning av Lissabon målad i olja",
             Published = new DateTime(2020, 2, 17, 0, 59, 51),
-            Price = 44000
+            Price = 44000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2216,7 +2783,10 @@ namespace Artportable.API.Testing
             Title = "Taj Mahal",
             Description = "En målning av Taj Mahal",
             Published = new DateTime(2020, 11, 27, 18, 57, 49),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2227,7 +2797,10 @@ namespace Artportable.API.Testing
             Title = "Fisk i kostym",
             Description = "Två fiskar i en typ av kostym tittar rakt upp i luften",
             Published = new DateTime(2020, 3, 19, 6, 0, 4),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2238,7 +2811,10 @@ namespace Artportable.API.Testing
             Title = "Man med kamel",
             Description = "Man leder kamel till en oas med vatten",
             Published = new DateTime(2021, 8, 28, 14, 28, 36),
-            Price = 88000
+            Price = 88000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2249,7 +2825,10 @@ namespace Artportable.API.Testing
             Title = "Ängen",
             Description = "En äng med fina blommor målad i olja",
             Published = new DateTime(2021, 2, 19, 9, 24, 35),
-            Price = 45000
+            Price = 45000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2260,7 +2839,10 @@ namespace Artportable.API.Testing
             Title = "Skepp",
             Description = "Ett skepp som seglar in mot en hamn för att lägga till",
             Published = new DateTime(2020, 2, 9, 12, 51, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           // Anneli Frisk
@@ -2272,7 +2854,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 263,
             Title = "Sjölejon",
             Published = new DateTime(2020, 2, 9, 12, 45, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2282,7 +2867,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 264,
             Title = "Tiger",
             Published = new DateTime(2020, 2, 9, 12, 43, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2292,7 +2880,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 265,
             Title = "Monokrom Amaryllis",
             Published = new DateTime(2020, 2, 9, 12, 49, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2302,7 +2893,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 266,
             Title = "Cirkusdirektör",
             Published = new DateTime(2020, 2, 9, 12, 48, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2312,7 +2906,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 267,
             Title = "Japansk bukett",
             Published = new DateTime(2020, 2, 9, 12, 13, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2322,7 +2919,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 268,
             Title = "Grönsaker",
             Published = new DateTime(2020, 2, 9, 12, 23, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2332,7 +2932,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 269,
             Title = "Sommarblad",
             Published = new DateTime(2020, 2, 9, 12, 21, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2342,7 +2945,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 270,
             Title = "Cyklamen",
             Published = new DateTime(2020, 2, 9, 12, 36, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2352,7 +2958,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 271,
             Title = "Engelsk bukett",
             Published = new DateTime(2020, 2, 9, 12, 59, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2362,7 +2971,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 272,
             Title = "Clown",
             Published = new DateTime(2020, 2, 9, 11, 51, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2372,7 +2984,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 273,
             Title = "Röda tulpaner",
             Published = new DateTime(2020, 2, 9, 12, 55, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2382,7 +2997,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 274,
             Title = "Gula pioner",
             Published = new DateTime(2020, 2, 9, 12, 54, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2392,7 +3010,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 275,
             Title = "Elefant",
             Published = new DateTime(2020, 2, 9, 12, 56, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2402,7 +3023,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 276,
             Title = "Sparris, aubergine och spetspaprika",
             Published = new DateTime(2020, 2, 9, 12, 57, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2412,7 +3036,10 @@ namespace Artportable.API.Testing
             PrimaryFileId = 277,
             Title = "Päron i sällskap av ananas",
             Published = new DateTime(2020, 2, 9, 12, 49, 35),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           new Artwork()
@@ -2424,7 +3051,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 2, 20, 3, 42, 38),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2435,7 +3065,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 9, 23, 5, 14, 47),
-            Price = 72000
+            Price = 72000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2446,7 +3079,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 8, 25, 13, 37, 16),
-            Price = 55000
+            Price = 55000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2457,7 +3093,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 1, 12, 19, 39, 12),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2468,7 +3107,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 4, 24, 9, 51, 34),
-            Price = 43000
+            Price = 43000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2479,7 +3121,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 10, 20, 14, 12, 32),
-            Price = 44000
+            Price = 44000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2490,7 +3135,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 2, 12, 19, 0, 59),
-            Price = 33000
+            Price = 33000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2501,7 +3149,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 8, 11, 21, 31, 4),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2512,7 +3163,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 2, 17, 22, 41, 20),
-            Price = 29000
+            Price = 29000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2523,7 +3177,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 11, 18, 0, 3, 3),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2534,7 +3191,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 11, 7, 16, 41, 15),
-            Price = 12000
+            Price = 12000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2545,7 +3205,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 11, 2, 23, 31, 46),
-            Price = 32000
+            Price = 32000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2556,7 +3219,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 4, 21, 2, 37, 2),
-            Price = 62000
+            Price = 62000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2567,7 +3233,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 5, 21, 10, 24, 4),
-            Price = 67000
+            Price = 67000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2578,7 +3247,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 3, 12, 19, 24, 40),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2589,7 +3261,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 11, 30, 17, 57, 40),
-            Price = 27000
+            Price = 27000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2600,7 +3275,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 4, 8, 10, 54, 50),
-            Price = 87000
+            Price = 87000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2611,7 +3289,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 3, 17, 4, 27, 20),
-            Price = 85000
+            Price = 85000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2622,7 +3303,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 3, 14, 15, 51, 9),
-            Price = 32000
+            Price = 32000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2633,7 +3317,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 1, 13, 18, 55, 10),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           new Artwork()
@@ -2645,7 +3332,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 1, 14, 21, 51, 7),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2656,7 +3346,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 11, 20, 23, 57, 48),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2667,7 +3360,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 10, 3, 4, 53, 38),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2678,7 +3374,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 11, 10, 2, 8, 11),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2689,7 +3388,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 9, 22, 19, 31, 50),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2700,7 +3402,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 4, 1, 7, 6, 57),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2711,7 +3416,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 4, 18, 8, 25, 56),
-            Price = 4000
+            Price = 4000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2722,7 +3430,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 6, 24, 8, 51, 58),
-            Price = 43000
+            Price = 43000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2733,7 +3444,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 7, 21, 9, 59, 17),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2744,7 +3458,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 12, 24, 8, 9, 10),
-            Price = 31000
+            Price = 31000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2755,7 +3472,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 3, 24, 2, 17, 44),
-            Price = 82000
+            Price = 82000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2766,7 +3486,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 7, 30, 14, 24, 29),
-            Price = 96000
+            Price = 96000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2777,7 +3500,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2021, 9, 1, 13, 53, 33),
-            Price = 3000
+            Price = 3000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2788,7 +3514,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 10, 28, 15, 30, 7),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2799,7 +3528,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum dolor sit amet",
             Description = "",
             Published = new DateTime(2020, 10, 6, 11, 12, 7),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           new Artwork()
@@ -2811,7 +3543,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 21, 11, 26, 27),
-            Price = 77000
+            Price = 77000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2822,7 +3557,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 20, 8, 10, 35),
-            Price = 72000
+            Price = 72000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2833,7 +3571,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 21, 0, 40, 57),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2844,7 +3585,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 15, 0, 47, 33),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2855,7 +3599,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 12, 0, 51, 11),
-            Price = 32000
+            Price = 32000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2866,7 +3613,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 11, 8, 45, 19),
-            Price = 32000
+            Price = 32000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2877,7 +3627,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 7, 11, 3, 57),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2888,7 +3641,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 13, 20, 45, 47),
-            Price = 75000
+            Price = 75000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2899,7 +3655,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 2, 15, 10, 43),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2910,7 +3669,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 17, 0, 11, 49),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2921,7 +3683,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 3, 9, 6, 39),
-            Price = 31000
+            Price = 31000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2932,7 +3697,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 18, 2, 37, 1),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2943,7 +3711,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 7, 21, 58, 33),
-            Price = 57000
+            Price = 57000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2954,7 +3725,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 18, 8, 20, 48),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2965,7 +3739,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 22, 12, 0, 23),
-            Price = 24000
+            Price = 24000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2976,7 +3753,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 5, 14, 50, 16),
-            Price = 49000
+            Price = 49000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2987,7 +3767,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 20, 14, 58, 38),
-            Price = 25000
+            Price = 25000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -2998,7 +3781,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 7, 15, 43, 11),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3009,7 +3795,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 12, 3, 10, 21),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3020,7 +3809,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 6, 13, 17, 45),
-            Price = 29000
+            Price = 29000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3031,7 +3823,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 13, 4, 33, 29),
-            Price = 33000
+            Price = 33000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           new Artwork()
@@ -3043,7 +3838,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 14, 12, 21, 12),
-            Price = 16000
+            Price = 16000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3054,7 +3852,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 1, 16, 11, 1),
-            Price = 27000
+            Price = 27000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3065,7 +3866,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 6, 21, 28, 17),
-            Price = 54000
+            Price = 54000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3076,7 +3880,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 15, 12, 50, 7),
-            Price = 44000
+            Price = 44000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3087,7 +3894,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 5, 2, 39, 51),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3098,7 +3908,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 10, 14, 45, 34),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3109,7 +3922,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 19, 1, 14, 13),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -3120,7 +3936,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 7, 1, 46, 53),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3131,7 +3950,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 4, 6, 49, 57),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3142,7 +3964,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 24, 1, 22, 9),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3153,7 +3978,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 2, 10, 41, 19),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3164,7 +3992,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 17, 13, 3, 16),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3175,7 +4006,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 26, 6, 13, 0),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3186,7 +4020,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 11, 7, 21, 50),
-            Price = 97000
+            Price = 97000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3197,7 +4034,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 19, 16, 55, 24),
-            Price = 84000
+            Price = 84000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3208,7 +4048,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 18, 23, 50, 19),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3219,7 +4062,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 27, 12, 32, 37),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3230,7 +4076,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 26, 19, 5, 39),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3241,7 +4090,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 10, 13, 19, 30),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3252,7 +4104,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 20, 13, 24, 39),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           new Artwork()
@@ -3264,7 +4119,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 12, 16, 6, 38),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3275,7 +4133,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 19, 12, 7, 14),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3286,7 +4147,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 18, 12, 23, 0),
-            Price = 24000
+            Price = 24000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3297,7 +4161,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 18, 10, 5, 55),
-            Price = 91000
+            Price = 91000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3308,7 +4175,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 3, 1, 51, 24),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3319,7 +4189,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 12, 21, 20, 25),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -3330,7 +4203,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 24, 12, 25, 57),
-            Price = 49000
+            Price = 49000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3341,7 +4217,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 24, 3, 57, 5),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3352,7 +4231,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 27, 19, 51, 39),
-            Price = 48000
+            Price = 48000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3363,7 +4245,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 3, 15, 51, 13),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3374,7 +4259,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 16, 3, 4, 52),
-            Price = 62000
+            Price = 62000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3385,7 +4273,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 25, 15, 46, 47),
-            Price = 43000
+            Price = 43000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3396,7 +4287,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 17, 13, 28, 37),
-            Price = 29000
+            Price = 29000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3407,7 +4301,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 12, 6, 49, 44),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3418,7 +4315,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 13, 4, 42, 58),
-            Price = 12000
+            Price = 12000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3429,7 +4329,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 1, 4, 15, 9),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3440,7 +4343,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 11, 7, 30, 5),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3451,7 +4357,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 9, 15, 25, 10),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3462,7 +4371,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 27, 20, 30, 47),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3473,7 +4385,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 10, 21, 7, 17),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3484,7 +4399,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 2, 9, 50, 29),
-            Price = 26000
+            Price = 26000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3495,7 +4413,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 20, 3, 50, 39),
-            Price = 47000
+            Price = 47000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3506,7 +4427,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 12, 16, 51, 7),
-            Price = 87000
+            Price = 87000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3517,7 +4441,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 14, 9, 11, 3),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3528,7 +4455,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 21, 10, 53, 1),
-            Price = 52000
+            Price = 52000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3539,7 +4469,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 2, 20, 1, 32),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3550,7 +4483,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 5, 20, 36, 48),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3561,7 +4497,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 15, 23, 27, 40),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3572,7 +4511,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 18, 9, 7, 21),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3583,7 +4525,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 25, 21, 19, 7),
-            Price = 61000
+            Price = 61000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3594,7 +4539,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 25, 10, 47, 20),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3605,7 +4553,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 6, 11, 43, 33),
-            Price = 54000
+            Price = 54000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3616,7 +4567,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 16, 15, 21, 10),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3627,7 +4581,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 10, 22, 18, 19),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3638,7 +4595,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 13, 12, 12, 17),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3649,7 +4609,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 11, 23, 37, 8),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3660,7 +4623,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 8, 17, 19, 51),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3671,7 +4637,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 24, 15, 51, 30),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3682,7 +4651,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 9, 23, 50, 26),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3693,7 +4665,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 10, 0, 21, 51),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3704,7 +4679,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 11, 1, 26, 9),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3715,7 +4693,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 11, 18, 13, 4),
-            Price = 1000
+            Price = 1000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3726,7 +4707,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 2, 11, 26, 12),
-            Price = 77000
+            Price = 77000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3737,7 +4721,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 17, 8, 15, 47),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3748,7 +4735,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 24, 19, 41, 41),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3759,7 +4749,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 4, 18, 23, 25),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3770,7 +4763,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 7, 8, 0, 11),
-            Price = 27000
+            Price = 27000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3781,7 +4777,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 1, 20, 50, 25),
-            Price = 87000
+            Price = 87000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3792,7 +4791,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 25, 0, 29, 44),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3803,7 +4805,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 16, 9, 31, 47),
-            Price = 26000
+            Price = 26000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3814,7 +4819,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 3, 8, 52, 22),
-            Price = 53000
+            Price = 53000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3825,7 +4833,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 4, 19, 36, 30),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -3836,7 +4847,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 14, 23, 19, 32),
-            Price = 49000
+            Price = 49000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3847,7 +4861,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 25, 9, 20, 53),
-            Price = 100000
+            Price = 100000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3858,7 +4875,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 19, 10, 57, 12),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3869,7 +4889,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 16, 7, 35, 36),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3880,7 +4903,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 24, 0, 13, 12),
-            Price = 91000
+            Price = 91000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3891,7 +4917,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 17, 12, 1, 1),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3902,7 +4931,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 23, 20, 2, 30),
-            Price = 45000
+            Price = 45000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3913,7 +4945,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 23, 19, 26, 25),
-            Price = 13000
+            Price = 13000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3924,7 +4959,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 3, 12, 1, 21),
-            Price = 97000
+            Price = 97000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3935,7 +4973,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 1, 9, 30, 8),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3946,7 +4987,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 2, 5, 13, 13),
-            Price = 74000
+            Price = 74000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3957,7 +5001,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 10, 18, 32, 24),
-            Price = 89000
+            Price = 89000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3968,7 +5015,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 6, 0, 58, 22),
-            Price = 100000
+            Price = 100000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3979,7 +5029,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 5, 11, 28, 32),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -3990,7 +5043,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 24, 20, 45, 51),
-            Price = 32000
+            Price = 32000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4001,7 +5057,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 23, 11, 26, 33),
-            Price = 3000
+            Price = 3000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4012,7 +5071,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 5, 16, 21, 35),
-            Price = 87000
+            Price = 87000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4023,7 +5085,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 4, 16, 11, 54),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4034,7 +5099,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 6, 5, 24, 25),
-            Price = 76000
+            Price = 76000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4045,7 +5113,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 2, 2, 12, 53),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4056,7 +5127,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 3, 2, 36, 42),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4067,7 +5141,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 9, 2, 41, 22),
-            Price = 1000
+            Price = 1000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4078,7 +5155,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 12, 2, 57, 17),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4089,7 +5169,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 12, 17, 33, 54),
-            Price = 62000
+            Price = 62000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4100,7 +5183,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 10, 4, 22, 38),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4111,7 +5197,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 5, 17, 22, 42),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4122,7 +5211,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 1, 12, 26, 7),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4133,7 +5225,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 8, 19, 43, 24),
-            Price = 26000
+            Price = 26000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4144,7 +5239,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 3, 12, 3, 23),
-            Price = 82000
+            Price = 82000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4155,7 +5253,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 15, 21, 7, 52),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4166,7 +5267,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 4, 9, 26, 29),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4177,7 +5281,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 15, 17, 41, 3),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4188,7 +5295,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 5, 6, 51, 5),
-            Price = 55000
+            Price = 55000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4199,7 +5309,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 11, 7, 3, 41),
-            Price = 91000
+            Price = 91000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4210,7 +5323,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 26, 5, 35, 46),
-            Price = 80000
+            Price = 80000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4221,7 +5337,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 12, 1, 41, 56),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4232,7 +5351,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 18, 2, 9, 30),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4243,7 +5365,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 10, 12, 50, 10),
-            Price = 84000
+            Price = 84000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4254,7 +5379,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 24, 10, 28, 44),
-            Price = 28000
+            Price = 28000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4265,7 +5393,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 23, 11, 55, 44),
-            Price = 52000
+            Price = 52000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4276,7 +5407,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 23, 14, 25, 17),
-            Price = 97000
+            Price = 97000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4287,7 +5421,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 24, 18, 9, 1),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4298,7 +5435,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 26, 20, 44, 43),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4309,7 +5449,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 11, 11, 38, 4),
-            Price = 57000
+            Price = 57000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4320,7 +5463,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 25, 1, 1, 58),
-            Price = 17000
+            Price = 17000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4331,7 +5477,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 20, 4, 35, 32),
-            Price = 70000
+            Price = 70000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4342,7 +5491,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 17, 8, 18, 16),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4353,7 +5505,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 18, 4, 49, 14),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4364,7 +5519,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 19, 21, 14, 15),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4375,7 +5533,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 7, 8, 47, 19),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4386,7 +5547,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 12, 3, 25, 26),
-            Price = 48000
+            Price = 48000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4397,7 +5561,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 4, 4, 49, 43),
-            Price = 3000
+            Price = 3000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4408,7 +5575,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 27, 20, 17, 52),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4419,7 +5589,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 9, 9, 55, 38),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4430,7 +5603,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 4, 23, 43, 12),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4441,7 +5617,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 13, 4, 44, 57),
-            Price = 52000
+            Price = 52000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4452,7 +5631,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 4, 13, 34, 32),
-            Price = 92000
+            Price = 92000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4463,7 +5645,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 14, 20, 2, 39),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4474,7 +5659,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 16, 12, 5, 37),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4485,7 +5673,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 6, 8, 38, 57),
-            Price = 96000
+            Price = 96000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4496,7 +5687,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 15, 0, 30, 17),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4507,7 +5701,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 24, 3, 44, 56),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4518,7 +5715,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 13, 15, 50, 30),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4529,7 +5729,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 26, 4, 53, 47),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4540,7 +5743,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 26, 20, 22, 19),
-            Price = 20000
+            Price = 20000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
 
           new Artwork()
@@ -4552,7 +5758,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 2, 18, 7, 21),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4563,7 +5772,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 7, 7, 54, 24),
-            Price = 21000
+            Price = 21000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4574,7 +5786,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 14, 3, 58, 0),
-            Price = 82000
+            Price = 82000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4585,7 +5800,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 10, 2, 59, 36),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4596,7 +5814,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 18, 23, 39, 43),
-            Price = 56000
+            Price = 56000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4607,7 +5828,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 24, 14, 37, 26),
-            Price = 80000
+            Price = 80000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4618,7 +5842,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 27, 10, 42, 46),
-            Price = 84000
+            Price = 84000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4629,7 +5856,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 13, 16, 42, 26),
-            Price = 55000
+            Price = 55000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4640,7 +5870,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 18, 8, 41, 2),
-            Price = 92000
+            Price = 92000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4651,7 +5884,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 17, 20, 56, 54),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4662,7 +5898,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 7, 7, 9, 37),
-            Price = 67000
+            Price = 67000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4673,7 +5912,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 26, 12, 33, 25),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4684,7 +5926,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 9, 1, 5, 1),
-            Price = 58000
+            Price = 58000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4695,7 +5940,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 8, 8, 8, 30),
-            Price = 54000
+            Price = 54000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4706,7 +5954,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 7, 20, 48, 24),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4717,7 +5968,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 25, 13, 23, 6),
-            Price = 33000
+            Price = 33000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4728,7 +5982,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 20, 5, 12, 5),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4739,7 +5996,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 4, 22, 0, 29),
-            Price = 80000
+            Price = 80000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4750,7 +6010,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 19, 7, 18, 19),
-            Price = 89000
+            Price = 89000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4761,7 +6024,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 3, 4, 54, 33),
-            Price = 41000
+            Price = 41000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4772,7 +6038,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 2, 7, 51, 36),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4783,7 +6052,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 20, 4, 17, 27),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4794,7 +6066,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 7, 18, 21, 44),
-            Price = 27000
+            Price = 27000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4805,7 +6080,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 6, 8, 12, 32),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4816,7 +6094,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 7, 22, 49, 27),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4827,7 +6108,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 11, 12, 12, 50),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4838,7 +6122,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 21, 6, 13, 30),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4849,7 +6136,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 9, 19, 14, 19),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4860,7 +6150,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 6, 15, 22, 55),
-            Price = 30000
+            Price = 30000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4871,7 +6164,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 15, 19, 52, 27),
-            Price = 48000
+            Price = 48000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4882,7 +6178,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 24, 18, 13, 12),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4893,7 +6192,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 10, 8, 3, 42),
-            Price = 76000
+            Price = 76000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4904,7 +6206,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 2, 20, 45, 29),
-            Price = 11000
+            Price = 11000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4915,7 +6220,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 11, 15, 37, 17),
-            Price = 41000
+            Price = 41000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4926,7 +6234,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 10, 9, 49, 9),
-            Price = 11000
+            Price = 11000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4937,7 +6248,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 10, 18, 44, 42),
-            Price = 67000
+            Price = 67000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4948,7 +6262,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 8, 22, 36, 50),
-            Price = 82000
+            Price = 82000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4959,7 +6276,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 23, 4, 7, 54),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4970,7 +6290,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 26, 4, 4, 4),
-            Price = 24000
+            Price = 24000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4981,7 +6304,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 19, 4, 1, 4),
-            Price = 48000
+            Price = 48000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -4992,7 +6318,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 15, 21, 9, 11),
-            Price = 46000
+            Price = 46000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5003,7 +6332,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 25, 13, 34, 10),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5014,7 +6346,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 19, 7, 35, 22),
-            Price = 23000
+            Price = 23000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5025,7 +6360,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 20, 6, 29, 40),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5036,7 +6374,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 13, 4, 56, 36),
-            Price = 29000
+            Price = 29000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5047,7 +6388,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 14, 0, 37, 10),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5058,7 +6402,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 23, 12, 27, 41),
-            Price = 47000
+            Price = 47000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5069,7 +6416,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 25, 6, 57, 16),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5080,7 +6430,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 4, 2, 28, 13),
-            Price = 74000
+            Price = 74000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5091,7 +6444,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 7, 19, 35, 37),
-            Price = 56000
+            Price = 56000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5102,7 +6458,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 24, 2, 46, 33),
-            Price = 31000
+            Price = 31000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5113,7 +6472,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 20, 19, 6, 36),
-            Price = 8000
+            Price = 8000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5124,7 +6486,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 4, 16, 47, 9),
-            Price = 38000
+            Price = 38000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5135,7 +6500,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 14, 12, 9, 50),
-            Price = 69000
+            Price = 69000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5146,7 +6514,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 6, 14, 1, 6),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5157,7 +6528,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 9, 1, 36, 55),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5168,7 +6542,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 25, 16, 28, 55),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5179,7 +6556,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 8, 12, 15, 14),
-            Price = 35000
+            Price = 35000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5190,7 +6570,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 14, 22, 22, 19),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5201,7 +6584,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 13, 22, 3, 41),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5212,7 +6598,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 27, 4, 36, 16),
-            Price = 1000
+            Price = 1000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5223,7 +6612,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 21, 23, 38, 58),
-            Price = 54000
+            Price = 54000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5234,7 +6626,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 15, 22, 54, 39),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5245,7 +6640,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 10, 4, 55, 54),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5256,7 +6654,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 17, 9, 41, 14),
-            Price = 25000
+            Price = 25000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5267,7 +6668,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 4, 7, 46, 37),
-            Price = 84000
+            Price = 84000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5278,7 +6682,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 3, 12, 22, 54),
-            Price = 96000
+            Price = 96000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5289,7 +6696,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 19, 17, 19, 33),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5300,7 +6710,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 1, 2, 2, 35),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5311,7 +6724,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 10, 19, 58, 46),
-            Price = 49000
+            Price = 49000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5322,7 +6738,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 7, 19, 34, 49),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5333,7 +6752,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 5, 5, 26, 34),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5344,7 +6766,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 26, 9, 40, 18),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5355,7 +6780,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 21, 1, 13, 25),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5366,7 +6794,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 24, 5, 18, 34),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5377,7 +6808,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 23, 4, 20, 57),
-            Price = 8000
+            Price = 8000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5388,7 +6822,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 1, 0, 15, 51),
-            Price = 35000
+            Price = 35000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5399,7 +6836,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 15, 14, 22, 56),
-            Price = 45000
+            Price = 45000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5410,7 +6850,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 16, 7, 24, 13),
-            Price = 81000
+            Price = 81000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5421,7 +6864,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 3, 21, 21, 50),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5432,7 +6878,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 27, 8, 1, 40),
-            Price = 85000
+            Price = 85000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5443,7 +6892,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 19, 5, 0, 18),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5454,7 +6906,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 9, 11, 13, 35),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5465,7 +6920,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 16, 7, 34, 36),
-            Price = 84000
+            Price = 84000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5476,7 +6934,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 20, 17, 34, 56),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5487,7 +6948,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 27, 14, 6, 52),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5498,7 +6962,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 5, 9, 50, 7),
-            Price = 85000
+            Price = 85000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5509,7 +6976,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 2, 6, 1, 50),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5520,7 +6990,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 21, 12, 5, 35),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5531,7 +7004,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 18, 2, 39, 18),
-            Price = 100000
+            Price = 100000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5542,7 +7018,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 27, 22, 49, 4),
-            Price = 24000
+            Price = 24000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5553,7 +7032,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 16, 3, 24, 54),
-            Price = 3000
+            Price = 3000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5564,7 +7046,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 4, 10, 40, 45),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5575,7 +7060,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 12, 7, 37, 25),
-            Price = 96000
+            Price = 96000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5586,7 +7074,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 20, 0, 32, 17),
-            Price = 4000
+            Price = 4000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5597,7 +7088,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 18, 11, 9, 42),
-            Price = 47000
+            Price = 47000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5608,7 +7102,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 17, 7, 19, 25),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5619,7 +7116,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 15, 13, 29, 18),
-            Price = 91000
+            Price = 91000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5630,7 +7130,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 4, 10, 12, 46),
-            Price = 13000
+            Price = 13000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5641,7 +7144,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 22, 13, 32, 3),
-            Price = 47000
+            Price = 47000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5652,7 +7158,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 4, 4, 7, 9),
-            Price = 92000
+            Price = 92000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5663,7 +7172,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 4, 13, 0, 28),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5674,7 +7186,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 14, 17, 9, 27),
-            Price = 60000
+            Price = 60000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5685,7 +7200,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 25, 1, 22, 22),
-            Price = 40000
+            Price = 40000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5696,7 +7214,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 3, 15, 48, 0),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5707,7 +7228,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 10, 23, 52, 3),
-            Price = 8000
+            Price = 8000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5718,7 +7242,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 11, 17, 42, 14),
-            Price = 97000
+            Price = 97000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5729,7 +7256,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 3, 7, 16, 45),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5740,7 +7270,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 25, 20, 30, 38),
-            Price = 26000
+            Price = 26000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5751,7 +7284,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 14, 16, 51, 28),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5762,7 +7298,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 14, 7, 51, 35),
-            Price = 66000
+            Price = 66000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5773,7 +7312,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 14, 23, 47, 48),
-            Price = 82000
+            Price = 82000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5784,7 +7326,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 11, 20, 21, 22),
-            Price = 10000
+            Price = 10000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5795,7 +7340,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 7, 3, 15, 40),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -5806,7 +7354,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 8, 19, 20, 12),
-            Price = 36000
+            Price = 36000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5817,7 +7368,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 9, 19, 22, 24),
-            Price = 91000
+            Price = 91000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5828,7 +7382,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 16, 1, 57, 34),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5839,7 +7396,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 23, 22, 42, 16),
-            Price = 89000
+            Price = 89000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5850,7 +7410,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 20, 19, 24, 36),
-            Price = 10000
+            Price = 10000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5861,7 +7424,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 7, 14, 33, 20),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5872,7 +7438,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 3, 7, 6, 50),
-            Price = 52000
+            Price = 52000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5883,7 +7452,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 7, 14, 14, 40),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5894,7 +7466,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 15, 20, 18, 20),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5905,7 +7480,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 3, 2, 8, 30),
-            Price = 35000
+            Price = 35000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5916,7 +7494,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 6, 21, 49, 36),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5927,7 +7508,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 9, 4, 55, 53),
-            Price = 95000
+            Price = 95000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5938,7 +7522,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 11, 17, 35, 24),
-            Price = 94000
+            Price = 94000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5949,7 +7536,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 16, 6, 45, 32),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5960,7 +7550,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 12, 17, 38, 34),
-            Price = 61000
+            Price = 61000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5971,7 +7564,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 9, 12, 3, 19),
-            Price = 23000
+            Price = 23000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5982,7 +7578,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 17, 7, 20, 26),
-            Price = 17000
+            Price = 17000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -5993,7 +7592,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 19, 6, 54, 20),
-            Price = 5000
+            Price = 5000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6004,7 +7606,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 11, 18, 14, 46),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6015,7 +7620,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 26, 11, 43, 54),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6026,7 +7634,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 13, 6, 33, 8),
-            Price = 15000
+            Price = 15000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6037,7 +7648,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 10, 19, 2, 16),
-            Price = 56000
+            Price = 56000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6048,7 +7662,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 25, 11, 9, 54),
-            Price = 87000
+            Price = 87000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6059,7 +7676,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 26, 2, 35, 54),
-            Price = 15000
+            Price = 15000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6070,7 +7690,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 7, 9, 11, 57),
-            Price = 77000
+            Price = 77000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6081,7 +7704,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 2, 19, 9, 7),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6092,7 +7718,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 17, 10, 21, 54),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6103,7 +7732,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 16, 8, 32, 53),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6114,7 +7746,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 16, 20, 33, 17),
-            Price = 21000
+            Price = 21000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6125,7 +7760,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 25, 15, 42, 11),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6136,7 +7774,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 14, 15, 18, 58),
-            Price = 80000
+            Price = 80000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6147,7 +7788,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 19, 3, 30, 19),
-            Price = 44000
+            Price = 44000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6158,7 +7802,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 15, 2, 12, 58),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6169,7 +7816,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 22, 6, 30, 26),
-            Price = 92000
+            Price = 92000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6180,7 +7830,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 20, 10, 30, 6),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6191,7 +7844,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 8, 23, 17, 11),
-            Price = 20000
+            Price = 20000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6202,7 +7858,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 9, 4, 46, 36),
-            Price = 67000
+            Price = 67000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6213,7 +7872,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 21, 21, 15, 17),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6224,7 +7886,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 15, 15, 35, 21),
-            Price = 64000
+            Price = 64000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6235,7 +7900,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 6, 15, 31, 59),
-            Price = 2000
+            Price = 2000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6246,7 +7914,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 5, 0, 22, 14),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6257,7 +7928,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 1, 7, 9, 7),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6268,7 +7942,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 13, 10, 2, 49),
-            Price = 89000
+            Price = 89000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6279,7 +7956,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 17, 16, 50, 14),
-            Price = 11000
+            Price = 11000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6290,7 +7970,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 25, 7, 56, 27),
-            Price = 54000
+            Price = 54000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6301,7 +7984,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 19, 10, 21, 23),
-            Price = 87000
+            Price = 87000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6312,7 +7998,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 16, 23, 53, 1),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6323,7 +8012,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 18, 15, 50, 26),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6334,7 +8026,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 10, 20, 6, 18),
-            Price = 96000
+            Price = 96000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6345,7 +8040,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 14, 7, 59, 1),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6356,7 +8054,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 10, 19, 52, 43),
-            Price = 25000
+            Price = 25000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6367,7 +8068,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 11, 10, 16, 15),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6378,7 +8082,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 7, 23, 12, 14),
-            Price = 15000
+            Price = 15000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6389,7 +8096,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 24, 15, 34, 24),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6400,7 +8110,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 26, 0, 43, 32),
-            Price = 53000
+            Price = 53000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6411,7 +8124,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 4, 20, 4, 14),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6422,7 +8138,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 9, 16, 38, 51),
-            Price = 36000
+            Price = 36000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6433,7 +8152,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 17, 9, 34, 1),
-            Price = 66000
+            Price = 66000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6444,7 +8166,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 20, 8, 18, 31),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6455,7 +8180,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 2, 12, 54, 54),
-            Price = 65000
+            Price = 65000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6466,7 +8194,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 3, 16, 5, 1),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6477,7 +8208,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 7, 17, 3, 36),
-            Price = 97000
+            Price = 97000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6488,7 +8222,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 1, 18, 46, 12),
-            Price = 16000
+            Price = 16000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6499,7 +8236,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 13, 21, 7, 11),
-            Price = 68000
+            Price = 68000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6510,7 +8250,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 7, 1, 35, 19),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6521,7 +8264,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 5, 8, 49, 48),
-            Price = 59000
+            Price = 59000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6532,7 +8278,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 20, 13, 50, 29),
-            Price = 81000
+            Price = 81000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6543,7 +8292,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 19, 22, 39, 17),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6554,7 +8306,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 5, 2, 11, 24),
-            Price = 61000
+            Price = 61000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6565,7 +8320,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 2, 0, 1, 15),
-            Price = 38000
+            Price = 38000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6576,7 +8334,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 17, 10, 36, 24),
-            Price = 14000
+            Price = 14000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6587,7 +8348,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 19, 23, 17, 2),
-            Price = 25000
+            Price = 25000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6598,7 +8362,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 10, 10, 15, 50),
-            Price = 57000
+            Price = 57000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6609,7 +8376,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 12, 21, 25, 29),
-            Price = 72000
+            Price = 72000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6620,7 +8390,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 8, 11, 15, 27),
-            Price = 72000
+            Price = 72000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6631,7 +8404,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 25, 22, 56, 21),
-            Price = 38000
+            Price = 38000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6642,7 +8418,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 2, 21, 54, 56),
-            Price = 36000
+            Price = 36000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6653,7 +8432,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 5, 20, 59, 15),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6664,7 +8446,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 8, 1, 32, 12),
-            Price = 19000
+            Price = 19000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6675,7 +8460,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 27, 21, 53, 30),
-            Price = 96000
+            Price = 96000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6686,7 +8474,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 17, 5, 32, 30),
-            Price = 74000
+            Price = 74000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6697,7 +8488,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 16, 8, 1, 16),
-            Price = 30000
+            Price = 30000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6708,7 +8502,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 1, 18, 8, 49),
-            Price = 36000
+            Price = 36000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6719,7 +8516,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 9, 11, 52, 59),
-            Price = 13000
+            Price = 13000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6730,7 +8530,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 26, 4, 46, 2),
-            Price = 27000
+            Price = 27000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6741,7 +8544,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 15, 13, 30, 8),
-            Price = 74000
+            Price = 74000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6752,7 +8558,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 6, 8, 39, 0),
-            Price = 38000
+            Price = 38000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6763,7 +8572,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 1, 21, 8, 38, 22),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6774,7 +8586,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 1, 17, 8, 9),
-            Price = 86000
+            Price = 86000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6785,7 +8600,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 16, 7, 37, 24),
-            Price = 32000
+            Price = 32000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6796,7 +8614,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 5, 18, 6, 53, 51),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6807,7 +8628,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 14, 5, 31, 58),
-            Price = 12000
+            Price = 12000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6818,7 +8642,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 3, 19, 17, 46, 43),
-            Price = 10000
+            Price = 10000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6829,7 +8656,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 26, 23, 50, 11),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6840,7 +8670,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 6, 11, 3, 24),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6851,7 +8684,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 24, 14, 10, 13),
-            Price = 30000
+            Price = 30000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6862,7 +8698,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 23, 12, 16, 47),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6873,7 +8712,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 9, 10, 3, 53, 7),
-            Price = 62000
+            Price = 62000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6884,7 +8726,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 22, 3, 6, 47),
-            Price = 9000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6895,7 +8740,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 9, 12, 30, 22),
-            Price = 34000
+            Price = 34000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6906,7 +8754,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 17, 11, 45, 32),
-            Price = 75000
+            Price = 75000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6917,7 +8768,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 7, 21, 6, 11, 5),
-            Price = 18000
+            Price = 18000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6928,7 +8782,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 11, 20, 7, 5),
-            Price = 73000
+            Price = 73000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6939,7 +8796,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 1, 1, 24, 40),
-            Price = 35000
+            Price = 35000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6950,7 +8810,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 19, 0, 25, 50),
-            Price = 42000
+            Price = 42000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6961,7 +8824,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 8, 18, 53, 28),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -6972,7 +8838,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 2, 6, 1, 12, 49),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6983,7 +8852,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 11, 10, 18, 2),
-            Price = 1000
+            Price = 1000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -6994,7 +8866,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 1, 23, 9, 43, 49),
-            Price = 78000
+            Price = 78000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7005,7 +8880,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 3, 13, 14, 50, 33),
-            Price = 7000
+            Price = 7000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7016,7 +8894,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 7, 4, 34, 8),
-            Price = 51000
+            Price = 51000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7027,7 +8908,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 6, 7, 23, 23),
-            Price = 55000
+            Price = 55000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7038,7 +8922,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 8, 3, 13, 35, 3),
-            Price = 98000
+            Price = 98000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7049,7 +8936,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 11, 2, 45, 28),
-            Price = 8000
+            Price = 8000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7060,7 +8950,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 9, 12, 7, 49, 31),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7071,7 +8964,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 4, 25, 22, 56, 38),
-            Price = 21000
+            Price = 21000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7082,7 +8978,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 2, 4, 18, 40),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7093,7 +8992,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 5, 22, 9, 20, 56),
-            Price = 26000
+            Price = 26000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7104,7 +9006,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 3, 19, 1, 15),
-            Price = 29000
+            Price = 29000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7115,7 +9020,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 2, 9, 6, 20),
-            Price = 79000
+            Price = 79000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7126,7 +9034,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 9, 10, 0, 41),
-            Price = 99000
+            Price = 99000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7137,7 +9048,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 2, 23, 22, 51),
-            Price = 71000
+            Price = 71000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7148,7 +9062,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 6, 13, 43, 23),
-            Price = 50000
+            Price = 50000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7159,7 +9076,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 10, 8, 10, 31, 30),
-            Price = 76000
+            Price = 76000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7170,7 +9090,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 17, 13, 13, 29),
-            Price = 15000
+            Price = 15000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7181,7 +9104,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 4, 4, 9, 41, 2),
-            Price = 43000
+            Price = 43000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7192,7 +9118,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 14, 5, 2, 12),
-            Price = 63000
+            Price = 63000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7203,7 +9132,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 10, 6, 22, 52),
-            Price = 90000
+            Price = 9000,
+            Height = 70,
+            Width = 50,
+            Depth = 00
           },
           new Artwork()
           {
@@ -7214,7 +9146,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 8, 20, 13, 19, 27),
-            Price = 22000
+            Price = 22000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7225,7 +9160,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 12, 23, 14, 5, 23),
-            Price = 23000
+            Price = 23000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7236,7 +9174,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 6, 5, 22, 11, 31),
-            Price = 83000
+            Price = 83000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7247,7 +9188,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 11, 18, 14, 37, 51),
-            Price = 36000
+            Price = 36000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7258,7 +9202,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 12, 18, 14, 52, 51),
-            Price = 66000
+            Price = 66000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7269,7 +9216,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 15, 2, 8, 50),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7280,7 +9230,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 11, 6, 23, 26, 53),
-            Price = 6000
+            Price = 6000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7291,7 +9244,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 6, 11, 11, 32, 14),
-            Price = 85000
+            Price = 85000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7302,7 +9258,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 10, 7, 7, 17, 25),
-            Price = 67000
+            Price = 67000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7313,7 +9272,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2021, 7, 2, 11, 0, 50),
-            Price = 49000
+            Price = 49000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7324,7 +9286,10 @@ namespace Artportable.API.Testing
             Title = "Lorem ipsum",
             Description = "",
             Published = new DateTime(2020, 2, 26, 13, 38, 45),
-            Price = 20000
+            Price = 20000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7335,7 +9300,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 2, 10, 11, 41, 27),
-            Price = 30000
+            Price = 30000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7346,7 +9314,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2020, 3, 10, 13, 6, 4),
-            Price = 56000
+            Price = 56000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7357,7 +9328,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 7, 7, 6, 20, 50),
-            Price = 2000
+            Price = 2000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7368,7 +9342,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2020, 5, 4, 23, 42, 5),
-            Price = 39000
+            Price = 39000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7379,7 +9356,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 11, 10, 19, 45, 5),
-            Price = 31000
+            Price = 31000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7390,7 +9370,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 6, 3, 12, 8, 3),
-            Price = 25000
+            Price = 25000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7401,7 +9384,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 7, 17, 4, 14, 39),
-            Price = 37000
+            Price = 37000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7412,7 +9398,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 8, 5, 13, 44, 48),
-            Price = 20000
+            Price = 20000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7423,7 +9412,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 10, 11, 1, 36, 24),
-            Price = 93000
+            Price = 93000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7434,7 +9426,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2020, 11, 22, 17, 10, 49),
-            Price = 61000
+            Price = 61000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7445,7 +9440,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2020, 9, 11, 7, 40, 25),
-            Price = 41000
+            Price = 41000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
           new Artwork()
           {
@@ -7456,7 +9454,10 @@ namespace Artportable.API.Testing
             Title = "",
             Description = "",
             Published = new DateTime(2021, 11, 20, 10, 4, 43),
-            Price = 30000
+            Price = 30000,
+            Height = 70,
+            Width = 50,
+            Depth = 0
           },
         };
     }
