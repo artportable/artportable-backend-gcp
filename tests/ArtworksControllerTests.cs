@@ -47,6 +47,9 @@ namespace Artportable.ImageApi.Tests
               Description = "description",
               Title = "title",
               Price = new decimal(100),
+              Height = new decimal(50),
+              Width = new decimal(70),
+              Depth = new decimal(3),
               PrimaryFile = "test1",
               Tags = new List<string>(),
             },
@@ -59,6 +62,9 @@ namespace Artportable.ImageApi.Tests
               Description = "description",
               Title = "title",
               Price = new decimal(100),
+              Height = new decimal(50),
+              Width = new decimal(70),
+              Depth = new decimal(3),
               PrimaryFile = "test1",
               Tags = new List<string>(),
             },
@@ -82,6 +88,9 @@ namespace Artportable.ImageApi.Tests
               Description = "description",
               Title = "title",
               Price = new decimal(100),
+              Height = new decimal(50),
+              Width = new decimal(70),
+              Depth = new decimal(3),
               PrimaryFile = "test1",
               Tags = new List<string>(),
             },
@@ -95,6 +104,9 @@ namespace Artportable.ImageApi.Tests
               Description = "description",
               Title = "title",
               Price = new decimal(100),
+              Height = new decimal(50),
+              Width = new decimal(70),
+              Depth = new decimal(3),
               PrimaryFile = "test1",
               Tags = new List<string>(),
             },
@@ -161,6 +173,9 @@ namespace Artportable.ImageApi.Tests
         Title = "title",
         Published = DateTime.Now,
         Price = new decimal(100),
+        Height = new decimal(50),
+        Width = new decimal(70),
+        Depth = new decimal(3),
         PrimaryFile = new FileDTO()
         {
           Name = "test",
@@ -228,6 +243,9 @@ namespace Artportable.ImageApi.Tests
         Title = artwork.Title,
         Tags = artwork.Tags,
         Price = artwork.Price,
+        Height = artwork.Height,
+        Width = artwork.Width,
+        Depth = artwork.Depth,
         PrimaryFile = new FileDTO()
         {
           Name = artwork.PrimaryFile
@@ -312,6 +330,9 @@ namespace Artportable.ImageApi.Tests
         Title = artwork.Title,
         Tags = artwork.Tags,
         Price = artwork.Price,
+        Height = artwork.Height,
+        Width = artwork.Width,
+        Depth = artwork.Depth,
         PrimaryFile = new FileDTO()
         {
           Name = artwork.PrimaryFile
