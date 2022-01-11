@@ -11,6 +11,9 @@ namespace Artportable.API.DTOs
     public string Description { get; set; }
     public DateTime Published { get; set; }
     public decimal? Price { get; set; }
+    public decimal? Height { get; set; }
+    public decimal? Width { get; set; }
+    public decimal? Depth { get; set; }
     public FileDTO PrimaryFile { get; set; }
     public FileDTO SecondaryFile { get; set; }
     public FileDTO TertiaryFile { get; set; }

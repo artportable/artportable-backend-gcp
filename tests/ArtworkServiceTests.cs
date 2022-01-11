@@ -67,6 +67,9 @@ namespace Artportable.ImageApi.Tests
           SocialId = new Guid("5185fe67-a161-468f-ae16-575972553509")
         },
         Price = (decimal) 20000,
+        Height = (decimal) 50,
+        Width = (decimal) 70,
+        Depth = (decimal) 30,
         PrimaryFile = new FileDTO
         {
             Height = 100,
@@ -95,6 +98,9 @@ namespace Artportable.ImageApi.Tests
         Description = "Föreställer en bil och en ananas",
         Title = "Ett nytt konstverk",
         Price = 9000,
+        Height = 50,
+        Width = 70,
+        Depth = 30,
         PrimaryFile = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         Tags = new List<string>()
       };
@@ -105,6 +111,9 @@ namespace Artportable.ImageApi.Tests
         LikedByMe = false,
         Owner = null,
         Price = 9000,
+        Height = 50,
+        Width = 70,
+        Depth = 30,
         PrimaryFile = new FileDTO {
           Name = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         },
@@ -129,6 +138,9 @@ namespace Artportable.ImageApi.Tests
         Description = "Föreställer en bil och en ananas",
         Title = "Ett nytt konstverk",
         Price = 9000,
+        Height = 50,
+        Width = 70,
+        Depth = 30,
         PrimaryFile = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         Tags = new List<string>()
       };
@@ -151,6 +163,9 @@ namespace Artportable.ImageApi.Tests
         Description = "Föreställer en bil och en ananas",
         Title = "Ett nytt konstverk",
         Price = 9000,
+        Height = 50,
+        Width = 70,
+        Depth = 30,
         Tags = new List<string>() { "summer" }
       };
       var mySocialId = new Guid("5185fe67-a161-468f-ae16-575972553509");
@@ -160,6 +175,9 @@ namespace Artportable.ImageApi.Tests
         LikedByMe = false,
         Owner = null,
         Price = 9000,
+        Height = 50,
+        Width = 70,
+        Depth = 30,
         PrimaryFile = new FileDTO {
           Name = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         },
@@ -281,6 +299,9 @@ namespace Artportable.ImageApi.Tests
           Description = "Lorem ipsum dolor sit amet",
           Published = new DateTime(2020, 2, 26, 13, 38, 45),
           Price = 20000,
+          Height = 50,
+          Width = 70,
+          Depth = 30,
           Likes = new List<Like>(),
           Tags = new List<Tag>() {
             new Tag {
@@ -356,6 +377,9 @@ namespace Artportable.ImageApi.Tests
         Description = "Föreställer en bil och en ananas",
         Title = "Ett nytt konstverk",
         Price = 9000,
+        Height = 50,
+        Width = 70,
+        Depth = 30,
         PrimaryFile = new FileDTO {
           Name = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         },
