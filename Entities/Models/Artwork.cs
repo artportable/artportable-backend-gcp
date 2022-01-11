@@ -28,6 +28,9 @@ namespace Artportable.API.Entities.Models
 
     public decimal? Price { get; set; }
 
+    public decimal? Height { get; set; }
+    public decimal? Width { get; set; }
+    public decimal? Depth { get; set; }
 
     public User User { get; set; }
     public File PrimaryFile { get; set; }

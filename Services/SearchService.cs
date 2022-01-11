@@ -59,6 +59,9 @@ namespace Artportable.API.Services
         Description = a.Description,
         Published = a.Published,
         Price = a.Price,
+        Width = a.Width,
+        Height = a.Height,
+        Depth = a.Depth,
         PrimaryFile = new FileDTO
         {
           Name = a.PrimaryFile.Name,

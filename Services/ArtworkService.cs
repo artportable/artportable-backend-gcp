@@ -54,6 +54,9 @@ namespace Artportable.API.Services
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
+          Height = a.Height,
+          Width = a.Width,
+          Depth = a.Depth,
           PrimaryFile = new FileDTO
           {
             Name = a.PrimaryFile.Name,
@@ -118,6 +121,9 @@ namespace Artportable.API.Services
         Description = artwork.Description,
         Published = artwork.Published,
         Price = artwork.Price,
+        Height = artwork.Height,
+        Width = artwork.Width,
+        Depth = artwork.Depth,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,
@@ -158,6 +164,9 @@ namespace Artportable.API.Services
         Description = dto.Description,
         Published = DateTime.Now,
         Price = dto.Price,
+        Height = dto.Height,
+        Width = dto.Width,
+        Depth = dto.Depth,
         PrimaryFile = _context.Files.Where(f => f.Name == dto.PrimaryFile).SingleOrDefault(),
         SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
         TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
@@ -191,6 +200,9 @@ namespace Artportable.API.Services
       artwork.Title = dto.Title;
       artwork.Description = dto.Description;
       artwork.Price = dto.Price;
+      artwork.Height = dto.Height;
+      artwork.Width = dto.Width;
+      artwork.Depth = dto.Depth;
 
       if (artwork.PrimaryFile.Name != dto.PrimaryFile)
       {
