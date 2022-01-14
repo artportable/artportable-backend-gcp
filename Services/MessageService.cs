@@ -65,23 +65,35 @@ namespace Services
       }
       try
       {
+        //get artist from DB
+        var user = _context.Users.First(u => u.SocialId.ToString() == artistId);
+
         //send chat message
-        var endOfMessage = "";
-        if(!string.IsNullOrEmpty(message)){
-          endOfMessage = "\n\n Message from the user:\n" + message;
+        var toBeSent = new MessageInput();
+        if(user.Language == "sv"){
+          var endOfMessage = "";
+          if(!string.IsNullOrEmpty(message)){
+            endOfMessage = "\n\n Meddelande från användaren :\n" + message;
+          }
+          toBeSent = new MessageInput()
+          {
+            Text = $"Grattis! Du har fått en förfrågan gällande ditt verk, {artworkName} ({artworkUrl}).\nVänligen maila dem på {email}. {endOfMessage}"
+          };
+        }else{
+          var endOfMessage = "";
+          if(!string.IsNullOrEmpty(message)){
+            endOfMessage = "\n\n Message from the user:\n" + message;
+          }
+          toBeSent = new MessageInput()
+          {
+            Text = $"Someone is interested in your artwork, {artworkName} ({artworkUrl}).\nPlease send an email to {email}. {endOfMessage}"
+          };
         }
-        var toBeSent = new MessageInput()
-        {
-          Text = $"Someone is interested in your artwork, {artworkName} ({artworkUrl}).\nPlease send an email to {email}. {endOfMessage}"
-        };
         var data = new GenericData();
         data.SetData("name", "Purchase Requests");
         var channel = _streamChatClient.Channel("messaging", $"purchase-requests-{artistId}",data); 
         var chanFromDB = await channel.Create(_streamSenderId, new string[] {artistId});
         await channel.SendMessage(toBeSent, _streamSenderId);
-
-
-        var user = _context.Users.First(u => u.SocialId.ToString() == artistId);
         
         //send email
         var mandrillMessage = new MandrillMessage();
@@ -92,7 +104,13 @@ namespace Services
         mandrillMessage.AddGlobalMergeVars("ap_artwork_name",artworkName);
         mandrillMessage.AddGlobalMergeVars("ap_artwork_url", artworkUrl);
         mandrillMessage.AddGlobalMergeVars("ap_reply_to",email);
-        var result = await _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequest");
+        
+        if(user.Language == "sv"){
+          var result = await _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequestsv");
+        }else{
+          var result = await _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequest");
+        }
+
       }
       catch (Exception e)
       {
