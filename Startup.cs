@@ -26,6 +26,8 @@ using Artportable.API.Options;
 using Artportable.API.Interfaces.Services;
 using Artportable.API.Handlers;
 using Microsoft.Net.Http.Headers;
+using Mandrill;
+using Mandrill.Extensions.DependencyInjection;
 
 namespace Artportable.API
 {
@@ -62,6 +64,7 @@ namespace Artportable.API
       var upsalesOptions = _configuration
       .GetSection("Upsales")
       .Get<UpsalesOptions>();
+      services.Configure<MandrillOptions>(_configuration.GetSection("Mandrill"));
       services.Configure<ProductCodes>(_configuration.GetSection("Stripe:Products"));
       services.Configure<StripeOptions>(_configuration.GetSection("Stripe"));
       services.Configure<StreamOptions>(_configuration.GetSection("Stream"));
@@ -78,6 +81,7 @@ namespace Artportable.API
       services.AddScoped<IFeedService, FeedService>();
       services.AddScoped<IConnectionService, ConnectionService>();
       services.AddScoped<IImageService, ImageService>();
+      services.AddScoped<IMessageService, MessageService>();
       services.AddScoped<IUploadService, BlobService>();
       services.AddScoped<IDiscoverService, DiscoverService>();
       services.AddScoped<ISearchService, SearchService>();
@@ -102,7 +106,6 @@ namespace Artportable.API
       {
         return new BlobContainerClient(blobClientOptions.ConnectionString, blobClientOptions.ContainerName);
       });
-      services.AddSingleton<IMessageService, MessageService>();
       services.AddSingleton<IActivityService, ActivityService>();
 
       services.AddAuthorization(authorizationOptions =>
@@ -198,6 +201,11 @@ namespace Artportable.API
           }
 
         );
+      });
+
+      services.AddMandrill(options => 
+      {
+        options.ApiKey=_configuration.GetValue<string>("Mandrill:ApiKey");
       });
     }
 
