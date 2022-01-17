@@ -53,6 +53,7 @@ namespace Artportable.API.Services
         {
           Username = a.User.Username,
           ProfilePicture = a.User.File.Name,
+          SocialId = a.User.SocialId,
           Location = a.User.UserProfile.Location
         },
         Title = a.Title,
