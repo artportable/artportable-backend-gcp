@@ -23,14 +23,15 @@ namespace Services
 
     private IMandrillApi _mandrillApi;
 
-    public MessageService(IOptions<StreamOptions> streamSettings, IOptions<MandrillOptions> mandrillSettings, IServiceProvider serviceProvider)
+    public MessageService(APContext apContext, IOptions<StreamOptions> streamSettings, IOptions<MandrillOptions> mandrillSettings, IMandrillApi mandrillApi)
     {
       _streamChatClient = new Client(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
       _streamSenderId = streamSettings.Value.SenderUserId;
       _mandrillApiKey = mandrillSettings.Value.ApiKey;
       _mandrillFromEmail = mandrillSettings.Value.FromEmail;
-      _context = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<APContext>();
-      _mandrillApi = serviceProvider.GetRequiredService<IMandrillApi>();
+      _context = apContext ??
+        throw new ArgumentNullException(nameof(apContext));
+      _mandrillApi = mandrillApi;
     }
 
     public TokenDTO ConnectUser(string userId)
@@ -50,19 +51,8 @@ namespace Services
       }
     }
 
-    public async Task PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId)
+    public void PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId)
     { 
-      var exportedUser = new StreamChat.ExportedUser();
-      // See if user exists
-      try
-      {
-        exportedUser = await _streamChatClient.Users.Export(artistId);
-      }
-      catch (Exception)
-      {
-        //user doesn't exist - add logging.
-        return;
-      }
       try
       {
         //get artist from DB
@@ -92,8 +82,8 @@ namespace Services
         var data = new GenericData();
         data.SetData("name", "Purchase Requests");
         var channel = _streamChatClient.Channel("messaging", $"purchase-requests-{artistId}",data); 
-        var chanFromDB = await channel.Create(_streamSenderId, new string[] {artistId});
-        await channel.SendMessage(toBeSent, _streamSenderId);
+        var chanFromDB = channel.Create(_streamSenderId, new string[] {artistId});
+        channel.SendMessage(toBeSent, _streamSenderId);
         
         //send email
         var mandrillMessage = new MandrillMessage();
@@ -106,9 +96,9 @@ namespace Services
         mandrillMessage.AddGlobalMergeVars("ap_reply_to",email);
         
         if(user.Language == "sv"){
-          var result = await _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequestsv");
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequestsv");
         }else{
-          var result = await _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequest");
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequest");
         }
 
       }
