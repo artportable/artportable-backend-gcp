@@ -8,8 +8,8 @@ namespace Artportable.API.DTOs
     [MaxLength(140)]
     public string Name { get; set; }
     [Range(1000, 9999)]
-    public int From { get; set; }
+    public int? From { get; set; }
     [Range(1000, 9999)]
-    public int To { get; set; }
+    public int? To { get; set; }
   }
 }
