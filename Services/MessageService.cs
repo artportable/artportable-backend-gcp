@@ -61,22 +61,22 @@ namespace Services
         //send chat message
         var toBeSent = new MessageInput();
         if(user.Language == "sv"){
-          var endOfMessage = "";
+          var userMessage = "";
           if(!string.IsNullOrEmpty(message)){
-            endOfMessage = "\n\n Meddelande från användaren :\n" + message;
+            userMessage = "\nMeddelande: " + message + "\n";
           }
           toBeSent = new MessageInput()
           {
-            Text = $"Grattis! Du har fått en förfrågan gällande ditt verk, {artworkName} ({artworkUrl}).\nVänligen maila dem på {email}. {endOfMessage}"
+            Text = $"Du har fått en ny köpförfrågan! \n\nDu har fått en förfrågan gällande ditt verk {artworkName} till din mailadress {user.Email}.\n {userMessage} \nDin förfrågan kommer från en gästanvändare på Artportable.com. Meddelandet kan därför ej besvaras direkt här på Artportable. För att svara på din förfrågan gå till din email. \n\nHittar du ej meddelandet? Kolla din skräppost eller kontakta support@artportable.com"
           };
         }else{
-          var endOfMessage = "";
+          var userMessage = "";
           if(!string.IsNullOrEmpty(message)){
-            endOfMessage = "\n\n Message from the user:\n" + message;
+            userMessage = "\nMessage: " + message + "\n";
           }
           toBeSent = new MessageInput()
           {
-            Text = $"Someone is interested in your artwork, {artworkName} ({artworkUrl}).\nPlease send an email to {email}. {endOfMessage}"
+            Text = $"You have received a new purchase request! \n\nYou have received an inquiry regarding your artwork {artworkName} till din mailadress {user.Email}.\n {userMessage} \nYour request comes from a guest user at Artportable.com. The message can therefore not be answered directly here at Artportable. To respond to your request please go to your email.\n\n Can't find the message? Check your spam or contact support@artportable.com"
           };
         }
         var data = new GenericData();
