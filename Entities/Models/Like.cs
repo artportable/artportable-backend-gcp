@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Artportable.API.Entities.Models
 {
@@ -11,6 +12,7 @@ namespace Artportable.API.Entities.Models
     public int UserId { get; set; }
     public int ArtworkId { get; set; }
 
+    public DateTime Date { get; set;}
     public User User { get; set; }
     public Artwork Artwork { get; set; }
   }
