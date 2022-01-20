@@ -334,7 +334,8 @@ namespace Artportable.API.Services
         new Like
         {
           ArtworkId = (int)artwork.Id,
-          UserId = (int)user.Id
+          UserId = (int)user.Id,
+          Date = DateTime.Now
         }
       );
       _context.SaveChanges();
