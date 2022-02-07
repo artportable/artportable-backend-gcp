@@ -101,6 +101,17 @@ namespace Services
           var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequest");
         }
 
+        var mandrillMessageConf = new MandrillMessage();
+        mandrillMessageConf.AddTo(email);
+        mandrillMessageConf.AddGlobalMergeVars("ap_artwork_name",artworkName);
+        mandrillMessageConf.AddGlobalMergeVars("ap_artwork_url", artworkUrl);
+
+        if(user.Language == "sv"){
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"artworkpurchaserequestconfirmationsv");
+        }else{
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"artworkpurchaserequestconfirmation");
+        }
+
       }
       catch (Exception e)
       {
