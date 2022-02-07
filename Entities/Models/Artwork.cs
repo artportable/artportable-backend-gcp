@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Artportable.API.Entities.Models
 {
+  [Index(nameof(PublicId))]
   public class Artwork
   {
     [Key]
