@@ -92,6 +92,9 @@ namespace Artportable.API.Migrations
                         .IsUnique()
                         .HasDatabaseName("ix_artworks_primary_file_id");
 
+                    b.HasIndex("PublicId")
+                        .HasDatabaseName("ix_artworks_public_id");
+
                     b.HasIndex("SecondaryFileId")
                         .IsUnique()
                         .HasDatabaseName("ix_artworks_secondary_file_id")
