@@ -51,7 +51,7 @@ namespace Services
       }
     }
 
-    public void PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId)
+    public void PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
     { 
       try
       {
@@ -94,6 +94,7 @@ namespace Services
         mandrillMessage.AddGlobalMergeVars("ap_artwork_name",artworkName);
         mandrillMessage.AddGlobalMergeVars("ap_artwork_url", artworkUrl);
         mandrillMessage.AddGlobalMergeVars("ap_reply_to",email);
+        mandrillMessage.AddGlobalMergeVars("ap_artwork_image_url", artworkImageUrl);
         
         if(user.Language == "sv"){
           var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequestsv");
@@ -105,6 +106,7 @@ namespace Services
         mandrillMessageConf.AddTo(email);
         mandrillMessageConf.AddGlobalMergeVars("ap_artwork_name",artworkName);
         mandrillMessageConf.AddGlobalMergeVars("ap_artwork_url", artworkUrl);
+        mandrillMessageConf.AddGlobalMergeVars("ap_artwork_image_url", artworkImageUrl);
 
         if(user.Language == "sv"){
           var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"artworkpurchaserequestconfirmationsv");
