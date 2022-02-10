@@ -37,10 +37,10 @@ namespace Artportable.API.Controllers
 
     [AllowAnonymous]
     [HttpGet("purchaserequest")]
-    public ActionResult<string> PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId)
+    public ActionResult<string> PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
     {
       try{
-        _messageService.PurchaseRequest(email,message,artworkUrl,artworkName,artistId);
+        _messageService.PurchaseRequest(email,message,artworkUrl,artworkName,artistId,artworkImageUrl);
 
         return Ok();
       }
