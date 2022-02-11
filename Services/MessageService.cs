@@ -97,11 +97,11 @@ namespace Services
         mandrillMessage.AddGlobalMergeVars("ap_artwork_image_url", artworkImageUrl);
         
         if(user.Language == "sv"){
-          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequestsv");
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"purchase_request_swedish");
         }else{
-          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"artworkpurchaserequest");
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"purchase_request_english");
         }
-
+//testgetrequest  confirmation_swedish  teset-confirmation-purchase-request
         var mandrillMessageConf = new MandrillMessage();
         mandrillMessageConf.AddTo(email);
         mandrillMessageConf.AddGlobalMergeVars("ap_artwork_name",artworkName);
@@ -109,9 +109,9 @@ namespace Services
         mandrillMessageConf.AddGlobalMergeVars("ap_artwork_image_url", artworkImageUrl);
 
         if(user.Language == "sv"){
-          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"artworkpurchaserequestconfirmationsv");
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"confirmation-swedish");
         }else{
-          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"artworkpurchaserequestconfirmation");
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"confirmation-english");
         }
 
       }
