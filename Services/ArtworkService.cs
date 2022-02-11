@@ -87,16 +87,53 @@ namespace Artportable.API.Services
     public ArtworkDTO Get(Guid id, string myUsername)
     {
       var artwork = _context.Artworks
-        .Include(a => a.User)
-        .ThenInclude(u => u.File)
-        .Include(a => a.User.UserProfile)
-        .Include(a => a.PrimaryFile)
-        .Include(a => a.SecondaryFile)
-        .Include(a => a.TertiaryFile)
-        .Include(a => a.Likes)
-        .ThenInclude(l => l.User)
-        .Include(a => a.Tags)
         .Where(a => a.PublicId == id)
+        .Select(a => new {
+          PublicId = a.PublicId,
+          User = new {
+            Username = a.User.Username,
+            SocialId = a.User.SocialId,
+            File = a.User.File != null ? new {
+              Name = a.User.File.Name
+            } : null,
+            UserProfile = new {
+              Location = a.User.UserProfile.Location
+            },
+            MonthlyUser = a.User.MonthlyUser
+          },
+          Title = a.Title,
+          Description = a.Description,
+          Published = a.Published,
+          Price = a.Price,
+          SoldOut = a.SoldOut,
+          MultipleSizes = a.MultipleSizes,
+          Height = a.Height,
+          Width = a.Width,
+          Depth = a.Depth,
+          PrimaryFile = new {
+            Name = a.PrimaryFile.Name,
+            Width = a.PrimaryFile.Width,
+            Height = a.PrimaryFile.Height, 
+          },
+          SecondaryFile = a.SecondaryFile != null ? new {
+            Name = a.SecondaryFile.Name,
+            Width = a.SecondaryFile.Width,
+            Height = a.SecondaryFile.Height,
+          } : null,
+          TertiaryFile = a.TertiaryFile != null ? new {
+            Name = a.TertiaryFile.Name,
+            Width = a.TertiaryFile.Width,
+            Height = a.TertiaryFile.Height,
+          } : null,
+          Tags = a.Tags,
+          Likes = a.Likes.Select(
+            l => new {
+              User = new { 
+                Username = l.User.Username
+              } 
+            }
+          ).ToList()
+        })
         .SingleOrDefault();
 
       if (artwork == null)
