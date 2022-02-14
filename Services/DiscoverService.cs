@@ -482,5 +482,110 @@ namespace Artportable.API.Services
 
       return artists;
     }
+
+    public List<ArtworkDTO> GetTrendingArtworks (int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio){
+      var artworks = _context.Artworks
+        .Select(a=> new {
+          Id = a.PublicId,
+            Owner = new {
+              Username = a.User.Username,
+              ProfilePicture = a.User.File.Name,
+              SocialId = a.User.SocialId,
+              Location = a.User.UserProfile.Location,
+              ProductId = a.User.Subscription.ProductId
+            },
+            Title = a.Title,
+            Description = a.Description,
+            Published = a.Published,
+            Price = a.Price,
+            SoldOut = a.SoldOut,
+            MultipleSizes = a.MultipleSizes,
+            Width = a.Width,
+            Height = a.Height,
+            Depth = a.Depth,
+            PrimaryFile = new {
+              Name = a.PrimaryFile.Name,
+              Width = a.PrimaryFile.Width,
+              Height = a.PrimaryFile.Height
+            },
+            SecondaryFile = a.SecondaryFile != null ? new {
+              Name = a.SecondaryFile.Name,
+              Width = a.SecondaryFile.Width,
+              Height = a.SecondaryFile.Height
+            }: null, 
+            TertiaryFile = a.TertiaryFile != null ? new {
+              Name = a.TertiaryFile.Name,
+              Width = a.TertiaryFile.Width,
+              Height = a.TertiaryFile.Height
+            }: null,
+            Tags = a.Tags,
+            Likes = a.Likes.Select(
+              l => new {
+                User = new {
+                  Username = l.User.Username
+                }
+              }
+            ).ToList(),
+            LikesSince = a.Likes.Select(
+              l => new {
+                Date = l.Date
+            })
+            .Where(l => l.Date > likesSince)
+            .Count()
+        })
+        .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+        .Where(a => a.Owner.ProductId >= (int)minimumProduct)
+        .OrderByDescending(a => a.LikesSince)
+        .ThenByDescending(a => a.Likes.Count())
+        .Skip(pageSize * (page - 1))
+        .Take(pageSize)
+        .AsEnumerable()
+        .ToList();
+
+        return artworks
+        .Select(a =>
+        new ArtworkDTO
+        {
+          Id = a.Id,
+          Owner = new OwnerDTO
+          {
+            Username = a.Owner.Username,
+            ProfilePicture = a.Owner.ProfilePicture,
+            SocialId = a.Owner.SocialId,
+            Location = a.Owner.Location
+          },
+          Title = a.Title,
+          Description = a.Description,
+          Published = a.Published,
+          Price = a.Price,
+          SoldOut = a.SoldOut,
+          MultipleSizes = a.MultipleSizes,
+          Width = a.Width,
+          Height = a.Height,
+          Depth = a.Depth,
+          PrimaryFile = new FileDTO
+          {
+            Name = a.PrimaryFile.Name,
+            Width = a.PrimaryFile.Width,
+            Height = a.PrimaryFile.Height
+          },
+          SecondaryFile = a.SecondaryFile != null ? new FileDTO
+          {
+            Name = a.SecondaryFile.Name,
+            Width = a.SecondaryFile.Width,
+            Height = a.SecondaryFile.Height
+          } : null,
+          TertiaryFile = a.TertiaryFile != null ? new FileDTO
+          {
+            Name = a.TertiaryFile.Name,
+            Width = a.TertiaryFile.Width,
+            Height = a.TertiaryFile.Height
+          } : null,
+          Tags = (a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()),
+          Likes = a.Likes.Count(),
+          LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
+        })
+        .ToList();
+    }
   }
 }
