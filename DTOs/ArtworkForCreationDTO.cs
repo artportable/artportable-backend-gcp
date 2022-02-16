@@ -8,7 +8,7 @@ namespace Artportable.API.DTOs
     [MaxLength(200)]
     public string Title { get; set; }
 
-    [MaxLength(400)]
+    [MaxLength(2000)]
     public string Description { get; set; }
     public decimal? Price { get; set; }
     public bool SoldOut { get; set; }
