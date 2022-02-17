@@ -23,75 +23,25 @@ namespace Artportable.API.Services
     }
 
     public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Bas)
-    {
-      var random = new Random(seed);
-
-      var artworks = _context.Artworks
-        .Select(
-          a => new {
-            Id = a.PublicId,
-            Owner = new {
-              Username = a.User.Username,
-              ProfilePicture = a.User.File.Name,
-              SocialId = a.User.SocialId,
-              Location = a.User.UserProfile.Location,
-              ProductId = a.User.Subscription.ProductId
-            },
-            Title = a.Title,
-            Description = a.Description,
-            Published = a.Published,
-            Price = a.Price,
-            SoldOut = a.SoldOut,
-            MultipleSizes = a.MultipleSizes,
-            Width = a.Width,
-            Height = a.Height,
-            Depth = a.Depth,
-            PrimaryFile = new {
-              Name = a.PrimaryFile.Name,
-              Width = a.PrimaryFile.Width,
-              Height = a.PrimaryFile.Height
-            },
-            SecondaryFile = a.SecondaryFile != null ? new {
-              Name = a.SecondaryFile.Name,
-              Width = a.SecondaryFile.Width,
-              Height = a.SecondaryFile.Height
-            }: null, 
-            TertiaryFile = a.TertiaryFile != null ? new {
-              Name = a.TertiaryFile.Name,
-              Width = a.TertiaryFile.Width,
-              Height = a.TertiaryFile.Height
-            }: null,
-            Tags = a.Tags,
-            Likes = a.Likes.Select(
-              l => new {
-                User = new {
-                  Username = l.User.Username
-                }
-              }
-            ).ToList(),
-            Random = random.Next().ToString()
-          }
-        )
+     {
+      return _context.Artworks
+        .FromSqlInterpolated(
+          $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
+          ORDER BY random OFFSET 0 ROWS")
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-        .Where(a => a.Owner.ProductId >= (int)minimumProduct)
+        .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
-        .AsEnumerable()
-        .OrderBy(u => u.Random)
-        .ThenBy(u => u.Id)
-        .ToList();
-
-      return artworks
         .Select(a =>
         new ArtworkDTO
         {
-          Id = a.Id,
+          Id = a.PublicId,
           Owner = new OwnerDTO
           {
-            Username = a.Owner.Username,
-            ProfilePicture = a.Owner.ProfilePicture,
-            SocialId = a.Owner.SocialId,
-            Location = a.Owner.Location
+            Username = a.User.Username,
+            ProfilePicture = a.User.File.Name,
+            SocialId = a.User.SocialId,
+            Location = a.User.UserProfile.Location
           },
           Title = a.Title,
           Description = a.Description,
@@ -128,60 +78,33 @@ namespace Artportable.API.Services
     }
 
     public List<ArtistDTO> GetArtists(int page, int pageSize, string myUsername, int seed, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio)
-    {
-      var random = new Random(seed);
+     {
       var users = _context.Users
-        .Select(u => new 
-        {
-          Artworks = u.Artworks
-            .OrderBy(a => a.Likes.Count())
-            .Take(15)
-            .Select( a => new 
-            {
-              PublicId = a.PublicId,
-              Title = a.Title,
-              PrimaryFile = new {
-                Name = a.PrimaryFile.Name,
-                Width = a.PrimaryFile.Width,
-                Height = a.PrimaryFile.Height
-              },
-              Tags = a.Tags.Select( t => new 
-              {
-                Title = t.Title
-              })
-              .ToList()  
-            })
-            .ToList(),
-          Subscription = new 
-          {
-            ProductId = u.Subscription.ProductId
-          },
-          Username = u.Username,
-          File = new 
-          {
-            Name = u.File.Name
-          },
-          UserProfile = new 
-          {
-            Location = u.UserProfile.Location
-          },
-          MonthlyUser = u.MonthlyUser,
-          Random = random.Next().ToString()
-        })
+        .FromSqlInterpolated(
+          $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
+          ORDER BY random OFFSET 0 ROWS")
+        .Include(u => u.UserProfile)
+        .Include(u => u.File)
+        .Include(u => u.Artworks)
+        .ThenInclude(a => a.PrimaryFile)
+        .Include(u => u.Artworks)
+        .ThenInclude(a => a.Tags)
+        .Include(u => u.Artworks)
+        .ThenInclude(a => a.Likes);
+
+      var artists = users
         .Where(u => u.Artworks.Count() > minArtworks)
         .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
-        .AsEnumerable()
-        .OrderBy(u => u.Random);
-
-      var artists = users
         .Select(u => new ArtistDTO
         {
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
           Artworks = u.Artworks
+            .OrderBy(a => a.Likes.Count())
+            .Take(15)
             .Select(a => new TinyArtworkDTO
             {
               Id = a.PublicId,
@@ -206,7 +129,7 @@ namespace Artportable.API.Services
               false,
           MonthlyArtist = u.MonthlyUser
         })
-        .ToList();
+          .ToList();
 
       return artists;
     }
@@ -256,10 +179,10 @@ namespace Artportable.API.Services
       .Where(u => u.MonthlyUser)
       .Where(u => u.Artworks.Count() > 0)
       .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
-      .Skip(pageSize * (page - 1))
-      .Take(pageSize)
       .AsEnumerable()
-      .OrderBy(u => u.Random);
+      .OrderBy(u => u.Random)
+      .Skip(pageSize * (page - 1))
+      .Take(pageSize);
 
       var artists = users
         .Select(u => new ArtistDTO
@@ -299,70 +222,22 @@ namespace Artportable.API.Services
 
     public List<ArtworkDTO> GetTopArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
     {
-      var artworks = _context.Artworks
-        .Select(
-          a => new {
-            Id = a.PublicId,
-            Owner = new {
-              Username = a.User.Username,
-              ProfilePicture = a.User.File.Name,
-              SocialId = a.User.SocialId,
-              Location = a.User.UserProfile.Location,
-              ProductId = a.User.Subscription.ProductId
-            },
-            Title = a.Title,
-            Description = a.Description,
-            Published = a.Published,
-            Price = a.Price,
-            SoldOut = a.SoldOut,
-            MultipleSizes = a.MultipleSizes,
-            Width = a.Width,
-            Height = a.Height,
-            Depth = a.Depth,
-            PrimaryFile = new {
-              Name = a.PrimaryFile.Name,
-              Width = a.PrimaryFile.Width,
-              Height = a.PrimaryFile.Height
-            },
-            SecondaryFile = a.SecondaryFile != null ? new {
-              Name = a.SecondaryFile.Name,
-              Width = a.SecondaryFile.Width,
-              Height = a.SecondaryFile.Height
-            }: null, 
-            TertiaryFile = a.TertiaryFile != null ? new {
-              Name = a.TertiaryFile.Name,
-              Width = a.TertiaryFile.Width,
-              Height = a.TertiaryFile.Height
-            }: null,
-            Tags = a.Tags,
-            Likes = a.Likes.Select(
-              l => new {
-                User = new {
-                  Username = l.User.Username
-                }
-              }
-            ).ToList()
-          }
-        )
+      return _context.Artworks
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-        .Where(a => a.Owner.ProductId >= (int)minimumProduct)
+        .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
         .OrderByDescending(a => a.Likes.Count)
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
-        .AsEnumerable()
-        .ToList();
-
-      return artworks
         .Select(a =>
         new ArtworkDTO
         {
-          Id = a.Id,
+          Id = a.PublicId,
           Owner = new OwnerDTO
           {
-            Username = a.Owner.Username,
-            ProfilePicture = a.Owner.ProfilePicture,
-            SocialId = a.Owner.SocialId,
-            Location = a.Owner.Location
+            Username = a.User.Username,
+            ProfilePicture = a.User.File.Name,
+            SocialId = a.User.SocialId,
+            Location = a.User.UserProfile.Location
           },
           Title = a.Title,
           Description = a.Description,
@@ -484,75 +359,28 @@ namespace Artportable.API.Services
     }
 
     public List<ArtworkDTO> GetTrendingArtworks (int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio){
-      var artworks = _context.Artworks
-        .Select(a=> new {
-          Id = a.PublicId,
-            Owner = new {
-              Username = a.User.Username,
-              ProfilePicture = a.User.File.Name,
-              SocialId = a.User.SocialId,
-              Location = a.User.UserProfile.Location,
-              ProductId = a.User.Subscription.ProductId
-            },
-            Title = a.Title,
-            Description = a.Description,
-            Published = a.Published,
-            Price = a.Price,
-            SoldOut = a.SoldOut,
-            MultipleSizes = a.MultipleSizes,
-            Width = a.Width,
-            Height = a.Height,
-            Depth = a.Depth,
-            PrimaryFile = new {
-              Name = a.PrimaryFile.Name,
-              Width = a.PrimaryFile.Width,
-              Height = a.PrimaryFile.Height
-            },
-            SecondaryFile = a.SecondaryFile != null ? new {
-              Name = a.SecondaryFile.Name,
-              Width = a.SecondaryFile.Width,
-              Height = a.SecondaryFile.Height
-            }: null, 
-            TertiaryFile = a.TertiaryFile != null ? new {
-              Name = a.TertiaryFile.Name,
-              Width = a.TertiaryFile.Width,
-              Height = a.TertiaryFile.Height
-            }: null,
-            Tags = a.Tags,
-            Likes = a.Likes.Select(
-              l => new {
-                User = new {
-                  Username = l.User.Username
-                }
-              }
-            ).ToList(),
-            LikesSince = a.Likes.Select(
+      return _context.Artworks
+        .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+        .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
+        .OrderByDescending(a => a.Likes.Select(
               l => new {
                 Date = l.Date
             })
             .Where(l => l.Date > likesSince)
-            .Count()
-        })
-        .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-        .Where(a => a.Owner.ProductId >= (int)minimumProduct)
-        .OrderByDescending(a => a.LikesSince)
+            .Count())
         .ThenByDescending(a => a.Likes.Count())
         .Skip(pageSize * (page - 1))
         .Take(pageSize)
-        .AsEnumerable()
-        .ToList();
-
-        return artworks
         .Select(a =>
         new ArtworkDTO
         {
-          Id = a.Id,
+          Id = a.PublicId,
           Owner = new OwnerDTO
           {
-            Username = a.Owner.Username,
-            ProfilePicture = a.Owner.ProfilePicture,
-            SocialId = a.Owner.SocialId,
-            Location = a.Owner.Location
+            Username = a.User.Username,
+            ProfilePicture = a.User.File.Name,
+            SocialId = a.User.SocialId,
+            Location = a.User.UserProfile.Location
           },
           Title = a.Title,
           Description = a.Description,
