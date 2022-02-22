@@ -8,13 +8,13 @@ namespace Artportable.API.DTOs
     [StringLength(140)]
     public string Headline { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Title { get; set; }
-    [MaxLength(50)]
+    [MaxLength(280)]
     public string Location { get; set; }
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Name { get; set; }
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Surname { get; set; }
     public string About { get; set; }
 
