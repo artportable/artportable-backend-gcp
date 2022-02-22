@@ -46,6 +46,18 @@ namespace Artportable.API.Services
       null;
     }
 
+    public List<UserDTO> GetAllArtists()
+    {
+        var user = _context.Users
+        .Include(x => x.UserProfile)
+        .Join(_context.Subscriptions, 
+         x => x.SubscriptionId, y => y.User.SubscriptionId,
+        (x, y) => new { User = x, Subscription = y })
+        .Where(x => x.User.Subscription.ProductId != 1).Select(x => new UserDTO()
+        { Username = x.User.Username, Surname = x.User.UserProfile.Surname, Name = x.User.UserProfile.Name}).ToList();
+        return user;
+    }
+
 
     public List<TinyUserDTO> Search(string q)
     {
