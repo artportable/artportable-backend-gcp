@@ -8,7 +8,7 @@ namespace Artportable.API.DTOs
     [MaxLength(140)]
     public string Name { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(140)]
     public string Place { get; set; }
     // MySQL DATE: The supported range is '1000-01-01' to '9999-12-31'.
     public DateTime? From { get; set; }
