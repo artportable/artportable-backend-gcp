@@ -23,6 +23,11 @@ namespace Artportable.API.SeedData
           {
             Id = 3,
             Name = "Portfolio Premium"
+          },
+          new Product
+          {
+            Id = 4,
+            Name = "Staff"
           }
         };
     }
