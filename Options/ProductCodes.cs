@@ -4,5 +4,6 @@ namespace Artportable.API.Options
   {
     public string Portfolio { get; set; }
     public string PortfolioPremium { get; set; }
+    public string Staff { get; set; }
   }
 }
