@@ -104,7 +104,7 @@ namespace Artportable.API.Services
           Location = u.UserProfile.Location,
           Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
-            .Take(15)
+            .Take(6)
             .Select(a => new TinyArtworkDTO
             {
               Id = a.PublicId,
@@ -141,7 +141,7 @@ namespace Artportable.API.Services
       {
         Artworks = u.Artworks
           .OrderBy(a => a.Likes.Count())
-          .Take(15)
+          .Take(6)
           .Select(a => new 
           {
             PublicId = a.PublicId,
@@ -280,7 +280,7 @@ namespace Artportable.API.Services
         { 
           Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
-            .Take(15)
+            .Take(6)
             .Select(a => new 
             {
               PublicId = a.PublicId,
