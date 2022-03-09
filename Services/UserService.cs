@@ -116,6 +116,8 @@ namespace Artportable.API.Services
       {
         Username = user.Username,
         SocialId = user.SocialId,
+        Name = user.UserProfile.Name,
+        Surname = user.UserProfile.Surname,
         ProfilePicture = user.File?.Name,
         Headline = user.UserProfile.Headline,
         Title = user.UserProfile.Title,
