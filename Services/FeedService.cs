@@ -30,7 +30,9 @@ namespace Artportable.API.Services
             Username = a.User.Username,
             FolloweeRef = a.User.FolloweeRef,
             FileName = a.User.File.Name,
-            Location = a.User.UserProfile.Location
+            Location = a.User.UserProfile.Location,
+            Name = a.User.UserProfile.Name,
+            Surname = a.User.UserProfile.Surname
           },
           Likes = a.Likes.Select(
               l => new {
@@ -70,6 +72,8 @@ namespace Artportable.API.Services
             User = a.User.Username,
             ProfilePicture = a.User.FileName,
             Location = a.User.Location,
+            Name = a.User.Name,
+            Surname = a.User.Surname,
             Published = a.Published,
             Likes = a.Likes.Count(),
             LikedByMe = a.Likes.Any(l => l.UserId == userId),

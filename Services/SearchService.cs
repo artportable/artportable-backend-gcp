@@ -54,6 +54,8 @@ namespace Artportable.API.Services
           Username = a.User.Username,
           ProfilePicture = a.User.File.Name,
           SocialId = a.User.SocialId,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Location = a.User.UserProfile.Location
         },
         Title = a.Title,
@@ -121,6 +123,8 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
           Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
             .Take(15)
@@ -186,6 +190,8 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
           Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
             .Take(15)

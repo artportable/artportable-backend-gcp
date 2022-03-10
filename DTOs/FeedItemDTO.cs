@@ -8,6 +8,8 @@ namespace Artportable.API.DTOs
     public FeedItemType Type { get; set; }
     public string User { get; set; }
     public string ProfilePicture { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
     public string Location { get; set; }
     public DateTime Published { get; set; }
     public int Likes { get; set; }
