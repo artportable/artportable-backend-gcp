@@ -183,7 +183,7 @@ namespace Artportable.API.Services
         };
         var json = JsonSerializer.Serialize(order);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync($"/api/v2/orders/", content);
+        var response = await _httpClient.PostAsync($"/api/v2/agreements/", content);
         var responseString = await response.Content.ReadAsStringAsync();
         var responseBase = JsonSerializer.Deserialize<ResponseBase<Order>>(responseString);
         return responseBase.Data;
