@@ -77,6 +77,8 @@ namespace Artportable.API.Services
           {
             Username = u.Username,
             SocialId = u.SocialId,
+            Name = u.UserProfile.Name,
+            Surname = u.UserProfile.Surname,
             Location = u.UserProfile.Location,
             ProfilePicture = u.File.Name
           })
@@ -98,6 +100,8 @@ namespace Artportable.API.Services
           Username = u.Username,
           SocialId = u.SocialId,
           Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
           ProfilePicture = u.File.Name
         })
         .ToList();
@@ -115,6 +119,8 @@ namespace Artportable.API.Services
           .Select(u => new RecommendationDTO()
           {
             Username = u.Username,
+            Name = u.UserProfile.Name,
+            Surname = u.UserProfile.Surname,
             SocialId = u.SocialId,
             Location = u.UserProfile.Location,
             ProfilePicture = u.File.Name
