@@ -6,6 +6,8 @@ namespace Artportable.API.DTOs
   {
     public string Username { get; set; }
     public Guid SocialId { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
     public string ProfilePicture { get; set; }
     public string Headline { get; set; }
     public string Title { get; set; }

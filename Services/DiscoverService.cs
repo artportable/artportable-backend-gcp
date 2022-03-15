@@ -41,9 +41,13 @@ namespace Artportable.API.Services
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
             SocialId = a.User.SocialId,
+            Name = a.User.UserProfile.Name,
+            Surname = a.User.UserProfile.Surname,
             Location = a.User.UserProfile.Location
           },
           Title = a.Title,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
@@ -102,6 +106,8 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
           Artworks = u.Artworks
             .OrderBy(a => a.Likes.Count())
             .Take(6)
@@ -170,7 +176,9 @@ namespace Artportable.API.Services
         },
         UserProfile = new 
         {
-          Location = u.UserProfile.Location
+          Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
         },
         MonthlyUser = u.MonthlyUser,
         Random = random.Next().ToString()
@@ -190,6 +198,8 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
           Artworks = u.Artworks
             .Select(a => new TinyArtworkDTO
             {
@@ -237,9 +247,13 @@ namespace Artportable.API.Services
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
             SocialId = a.User.SocialId,
+            Name = a.User.UserProfile.Name,
+            Surname = a.User.UserProfile.Surname,
             Location = a.User.UserProfile.Location
           },
           Title = a.Title,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
@@ -309,7 +323,9 @@ namespace Artportable.API.Services
           },
           UserProfile = new 
           {
-            Location = u.UserProfile.Location
+            Location = u.UserProfile.Location,
+            Name = u.UserProfile.Name,
+            Surname = u.UserProfile.Surname,
           },
           MonthlyUser = u.MonthlyUser,
           FolloweeRef = u.FolloweeRef.Count
@@ -328,6 +344,8 @@ namespace Artportable.API.Services
           Username = u.Username,
           ProfilePicture = u.File.Name,
           Location = u.UserProfile.Location,
+          Name = u.UserProfile.Name,
+          Surname = u.UserProfile.Surname,
           Artworks = u.Artworks
             .Select(a => new TinyArtworkDTO
             {
@@ -380,9 +398,13 @@ namespace Artportable.API.Services
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
             SocialId = a.User.SocialId,
+            Name = a.User.UserProfile.Name,
+            Surname = a.User.UserProfile.Surname,
             Location = a.User.UserProfile.Location
           },
           Title = a.Title,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,

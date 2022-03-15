@@ -44,6 +44,8 @@ namespace Artportable.API.Services
           {
             Username = a.User.Username,
             ProfilePicture = a.User.File.Name,
+            Name = a.User.UserProfile.Name,
+            Surname = a.User.UserProfile.Surname,
             Location = a.User.UserProfile.Location,
             FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
@@ -53,6 +55,8 @@ namespace Artportable.API.Services
           Title = a.Title,
           Description = a.Description,
           Published = a.Published,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Price = a.Price,
           SoldOut = a.SoldOut,
           MultipleSizes = a.MultipleSizes,
@@ -92,6 +96,8 @@ namespace Artportable.API.Services
           PublicId = a.PublicId,
           User = new {
             Username = a.User.Username,
+            Name = a.User.UserProfile.Name,
+            Surname = a.User.UserProfile.Surname,
             SocialId = a.User.SocialId,
             File = a.User.File != null ? new {
               Name = a.User.File.Name
@@ -148,6 +154,8 @@ namespace Artportable.API.Services
         {
           Username = artwork.User.Username,
           SocialId = artwork.User.SocialId,
+          Name = artwork.User.Name,
+          Surname = artwork.User.Surname,
           ProfilePicture = artwork.User.File?.Name,
           Location = artwork.User.UserProfile.Location,
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?

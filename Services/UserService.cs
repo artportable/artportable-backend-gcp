@@ -81,6 +81,8 @@ namespace Artportable.API.Services
       return users.Select(c => new TinyUserDTO()
       {
         Username = c.Follower.Username,
+        Name = c.Follower.UserProfile.Name,
+        Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null
       });
     }
@@ -92,6 +94,8 @@ namespace Artportable.API.Services
       return users.Select(c => new TinyUserDTO()
       {
         Username = c.Followee.Username,
+        Name = c.Followee.UserProfile.Name,
+        Surname = c.Followee.UserProfile.Surname,
         ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null
       });
     }
@@ -116,6 +120,8 @@ namespace Artportable.API.Services
       {
         Username = user.Username,
         SocialId = user.SocialId,
+        Name = user.UserProfile.Name,
+        Surname = user.UserProfile.Surname,
         ProfilePicture = user.File?.Name,
         Headline = user.UserProfile.Headline,
         Title = user.UserProfile.Title,
@@ -239,6 +245,8 @@ namespace Artportable.API.Services
           new SimilarProfileDTO
           {
             Username = u.Username,
+            Name = u.UserProfile.Name,
+            Surname = u.UserProfile.Surname,
             ProfilePicture = u.File.Name,
             Artworks = _context.Artworks
               .Include(a => a.PrimaryFile)
@@ -277,6 +285,8 @@ namespace Artportable.API.Services
           new SimilarProfileDTO
           {
             Username = u.Username,
+            Name = u.UserProfile.Name,
+            Surname = u.UserProfile.Surname,
             ProfilePicture = u.File.Name,
             Artworks = _context.Artworks
               .Include(a => a.PrimaryFile)
