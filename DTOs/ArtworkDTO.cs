@@ -10,6 +10,8 @@ namespace Artportable.API.DTOs
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime Published { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
     public decimal? Price { get; set; }
     public bool SoldOut { get; set; }
     public bool MultipleSizes { get; set; }

@@ -46,6 +46,8 @@ namespace Artportable.API.Services
             Location = a.User.UserProfile.Location
           },
           Title = a.Title,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
@@ -250,6 +252,8 @@ namespace Artportable.API.Services
             Location = a.User.UserProfile.Location
           },
           Title = a.Title,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
@@ -399,6 +403,8 @@ namespace Artportable.API.Services
             Location = a.User.UserProfile.Location
           },
           Title = a.Title,
+          Name = a.User.UserProfile.Name,
+          Surname = a.User.UserProfile.Surname,
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
