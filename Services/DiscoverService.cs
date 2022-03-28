@@ -183,7 +183,6 @@ namespace Artportable.API.Services
         MonthlyUser = u.MonthlyUser,
         Random = random.Next().ToString()
       })
-      .Where(u => u.Username != myUsername)
       .Where(u => u.MonthlyUser)
       .Where(u => u.Artworks.Count() > 0)
       .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
@@ -330,7 +329,6 @@ namespace Artportable.API.Services
           MonthlyUser = u.MonthlyUser,
           FolloweeRef = u.FolloweeRef.Count
         })
-        .Where(u => u.Username != myUsername)
         .Where(u => u.Artworks.Count() > minArtworks)
         .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
         .OrderByDescending(u => u.FolloweeRef)
