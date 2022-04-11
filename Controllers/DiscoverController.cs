@@ -188,7 +188,7 @@ namespace Artportable.API.Controllers
     /// <summary> SOLD
     /// Get a collection of art ordered by most likes since date 
     /// </summary>
-    [HttpGet("artworks/trending/sold", Name = "[controller]_[action]")]
+    [HttpGet("artworks/trendingsold", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> GetTrendingArtworksSold(
       [FromQuery(Name = "tag")] List<string> tags,
@@ -242,7 +242,7 @@ namespace Artportable.API.Controllers
     /// <summary> UNSOLD
     /// Get a collection of art ordered by most likes since date
     /// </summary>
-    [HttpGet("artworks/trending/unsold", Name = "[controller]_[action]")]
+    [HttpGet("artworks/trendingunsold", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> GetTrendingArtworksUnsold(
       [FromQuery(Name = "tag")] List<string> tags,

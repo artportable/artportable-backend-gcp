@@ -442,6 +442,7 @@ namespace Artportable.API.Services
       return _context.Artworks
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
         .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
+        .Where(x => x.SoldOut == true)
         .OrderByDescending(a => a.Likes.Select(
               l => new {
                 Date = l.Date
@@ -504,6 +505,7 @@ namespace Artportable.API.Services
       return _context.Artworks
         .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
         .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
+        .Where(x => x.SoldOut == false)
         .OrderByDescending(a => a.Likes.Select(
               l => new {
                 Date = l.Date
