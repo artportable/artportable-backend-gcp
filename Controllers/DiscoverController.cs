@@ -82,10 +82,10 @@ namespace Artportable.API.Controllers
       }
     }
 
-    /// <summary>
+    /// <summary> SOLD
     /// Get a collection of art
     /// </summary>
-    [HttpGet("artworks", Name = "[controller]_[action]")]
+    [HttpGet("artworks/sold", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> GetArtworksSold(
       [FromQuery(Name = "tag")] List<string> tags,
@@ -141,7 +141,7 @@ namespace Artportable.API.Controllers
     /// <summary> UNSOLD
     /// Get a collection of art
     /// </summary>
-    [HttpGet("artworks", Name = "[controller]_[action]")]
+    [HttpGet("artworks/unsold", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> GetArtworksUnsold(
       [FromQuery(Name = "tag")] List<string> tags,
@@ -194,7 +194,7 @@ namespace Artportable.API.Controllers
       }
     }
 
-    /// <summary>
+    /// <summary> 
     /// Get a collection of art ordered by most likes
     /// </summary>
     [HttpGet("artworks/top", Name = "[controller]_[action]")]
@@ -247,7 +247,7 @@ namespace Artportable.API.Controllers
     /// <summary> SOLD
     /// Get a collection of art ordered by most likes
     /// </summary>
-    [HttpGet("artworks/top", Name = "[controller]_[action]")]
+    [HttpGet("artworks/topsold", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> GetTopArtworksSold(
       [FromQuery(Name = "tag")] List<string> tags,
@@ -297,7 +297,7 @@ namespace Artportable.API.Controllers
     /// <summary> UNSOLD
     /// Get a collection of art ordered by most likes
     /// </summary>
-    [HttpGet("artworks/top", Name = "[controller]_[action]")]
+    [HttpGet("artworks/topunsold", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
     public ActionResult<List<ArtworkDTO>> GetTopArtworksUnsold(
       [FromQuery(Name = "tag")] List<string> tags,
