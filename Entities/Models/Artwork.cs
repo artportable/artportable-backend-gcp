@@ -30,7 +30,7 @@ namespace Artportable.API.Entities.Models
 
     public decimal? Price { get; set; }
     public bool SoldOut { get; set; }
-
+    public bool curatedImage { get; set; }
     public bool MultipleSizes { get; set; }
     public decimal? Height { get; set; }
     public decimal? Width { get; set; }
