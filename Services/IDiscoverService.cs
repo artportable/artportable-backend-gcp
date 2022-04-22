@@ -14,6 +14,9 @@ namespace Artportable.API.Services
     List<ArtworkDTO> GetTopArtworksSold(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetTopArtworksUnsold(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio);
+    List<ArtworkDTO> GetLikedByMeArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio);
+    List<ArtworkDTO> GetLikedByMeArtworksSold(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio);
+    List<ArtworkDTO> GetLikedByMeArtworksUnsold(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetTrendingArtworksSold(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetTrendingArtworksUnsold(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtistDTO> GetArtists(int page, int pageSize, string myUsername, int seed, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio);
