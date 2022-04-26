@@ -52,7 +52,6 @@ namespace Artportable.API.Services
               .Any(c => c.Followee.Username == owner && c.Follower.Username == myUsername) :
             false
           },
-          CuratedImage = a.curatedImage,
           Title = a.Title,
           Description = a.Description,
           Published = a.Published,
@@ -248,8 +247,6 @@ namespace Artportable.API.Services
       {
         return null;
       }
-
-      artwork.curatedImage = dto.CuratedImage;
       artwork.Title = dto.Title;
       artwork.Description = dto.Description;
       artwork.Price = dto.Price;
