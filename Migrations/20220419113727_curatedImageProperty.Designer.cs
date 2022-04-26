@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20220419113727_curatedImageProperty")]
+    partial class curatedImageProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,6 +86,10 @@ namespace Artportable.API.Migrations
                     b.Property<decimal?>("Width")
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("width");
+
+                    b.Property<bool>("curatedImage")
+                        .HasColumnType("bit")
+                        .HasColumnName("curated_image");
 
                     b.HasKey("Id")
                         .HasName("pk_artworks");
