@@ -396,16 +396,15 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary> ALL
-    /// Get a collection of art liked by user
+    /// Get a collection of art ordered by date added
     /// </summary>
-    [HttpGet("artworks/likedbyme", Name = "[controller]_[action]")]
+    [HttpGet("artworks/latest", Name = "[controller]_[action]")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
-    public ActionResult<List<ArtworkDTO>> GetLikedByMeArtworks(
+    public ActionResult<List<ArtworkDTO>> GetLatestArtworks(
       [FromQuery(Name = "tag")] List<string> tags,
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
-      int likesSince = -14,
       string q = null
     )
     {
@@ -424,7 +423,157 @@ namespace Artportable.API.Controllers
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetLikedByMeArtworks(page, pageSize, tags, myUsername, DateTime.Now.AddDays(likesSince));
+          artworks = _discoverService.GetLatestArtworks(page, pageSize, tags, myUsername);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary> ALL
+    /// Get a collection of art ordered by date added
+    /// </summary>
+    [HttpGet("artworks/latestsold", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetLatestArtworksSold(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetLatestArtworksSold(page, pageSize, tags, myUsername);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary> ALL
+    /// Get a collection of art ordered by date added
+    /// </summary>
+    [HttpGet("artworks/latestunsold", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetLatestArtworksUnsold(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetLatestArtworksUnsold(page, pageSize, tags, myUsername);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
+    /// <summary> ALL
+    /// Get a collection of art liked by user
+    /// </summary>
+    [HttpGet("artworks/likedbyme", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetLikedByMeArtworks(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetLikedByMeArtworks(page, pageSize, tags, myUsername);
         }
         else
         {
@@ -456,7 +605,6 @@ namespace Artportable.API.Controllers
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
-      int likesSince = -14,
       string q = null
     )
     {
@@ -475,7 +623,7 @@ namespace Artportable.API.Controllers
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetLikedByMeArtworksSold(page, pageSize, tags, myUsername, DateTime.Now.AddDays(likesSince));
+          artworks = _discoverService.GetLikedByMeArtworksSold(page, pageSize, tags, myUsername);
         }
         else
         {
@@ -507,7 +655,6 @@ namespace Artportable.API.Controllers
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
-      int likesSince = -14,
       string q = null
     )
     {
@@ -526,7 +673,7 @@ namespace Artportable.API.Controllers
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetLikedByMeArtworksUnsold(page, pageSize, tags, myUsername, DateTime.Now.AddDays(likesSince));
+          artworks = _discoverService.GetLikedByMeArtworksUnsold(page, pageSize, tags, myUsername);
         }
         else
         {
