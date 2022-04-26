@@ -849,6 +849,104 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+    /// <summary> Sold
+    /// Get a collection of art curated by user 10
+    /// </summary>
+    [HttpGet("artworks/curatedsold", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetCuratedArtworksSold(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetCuratedArtworksSold(page, pageSize, tags, myUsername);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+    /// <summary> Unsold
+    /// Get a collection of art curated by user 10
+    /// </summary>
+    [HttpGet("artworks/curatedunsold", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetCuratedArtworksUnsold(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetCuratedArtworksUnsold(page, pageSize, tags, myUsername);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
   #endregion
 }
