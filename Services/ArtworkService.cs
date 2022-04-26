@@ -247,7 +247,6 @@ namespace Artportable.API.Services
       {
         return null;
       }
-
       artwork.Title = dto.Title;
       artwork.Description = dto.Description;
       artwork.Price = dto.Price;
