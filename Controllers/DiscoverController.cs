@@ -957,7 +957,8 @@ namespace Artportable.API.Controllers
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
-      string q = null
+      string q = null,
+      int? seed = null
     )
     {
       if (page < 1 || pageSize < 1)
@@ -969,13 +970,17 @@ namespace Artportable.API.Controllers
       {
         pageSize = 1000;
       }
+         if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
+      {
+        seed = _random.Next();
+      }
 
       try
       {
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetCuratedArtworks(page, pageSize, tags, myUsername);
+          artworks = _discoverService.GetCuratedArtworks(page, pageSize, tags, myUsername, seed.Value);
         }
         else
         {
@@ -984,7 +989,7 @@ namespace Artportable.API.Controllers
 
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
@@ -1006,7 +1011,8 @@ namespace Artportable.API.Controllers
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
-      string q = null
+      string q = null,
+      int? seed = null
     )
     {
       if (page < 1 || pageSize < 1)
@@ -1018,13 +1024,16 @@ namespace Artportable.API.Controllers
       {
         pageSize = 1000;
       }
-
+      if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
+      {
+        seed = _random.Next();
+      }
       try
       {
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetCuratedArtworksSold(page, pageSize, tags, myUsername);
+          artworks = _discoverService.GetCuratedArtworksSold(page, pageSize, tags, myUsername, seed.Value);
         }
         else
         {
@@ -1033,7 +1042,7 @@ namespace Artportable.API.Controllers
 
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
@@ -1055,7 +1064,8 @@ namespace Artportable.API.Controllers
       int page = 1,
       int pageSize = 10,
       string myUsername = null,
-      string q = null
+      string q = null,
+      int? seed = null
     )
     {
       if (page < 1 || pageSize < 1)
@@ -1067,13 +1077,16 @@ namespace Artportable.API.Controllers
       {
         pageSize = 1000;
       }
-
+      if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
+      {
+        seed = _random.Next();
+      }
       try
       {
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetCuratedArtworksUnsold(page, pageSize, tags, myUsername);
+          artworks = _discoverService.GetCuratedArtworksUnsold(page, pageSize, tags, myUsername, seed.Value);
         }
         else
         {
@@ -1082,7 +1095,7 @@ namespace Artportable.API.Controllers
 
         string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
-        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
         Response.Headers.Add("Access-Control-Expose-Headers", "Link");
         Response.Headers.Add("Link", string.Join(", ", links));
 
