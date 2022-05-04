@@ -61,6 +61,7 @@ namespace Artportable.API.Services
         Title = a.Title,
         Name = a.User.UserProfile.Name,
         Surname = a.User.UserProfile.Surname,
+        Username = a.User.Username,
         Description = a.Description,
         Published = a.Published,
         Price = a.Price,
