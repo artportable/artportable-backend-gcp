@@ -231,6 +231,7 @@ namespace Artportable.API.Services
                   Location = u.UserProfile.Location,
                   Name = u.UserProfile.Name,
                   Surname = u.UserProfile.Surname,
+                  SocialId = u.SocialId,
                   Artworks = u.Artworks
                   .OrderBy(a => a.Likes.Count())
                   .Take(6)
