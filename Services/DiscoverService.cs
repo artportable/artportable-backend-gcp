@@ -263,7 +263,7 @@ namespace Artportable.API.Services
 
             return artists;
         }
-        public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string myUsername, int seed)
+        public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string myUsername, int seed, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
             var random = new Random(seed);
             var users = _context.Users
@@ -304,6 +304,7 @@ namespace Artportable.API.Services
                     Name = u.UserProfile.Name,
                     Surname = u.UserProfile.Surname,
                 },
+                SocialId = u.SocialId,
                 MonthlyUser = u.MonthlyUser,
                 Random = random.Next().ToString()
             })
@@ -316,7 +317,24 @@ namespace Artportable.API.Services
             .Skip(pageSize * (page - 1))
             .Take(pageSize);
 
-            var artists = users
+            var userss = _context.Users
+              .FromSqlInterpolated(
+                $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
+          ORDER BY random OFFSET 0 ROWS")
+              .Include(u => u.UserProfile)
+              .Include(u => u.File)
+              .Include(u => u.Artworks)
+              .ThenInclude(a => a.PrimaryFile)
+              .Include(u => u.Artworks)
+              .ThenInclude(a => a.Tags)
+              .Include(u => u.Artworks)
+              .ThenInclude(a => a.Likes);
+
+            var artists = userss
+              .Where(u => u.Artworks.Count() > minArtworks)
+              .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
+              .Skip(pageSize * (page - 1))
+              .Take(pageSize)
               .Select(u => new ArtistDTO
               {
                   Username = u.Username,
@@ -324,6 +342,7 @@ namespace Artportable.API.Services
                   Location = u.UserProfile.Location,
                   Name = u.UserProfile.Name,
                   Surname = u.UserProfile.Surname,
+                  SocialId = u.SocialId,
                   Artworks = u.Artworks
                   .Select(a => new TinyArtworkDTO
                   {
@@ -364,7 +383,7 @@ namespace Artportable.API.Services
               .Take(pageSize)
               .Select(a =>
               new ArtworkDTO
-              {
+              {            
                   Id = a.PublicId,
                   Owner = new OwnerDTO
                   {
