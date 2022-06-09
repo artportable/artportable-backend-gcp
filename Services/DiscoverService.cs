@@ -317,20 +317,8 @@ namespace Artportable.API.Services
             .Skip(pageSize * (page - 1))
             .Take(pageSize);
 
-            var userss = _context.Users
-              .FromSqlInterpolated(
-                $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM users
-          ORDER BY random OFFSET 0 ROWS")
-              .Include(u => u.UserProfile)
-              .Include(u => u.File)
-              .Include(u => u.Artworks)
-              .ThenInclude(a => a.PrimaryFile)
-              .Include(u => u.Artworks)
-              .ThenInclude(a => a.Tags)
-              .Include(u => u.Artworks)
-              .ThenInclude(a => a.Likes);
-
-            var artists = userss
+            var userss = users
+    
               .Where(u => u.Artworks.Count() > minArtworks)
               .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
               .Skip(pageSize * (page - 1))
@@ -370,7 +358,7 @@ namespace Artportable.API.Services
               })
               .ToList();
 
-            return artists;
+            return userss;
         }
 
         public List<ArtworkDTO> GetTopArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
@@ -579,6 +567,7 @@ namespace Artportable.API.Services
                       ProductId = u.Subscription.ProductId
                   },
                   Username = u.Username,
+                  SocialId = u.SocialId,
                   File = new
                   {
                       Name = u.File.Name
@@ -600,7 +589,7 @@ namespace Artportable.API.Services
               .Take(pageSize)
               .ToList();
 
-            var artistss = _context.Users
+            var artistss = users
               .Select(u => new ArtistDTO
               {
                   Username = u.Username,
