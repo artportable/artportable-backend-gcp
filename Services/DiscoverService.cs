@@ -600,7 +600,7 @@ namespace Artportable.API.Services
               .Take(pageSize)
               .ToList();
 
-            var artists = users
+            var artistss = _context.Users
               .Select(u => new ArtistDTO
               {
                   Username = u.Username,
@@ -608,6 +608,7 @@ namespace Artportable.API.Services
                   Location = u.UserProfile.Location,
                   Name = u.UserProfile.Name,
                   Surname = u.UserProfile.Surname,
+                  SocialId = u.SocialId,
                   Artworks = u.Artworks
                   .Select(a => new TinyArtworkDTO
                   {
@@ -635,7 +636,7 @@ namespace Artportable.API.Services
               })
               .ToList();
 
-            return artists;
+            return artistss;
         }
 
 
