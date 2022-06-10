@@ -263,7 +263,7 @@ namespace Artportable.API.Services
 
             return artists;
         }
-        public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string myUsername, int seed)
+        public List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string myUsername, int seed, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
             var random = new Random(seed);
             var users = _context.Users
@@ -304,6 +304,7 @@ namespace Artportable.API.Services
                     Name = u.UserProfile.Name,
                     Surname = u.UserProfile.Surname,
                 },
+                SocialId = u.SocialId,
                 MonthlyUser = u.MonthlyUser,
                 Random = random.Next().ToString()
             })
@@ -316,7 +317,12 @@ namespace Artportable.API.Services
             .Skip(pageSize * (page - 1))
             .Take(pageSize);
 
-            var artists = users
+            var userss = users
+    
+              .Where(u => u.Artworks.Count() > minArtworks)
+              .Where(u => u.Subscription.ProductId >= (int)minimumProduct)
+              .Skip(pageSize * (page - 1))
+              .Take(pageSize)
               .Select(u => new ArtistDTO
               {
                   Username = u.Username,
@@ -324,6 +330,7 @@ namespace Artportable.API.Services
                   Location = u.UserProfile.Location,
                   Name = u.UserProfile.Name,
                   Surname = u.UserProfile.Surname,
+                  SocialId = u.SocialId,
                   Artworks = u.Artworks
                   .Select(a => new TinyArtworkDTO
                   {
@@ -351,7 +358,7 @@ namespace Artportable.API.Services
               })
               .ToList();
 
-            return artists;
+            return userss;
         }
 
         public List<ArtworkDTO> GetTopArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
@@ -364,7 +371,7 @@ namespace Artportable.API.Services
               .Take(pageSize)
               .Select(a =>
               new ArtworkDTO
-              {
+              {            
                   Id = a.PublicId,
                   Owner = new OwnerDTO
                   {
@@ -560,6 +567,7 @@ namespace Artportable.API.Services
                       ProductId = u.Subscription.ProductId
                   },
                   Username = u.Username,
+                  SocialId = u.SocialId,
                   File = new
                   {
                       Name = u.File.Name
@@ -581,7 +589,7 @@ namespace Artportable.API.Services
               .Take(pageSize)
               .ToList();
 
-            var artists = users
+            var artistss = users
               .Select(u => new ArtistDTO
               {
                   Username = u.Username,
@@ -589,6 +597,7 @@ namespace Artportable.API.Services
                   Location = u.UserProfile.Location,
                   Name = u.UserProfile.Name,
                   Surname = u.UserProfile.Surname,
+                  SocialId = u.SocialId,
                   Artworks = u.Artworks
                   .Select(a => new TinyArtworkDTO
                   {
@@ -616,7 +625,7 @@ namespace Artportable.API.Services
               })
               .ToList();
 
-            return artists;
+            return artistss;
         }
 
 
