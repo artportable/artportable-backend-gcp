@@ -14,7 +14,7 @@ namespace Artportable.API.DTOs
     public string Surname { get; set; }
     public string Username { get; set; }
     public decimal? Price { get; set; }
-    public string? Currency {get; set;}
+    public string Currency {get; set;}
     public bool SoldOut { get; set; }
     public bool MultipleSizes { get; set; }
     public bool CuratedImage { get; set; }
