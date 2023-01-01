@@ -35,6 +35,7 @@ namespace Artportable.API.Testing
             Description = "Målad ca år 1495–1498 i klostret Santa Maria delle Grazie i Milano och föreställer Jesus sista måltid",
             Published = DateTime.Now,
             Price = 9000,
+            Currency = "SEK",
             Height = 70,
             Width = 50,
             Depth = 0
@@ -49,6 +50,7 @@ namespace Artportable.API.Testing
             Description = "Ett av mina tidigaste mästerverk från min blåa period",
             Published = DateTime.Now,
             Price = 9000,
+            Currency = "GBP",
             Height = 70,
             Width = 50,
             Depth = 0
