@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    [Migration("20220216081855_Artwork")]
-    partial class Artwork
+    [Migration("20230101214116_Artworks")]
+    partial class Artworks
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,10 @@ namespace Artportable.API.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("currency");
 
                     b.Property<decimal?>("Depth")
                         .HasColumnType("decimal(18,2)")
@@ -305,6 +309,16 @@ namespace Artportable.API.Migrations
                         {
                             Id = 3,
                             Name = "Portfolio Premium"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Staff"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Staff"
                         });
                 });
 

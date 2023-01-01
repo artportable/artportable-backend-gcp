@@ -29,6 +29,8 @@ namespace Artportable.API.Entities.Models
     public DateTime Published { get; set; }
 
     public decimal? Price { get; set; }
+
+    public string? Currency {get; set;}
     public bool SoldOut { get; set; }
     public bool MultipleSizes { get; set; }
     public decimal? Height { get; set; }

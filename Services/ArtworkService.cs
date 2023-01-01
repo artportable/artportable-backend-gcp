@@ -59,6 +59,7 @@ namespace Artportable.API.Services
           Surname = a.User.UserProfile.Surname,
           Username = a.User.Username,
           Price = a.Price,
+          Currency = a.Currency,
           SoldOut = a.SoldOut,
           MultipleSizes = a.MultipleSizes,
           Height = a.Height,
@@ -112,6 +113,7 @@ namespace Artportable.API.Services
           Description = a.Description,
           Published = a.Published,
           Price = a.Price,
+          Currency = a.Currency,
           SoldOut = a.SoldOut,
           MultipleSizes = a.MultipleSizes,
           Height = a.Height,
@@ -169,6 +171,7 @@ namespace Artportable.API.Services
         Description = artwork.Description,
         Published = artwork.Published,
         Price = artwork.Price,
+        Currency = artwork.Currency,
         SoldOut = artwork.SoldOut,
         MultipleSizes = artwork.MultipleSizes,
         Height = artwork.Height,
@@ -214,6 +217,7 @@ namespace Artportable.API.Services
         Description = dto.Description,
         Published = DateTime.Now,
         Price = dto.Price,
+        Currency = dto.Currency,
         SoldOut = dto.SoldOut,
         MultipleSizes = dto.MultipleSizes,
         Height = dto.Height,
@@ -251,6 +255,7 @@ namespace Artportable.API.Services
       artwork.Title = dto.Title;
       artwork.Description = dto.Description;
       artwork.Price = dto.Price;
+      artwork.Currency = dto.Currency;
       artwork.SoldOut = dto.SoldOut;
       artwork.MultipleSizes = dto.MultipleSizes;
       artwork.Height = dto.Height;

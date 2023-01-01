@@ -20,6 +20,7 @@ namespace Artportable.API.Testing
             Description = "Kvinna blickar ut över en lång bergskedja",
             Published = DateTime.Now,
             Price = 9000,
+            Currency = "EUR",
             Height = 70,
             Width = 50,
             Depth = 0
