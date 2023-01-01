@@ -9,7 +9,7 @@ namespace Artportable.API.Migrations
              migrationBuilder.AddColumn<string>(
                 name: "currency",
                 table: "artworks",
-                type: "nvarchar(3)",
+                type: "nvarchar(50)",
                 maxLength: 3,
                 nullable: true);
         }
@@ -19,7 +19,7 @@ namespace Artportable.API.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "currency",
                 table: "artworks",
-                type: "nvarchar(3)",
+                type: "nvarchar(50)",
                 maxLength: 3,
                 nullable: true);
         }
