@@ -23,6 +23,11 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: Bash@3
+      displayName: 'Check .NET Core version'
+      inputs:
+        targetType: 'inline'
+        script: 'dotnet --version'
     - task: DotNetCoreCLI@2
       displayName: 'Restore Nuget Packages'
       inputs:
