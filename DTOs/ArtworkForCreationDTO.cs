@@ -11,6 +11,8 @@ namespace Artportable.API.DTOs
     [MaxLength(2000)]
     public string Description { get; set; }
     public decimal? Price { get; set; }
+
+    public string Currency {get; set;}
     public bool SoldOut { get; set; }
     public bool MultipleSizes { get; set; }
     public decimal Height { get; set; }

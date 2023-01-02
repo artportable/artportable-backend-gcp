@@ -27,6 +27,10 @@ namespace Artportable.API.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("currency");
+
                     b.Property<decimal?>("Depth")
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("depth");

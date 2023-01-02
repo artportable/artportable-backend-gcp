@@ -35,6 +35,10 @@ stages:
         command: 'build'
         projects: '**/*.csproj'
         arguments: '--no-restore'
+    - task: UseDotNet@2
+      inputs:
+        version: '3.1.x'
+        installationPath: '$(Build.SourcesDirectory)/dotnet'
     - task: DotNetCoreCLI@2
       displayName: 'Tests'
       inputs:
