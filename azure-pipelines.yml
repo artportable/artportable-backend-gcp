@@ -23,11 +23,6 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Bash@3
-      displayName: 'Check .NET Core version'
-      inputs:
-        targetType: 'inline'
-        script: 'dotnet --version'
     - task: DotNetCoreCLI@2
       displayName: 'Restore Nuget Packages'
       inputs:
@@ -40,10 +35,6 @@ stages:
         command: 'build'
         projects: '**/*.csproj'
         arguments: '--no-restore'
-    - task: UseDotNet@2
-      inputs:
-        version: '3.1.x'
-        installationPath: '/usr/share/dotnet'
     - task: DotNetCoreCLI@2
       displayName: 'Tests'
       inputs:
