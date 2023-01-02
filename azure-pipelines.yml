@@ -35,15 +35,10 @@ stages:
         command: 'build'
         projects: '**/*.csproj'
         arguments: '--no-restore'
-    - task: Bash@3
-      displayName: 'Create dotnet directory'
-      inputs:
-        targetType: 'inline'
-        script: 'mkdir -p /usr/share/dotnet'
     - task: UseDotNet@2
       inputs:
         version: '3.1.x'
-        installationPath: '/usr/share/dotnet'
+        installationPath: '$(Build.SourcesDirectory)/dotnet'
     - task: DotNetCoreCLI@2
       displayName: 'Tests'
       inputs:
