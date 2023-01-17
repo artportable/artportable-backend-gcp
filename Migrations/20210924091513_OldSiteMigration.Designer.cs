@@ -674,6 +674,11 @@ namespace Artportable.API.Migrations
                         {
                             Id = 69,
                             Title = "artwork"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Title = "jewelry"
                         });
                 });
 
