@@ -398,7 +398,8 @@ namespace Artportable.API.Migrations
                     { 20, "documentary-photography" },
                     { 19, "pop-art" },
                     { 25, "arts-craft" },
-                    { 69, "artwork" }
+                    { 69, "artwork" },
+                    { 70, "jewelry" }
                 });
 
             migrationBuilder.CreateIndex(
