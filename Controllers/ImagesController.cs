@@ -55,12 +55,12 @@ namespace Artportable.API.Controllers
                     return BadRequest();
                 }
                 var imageEncoder = new JpegEncoder();
-                imageEncoder.Quality = 50;
+                imageEncoder.Quality = 20;
                 var compressedStream = new MemoryStream();
                 image.Save(compressedStream, imageEncoder);
                 compressedStream.Seek(0, SeekOrigin.Begin);
                 await _uploadService.UploadAsync(compressedStream, filename);
-                _imageService.Add(filename, w, h);
+                _imageService.Add(filename, w, h) ;
             }
             return Ok(filename);
         }
