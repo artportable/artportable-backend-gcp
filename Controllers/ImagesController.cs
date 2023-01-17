@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
+using System.IO;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Artportable.API.Controllers
 {
@@ -38,27 +43,39 @@ namespace Artportable.API.Controllers
         return BadRequest();
       }
 
-      var filename = Guid.NewGuid() + ".jpg";
-      var stream = _contextAccessor?.HttpContext?.Request?.BodyReader.AsStream();
+        var filename = Guid.NewGuid() + ".jpg";
+        var stream = _contextAccessor?.HttpContext?.Request?.BodyReader.AsStream();
 
-      try
-      {
-        await _uploadService.UploadAsync(stream, filename);
-        _imageService.Add(filename, w, h);
-
-        return Ok(filename);
-      }
-      catch (ArgumentException e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return BadRequest();
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
+        try
+        {
+            using (var image = Image.Load(stream))
+            {
+                if (image.Width <= 0 || image.Height <= 0)
+                {
+                    return BadRequest();
+                }
+                var imageEncoder = new JpegEncoder();
+                imageEncoder.Quality = 20;
+                var compressedStream = new MemoryStream();
+                image.Save(compressedStream, imageEncoder);
+                compressedStream.Seek(0, SeekOrigin.Begin);
+                await _uploadService.UploadAsync(compressedStream, filename);
+                _imageService.Add(filename, w, h) ;
+            }
+            return Ok(filename);
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return BadRequest();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
     }
+
 
     /// <summary>
     /// Delete an image from AWS S3 bucket
