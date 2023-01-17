@@ -35,7 +35,6 @@ namespace Artportable.API.SeedData
       "textile",
       "gouache",
       "ink",
-      "jewelry",
 
       "impressionism",
       "abstract",
