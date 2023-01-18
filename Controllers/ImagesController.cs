@@ -30,7 +30,7 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Upload an image to AWS S3 bucket
+    /// Upload an image to Azure blob data storage
     /// </summary>
     /// <param name="w">Width of the image in pixels</param>
     /// <param name="h">Height of the image in pixels</param>
