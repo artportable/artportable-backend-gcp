@@ -50,17 +50,13 @@ namespace Artportable.API.Controllers
         {
             using (var image = Image.Load(stream))
             {
-                if (image.Width <= 0 || image.Height <= 0)
-                {
-                    return BadRequest();
-                }
                 var imageEncoder = new JpegEncoder();
                 imageEncoder.Quality = 20;
                 var compressedStream = new MemoryStream();
                 image.Save(compressedStream, imageEncoder);
                 compressedStream.Seek(0, SeekOrigin.Begin);
                 await _uploadService.UploadAsync(compressedStream, filename);
-                _imageService.Add(filename, w, h) ;
+                _imageService.Add(filename, w, h);
             }
             return Ok(filename);
         }
