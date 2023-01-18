@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.Processing;
 using System.IO;
-using SixLabors.ImageSharp.PixelFormats;
+
 
 namespace Artportable.API.Controllers
 {
