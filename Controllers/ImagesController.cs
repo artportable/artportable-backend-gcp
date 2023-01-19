@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
 using System.IO;
-
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Artportable.API.Controllers
 {
@@ -29,7 +30,7 @@ namespace Artportable.API.Controllers
     }
 
     /// <summary>
-    /// Upload an image to Azure blob data storage
+    /// Upload an image to AWS S3 bucket
     /// </summary>
     /// <param name="w">Width of the image in pixels</param>
     /// <param name="h">Height of the image in pixels</param>
@@ -49,13 +50,14 @@ namespace Artportable.API.Controllers
         {
             using (var image = Image.Load(stream))
             {
+                
                 var imageEncoder = new JpegEncoder();
-                imageEncoder.Quality = 20;
+                imageEncoder.Quality = 40;
                 var compressedStream = new MemoryStream();
                 image.Save(compressedStream, imageEncoder);
                 compressedStream.Seek(0, SeekOrigin.Begin);
                 await _uploadService.UploadAsync(compressedStream, filename);
-                _imageService.Add(filename, w, h);
+                _imageService.Add(filename, w, h) ;
             }
             return Ok(filename);
         }
