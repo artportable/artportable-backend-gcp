@@ -95,7 +95,10 @@ namespace Artportable.API.SeedData
       "gallery",
       "group-exhibition",
       "posters",
-      "artwork"
+      "artwork",
+      "print",
+      "jewelry",
+      "graphic",
     };
   }
 }
