@@ -16,5 +16,7 @@ namespace Artportable.API.DTOs
     public DateTime? DateOfBirth { get; set; }
     [StringLength(50)]
     public string Location { get; set; }
+
+    public DateTime Created {get; set;}
   }
 }
