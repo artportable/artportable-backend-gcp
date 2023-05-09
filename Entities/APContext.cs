@@ -33,6 +33,7 @@ namespace Artportable.API.Entities
     public virtual DbSet<Like> Likes { get; set; }
     public virtual DbSet<Education> Educations { get; set; }
     public virtual DbSet<Exhibition> Exhibitions { get; set; }
+    public virtual DbSet<Post> Posts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
