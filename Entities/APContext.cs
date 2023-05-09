@@ -54,14 +54,21 @@ namespace Artportable.API.Entities
         .HasForeignKey<Artwork>(a => a.TertiaryFileId);
 
       modelBuilder.Entity<Like>()
-        .HasOne(l => l.Artwork)
-        .WithMany(a => a.Likes)
-        .HasForeignKey(l => l.ArtworkId);
-      
-      modelBuilder.Entity<Like>()
         .HasOne(l => l.User)
         .WithMany(u => u.Likes)
         .HasForeignKey(l => l.UserId)
+        .OnDelete(DeleteBehavior.ClientCascade);
+
+      modelBuilder.Entity<Like>()
+        .HasOne(l => l.Post)
+        .WithMany(p => p.Likes)
+        .HasForeignKey(l => l.PostId)
+        .OnDelete(DeleteBehavior.ClientCascade);
+
+      modelBuilder.Entity<Like>()
+        .HasOne(l => l.Artwork)
+        .WithMany(a => a.Likes)
+        .HasForeignKey(l => l.ArtworkId)
         .OnDelete(DeleteBehavior.ClientCascade);
 
       modelBuilder.Entity<Connection>()
@@ -75,6 +82,11 @@ namespace Artportable.API.Entities
         .WithMany(u => u.FolloweeRef)
         .HasForeignKey(c => c.FolloweeId)
         .OnDelete(DeleteBehavior.ClientCascade)
+        .IsRequired();
+      modelBuilder.Entity<Post>()
+        .HasOne(p => p.User)
+        .WithMany(u => u.Posts)
+        .HasForeignKey(p => p.UserId)
         .IsRequired();
 
       // Seed database
