@@ -20,43 +20,45 @@ namespace Artportable.API.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public IEnumerable<Post> GetAllPosts(int userId)
+        public IEnumerable<Post> GetAllPosts()
         {
             return _context.Posts
                 .Include(p => p.User)
-                .Where(p => p.UserId == userId)
                 .OrderByDescending(p => p.CreatedAt)
                 .ToList();
         }
 
-        public Post GetPostById(int id, int userId)
+        public Post GetPostById(int id)
         {
             return _context.Posts
                 .Include(p => p.User)
-                .FirstOrDefault(p => p.Id == id && p.UserId == userId);
+                .FirstOrDefault(p => p.Id == id);
         }
 
-        public void CreatePost(int userId, Post post)
-        {
-            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+        public Post CreatePost(int userId, Post post)
+{
+    var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
-            if (user == null)
-            {
-                throw new ArgumentException("User not found");
-            }
+    if (user == null)
+    {
+        throw new ArgumentException("User not found");
+    }
 
-            post.User = user;
-            post.CreatedAt = DateTime.Now;
+    post.User = user;
+    post.CreatedAt = DateTime.Now;
 
-            _context.Posts.Add(post);
-            _context.SaveChanges();
-        }
+    _context.Posts.Add(post);
+    _context.SaveChanges();
 
-        public void UpdatePost(Post updatedPost, int userId)
+    // This will ensure all navigation properties are loaded
+    return _context.Posts.Include(p => p.User).Include(p => p.Likes).Single(p => p.Id == post.Id);
+}
+
+        public void UpdatePost(Post updatedPost)
         {
             var post = _context.Posts
                 .Include(p => p.User)
-                .FirstOrDefault(p => p.Id == updatedPost.Id && p.UserId == userId);
+                .FirstOrDefault(p => p.Id == updatedPost.Id);
 
             if (post == null)
             {
@@ -69,11 +71,11 @@ namespace Artportable.API.Services
             _context.SaveChanges();
         }
 
-        public void DeletePost(Post postToDelete, int userId)
+        public void DeletePost(Post postToDelete)
         {
             var post = _context.Posts
                 .Include(p => p.User)
-                .FirstOrDefault(p => p.Id == postToDelete.Id && p.UserId == userId);
+                .FirstOrDefault(p => p.Id == postToDelete.Id);
 
             if (post == null)
             {

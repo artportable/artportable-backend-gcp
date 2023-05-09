@@ -22,18 +22,16 @@ namespace Artportable.API.Controllers
 
         // GET: api/Posts
         [HttpGet]
-        public IEnumerable<PostDto> GetPosts(Guid mySocialId)
+        public IEnumerable<PostDto> GetPosts()
         {
-            int userId = GetUserIdBySocialId(mySocialId);
-            return _postService.GetAllPosts(userId).Select(PostDto.FromPost);
+            return _postService.GetAllPosts().Select(PostDto.FromPost);
         }
 
         // GET: api/Posts/5
         [HttpGet("{id}")]
-        public ActionResult<PostDto> GetPost(int id, Guid mySocialId)
+        public ActionResult<PostDto> GetPost(int id)
         {
-            int userId = GetUserIdBySocialId(mySocialId);
-            var post = _postService.GetPostById(id, userId);
+            var post = _postService.GetPostById(id);
 
             if (post == null)
             {
@@ -44,28 +42,30 @@ namespace Artportable.API.Controllers
         }
 
         // POST: api/Posts
-        [Authorize]
-        [HttpPost]
-        public ActionResult<PostDto> CreatePost([FromBody] PostForCreationDto postForCreation, Guid mySocialId)
+       [HttpPost]
+       [Authorize]
+       public ActionResult<PostDto> CreatePost(int userId, PostForCreationDto postForCreation)
         {
-            int userId = GetUserIdBySocialId(mySocialId);
             var post = new Post
-            {
-                UserId = userId,
-                Content = postForCreation.Content,
-                CreatedAt = DateTime.UtcNow
-            };
-            _postService.CreatePost(userId, post);
-            return CreatedAtAction(nameof(GetPost), new { id = post.Id }, PostDto.FromPost(post));
+        {
+            UserId = userId,
+            Content = postForCreation.Content,
+            CreatedAt = DateTime.UtcNow
+        };
+            var createdPost = _postService.CreatePost(userId, post); // This should return the newly created post with all properties initialized
+            
+            return CreatedAtAction(nameof(GetPost), new { id = createdPost.Id }, PostDto.FromPost(createdPost));
         }
 
+
+
+
         // PUT: api/Posts/5
-        [Authorize]
         [HttpPut("{id}")]
-        public IActionResult UpdatePost(int id, PostForUpdateDto postForUpdate, Guid mySocialId)
+        [Authorize]
+        public IActionResult UpdatePost(int id, PostForUpdateDto postForUpdate)
         {
-            int userId = GetUserIdBySocialId(mySocialId);
-            var post = _postService.GetPostById(id, userId);
+            var post = _postService.GetPostById(id);
 
             if (post == null)
             {
@@ -73,31 +73,23 @@ namespace Artportable.API.Controllers
             }
 
             post.Content = postForUpdate.Content;
-            _postService.UpdatePost(post, userId);
+            _postService.UpdatePost(post);
             return NoContent();
         }
 
         // DELETE: api/Posts/5
-        [Authorize]
         [HttpDelete("{id}")]
-        public IActionResult DeletePost(int id, Guid mySocialId)
+        [Authorize]
+        public IActionResult DeletePost(int id)
         {
-            int userId = GetUserIdBySocialId(mySocialId);
-            var post = _postService.GetPostById(id, userId);
+            var post = _postService.GetPostById(id);
             if (post == null)
             {
                 return NotFound();
             }
 
-            _postService.DeletePost(post, userId);
+            _postService.DeletePost(post);
             return NoContent();
-        }
-
-        // Replace this line with a method that retrieves the user ID based on the mySocialId
-        private int GetUserIdBySocialId(Guid mySocialId)
-        {
-            // Implement the logic to get the userId from mySocialId
-            throw new NotImplementedException();
         }
     }
 }
