@@ -159,7 +159,7 @@ namespace Artportable.API
       // Database
       services.AddDbContextPool<APContext>(
         dbContextOptions => dbContextOptions
-          .UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
+          .UseSqlServer(_configuration.GetConnectionString("DockerConnection"))
           .UseSnakeCaseNamingConvention()
           // Everything from this point on is optional but helps with debugging.
           .EnableSensitiveDataLogging()
