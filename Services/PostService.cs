@@ -50,7 +50,7 @@ namespace Artportable.API.Services
     _context.Posts.Add(post);
     _context.SaveChanges();
 
-    // This will ensure all navigation properties are loaded
+
     return _context.Posts.Include(p => p.User).Include(p => p.Likes).Single(p => p.Id == post.Id);
 }
 

@@ -51,13 +51,10 @@ namespace Artportable.API.Controllers
             Content = postForCreation.Content,
             CreatedAt = DateTime.UtcNow
         };
-            var createdPost = _postService.CreatePost(userId, post); // This should return the newly created post with all properties initialized
+            var createdPost = _postService.CreatePost(userId, post); 
             
             return CreatedAtAction(nameof(GetPost), new { id = createdPost.Id }, PostDto.FromPost(createdPost));
         }
-
-
-
 
         // PUT: api/Posts/5
         [HttpPut("{id}")]
