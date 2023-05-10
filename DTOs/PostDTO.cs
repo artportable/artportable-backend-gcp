@@ -24,10 +24,10 @@ namespace Artportable.API.DTOs
     {
         Id = post.Id,
         UserId = post.UserId,
-        UserName = post.User?.Username, // Use the null-conditional operator to avoid NullReferenceException
+        UserName = post.User?.Username, 
         Content = post.Content,
         CreatedAt = post.CreatedAt,
-        LikeCount = post.Likes?.Count ?? 0 // Again, use the null-conditional operator. If Likes is null, default to 0.
+        LikeCount = post.Likes?.Count ?? 0 
     };
 }
     }
