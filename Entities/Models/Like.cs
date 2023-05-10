@@ -10,7 +10,7 @@ namespace Artportable.API.Entities.Models
 
     public int UserId { get; set; }
     public int ArtworkId { get; set; }
-    public int PostId { get; set; }
+    public int? PostId { get; set; }
 
     public DateTime Date { get; set;}
 

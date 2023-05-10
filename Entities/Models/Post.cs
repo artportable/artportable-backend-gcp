@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Artportable.API.Entities.Models
 {
     public class Post
-    {
+    {   
+        [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
 
