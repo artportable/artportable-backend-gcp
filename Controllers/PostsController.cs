@@ -43,7 +43,6 @@ namespace Artportable.API.Controllers
 
         // POST: api/Posts
        [HttpPost]
-       [Authorize]
        public ActionResult<PostDto> CreatePost(int userId, PostForCreationDto postForCreation)
         {
             var post = new Post
