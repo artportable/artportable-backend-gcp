@@ -70,7 +70,7 @@ namespace Artportable.API
       services.Configure<StreamOptions>(_configuration.GetSection("Stream"));
       services.Configure<StartDeliverOptions>(_configuration.GetSection("StartDeliver"));
       services.Configure<UpsalesOptions>(_configuration.GetSection("Upsales"));
-
+      services.Configure<BlockedEmailOptions>(_configuration.GetSection("BlockedEmails"));
 
       // Registered services
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
