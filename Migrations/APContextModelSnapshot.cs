@@ -258,10 +258,6 @@ namespace Artportable.API.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("date");
 
-                    b.Property<int?>("PostId")
-                        .HasColumnType("int")
-                        .HasColumnName("post_id");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int")
                         .HasColumnName("user_id");
@@ -272,44 +268,10 @@ namespace Artportable.API.Migrations
                     b.HasIndex("ArtworkId")
                         .HasDatabaseName("ix_likes_artwork_id");
 
-                    b.HasIndex("PostId")
-                        .HasDatabaseName("ix_likes_post_id");
-
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_likes_user_id");
 
                     b.ToTable("likes");
-                });
-
-            modelBuilder.Entity("Artportable.API.Entities.Models.Post", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("nvarchar(254)")
-                        .HasColumnName("content");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_posts");
-
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("ix_posts_user_id");
-
-                    b.ToTable("posts");
                 });
 
             modelBuilder.Entity("Artportable.API.Entities.Models.Product", b =>
@@ -751,21 +713,6 @@ namespace Artportable.API.Migrations
                         {
                             Id = 69,
                             Title = "artwork"
-                        },
-                        new
-                        {
-                            Id = 70,
-                            Title = "print"
-                        },
-                        new
-                        {
-                            Id = 71,
-                            Title = "jewelry"
-                        },
-                        new
-                        {
-                            Id = 72,
-                            Title = "graphic"
                         });
                 });
 
@@ -1050,14 +997,8 @@ namespace Artportable.API.Migrations
                         .WithMany("Likes")
                         .HasForeignKey("ArtworkId")
                         .HasConstraintName("fk_likes_artworks_artwork_id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Artportable.API.Entities.Models.Post", "Post")
-                        .WithMany("Likes")
-                        .HasForeignKey("PostId")
-                        .HasConstraintName("fk_likes_posts_post_id")
-                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.HasOne("Artportable.API.Entities.Models.User", "User")
                         .WithMany("Likes")
@@ -1067,20 +1008,6 @@ namespace Artportable.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Artwork");
-
-                    b.Navigation("Post");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Artportable.API.Entities.Models.Post", b =>
-                {
-                    b.HasOne("Artportable.API.Entities.Models.User", "User")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_posts_users_user_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -1166,11 +1093,6 @@ namespace Artportable.API.Migrations
                     b.Navigation("TertiaryFileRef");
                 });
 
-            modelBuilder.Entity("Artportable.API.Entities.Models.Post", b =>
-                {
-                    b.Navigation("Likes");
-                });
-
             modelBuilder.Entity("Artportable.API.Entities.Models.Product", b =>
                 {
                     b.Navigation("Subscriptions");
@@ -1190,8 +1112,6 @@ namespace Artportable.API.Migrations
                     b.Navigation("FollowerRef");
 
                     b.Navigation("Likes");
-
-                    b.Navigation("Posts");
 
                     b.Navigation("UserProfile");
                 });
