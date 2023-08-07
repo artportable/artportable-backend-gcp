@@ -10,7 +10,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace Services
 {
@@ -20,12 +19,11 @@ namespace Services
     private readonly string _streamSenderId;
     private readonly string _mandrillApiKey;
     private readonly string _mandrillFromEmail;
-    private List<string> _blockedEmails;
     private APContext _context;
 
     private IMandrillApi _mandrillApi;
 
-    public MessageService(APContext apContext, IOptions<StreamOptions> streamSettings, IOptions<MandrillOptions> mandrillSettings, IMandrillApi mandrillApi, IOptions<BlockedEmailOptions> blockedEmailOptions)
+    public MessageService(APContext apContext, IOptions<StreamOptions> streamSettings, IOptions<MandrillOptions> mandrillSettings, IMandrillApi mandrillApi)
     {
       _streamChatClient = new Client(streamSettings.Value.ApiKey, streamSettings.Value.ApiSecret);
       _streamSenderId = streamSettings.Value.SenderUserId;
@@ -34,8 +32,6 @@ namespace Services
       _context = apContext ??
         throw new ArgumentNullException(nameof(apContext));
       _mandrillApi = mandrillApi;
-      _blockedEmails = blockedEmailOptions.Value.Emails;
-      
     }
 
     public TokenDTO ConnectUser(string userId)
@@ -57,12 +53,6 @@ namespace Services
 
     public void PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
     { 
-       if (_blockedEmails.Contains(email))
-        {
-            // Log and throw exception or return
-            throw new Exception($"This email {email} is blocked from making purchase requests.");
-        }
-
       try
       {
         //get artist from DB
