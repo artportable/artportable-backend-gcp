@@ -52,7 +52,7 @@ namespace Artportable.API.Services
       return res;
     }
 
-    public string CreateCustomer(string email, string fullName)
+    public string CreateCustomer(string email, string fullName, string phoneNumber)
     {
       var subscription = _context.Subscriptions
          .Where(s => s.User.Email == email)
@@ -70,7 +70,8 @@ namespace Artportable.API.Services
           var options = new CustomerCreateOptions
           {
             Email = email,
-            Name = fullName
+            Name = fullName,
+            Phone = phoneNumber
           };
           customer = customerService.Create(options);
           if (subscription! != null)
