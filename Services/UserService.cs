@@ -43,7 +43,6 @@ namespace Artportable.API.Services
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
         Created = user.User.Created,
-        UserId = user.User.Id,
       } :
       null;
     }
