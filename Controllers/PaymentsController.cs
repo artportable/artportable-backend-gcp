@@ -54,7 +54,7 @@ namespace Artportable.API.Controllers
     {
       try
       {
-        var id = _paymentService.CreateCustomer(customer.Email, customer.FullName, customer.phoneNumber);
+        var id = _paymentService.CreateCustomer(customer.Email, customer.FullName);
         var res = new StripeResponseDTO { Id = id };
 
         return Ok(res);
@@ -131,7 +131,7 @@ namespace Artportable.API.Controllers
         {
           return BadRequest("Invalid Customer");
         }
-        var customerId = _paymentService.CreateCustomer(req.Customer.Email, req.Customer.FullName, req.Customer.phoneNumber);
+        var customerId = _paymentService.CreateCustomer(req.Customer.Email, req.Customer.FullName);
 
         var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, customerId, req.Products);
 
