@@ -11,5 +11,8 @@ namespace Artportable.API.DTOs
     [Required]
     [JsonPropertyName("fullName")]
     public string FullName { get; set; }
+
+    [JsonPropertyName("phoneNumber")]
+    public string PhoneNumber { get; set; }
   }
 }
