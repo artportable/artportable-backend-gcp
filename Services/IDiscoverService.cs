@@ -8,7 +8,6 @@ namespace Artportable.API.Services
   public interface IDiscoverService
   {
     List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Portfolio);
-    /* NEW */ List<ArtworkDTO> GetArtworksByTags(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimunProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetArtworksSold(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetArtworksUnsold(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetTopArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
