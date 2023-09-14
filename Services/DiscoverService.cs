@@ -94,7 +94,7 @@ namespace Artportable.API.Services
           ORDER BY random OFFSET 0 ROWS")
               //.Where(a => tags.ForEach(tag => a.Tags.ToList().ForEach(t => tag.Equals(t.Title))))
               //.Where(a => a.Tags.Intersect(tags.Count() == a.Tags.Count()))
-              .Where(a => !tags.Except(a.Tags)) //should work checks if all of tags are in The Artworks tags
+              //.Where(a => !tags.Except(a.Tags)) //should work checks if all of tags are in The Artworks tags
               .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
               .Skip(pageSize * (page - 1))
               .Take(pageSize)
