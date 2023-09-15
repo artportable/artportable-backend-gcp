@@ -192,14 +192,13 @@ namespace Artportable.API
 
       services.AddCors(options =>
       {
-        options.AddDefaultPolicy(
+        options.AddPolicy("AllowAll",
           builder =>
           {
             builder.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod();
           }
-
         );
       });
 
@@ -252,7 +251,7 @@ namespace Artportable.API
 
       app.UseRouting();
 
-      app.UseCors();
+      app.UseCors("AllowAll");
 
       app.UseAuthentication();
 
