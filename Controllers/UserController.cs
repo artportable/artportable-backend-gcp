@@ -48,6 +48,29 @@ namespace Artportable.API.Controllers
       }
     }
 
+    [HttpGet("{username}/connectionscount")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<ConnectionsCountDTO> GetConnectionsCount(string username)
+    {
+      try
+      {
+        if (String.IsNullOrWhiteSpace(username))
+        {
+          return NotFound();
+        }
+
+        var users = _userService.GetConnectionsCount(username);
+
+        return Ok(users);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
     /// <summary>
     /// Get followers of a user
     /// </summary>

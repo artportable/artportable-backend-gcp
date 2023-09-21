@@ -23,6 +23,7 @@ namespace Artportable.API.Services
     string GetUsername(Guid socialId);
     string CreateUser(UserDTO user);
     TinyUserDTO Login(string email);
+    public ConnectionsCountDTO GetConnectionsCount(string username);
     IEnumerable<TinyUserDTO> GetFollowers(string username);
     IEnumerable<TinyUserDTO> GetFollowees(string username);
   }

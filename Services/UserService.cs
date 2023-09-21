@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Artportable.API.Services
 {
-  public class UserService : IUserService
+    public class UserService : IUserService
   {
     private APContext _context;
     private readonly IMapper _mapper;
@@ -75,6 +75,18 @@ namespace Artportable.API.Services
         .ToList();
     }
 
+    public ConnectionsCountDTO GetConnectionsCount(string username){
+
+      var followers = _context.Connections.Count(c => c.Followee.Username == username);
+      var followees = _context.Connections.Count(c => c.Follower.Username == username);
+
+      ConnectionsCountDTO socialsCount = new ConnectionsCountDTO
+      { Followers = followers, 
+      Followees = followees };
+   
+      return socialsCount;
+    }
+    
     public IEnumerable<TinyUserDTO> GetFollowers(string username)
     {
       var users = _context.Connections.Where(c => c.Followee.Username == username);
