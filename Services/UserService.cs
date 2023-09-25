@@ -118,8 +118,8 @@ namespace Artportable.API.Services
       var user = _context.Users
         .Include(u => u.UserProfile)
         .Include(u => u.File)
-        .Include(u => u.FollowerRef)
-        .Include(u => u.FolloweeRef)
+        // .Include(u => u.FollowerRef)
+        // .Include(u => u.FolloweeRef)
         .Include(u => u.Subscription)
         .Where(i => i.Username == username)
         .SingleOrDefault();
@@ -139,8 +139,8 @@ namespace Artportable.API.Services
         Headline = user.UserProfile.Headline,
         Title = user.UserProfile.Title,
         Location = user.UserProfile.Location,
-        Followers = user.FollowerRef.Count(),
-        Followees = user.FolloweeRef.Count(),
+        /*Followers = user.FollowerRef.Count(),
+        Followees = user.FolloweeRef.Count(),*/
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
           0
