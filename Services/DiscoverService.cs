@@ -23,19 +23,29 @@ namespace Artportable.API.Services
         }
 
         public List<ArtworkDTO> GetArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Bas)
-        {
-            return _context.Artworks
-              .FromSqlInterpolated(
-                $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
-          ORDER BY random OFFSET 0 ROWS")
-              .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-              .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
-              .Skip(pageSize * (page - 1))
-              .Take(pageSize)
-              .Select(a =>
-              new ArtworkDTO
-              {
-                  Id = a.PublicId,
+{
+    var randomSeed = seed.ToString();
+
+    var query = _context.Artworks
+        .FromSqlInterpolated(
+            $@"SELECT *, HASHBYTES('md5', cast(id + {randomSeed} as varchar)) AS random FROM artworks
+            ORDER BY random OFFSET 0 ROWS")
+        .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct);
+    
+    if (tags != null && tags.Count != 0)
+    {
+    foreach (var tag in tags)
+    {
+        query = query.Where(a => a.Tags.Any(t => tag.Contains(t.Title)));
+    };
+    }
+    var result = query
+        .Skip(pageSize * (page - 1))
+        .Take(pageSize)
+        .Select(a =>
+            new ArtworkDTO
+            {
+                Id = a.PublicId,
                   Owner = new OwnerDTO
                   {
                       Username = a.User.Username,
@@ -79,9 +89,11 @@ namespace Artportable.API.Services
                   Tags = (a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()),
                   Likes = a.Likes.Count(),
                   LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
-              })
-              .ToList();
-        }
+            })
+        .ToList();
+
+    return result;
+}
 
         public List<ArtworkDTO> GetArtworksSold(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Bas)
         {
@@ -993,7 +1005,7 @@ namespace Artportable.API.Services
         public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
             return _context.Artworks
-              .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+              .Where(a => tags.Count != 0 ? tags.All(tag => a.Tags.Any(t => t.Title == tag)) : true)
               .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
               .OrderByDescending(a => a.Likes.Select(
                     l => new
