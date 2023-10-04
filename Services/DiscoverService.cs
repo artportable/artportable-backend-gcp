@@ -1004,20 +1004,29 @@ namespace Artportable.API.Services
 
         public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
-            return _context.Artworks
-              .Where(a => tags.Count != 0 ? tags.All(tag => a.Tags.Any(t => t.Title == tag)) : true)
-              .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
-              .OrderByDescending(a => a.Likes.Select(
-                    l => new
+                var query = _context.Artworks
+                    .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct);
+
+                if (tags != null && tags.Count != 0)
+                {
+                    foreach (var tag in tags)
                     {
-                        Date = l.Date
-                    })
-                  .Where(l => l.Date > likesSince)
-                  .Count())
-              .ThenByDescending(a => a.Likes.Count())
-              .Skip(pageSize * (page - 1))
-              .Take(pageSize)
-              .Select(a =>
+                        query = query.Where(a => a.Tags.Any(t => t.Title == tag));
+                    }
+                }
+
+                var artworks = query
+                    .OrderByDescending(a => a.Likes.Select(
+                            l => new
+                            {
+                                Date = l.Date
+                            })
+                        .Where(l => l.Date > likesSince)
+                        .Count())
+                    .ThenByDescending(a => a.Likes.Count())
+                    .Skip(pageSize * (page - 1))
+                    .Take(pageSize)
+                    .Select(a =>
               new ArtworkDTO
               {
                   Id = a.PublicId,
@@ -1066,6 +1075,7 @@ namespace Artportable.API.Services
                   LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
               })
               .ToList();
+               return artworks;
         }
 
         public List<ArtworkDTO> GetTrendingArtworksSold(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio)
