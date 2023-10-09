@@ -1002,16 +1002,29 @@ namespace Artportable.API.Services
               .ToList();
         }
 
-        public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, ProductEnum minimumProduct = ProductEnum.Portfolio)
+        public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, string orientation,ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
                 var query = _context.Artworks
                     .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct);
 
+                // Tags filtering
                 if (tags != null && tags.Count != 0)
                 {
                     foreach (var tag in tags)
                     {
                         query = query.Where(a => a.Tags.Any(t => t.Title == tag));
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(orientation))
+                {
+                       if (orientation.Equals("Vertical", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = query.Where(a => a.Height > a.Width);
+                    }
+                    else if (orientation.Equals("Horizontal", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = query.Where(a => a.Width > a.Height);
                     }
                 }
 

@@ -355,7 +355,8 @@ namespace Artportable.API.Controllers
       int pageSize = 10,
       string myUsername = null,
       int likesSince = -14,
-      string q = null
+      string q = null,
+      string orientation = null
     )
     {
       if (page < 1 || pageSize < 1)
@@ -373,7 +374,7 @@ namespace Artportable.API.Controllers
         var artworks = new List<ArtworkDTO>();
         if (string.IsNullOrWhiteSpace(q))
         {
-          artworks = _discoverService.GetTrendingArtworks(page, pageSize, tags, myUsername, DateTime.Now.AddDays(likesSince));
+          artworks = _discoverService.GetTrendingArtworks(page, pageSize, tags, myUsername, DateTime.Now.AddDays(likesSince), orientation);
         }
         else
         {
