@@ -14,6 +14,7 @@ namespace Artportable.API.Services
         private APContext _context;
         private readonly IMapper _mapper;
 
+
         public DiscoverService(APContext apContext, IMapper mapper)
         {
             _context = apContext ??
@@ -1002,12 +1003,11 @@ namespace Artportable.API.Services
               .ToList();
         }
 
-        public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, string orientation,ProductEnum minimumProduct = ProductEnum.Portfolio)
+        public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, string orientation, string sizeFilter = null, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
                 var query = _context.Artworks
                     .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct);
 
-                // Tags filtering
                 if (tags != null && tags.Count != 0)
                 {
                     foreach (var tag in tags)
@@ -1025,6 +1025,26 @@ namespace Artportable.API.Services
                     else if (orientation.Equals("Horizontal", StringComparison.OrdinalIgnoreCase))
                     {
                         query = query.Where(a => a.Width > a.Height);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(sizeFilter))
+                {
+                    if (sizeFilter == "30")
+                    {
+                        query = query.Where(a => a.Height <= 30 && a.Width <= 30);
+                    }
+                    else if (sizeFilter == "60")
+                    {
+                        query = query.Where(a => a.Height <= 60 && a.Width <= 60);
+                    }
+                    else if (sizeFilter == "100")
+                    {
+                        query = query.Where(a => a.Height <= 100 && a.Width <= 100);
+                    }
+                    else if (sizeFilter == "100")
+                    {
+                        query = query.Where(a => a.Height > 100 || a.Width > 100);
                     }
                 }
 
