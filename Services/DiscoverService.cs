@@ -1056,11 +1056,11 @@ namespace Artportable.API.Services
                     {
                         if (priceLimit == 5000)
                         {
-                            query = query.Where(a => a.Price > priceLimit);
+                            query = query.Where(a => a.Price > priceLimit && a.SoldOut != true && a.Price != 0);
                         }
                         else
                         {
-                            query = query.Where(a => a.Price <= priceLimit);
+                            query = query.Where(a => a.Price <= priceLimit && a.SoldOut != true && a.Price != 0);
                         }
                     }
                 }
