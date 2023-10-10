@@ -1042,7 +1042,7 @@ namespace Artportable.API.Services
                     {
                         query = query.Where(a => a.Height <= 100 && a.Width <= 100);
                     }
-                    else if (sizeFilter == "100")
+                    else if (sizeFilter == "101")
                     {
                         query = query.Where(a => a.Height > 100 || a.Width > 100);
                     }
