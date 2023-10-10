@@ -1003,7 +1003,7 @@ namespace Artportable.API.Services
               .ToList();
         }
 
-        public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, string orientation, string sizeFilter = null, ProductEnum minimumProduct = ProductEnum.Portfolio)
+        public List<ArtworkDTO> GetTrendingArtworks(int page, int pageSize, List<string> tags, string myUsername, DateTime likesSince, string orientation, string sizeFilter = null, string priceFilter = null,ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
                 var query = _context.Artworks
                     .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct);
@@ -1047,6 +1047,24 @@ namespace Artportable.API.Services
                         query = query.Where(a => a.Height > 100 || a.Width > 100);
                     }
                 }
+
+                if (!string.IsNullOrEmpty(priceFilter))
+                
+                {
+                    decimal priceLimit;
+                    if (decimal.TryParse(priceFilter, out priceLimit))
+                    {
+                        if (priceLimit == 5000)
+                        {
+                            query = query.Where(a => a.Price > priceLimit);
+                        }
+                        else
+                        {
+                            query = query.Where(a => a.Price <= priceLimit);
+                        }
+                    }
+                }
+
 
                 var artworks = query
                     .OrderByDescending(a => a.Likes.Select(
