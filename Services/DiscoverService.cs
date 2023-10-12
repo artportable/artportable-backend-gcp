@@ -1054,7 +1054,7 @@ namespace Artportable.API.Services
                     decimal priceLimit;
                     if (decimal.TryParse(priceFilter, out priceLimit))
                     {
-                        if (priceLimit == 5000)
+                        if (priceLimit == 5001)
                         {
                             query = query.Where(a => a.Price > priceLimit && a.SoldOut != true && a.Price != 0);
                         }
