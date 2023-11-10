@@ -13,11 +13,8 @@ namespace Artportable.API.DTOs
     public string Name { get; set; }
     public string Surname { get; set; }
     public string Username { get; set; }
-    public decimal? Height { get; set; }
-    public decimal? Width { get; set; }
     public FileDTO PrimaryFile { get; set; }
     public FileDTO SecondaryFile { get; set; }
     public FileDTO TertiaryFile { get; set; }
-    public List<string> Tags { get; set; }
   }
 }

@@ -72,7 +72,6 @@ namespace Artportable.API.Services
             Width = s.TertiaryFile.Width,
             Height = s.TertiaryFile.Height
           } : null,
-          Tags = s.Tags != null ? s.Tags.Select(t => t.Title).ToList() : new List<string>(),
         })
         .ToList();
     }
@@ -113,9 +112,7 @@ namespace Artportable.API.Services
             Name = s.TertiaryFile.Name,
             Width = s.TertiaryFile.Width,
             Height = s.TertiaryFile.Height,
-          } : null,
-          Tags = s.Tags
-          .ToList()
+          } : null
         })
         .SingleOrDefault();
 
@@ -162,7 +159,6 @@ namespace Artportable.API.Services
           Width = story.TertiaryFile.Width,
           Height = story.TertiaryFile.Height
         } : null,
-        Tags = story.Tags != null ? story.Tags?.Select(t => t.Title).ToList() : new List<string>(),
       };
     }
     public StoryDTO Create(StoryForCreationDTO dto, Guid mySocialId)
@@ -184,15 +180,14 @@ namespace Artportable.API.Services
         PrimaryFile = _context.Files.Where(f => f.Name == dto.PrimaryFile).SingleOrDefault(),
         SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
         TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
-        Tags = _context.Tags.Where(t => dto.Tags.Contains(t.Title)).ToList()
       };
 
       _context.Add(story);
       _context.SaveChanges();
 
-      var artworkDto = _mapper.Map<StoryDTO>(story);
+      var storyDTO = _mapper.Map<StoryDTO>(story);
 
-      return artworkDto;
+      return storyDTO;
     }
 
     public StoryDTO Update(StoryForUpdateDTO dto, Guid id, Guid mySocialId)
@@ -202,7 +197,6 @@ namespace Artportable.API.Services
         .Include(s => s.PrimaryFile)
         .Include(s => s.SecondaryFile)
         .Include(s => s.TertiaryFile)
-        .Include(s => s.Tags)
         .FirstOrDefault(s => s.PublicId == id && s.User.SocialId == mySocialId);
 
       if (story == null)
@@ -242,15 +236,7 @@ namespace Artportable.API.Services
           story.TertiaryFile = new File { Name = dto.TertiaryFile };
         }
       }
-
-      story.Tags.Clear();
-      _context.Tags
-        .Where(t => dto.Tags
-        .Contains(t.Title))
-        .ToList()
-        .ForEach(tag => story.Tags.Add(tag));
-
-
+      
       _context.Update(story);
       _context.SaveChanges();
 
@@ -273,7 +259,6 @@ namespace Artportable.API.Services
       _context.Stories.Remove(record);
       _context.SaveChanges();
     }
-
     
     }
 }
