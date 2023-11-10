@@ -18,5 +18,9 @@ namespace Artportable.API.Entities.Models
     public Artwork PrimaryFileRef { get; set; }
     public Artwork SecondaryFileRef { get; set; }
     public Artwork TertiaryFileRef { get; set; }
+
+    public Story PrimaryFileReference { get; set; }
+    public Story SecondaryFileReference { get; set; }
+    public Story TertiaryFileReference { get; set; }
   }
 }

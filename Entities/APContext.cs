@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO.Compression;
 using Artportable.API.Entities.Models;
 using Artportable.API.SeedData;
 using Artportable.API.Testing;
@@ -33,6 +34,7 @@ namespace Artportable.API.Entities
     public virtual DbSet<Like> Likes { get; set; }
     public virtual DbSet<Education> Educations { get; set; }
     public virtual DbSet<Exhibition> Exhibitions { get; set; }
+    public virtual DbSet<Story> Stories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -75,6 +77,19 @@ namespace Artportable.API.Entities
         .HasForeignKey(c => c.FolloweeId)
         .OnDelete(DeleteBehavior.ClientCascade)
         .IsRequired();
+      
+      modelBuilder.Entity<Story>()
+        .HasOne(n => n.PrimaryFile)
+        .WithOne(f => f.PrimaryFileReference)
+        .HasForeignKey<Story>(n => n.PrimaryFileId);
+      modelBuilder.Entity<Story>()
+        .HasOne(n => n.PrimaryFile)
+        .WithOne(f => f.SecondaryFileReference)
+        .HasForeignKey<Story>(n => n.SecondaryFileId);
+      modelBuilder.Entity<Story>()
+        .HasOne(n => n.PrimaryFile)
+        .WithOne(f => f.TertiaryFileReference)
+        .HasForeignKey<Story>(n => n.TertiaryFileId);
 
       // Seed database
       modelBuilder.Entity<Tag>().HasData(_tagData.Tags);
@@ -82,7 +97,7 @@ namespace Artportable.API.Entities
 
 
       // Seed the database with test data
-      if (false)
+      if (true)
       {
         modelBuilder.Entity<File>().HasData(_testData.Files);
         modelBuilder.Entity<User>().HasData(_testData.Users);

@@ -88,6 +88,7 @@ namespace Artportable.API
       services.AddScoped<IStartService, StartService>();
       services.AddScoped<IStartDeliverService, StartDeliverService>();
       services.AddScoped<ITrackService, TrackService>();
+      services.AddScoped<IStoryService, StoryService>();
       services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c =>
       {
         c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
@@ -159,7 +160,7 @@ namespace Artportable.API
       // Database
       services.AddDbContextPool<APContext>(
         dbContextOptions => dbContextOptions
-          .UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
+          .UseSqlServer(_configuration.GetConnectionString("DockerConnection"))
           .UseSnakeCaseNamingConvention()
           // Everything from this point on is optional but helps with debugging.
           .EnableSensitiveDataLogging()
