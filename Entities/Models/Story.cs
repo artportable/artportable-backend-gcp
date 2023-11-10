@@ -11,7 +11,7 @@ namespace Artportable.API.Entities.Models
     {
         [Key]
         public int Id { get; set; }
-        public Guid PublicId { get; set; } //no
+        public Guid PublicId { get; set; }
         [Required, MaxLength(240)]
         public string Title { get; set; }
         [Column(TypeName = "Text")]

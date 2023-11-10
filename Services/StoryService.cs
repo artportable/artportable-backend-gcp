@@ -274,34 +274,6 @@ namespace Artportable.API.Services
       _context.SaveChanges();
     }
 
-    public List<string> GetTags()
-    {
-      var tags = _context.Tags
-        .OrderByDescending(t => t.Artworks.Count())
-        .Select(t => t.Title)
-        .ToList();
-
-      return tags;
+    
     }
-
-    public List<TagDTO> GetTags(Guid id)
-    {
-      var artwork = _context.Artworks
-        .Include(s => s.Tags)
-        .FirstOrDefault(s => s.PublicId == id);
-
-      if (artwork == null)
-      {
-        return null;
-      }
-
-      var tags = artwork.Tags
-        .OrderBy(t => t.Title)
-        .Select(t => new TagDTO { Tag = t.Title })
-        .ToList();
-
-      return tags;
-    }
-
-  }
 }

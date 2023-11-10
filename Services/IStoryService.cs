@@ -8,12 +8,8 @@ namespace Artportable.API.Services
   {
     List<StoryDTO> Get(string owner, string myUsername);
     StoryDTO Get(Guid id, string myUsername);
-    List<string> GetTags();
-    StoryDTO Create(ArtworkForCreationDTO dto, Guid mySocialId);
-    ArtworkDTO Update(ArtworkForUpdateDTO dto, Guid id, Guid mySocialId);
+    StoryDTO Create(StoryForCreationDTO dto, Guid mySocialId);
+    StoryDTO Update(StoryForUpdateDTO dto, Guid id, Guid mySocialId);
     void Delete(Guid id, string myUsername);
-    List<TagDTO> GetTags(Guid id);
-    bool Like(Guid artworkId, Guid mySocialId, out Guid owner);
-    bool Unlike(Guid artworkId, Guid mySocialId, out Guid owner);
   }
 }
