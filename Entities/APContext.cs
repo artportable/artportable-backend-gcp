@@ -79,15 +79,15 @@ namespace Artportable.API.Entities
         .IsRequired();
       
       modelBuilder.Entity<Story>()
-        .HasOne(n => n.PrimaryFile)
+        .HasOne(s => s.PrimaryFile)
         .WithOne(f => f.PrimaryFileReference)
-        .HasForeignKey<Story>(n => n.PrimaryFileId);
+        .HasForeignKey<Story>(s => s.PrimaryFileId);
       modelBuilder.Entity<Story>()
-        .HasOne(n => n.PrimaryFile)
+        .HasOne(s => s.SecondaryFile)
         .WithOne(f => f.SecondaryFileReference)
         .HasForeignKey<Story>(n => n.SecondaryFileId);
       modelBuilder.Entity<Story>()
-        .HasOne(n => n.PrimaryFile)
+        .HasOne(s => s.TertiaryFile)
         .WithOne(f => f.TertiaryFileReference)
         .HasForeignKey<Story>(n => n.TertiaryFileId);
 

@@ -40,20 +40,13 @@ namespace Artportable.API.Services
         new StoryDTO
         {
           Id = s.PublicId,
-          Owner = new OwnerDTO
-          {
-            Username = s.User.Username,
-            ProfilePicture = s.User.File.Name,
-            Name = s.User.UserProfile.Name,
-            Surname = s.User.UserProfile.Surname,
-            Location = s.User.UserProfile.Location,
-          },
           Title = s.Title,
           Description = s.Description,
           Published = s.Published,
           Name = s.User.UserProfile.Name,
           Surname = s.User.UserProfile.Surname,
           Username = s.User.Username,
+          ProfilePicture = s.User.File.Name,
           PrimaryFile = new FileDTO
           {
             Name = s.PrimaryFile.Name,
@@ -80,35 +73,37 @@ namespace Artportable.API.Services
     {
       var story = _context.Stories
         .Where(s => s.PublicId == id)
-        .Select(s => new {
+        .Select(s => new
+        {
           PublicId = s.PublicId,
-          User = new {
+          User = new
+          {
             Username = s.User.Username,
             Name = s.User.UserProfile.Name,
             Surname = s.User.UserProfile.Surname,
-            SocialId = s.User.SocialId,
-            File = s.User.File != null ? new {
+            File = s.User.File != null ? new
+            {
               Name = s.User.File.Name
             } : null,
-            UserProfile = new {
-              Location = s.User.UserProfile.Location
-            },
             MonthlyUser = s.User.MonthlyUser
           },
           Title = s.Title,
           Description = s.Description,
           Published = s.Published,
-          PrimaryFile = new {
+          PrimaryFile = new
+          {
             Name = s.PrimaryFile.Name,
             Width = s.PrimaryFile.Width,
-            Height = s.PrimaryFile.Height, 
+            Height = s.PrimaryFile.Height,
           },
-          SecondaryFile = s.SecondaryFile != null ? new {
+          SecondaryFile = s.SecondaryFile != null ? new
+          {
             Name = s.SecondaryFile.Name,
             Width = s.SecondaryFile.Width,
             Height = s.SecondaryFile.Height,
           } : null,
-          TertiaryFile = s.TertiaryFile != null ? new {
+          TertiaryFile = s.TertiaryFile != null ? new
+          {
             Name = s.TertiaryFile.Name,
             Width = s.TertiaryFile.Width,
             Height = s.TertiaryFile.Height,
@@ -124,23 +119,13 @@ namespace Artportable.API.Services
       return new StoryDTO
       {
         Id = story.PublicId,
-        Owner = new OwnerDTO
-        {
-          Username = story.User.Username,
-          SocialId = story.User.SocialId,
-          Name = story.User.Name,
-          Surname = story.User.Surname,
-          ProfilePicture = story.User.File?.Name,
-          Location = story.User.UserProfile.Location,
-          FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
-            _context.Connections
-              .Any(c => c.Followee.Username == story.User.Username && c.Follower.Username == myUsername) :
-            false,
-          MonthlyArtist = story.User.MonthlyUser
-        },
         Title = story.Title,
         Description = story.Description,
         Published = story.Published,
+        Name = story.User.Name,
+        Surname = story.User.Surname,
+        Username = story.User.Username,
+        ProfilePicture = story.User.File.Name,
         PrimaryFile = new FileDTO
         {
           Name = story.PrimaryFile.Name,
@@ -161,6 +146,46 @@ namespace Artportable.API.Services
         } : null,
       };
     }
+
+    public List<StoryDTO> GetLatestStories(int page, int pageSize, ProductEnum minimumProduct = ProductEnum.Portfolio)
+    {
+      return _context.Stories
+        .Where(s => s.User.Subscription.ProductId >= (int)minimumProduct)
+        .OrderByDescending(s => s.Published)
+        .Skip(pageSize * (page - 1))
+        .Take(pageSize)
+        .Select(s =>
+        new StoryDTO
+        {
+          Id = s.PublicId,
+          Title = s.Title,
+          Name = s.User.UserProfile.Name,
+          Surname = s.User.UserProfile.Surname,
+          Username = s.User.Username,
+          Description = s.Description,
+          Published = s.Published,
+          PrimaryFile = new FileDTO
+          {
+            Name = s.PrimaryFile.Name,
+            Width = s.PrimaryFile.Width,
+            Height = s.PrimaryFile.Height
+          },
+          SecondaryFile = s.SecondaryFile != null ? new FileDTO
+          {
+            Name = s.SecondaryFile.Name,
+            Width = s.SecondaryFile.Width,
+            Height = s.SecondaryFile.Height
+          } : null,
+          TertiaryFile = s.TertiaryFile != null ? new FileDTO
+          {
+            Name = s.TertiaryFile.Name,
+            Width = s.TertiaryFile.Width,
+            Height = s.TertiaryFile.Height
+          } : null,
+        })
+        .ToList();
+    }
+    
     public StoryDTO Create(StoryForCreationDTO dto, Guid mySocialId)
     {
       var user = _context.Users.FirstOrDefault(u => u.SocialId == mySocialId);
@@ -181,6 +206,7 @@ namespace Artportable.API.Services
         SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
         TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
       };
+
 
       _context.Add(story);
       _context.SaveChanges();
@@ -236,7 +262,7 @@ namespace Artportable.API.Services
           story.TertiaryFile = new File { Name = dto.TertiaryFile };
         }
       }
-      
+
       _context.Update(story);
       _context.SaveChanges();
 
@@ -252,13 +278,14 @@ namespace Artportable.API.Services
         .Where(s => s.PublicId == id && s.User.Username == myUsername)
         .FirstOrDefault();
 
-      if (record == null) {
+      if (record == null)
+      {
         return;
       }
 
       _context.Stories.Remove(record);
       _context.SaveChanges();
     }
-    
-    }
+
+  }
 }
