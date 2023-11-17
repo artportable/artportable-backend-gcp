@@ -29,6 +29,12 @@ namespace Artportable.API.Entities.Models
     public string Location { get; set; }
 
     [MaxLength(140)]
+
+    public string Country {get; set;}
+    [MaxLength(140)]
+    public string City {get; set;}
+
+    [MaxLength(140)]
     public string Title { get; set; }
 
     [MaxLength(140)]

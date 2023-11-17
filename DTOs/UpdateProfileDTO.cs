@@ -13,6 +13,13 @@ namespace Artportable.API.DTOs
     [MaxLength(280)]
     public string Location { get; set; }
     [MaxLength(140)]
+
+    public string Country {get; set;}
+
+    [MaxLength(140)]
+
+    public string City {get; set;}
+    [MaxLength(140)]
     public string Name { get; set; }
     [MaxLength(140)]
     public string Surname { get; set; }

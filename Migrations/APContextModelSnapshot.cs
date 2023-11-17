@@ -713,6 +713,21 @@ namespace Artportable.API.Migrations
                         {
                             Id = 69,
                             Title = "artwork"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Title = "print"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Title = "jewelry"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Title = "graphic"
                         });
                 });
 
@@ -804,6 +819,16 @@ namespace Artportable.API.Migrations
                         .HasMaxLength(280)
                         .HasColumnType("nvarchar(280)")
                         .HasColumnName("behance_url");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(140)
+                        .HasColumnType("nvarchar(140)")
+                        .HasColumnName("city");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(140)
+                        .HasColumnType("nvarchar(140)")
+                        .HasColumnName("country");
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2")
