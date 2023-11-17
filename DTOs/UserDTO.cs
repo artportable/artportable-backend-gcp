@@ -18,5 +18,6 @@ namespace Artportable.API.DTOs
     public string Location { get; set; }
 
     public DateTime Created {get; set;}
-  }
+
+    }
 }
