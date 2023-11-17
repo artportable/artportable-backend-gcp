@@ -75,7 +75,7 @@ namespace Artportable.API.Controllers
     /// </summary>
     /// <param name="username"></param>
     /// <param name="body"></param>
-
+    [Authorize]
     [HttpPut("{username}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
