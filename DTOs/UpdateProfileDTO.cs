@@ -17,7 +17,7 @@ namespace Artportable.API.DTOs
     public string Country {get; set;}
 
     [MaxLength(140)]
-
+    public string State {get; set;}
     public string City {get; set;}
     [MaxLength(140)]
     public string Name { get; set; }
