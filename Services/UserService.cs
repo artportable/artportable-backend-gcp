@@ -140,6 +140,7 @@ namespace Artportable.API.Services
         Title = user.UserProfile.Title,
         Location = user.UserProfile.Location,
         Country = user.UserProfile.Country,
+        State = user.UserProfile.State,
         City = user.UserProfile.City,
         /*Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),*/

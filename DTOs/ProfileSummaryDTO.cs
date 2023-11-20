@@ -14,6 +14,7 @@ namespace Artportable.API.DTOs
     public string Location { get; set; }
 
     public string Country {get; set;}
+    public string State {get; set;}
     public string City {get; set;}
     public int Followers { get; set; }
     public int Followees { get; set; }

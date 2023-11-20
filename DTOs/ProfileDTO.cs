@@ -13,6 +13,7 @@ namespace Artportable.API.DTOs
     public string Title { get; set; }
     public string Location { get; set; }
     public string Country {get; set;}
+    public string State {get; set;}
     public string City {get; set;}
     public string About { get; set; }
     public string InspiredBy { get; set; }
