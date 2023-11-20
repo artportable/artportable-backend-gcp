@@ -195,6 +195,7 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.Title, val => { rowToUpdate.Title = val; });
       setSafely(updatedProfile.Location, val => { rowToUpdate.Location = val; });
       setSafely(updatedProfile.Country, val => { rowToUpdate.Country = val; });
+      setSafely(updatedProfile.State, val => { rowToUpdate.State = val; });
       setSafely(updatedProfile.City, val => { rowToUpdate.City = val; });
       setSafely(updatedProfile.Name, val => { rowToUpdate.Name = val; });
       setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
