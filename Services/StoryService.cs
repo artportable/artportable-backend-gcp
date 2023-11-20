@@ -85,7 +85,6 @@ namespace Artportable.API.Services
             {
               Name = s.User.File.Name
             } : null,
-            MonthlyUser = s.User.MonthlyUser
           },
           Title = s.Title,
           Description = s.Description,
@@ -116,6 +115,8 @@ namespace Artportable.API.Services
         return null;
       }
 
+      var profilePicture = story.User?.File?.Name;
+
       return new StoryDTO
       {
         Id = story.PublicId,
@@ -125,7 +126,7 @@ namespace Artportable.API.Services
         Name = story.User.Name,
         Surname = story.User.Surname,
         Username = story.User.Username,
-        ProfilePicture = story.User.File.Name,
+        ProfilePicture = profilePicture,
         PrimaryFile = new FileDTO
         {
           Name = story.PrimaryFile.Name,
