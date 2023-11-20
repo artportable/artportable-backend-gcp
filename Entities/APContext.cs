@@ -96,7 +96,7 @@ namespace Artportable.API.Entities
       modelBuilder.Entity<Product>().HasData(_productData.Products);
 
 
-      // Seed the database with test data
+      // Seed the database with test data -
       if (false)
       {
         modelBuilder.Entity<File>().HasData(_testData.Files);
