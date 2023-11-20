@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Artportable.API.DTOs;
 using Artportable.API.Extentions;
 using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -55,7 +56,7 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        //[Authorize]
+        [Authorize]
         [HttpPost("")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(StoryDTO))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
@@ -80,7 +81,7 @@ namespace Artportable.API.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPut("{id}")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(StoryDTO))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
@@ -104,7 +105,7 @@ namespace Artportable.API.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete("{id}")]
         [SwaggerResponse(StatusCodes.Status204NoContent)]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
