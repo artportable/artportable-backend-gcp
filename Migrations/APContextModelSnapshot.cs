@@ -320,6 +320,74 @@ namespace Artportable.API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Artportable.API.Entities.Models.Story", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("Text")
+                        .HasColumnName("description");
+
+                    b.Property<int>("PrimaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("primary_file_id");
+
+                    b.Property<Guid>("PublicId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("public_id");
+
+                    b.Property<DateTime>("Published")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("published");
+
+                    b.Property<int?>("SecondaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("secondary_file_id");
+
+                    b.Property<int?>("TertiaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("tertiary_file_id");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(240)
+                        .HasColumnType("nvarchar(240)")
+                        .HasColumnName("title");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_stories");
+
+                    b.HasIndex("PrimaryFileId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_stories_primary_file_id");
+
+                    b.HasIndex("PublicId")
+                        .HasDatabaseName("ix_stories_public_id");
+
+                    b.HasIndex("SecondaryFileId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_stories_secondary_file_id")
+                        .HasFilter("[secondary_file_id] IS NOT NULL");
+
+                    b.HasIndex("TertiaryFileId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_stories_tertiary_file_id")
+                        .HasFilter("[tertiary_file_id] IS NOT NULL");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_stories_user_id");
+
+                    b.ToTable("stories");
+                });
+
             modelBuilder.Entity("Artportable.API.Entities.Models.Subscription", b =>
                 {
                     b.Property<int>("Id")
@@ -713,7 +781,85 @@ namespace Artportable.API.Migrations
                         {
                             Id = 69,
                             Title = "artwork"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Title = "print"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Title = "jewelry"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Title = "graphic"
                         });
+                });
+
+            modelBuilder.Entity("Artportable.API.Entities.Models.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("Text")
+                        .HasColumnName("description");
+
+                    b.Property<int>("PrimaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("primary_file_id");
+
+                    b.Property<Guid>("PublicId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("public_id");
+
+                    b.Property<DateTime>("Published")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("published");
+
+                    b.Property<int?>("SecondaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("secondary_file_id");
+
+                    b.Property<int?>("TertiaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("tertiary_file_id");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(240)
+                        .HasColumnType("nvarchar(240)")
+                        .HasColumnName("title");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_tests");
+
+                    b.HasIndex("PrimaryFileId")
+                        .HasDatabaseName("ix_tests_primary_file_id");
+
+                    b.HasIndex("PublicId")
+                        .HasDatabaseName("ix_tests_public_id");
+
+                    b.HasIndex("SecondaryFileId")
+                        .HasDatabaseName("ix_tests_secondary_file_id");
+
+                    b.HasIndex("TertiaryFileId")
+                        .HasDatabaseName("ix_tests_tertiary_file_id");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_tests_user_id");
+
+                    b.ToTable("tests");
                 });
 
             modelBuilder.Entity("Artportable.API.Entities.Models.User", b =>
@@ -1012,6 +1158,41 @@ namespace Artportable.API.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Artportable.API.Entities.Models.Story", b =>
+                {
+                    b.HasOne("Artportable.API.Entities.Models.File", "PrimaryFile")
+                        .WithOne("PrimaryFileReference")
+                        .HasForeignKey("Artportable.API.Entities.Models.Story", "PrimaryFileId")
+                        .HasConstraintName("fk_stories_files_primary_file_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Artportable.API.Entities.Models.File", "SecondaryFile")
+                        .WithOne("SecondaryFileReference")
+                        .HasForeignKey("Artportable.API.Entities.Models.Story", "SecondaryFileId")
+                        .HasConstraintName("fk_stories_files_secondary_file_id");
+
+                    b.HasOne("Artportable.API.Entities.Models.File", "TertiaryFile")
+                        .WithOne("TertiaryFileReference")
+                        .HasForeignKey("Artportable.API.Entities.Models.Story", "TertiaryFileId")
+                        .HasConstraintName("fk_stories_files_tertiary_file_id");
+
+                    b.HasOne("Artportable.API.Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("fk_stories_users_user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PrimaryFile");
+
+                    b.Navigation("SecondaryFile");
+
+                    b.Navigation("TertiaryFile");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Artportable.API.Entities.Models.Subscription", b =>
                 {
                     b.HasOne("Artportable.API.Entities.Models.Product", "Product")
@@ -1022,6 +1203,41 @@ namespace Artportable.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Artportable.API.Entities.Models.Test", b =>
+                {
+                    b.HasOne("Artportable.API.Entities.Models.File", "PrimaryFile")
+                        .WithMany()
+                        .HasForeignKey("PrimaryFileId")
+                        .HasConstraintName("fk_tests_files_primary_file_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Artportable.API.Entities.Models.File", "SecondaryFile")
+                        .WithMany()
+                        .HasForeignKey("SecondaryFileId")
+                        .HasConstraintName("fk_tests_files_secondary_file_id");
+
+                    b.HasOne("Artportable.API.Entities.Models.File", "TertiaryFile")
+                        .WithMany()
+                        .HasForeignKey("TertiaryFileId")
+                        .HasConstraintName("fk_tests_files_tertiary_file_id");
+
+                    b.HasOne("Artportable.API.Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("fk_tests_users_user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PrimaryFile");
+
+                    b.Navigation("SecondaryFile");
+
+                    b.Navigation("TertiaryFile");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Artportable.API.Entities.Models.User", b =>
@@ -1088,9 +1304,15 @@ namespace Artportable.API.Migrations
                 {
                     b.Navigation("PrimaryFileRef");
 
+                    b.Navigation("PrimaryFileReference");
+
                     b.Navigation("SecondaryFileRef");
 
+                    b.Navigation("SecondaryFileReference");
+
                     b.Navigation("TertiaryFileRef");
+
+                    b.Navigation("TertiaryFileReference");
                 });
 
             modelBuilder.Entity("Artportable.API.Entities.Models.Product", b =>
