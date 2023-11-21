@@ -799,6 +799,69 @@ namespace Artportable.API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Artportable.API.Entities.Models.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("Text")
+                        .HasColumnName("description");
+
+                    b.Property<int>("PrimaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("primary_file_id");
+
+                    b.Property<Guid>("PublicId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("public_id");
+
+                    b.Property<DateTime>("Published")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("published");
+
+                    b.Property<int?>("SecondaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("secondary_file_id");
+
+                    b.Property<int?>("TertiaryFileId")
+                        .HasColumnType("int")
+                        .HasColumnName("tertiary_file_id");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(240)
+                        .HasColumnType("nvarchar(240)")
+                        .HasColumnName("title");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_tests");
+
+                    b.HasIndex("PrimaryFileId")
+                        .HasDatabaseName("ix_tests_primary_file_id");
+
+                    b.HasIndex("PublicId")
+                        .HasDatabaseName("ix_tests_public_id");
+
+                    b.HasIndex("SecondaryFileId")
+                        .HasDatabaseName("ix_tests_secondary_file_id");
+
+                    b.HasIndex("TertiaryFileId")
+                        .HasDatabaseName("ix_tests_tertiary_file_id");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_tests_user_id");
+
+                    b.ToTable("tests");
+                });
+
             modelBuilder.Entity("Artportable.API.Entities.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -1155,6 +1218,41 @@ namespace Artportable.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Artportable.API.Entities.Models.Test", b =>
+                {
+                    b.HasOne("Artportable.API.Entities.Models.File", "PrimaryFile")
+                        .WithMany()
+                        .HasForeignKey("PrimaryFileId")
+                        .HasConstraintName("fk_tests_files_primary_file_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Artportable.API.Entities.Models.File", "SecondaryFile")
+                        .WithMany()
+                        .HasForeignKey("SecondaryFileId")
+                        .HasConstraintName("fk_tests_files_secondary_file_id");
+
+                    b.HasOne("Artportable.API.Entities.Models.File", "TertiaryFile")
+                        .WithMany()
+                        .HasForeignKey("TertiaryFileId")
+                        .HasConstraintName("fk_tests_files_tertiary_file_id");
+
+                    b.HasOne("Artportable.API.Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("fk_tests_users_user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PrimaryFile");
+
+                    b.Navigation("SecondaryFile");
+
+                    b.Navigation("TertiaryFile");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Artportable.API.Entities.Models.User", b =>
