@@ -165,6 +165,7 @@ namespace Artportable.API.Services
           Username = s.User.Username,
           Description = s.Description,
           Published = s.Published,
+          ProfilePicture = s.User.File.Name,
           PrimaryFile = new FileDTO
           {
             Name = s.PrimaryFile.Name,
