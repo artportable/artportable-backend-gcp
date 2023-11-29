@@ -14,7 +14,7 @@ namespace Artportable.API.Entities.Models
         public Guid PublicId { get; set; }
         [Required, MaxLength(240)]
         public string Title { get; set; }
-        [Column(TypeName = "Text")]
+        [MaxLength(8192)]
         public string Description { get; set; }
         [Required]
         public DateTime Published { get; set; }
