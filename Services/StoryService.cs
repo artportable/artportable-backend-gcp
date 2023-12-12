@@ -7,6 +7,8 @@ using Artportable.API.Entities.Models;
 using Artportable.API.Enums;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using System.Globalization;
 
 namespace Artportable.API.Services
 {
@@ -276,11 +278,31 @@ namespace Artportable.API.Services
 
     private string GenerateSlug(string title)
     {
+        // Trim leading and trailing spaces
+        title = title.Trim();
+
+        // Normalize characters (remove diacritics)
+        title = RemoveDiacritics(title);
+
+        // Replace spaces with hyphens
         string originalSlug = title.Replace(" ", "-").ToLower();
+
+        // Define a list of invalid characters
+        char[] invalidChars = { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '[', ']', '{', '}', ';', ':', '\'', '"', '<', '>', ',', '.', '/', '?', '\\', '|', '`', '~' };
+
+        // Replace invalid characters with underScore
+        foreach (char invalidChar in invalidChars)
+        {
+            originalSlug = originalSlug.Replace(invalidChar, '_');
+        }
+
+        // Limit the length of the slug
+        originalSlug = originalSlug.Length > 100 ? originalSlug.Substring(0, 100) : originalSlug;
+
         string slug = originalSlug;
         int count = 1;
 
-        // Check if the slug already exists in the database
+        // Check for slug uniqueness in the database
         while (_context.Stories.Any(s => s.Slug == slug))
         {
             slug = $"{originalSlug}-{count}";
@@ -290,7 +312,24 @@ namespace Artportable.API.Services
         return slug;
     }
 
-    
+    private string RemoveDiacritics(string text)
+    {
+        // Remove diacritics from characters
+        string normalizedString = text.Normalize(NormalizationForm.FormD);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        foreach (char c in normalizedString)
+        {
+            UnicodeCategory unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+            if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+            {
+                stringBuilder.Append(c);
+            }
+        }
+
+        return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+}
+
     public StoryDTO Create(StoryForCreationDTO dto, Guid mySocialId)
     {
       var user = _context.Users.FirstOrDefault(u => u.SocialId == mySocialId);
