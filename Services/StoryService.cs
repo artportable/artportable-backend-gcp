@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Artportable.API.Services
 {
@@ -276,6 +277,10 @@ namespace Artportable.API.Services
         .ToList();
     }
 
+ 
+
+   
+
     private string GenerateSlug(string title)
     {
         // Trim leading and trailing spaces
@@ -285,16 +290,13 @@ namespace Artportable.API.Services
         title = RemoveDiacritics(title);
 
         // Replace spaces with hyphens
-        string originalSlug = title.Replace(" ", "-").ToLower();
+        string originalSlug = Regex.Replace(title, @"\s", "-").ToLower();
 
-        // Define a list of invalid characters
-        char[] invalidChars = { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '[', ']', '{', '}', ';', ':', '\'', '"', '<', '>', ',', '.', '/', '?', '\\', '|', '`', '~' };
+        // Define a regular expression pattern to allow only lowercase letters and numbers
+        string pattern = @"[^a-z0-9]";
 
-        // Replace invalid characters with underScore
-        foreach (char invalidChar in invalidChars)
-        {
-            originalSlug = originalSlug.Replace(invalidChar, '_');
-        }
+        // Replace characters not matching the pattern with an underscore
+        originalSlug = Regex.Replace(originalSlug, pattern, "-");
 
         // Limit the length of the slug
         originalSlug = originalSlug.Length > 100 ? originalSlug.Substring(0, 100) : originalSlug;
@@ -311,6 +313,8 @@ namespace Artportable.API.Services
 
         return slug;
     }
+
+
 
     private string RemoveDiacritics(string text)
     {
