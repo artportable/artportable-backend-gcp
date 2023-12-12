@@ -28,5 +28,6 @@ namespace Artportable.API.Entities.Models
         public File PrimaryFile { get; set; }
         public File SecondaryFile { get; set; }
         public File TertiaryFile { get; set; }
+        public string Slug {get; set;}
     }
 }
