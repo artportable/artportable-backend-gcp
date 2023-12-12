@@ -6,6 +6,7 @@ using Artportable.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Artportable.API.Controllers
@@ -56,6 +57,31 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+        [HttpGet("story/{slug}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(StoryDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        public ActionResult<StoryDTO> GetStoryBySlug(string slug, string myUsername = null)
+        {
+            try 
+            {
+                var story = _storyServcie.GetBySlug(slug, myUsername);
+
+                if (story == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(story);
+            }
+            catch (Exception e)
+            {
+            
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+
         [Authorize]
         [HttpPost("")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(StoryDTO))]

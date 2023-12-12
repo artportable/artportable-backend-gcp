@@ -16,5 +16,6 @@ namespace Artportable.API.DTOs
     public FileDTO PrimaryFile { get; set; }
     public FileDTO SecondaryFile { get; set; }
     public FileDTO TertiaryFile { get; set; }
+    public string Slug {get; set;}
   }
 }

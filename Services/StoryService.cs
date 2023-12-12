@@ -41,6 +41,7 @@ namespace Artportable.API.Services
         {
           Id = s.PublicId,
           Title = s.Title,
+          Slug = s.Slug,
           Description = s.Description,
           Published = s.Published,
           Name = s.User.UserProfile.Name,
@@ -86,6 +87,7 @@ namespace Artportable.API.Services
               Name = s.User.File.Name
             } : null,
           },
+          Slug = s.Slug,
           Title = s.Title,
           Description = s.Description,
           Published = s.Published,
@@ -120,6 +122,7 @@ namespace Artportable.API.Services
       return new StoryDTO
       {
         Id = story.PublicId,
+        Slug = story.Slug,
         Title = story.Title,
         Description = story.Description,
         Published = story.Published,
@@ -148,6 +151,88 @@ namespace Artportable.API.Services
       };
     }
 
+      public StoryDTO GetBySlug(string slug, string myUsername)
+    {
+        var story = _context.Stories
+            .Where(s => s.Slug == slug)
+            .Select(s => new
+            {
+                PublicId = s.PublicId,
+                User = new
+                {
+                    Username = s.User.Username,
+                    Name = s.User.UserProfile.Name,
+                    Surname = s.User.UserProfile.Surname,
+                    File = s.User.File != null ? new
+                    {
+                        Name = s.User.File.Name
+                    } : null,
+                },
+                Slug = s.Slug,
+                Title = s.Title,
+                Description = s.Description,
+                Published = s.Published,
+                PrimaryFile = new
+                {
+                    Name = s.PrimaryFile.Name,
+                    Width = s.PrimaryFile.Width,
+                    Height = s.PrimaryFile.Height,
+                },
+                SecondaryFile = s.SecondaryFile != null ? new
+                {
+                    Name = s.SecondaryFile.Name,
+                    Width = s.SecondaryFile.Width,
+                    Height = s.SecondaryFile.Height,
+                } : null,
+                TertiaryFile = s.TertiaryFile != null ? new
+                {
+                    Name = s.TertiaryFile.Name,
+                    Width = s.TertiaryFile.Width,
+                    Height = s.TertiaryFile.Height,
+                } : null
+            })
+            .SingleOrDefault();
+
+        if (story == null)
+        {
+            return null;
+        }
+
+        var profilePicture = story.User?.File?.Name;
+
+        return new StoryDTO
+        {
+            Id = story.PublicId,
+            Slug = story.Slug,
+            Title = story.Title,
+            Description = story.Description,
+            Published = story.Published,
+            Name = story.User.Name,
+            Surname = story.User.Surname,
+            Username = story.User.Username,
+            ProfilePicture = profilePicture,
+            PrimaryFile = new FileDTO
+            {
+                Name = story.PrimaryFile.Name,
+                Width = story.PrimaryFile.Width,
+                Height = story.PrimaryFile.Height
+            },
+            SecondaryFile = story.SecondaryFile != null ? new FileDTO
+            {
+                Name = story.SecondaryFile.Name,
+                Width = story.SecondaryFile.Width,
+                Height = story.SecondaryFile.Height
+            } : null,
+            TertiaryFile = story.TertiaryFile != null ? new FileDTO
+            {
+                Name = story.TertiaryFile.Name,
+                Width = story.TertiaryFile.Width,
+                Height = story.TertiaryFile.Height
+            } : null,
+        };
+    }
+
+
     public List<StoryDTO> GetLatestStories(int page, int pageSize, ProductEnum minimumProduct = ProductEnum.Portfolio)
     {
       return _context.Stories
@@ -160,6 +245,7 @@ namespace Artportable.API.Services
         {
           Id = s.PublicId,
           Title = s.Title,
+          Slug = s.Slug,
           Name = s.User.UserProfile.Name,
           Surname = s.User.UserProfile.Surname,
           Username = s.User.Username,
@@ -187,6 +273,23 @@ namespace Artportable.API.Services
         })
         .ToList();
     }
+
+    private string GenerateSlug(string title)
+    {
+        string originalSlug = title.Replace(" ", "-").ToLower();
+        string slug = originalSlug;
+        int count = 1;
+
+        // Check if the slug already exists in the database
+        while (_context.Stories.Any(s => s.Slug == slug))
+        {
+            slug = $"{originalSlug}-{count}";
+            count++;
+        }
+
+        return slug;
+    }
+
     
     public StoryDTO Create(StoryForCreationDTO dto, Guid mySocialId)
     {
@@ -197,6 +300,8 @@ namespace Artportable.API.Services
         return null;
       }
 
+      var slug = GenerateSlug(dto.Title);
+
       var story = new Story
       {
         PublicId = Guid.NewGuid(),
@@ -204,11 +309,11 @@ namespace Artportable.API.Services
         Title = dto.Title,
         Description = dto.Description,
         Published = DateTime.Now,
+        Slug = slug,
         PrimaryFile = _context.Files.Where(f => f.Name == dto.PrimaryFile).SingleOrDefault(),
         SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
         TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
       };
-
 
       _context.Add(story);
       _context.SaveChanges();
