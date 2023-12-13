@@ -32,5 +32,6 @@ namespace Artportable.API.DTOs
     public ICollection<EducationDTO> Educations { get; set; }
 
     public ICollection<ExhibitionDTO> Exhibitions { get; set; }
+    public bool HideLikedArtworks { get; set; }
   }
 }

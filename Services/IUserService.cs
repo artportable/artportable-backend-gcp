@@ -12,6 +12,7 @@ namespace Artportable.API.Services
     ProfileSummaryDTO GetProfileSummary(string username);
     ProfileDTO GetProfile(string username, string myUsername);
     ProfileDTO UpdateProfile(string username, UpdateProfileDTO updatedProfile);
+    bool SetHideLikedArtworks(string username, bool hideLikedArtworks);
     List<SimilarProfileDTO> GetSimilarProfiles(string username);
     List<TagDTO> GetTags(string username);
     string GetProfilePicture(string username);

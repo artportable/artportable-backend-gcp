@@ -48,6 +48,7 @@ namespace Artportable.API.Controllers
       }
     }
 
+
     [HttpGet("{username}/connectionscount")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]

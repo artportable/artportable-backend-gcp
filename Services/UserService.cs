@@ -377,6 +377,25 @@ namespace Artportable.API.Services
       _context.SaveChanges();
     }
 
+   public bool SetHideLikedArtworks(string username, bool hideLikedArtworks)
+    {
+        var userProfile = _context.UserProfiles
+            .Include(up => up.User)
+            .FirstOrDefault(up => up.User.Username == username);
+
+        if (userProfile != null)
+        {
+            userProfile.HideLikedArtworks = hideLikedArtworks;
+            _context.SaveChanges();
+            return true; 
+        }
+
+        return false; 
+    }
+
+
+
+
     public bool UserExists(UserDTO user)
     {
       return _context.Users.Any(u => u.Username == user.Username || u.Email == user.Email);
