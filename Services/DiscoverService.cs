@@ -887,6 +887,64 @@ namespace Artportable.API.Services
                 .ToList();
         }
 
+        public List<ArtworkDTO> GetLikedArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio) {
+            return _context.Artworks
+                .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+                .Join(_context.Likes, a => a.Id, l => l.ArtworkId, (a, l) => new { Artwork = a, Like = l })
+                .Where(joined => joined.Like.User.Username == myUsername && joined.Artwork.User.Username != myUsername)
+                .OrderByDescending(joined => joined.Like.Date)
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize)
+                .Select(joined => new ArtworkDTO
+                {
+                    Id = joined.Artwork.PublicId,
+                    Owner = new OwnerDTO
+                    {
+                        Username = joined.Artwork.User.Username,
+                        ProfilePicture = joined.Artwork.User.File.Name,
+                        SocialId = joined.Artwork.User.SocialId,
+                        Name = joined.Artwork.User.UserProfile.Name,
+                        Surname = joined.Artwork.User.UserProfile.Surname,
+                        Location = joined.Artwork.User.UserProfile.Location
+                    },
+                    Title = joined.Artwork.Title,
+                    Name = joined.Artwork.User.UserProfile.Name,
+                    Surname = joined.Artwork.User.UserProfile.Surname,
+                    Username = joined.Artwork.User.Username,
+                    Description = joined.Artwork.Description,
+                    Published = joined.Artwork.Published,
+                    Price = joined.Artwork.Price,
+                    Currency = joined.Artwork.Currency,
+                    SoldOut = joined.Artwork.SoldOut,
+                    MultipleSizes = joined.Artwork.MultipleSizes,
+                    Width = joined.Artwork.Width,
+                    Height = joined.Artwork.Height,
+                    Depth = joined.Artwork.Depth,
+                    PrimaryFile = new FileDTO
+                    {
+                        Name = joined.Artwork.PrimaryFile.Name,
+                        Width = joined.Artwork.PrimaryFile.Width,
+                        Height = joined.Artwork.PrimaryFile.Height
+                    },
+                    SecondaryFile = joined.Artwork.SecondaryFile != null ? new FileDTO
+                    {
+                        Name = joined.Artwork.SecondaryFile.Name,
+                        Width = joined.Artwork.SecondaryFile.Width,
+                        Height = joined.Artwork.SecondaryFile.Height
+                    } : null,
+                    TertiaryFile = joined.Artwork.TertiaryFile != null ? new FileDTO
+                    {
+                        Name = joined.Artwork.TertiaryFile.Name,
+                        Width = joined.Artwork.TertiaryFile.Width,
+                        Height = joined.Artwork.TertiaryFile.Height
+                    } : null,
+                    Tags = (joined.Artwork.Tags != null ? joined.Artwork.Tags.Select(t => t.Title).ToList() : new List<string>()),
+                    Likes = joined.Artwork.Likes.Count(),
+                    LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? joined.Artwork.Likes.Any(l => l.User.Username == myUsername) : false,
+                })
+                .ToList();
+        }
+
         public List<ArtworkDTO> GetLikedByMeArtworksSold(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
             return _context.Artworks
