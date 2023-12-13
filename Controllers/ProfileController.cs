@@ -130,7 +130,33 @@ namespace Artportable.API.Controllers
         Console.WriteLine("Something went wrong, {0}", e);
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
-    }
+    } 
+      /// <summary>
+      /// Get value of toggleLike
+      /// </summary>
+      /// <param name="username"></param>
+      [HttpPatch("{username}/toggleHideLikedArtworks")]
+      [SwaggerResponse(StatusCodes.Status200OK)]
+      [SwaggerResponse(StatusCodes.Status400BadRequest)]
+      public IActionResult ToggleHideLikedArtworks(string username, bool hideLikedArtworks)
+      {
+          try
+          {
+              var success = _userService.SetHideLikedArtworks(username, hideLikedArtworks);
+
+              if (!success)
+              {
+                  return NotFound(); // User not found
+              }
+
+              return Ok(new { HideLikedArtworks = hideLikedArtworks });
+          }
+          catch (Exception e)
+          {
+              Console.WriteLine("Something went wrong, {0}", e);
+              return StatusCode(StatusCodes.Status500InternalServerError);
+          }
+      }
 
     /// <summary>
     /// Get the profile picture of a user
