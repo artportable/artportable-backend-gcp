@@ -142,6 +142,7 @@ namespace Artportable.API.Services
         Country = user.UserProfile.Country,
         State = user.UserProfile.State,
         City = user.UserProfile.City,
+        HideLikedArtworks = user.UserProfile.HideLikedArtworks,
         /*Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),*/
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?

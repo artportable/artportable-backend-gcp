@@ -18,5 +18,7 @@ namespace Artportable.API.DTOs
     public int Followers { get; set; }
     public int Followees { get; set; }
     public int Artworks { get; set; }
+    public bool HideLikedArtworks { get; set; }
+
   }
 }
