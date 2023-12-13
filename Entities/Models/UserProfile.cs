@@ -79,5 +79,7 @@ namespace Artportable.API.Entities.Models
     public User User { get; set; }
     public IEnumerable<Education> Educations { get; set; }
     public IEnumerable<Exhibition> Exhibitions { get; set; }
+
+    public bool HideLikedArtworks { get; set; }
   }
 }
