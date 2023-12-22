@@ -1326,15 +1326,20 @@ namespace Artportable.API.Services
 
         public List<ArtworkDTO> GetCuratedArtworks(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
-            return _context.Artworks
-              .FromSqlInterpolated(
-                $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
-          ORDER BY random OFFSET 0 ROWS")
-              .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-              .Where(a => a.Likes.Any(x => x.User.Subscription.ProductId == 10))
-              .Skip(pageSize * (page - 1))
-              .Take(pageSize)
-              .Select(a =>
+             var sinceDate = DateTime.UtcNow.AddDays(-182); 
+
+                var randomArtworks = _context.Artworks
+                    .FromSqlRaw(
+                        $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
+                        ORDER BY random OFFSET 0 ROWS");
+
+                return randomArtworks
+                    .Where(a => a.Published >= sinceDate) // Filter by artworks published in the last 2 weeks
+                    .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+                    .Where(a => a.Likes.Any(x => x.User.Subscription.ProductId == 10))
+                    .Skip(pageSize * (page - 1))
+                    .Take(pageSize)
+                    .Select(a =>
               new ArtworkDTO
               {
                   Id = a.PublicId,
