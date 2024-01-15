@@ -109,7 +109,7 @@ namespace Artportable.API.Services
 {
     try
     {
-        StripeConfiguration.ApiKey = "sk_test_51IRGljA3UXZjjLWxv4sO6lHEF0mNBqAfXWn9wpsWgOK3bS2zy2UYglHeMe6P3IZ2SSGKcrMxYrrftyVq4xwi6MZJ00mOgmNvxW";
+        StripeConfiguration.ApiKey = "sk_live_YOUvIGb9PvSi7aDeX5OYqyUN00YcBAGqKx";
 
         var service = new CustomerService();
         var stripeCustomer = service.Get(customerId);
