@@ -89,6 +89,7 @@ namespace Artportable.API
       services.AddScoped<IStartDeliverService, StartDeliverService>();
       services.AddScoped<ITrackService, TrackService>();
       services.AddScoped<IStoryService, StoryService>();
+      services.AddScoped<IAdminService, AdminService>();
       services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c =>
       {
         c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
