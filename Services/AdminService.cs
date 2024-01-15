@@ -78,33 +78,33 @@ namespace Artportable.API.Services
                 return usersWithProduct;
             }
         public List<UserWithSubscriptionDTO> GetUsersByProductSubscription(int productId)
-{
-    var userIds = _context.Users
-        .Join(_context.Subscriptions, u => u.SubscriptionId, s => s.Id, (u, s) => new { u, s })
-        .Where(x => x.s.ProductId == productId)
-        .Select(x => x.u.Id)
-        .ToList();
-
-    var usersWithProduct = _context.Users
-        .Where(u => userIds.Contains(u.Id))
-        .OrderBy(x => x.Email)
-        .Select(u => new UserWithSubscriptionDTO
         {
-            User_Id = u.Id,
-            Subscription_Id = u.SubscriptionId,
-            Product_Id = u.Subscription.ProductId,
-            CustomerId = u.Subscription.CustomerId,
-            ExpirationDate = u.Subscription.ExpirationDate,
-            Username = u.Username,
-            Email = u.Email,
-            Created = u.Created,
-            Name = u.UserProfile.Name,
-            Surname = u.UserProfile.Surname
-        })
-        .ToList();
+            var userIds = _context.Users
+                .Join(_context.Subscriptions, u => u.SubscriptionId, s => s.Id, (u, s) => new { u, s })
+                .Where(x => x.s.ProductId == productId)
+                .Select(x => x.u.Id)
+                .ToList();
 
-    return usersWithProduct;
-}   
+            var usersWithProduct = _context.Users
+                .Where(u => userIds.Contains(u.Id))
+                .OrderByDescending(x => x.Created)
+                .Select(u => new UserWithSubscriptionDTO
+                {
+                    User_Id = u.Id,
+                    Subscription_Id = u.SubscriptionId,
+                    Product_Id = u.Subscription.ProductId,
+                    CustomerId = u.Subscription.CustomerId,
+                    ExpirationDate = u.Subscription.ExpirationDate,
+                    Username = u.Username,
+                    Email = u.Email,
+                    Created = u.Created,
+                    Name = u.UserProfile.Name,
+                    Surname = u.UserProfile.Surname
+                })
+                .ToList();
+
+            return usersWithProduct;
+        }   
         public string GetCustomerJson(string customerId)
 {
     try
