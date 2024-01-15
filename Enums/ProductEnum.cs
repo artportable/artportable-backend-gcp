@@ -5,6 +5,7 @@ namespace Artportable.API.Enums
     Bas = 1,
     Portfolio,
     PortfolioPremium,
-    Staff
+    Staff, 
+    Admin = 10
   }
 }
