@@ -381,7 +381,7 @@ namespace Artportable.API.Services
         {
 
 
-            DateTime sixMonthsAgo = DateTime.Now.AddMonths(-12);
+            DateTime sixMonthsAgo = DateTime.Now.AddMonths(-6);
             return _context.Artworks
               .Where(a => a.Published >= sixMonthsAgo) 
             .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
