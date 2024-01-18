@@ -379,11 +379,15 @@ namespace Artportable.API.Services
 
         public List<ArtworkDTO> GetTopArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
+
+
+            DateTime sixMonthsAgo = DateTime.Now.AddMonths(-6);
             return _context.Artworks
-              .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
-              .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
-              .OrderByDescending(a => a.Likes.Count)
-              .Skip(pageSize * (page - 1))
+              .Where(a => a.Published >= sixMonthsAgo) 
+            .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+            .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
+            .OrderByDescending(a => a.Likes.Count)
+            .Skip(pageSize * (page - 1))
               .Take(pageSize)
               .Select(a =>
               new ArtworkDTO
