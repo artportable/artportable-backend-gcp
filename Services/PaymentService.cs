@@ -126,6 +126,72 @@ namespace Artportable.API.Services
       return subscription;
     }
 
+    public Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId)
+    {
+        try
+        {
+            // Retrieve the customer's subscriptions
+            var subscriptionService = new SubscriptionService();
+            var subscriptions = subscriptionService.List(new SubscriptionListOptions
+            {
+                Customer = customerId,
+                Status = "active",
+            });
+
+            // Find the relevant subscription (for example, choose the latest active subscription)
+            var currentSubscription = subscriptions.FirstOrDefault();
+
+            // Cancel the existing subscription
+            if (currentSubscription != null)
+        {
+            var cancelOptions = new SubscriptionCancelOptions { InvoiceNow = true };
+            var canceledSubscription = subscriptionService.Cancel(currentSubscription.Id, cancelOptions);
+
+            // Verify if the cancellation was successful
+            if (canceledSubscription.Status == "canceled")
+            {
+                Console.WriteLine($"Successfully canceled existing subscription: {canceledSubscription.Id}");
+            }
+            else
+            {
+                Console.WriteLine($"Failed to cancel existing subscription: {canceledSubscription.Id}");
+                // Log the error or handle it appropriately
+                // You may want to throw an exception here if you want the error to propagate up the call stack
+            }
+        }
+        else
+        {
+            // Handle the case where no existing subscription is found
+            Console.WriteLine("No active subscription found to upgrade.");
+            // You may want to log this information or notify the user
+        }
+
+            // Create the new subscription
+            var newSubscription = CreateSubscription(paymentMethodId, customerId, newPriceId, promotionCodeId);
+
+            // Handle the case where new subscription creation fails
+            if (newSubscription == null)
+            {
+                Console.WriteLine("Failed to create a new subscription.");
+                // You may want to log this information or notify the user
+                // Optionally, you could throw an exception here if you want the error to propagate up the call stack
+            }
+
+            return newSubscription;
+        }
+        catch (StripeException e)
+        {
+            // Handle the cancellation error
+            Console.WriteLine($"Error upgrading subscription: {e.StripeError.Message}");
+            // You may want to log the error, notify the user, or take other appropriate actions
+
+            // Optionally, you could throw the exception again if you want the error to propagate up the call stack
+            throw;
+        }
+    }
+
+
+
     public void CancelSubscription(string subscriptionId)
     {
       var service = new SubscriptionService();

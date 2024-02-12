@@ -24,6 +24,21 @@ namespace Artportable.API.Services
       _random = new Random();
     }
 
+    public string GetCustomerIdByUsername(string username)
+    {
+        var customerId = _context.Subscriptions
+            .Join(_context.Users,
+                subscription => subscription.Id,
+                user => user.SubscriptionId,
+                (subscription, user) => new { Subscription = subscription, User = user })
+            .Where(joinResult => joinResult.User.Username == username)
+            .Select(joinResult => joinResult.Subscription.CustomerId)
+            .SingleOrDefault();
+
+        return customerId;
+    }
+
+
     public UserDTO Get(string username)
     {
       var user = _context.Users

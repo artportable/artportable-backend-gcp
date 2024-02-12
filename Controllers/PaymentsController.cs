@@ -102,6 +102,42 @@ namespace Artportable.API.Controllers
       }
     }
 
+     /// <summary>
+    /// Upgrades a customersubscription in Stripe
+    /// for a given customer and price ID
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns>The Stripe subscription ID</returns>
+    [Authorize]
+    [HttpPost("upgrade")]
+    public ActionResult<StripeSubscriptionResponseDTO> UpgradeSubscription([FromBody] SubscriptionRequestDTO req)
+    {
+      try
+      {
+        var subscription = _paymentService.UpgradeSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
+
+        if (subscription?.LatestInvoice?.PaymentIntent == null)
+        {
+          return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        var res = new StripeSubscriptionResponseDTO
+        {
+          Status = subscription.LatestInvoice.PaymentIntent.Status,
+          Id = subscription.LatestInvoice.PaymentIntent.Status == "requires_action" ?
+            subscription.LatestInvoice.PaymentIntent.ClientSecret :
+            subscription.Id
+        };
+
+        return Ok(res);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+
     /// <summary>
     /// Creates a purchase in Stripe
     /// for a given customer and price ID

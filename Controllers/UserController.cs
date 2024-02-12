@@ -153,6 +153,38 @@ namespace Artportable.API.Controllers
       }
     }
 
+        /// <summary>
+        /// Gets the customer_id by username
+        /// </summary>
+        /// <param name="username"></param>
+        [HttpGet("{username}/customerid")]
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        public ActionResult<string> GetCustomerIdByUsername(string username)
+        {
+            try
+            {
+                if (String.IsNullOrWhiteSpace(username))
+                {
+                    return NotFound();
+                }
+
+                var customerId = _userService.GetCustomerIdByUsername(username);
+
+                if (customerId == null)
+                {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+
+                return Ok(customerId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
     /// <summary>
     /// Gets a username by socialId
     /// </summary>
