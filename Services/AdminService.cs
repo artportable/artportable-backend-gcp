@@ -109,16 +109,19 @@ namespace Artportable.API.Services
 {
     try
     {
-        StripeConfiguration.ApiKey = "sk_live_YOUvIGb9PvSi7aDeX5OYqyUN00YcBAGqKx";
+        StripeConfiguration.ApiKey = "sk_test_51IRGljA3UXZjjLWxv4sO6lHEF0mNBqAfXWn9wpsWgOK3bS2zy2UYglHeMe6P3IZ2SSGKcrMxYrrftyVq4xwi6MZJ00mOgmNvxW";
 
         var service = new CustomerService();
-        var stripeCustomer = service.Get(customerId);
+        var options = new CustomerGetOptions
+        {
+            Expand = new List<string> { "subscriptions" }  // Request subscriptions data
+        };
+
+        var stripeCustomer = service.Get(customerId, options);
 
         if (stripeCustomer != null)
         {
-            
             string customerJson = JsonConvert.SerializeObject(stripeCustomer);
-
             return customerJson;
         }
         else
@@ -132,6 +135,7 @@ namespace Artportable.API.Services
         return null;
     }
 }
+
 
 
 

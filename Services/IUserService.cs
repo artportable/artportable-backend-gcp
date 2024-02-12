@@ -8,6 +8,7 @@ namespace Artportable.API.Services
   {
     List<UserDTO> GetAllArtists(); 
     UserDTO Get(string username);
+    public string GetCustomerIdByUsername(string username);
     List<TinyUserDTO> Search(string q);
     ProfileSummaryDTO GetProfileSummary(string username);
     ProfileDTO GetProfile(string username, string myUsername);

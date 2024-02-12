@@ -16,5 +16,8 @@ namespace Artportable.API.Services
     PromotionDTO GetPromotion(string promotionCode);
     Task<bool> ValidatePaymentMethod(string paymentMethodId);
     Task<bool> ValidateProducts(List<string> prices);
+
+    Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId);
+
   }
 }
