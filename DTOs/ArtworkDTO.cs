@@ -27,5 +27,7 @@ namespace Artportable.API.DTOs
     public List<string> Tags { get; set; }
     public int Likes { get; set; }
     public bool LikedByMe { get; set; }
+
+    public int? OrderIndex {get; set;}
   }
 }

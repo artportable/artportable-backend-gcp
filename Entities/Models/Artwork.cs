@@ -14,7 +14,7 @@ namespace Artportable.API.Entities.Models
 
 
     public int UserId { get; set; }
-    public int PrimaryFileId { get; set; }
+    public int? PrimaryFileId { get; set; }
     public int? SecondaryFileId { get; set; }
     public int? TertiaryFileId { get; set; }
 
@@ -44,5 +44,6 @@ namespace Artportable.API.Entities.Models
 
     public ICollection<Tag> Tags { get; set; }
     public ICollection<Like> Likes { get; set; }
+    public int? OrderIndex {get; set;}
   }
 }

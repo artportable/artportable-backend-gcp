@@ -15,5 +15,6 @@ namespace Artportable.API.Services
     List<TagDTO> GetTags(Guid id);
     bool Like(Guid artworkId, Guid mySocialId, out Guid owner);
     bool Unlike(Guid artworkId, Guid mySocialId, out Guid owner);
+    ArtworkDTO UpdateOrderIndex(Guid artworkId, int orderIndex);
   }
 }
