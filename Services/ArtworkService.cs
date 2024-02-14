@@ -5,6 +5,7 @@ using Artportable.API.DTOs;
 using Artportable.API.Entities;
 using Artportable.API.Entities.Models;
 using Artportable.API.Enums;
+using Artportable.API.Migrations;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,12 +31,14 @@ namespace Artportable.API.Services
         .SingleOrDefault(u => u.Username == owner)?.Subscription?.ProductId;
       if (ownerProductId == (int)ProductEnum.Bas)
       {
-        return new List<ArtworkDTO>();
+          return new List<ArtworkDTO>();
       }
-
-      return _context.Artworks
-        .Where(a => owner != null ? a.User.Username == owner : true)
-        .OrderByDescending(a => a.Published)
+      var artworksQuery = _context.Artworks
+        .Where(a => owner != null ? a.User.Username == owner : true);
+      var orderedArtworks = artworksQuery
+        .OrderByDescending(a => a.OrderIndex.HasValue)  
+        .ThenBy(a => a.OrderIndex)
+        .ThenByDescending(a => a.Published)
         .Select(a =>
         new ArtworkDTO
         {
@@ -65,6 +68,7 @@ namespace Artportable.API.Services
           Height = a.Height,
           Width = a.Width,
           Depth = a.Depth,
+          OrderIndex = a.OrderIndex,
           PrimaryFile = new FileDTO
           {
             Name = a.PrimaryFile.Name,
@@ -88,6 +92,8 @@ namespace Artportable.API.Services
           LikedByMe = myUsername != null ? a.Likes.Any(l => l.User.Username == myUsername) : false
         })
         .ToList();
+
+        return orderedArtworks;
     }
 
     public ArtworkDTO Get(Guid id, string myUsername)
@@ -108,6 +114,7 @@ namespace Artportable.API.Services
               Location = a.User.UserProfile.Location
             },
             MonthlyUser = a.User.MonthlyUser
+            
           },
           Title = a.Title,
           Description = a.Description,
@@ -119,6 +126,7 @@ namespace Artportable.API.Services
           Height = a.Height,
           Width = a.Width,
           Depth = a.Depth,
+          OrderIndex = a.OrderIndex,
           PrimaryFile = new {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -177,6 +185,7 @@ namespace Artportable.API.Services
         Height = artwork.Height,
         Width = artwork.Width,
         Depth = artwork.Depth,
+        OrderIndex = artwork.OrderIndex,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,
@@ -310,6 +319,25 @@ namespace Artportable.API.Services
 
       return artworkDto;
     }
+
+    public ArtworkDTO UpdateOrderIndex(Guid artworkId, int orderIndex)
+    {
+        var artwork = _context.Artworks.FirstOrDefault(a => a.PublicId == artworkId);
+
+        if (artwork == null)
+        {
+            return null;
+        }
+
+        artwork.OrderIndex = orderIndex;
+
+        _context.SaveChanges();
+
+        var updatedArtwork = _mapper.Map<ArtworkDTO>(artwork);
+
+        return updatedArtwork;
+    }
+
 
     public void Delete(Guid id, string myUsername)
     {

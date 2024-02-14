@@ -116,7 +116,7 @@ namespace Artportable.API.Controllers
     ///     }
     ///
     /// </remarks>
-    [Authorize]
+
     [HttpPut("{id}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
@@ -140,6 +140,29 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+    [HttpPut("updateOrderIndices")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> UpdateArtworksOrderIndices([FromBody] List<ArtworkOrderIndexUpdate> updateOrderIndexDtos)
+    {
+        try
+        {
+            foreach (var updateOrderIndexDto in updateOrderIndexDtos)
+            {
+                var updatedArtwork = _artworkService.UpdateOrderIndex(updateOrderIndexDto.ArtworkId, updateOrderIndexDto.OrderIndex);
+            }
+
+            return Ok("Order indices updated successfully");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
+
+
+
 
     /// <summary>
     /// Delete an artwork
