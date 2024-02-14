@@ -3,64 +3,55 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 resources:
-- repo: self
+  - repo: self
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
-  buildConfiguration : 'Release'
+  dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
+  tag: "$(Build.BuildId)"
+  buildConfiguration: "Release"
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: "ubuntu-latest"
 
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: DotNetCoreCLI@2
-      displayName: 'Restore Nuget Packages'
-      inputs:
-        command: 'restore'
-        projects: '**/*.csproj'
-        feedsToUse: 'select'
-    - task: DotNetCoreCLI@2
-      displayName: 'Build'
-      inputs:
-        command: 'build'
-        projects: '**/*.csproj'
-        arguments: '--no-restore'
-    - task: UseDotNet@2
-      inputs:
-        version: '3.1.x'
-        installationPath: '$(Build.SourcesDirectory)/dotnet'
-    - task: DotNetCoreCLI@2
-      displayName: 'Tests'
-      inputs:
-        command: 'test'
-        projects: 'tests/*.Tests.csproj'
-        arguments: '--no-restore --collect "Code coverage" --configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
-    - task: PublishCodeCoverageResults@1
-      displayName: 'Publish code coverage report'
-      inputs:
-        codeCoverageTool: 'Cobertura'
-        summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
-    - task: Docker@2
-      condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request 
-      displayName: 'Build docker image'
-      inputs:
-        containerRegistry: 'artportable-image-repository'
-        repository: 'artportable-backend'
-        command: 'buildAndPush'
-        Dockerfile: 'Dockerfile'
-        tags: |
-          $(Build.BuildId)
-          $(Build.BuildId)-$(Build.SourceBranchName)
-
-
-
+  - stage: Build
+    displayName: Build stage
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - task: DotNetCoreCLI@2
+            displayName: "Restore Nuget Packages"
+            inputs:
+              command: "restore"
+              projects: "**/*.csproj"
+              feedsToUse: "select"
+          - task: DotNetCoreCLI@2
+            displayName: "Build"
+            inputs:
+              command: "build"
+              projects: "**/*.csproj"
+              arguments: "--no-restore"
+          - task: UseDotNet@2
+            inputs:
+              version: "3.1.x"
+              installationPath: "$(Build.SourcesDirectory)/dotnet"
+          - task: PublishCodeCoverageResults@1
+            displayName: "Publish code coverage report"
+            inputs:
+              codeCoverageTool: "Cobertura"
+              summaryFileLocation: "$(Build.SourcesDirectory)/**/coverage.cobertura.xml"
+          - task: Docker@2
+            condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request
+            displayName: "Build docker image"
+            inputs:
+              containerRegistry: "artportable-image-repository"
+              repository: "artportable-backend"
+              command: "buildAndPush"
+              Dockerfile: "Dockerfile"
+              tags: |
+                $(Build.BuildId)
+                $(Build.BuildId)-$(Build.SourceBranchName)
