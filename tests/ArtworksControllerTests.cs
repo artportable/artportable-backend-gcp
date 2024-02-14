@@ -186,6 +186,7 @@ namespace Artportable.ImageApi.Tests
         Height = new decimal(50),
         Width = new decimal(70),
         Depth = new decimal(3),
+        OrderIndex = 2,
         PrimaryFile = new FileDTO()
         {
           Name = "test",
@@ -258,6 +259,7 @@ namespace Artportable.ImageApi.Tests
         Height = artwork.Height,
         Width = artwork.Width,
         Depth = artwork.Depth,
+               OrderIndex = artwork.OrderIndex,
         PrimaryFile = new FileDTO()
         {
           Name = artwork.PrimaryFile
@@ -347,6 +349,7 @@ namespace Artportable.ImageApi.Tests
         Height = artwork.Height,
         Width = artwork.Width,
         Depth = artwork.Depth,
+                    OrderIndex = artwork.OrderIndex,
         PrimaryFile = new FileDTO()
         {
           Name = artwork.PrimaryFile

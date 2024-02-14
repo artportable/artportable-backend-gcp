@@ -82,7 +82,8 @@ namespace Artportable.ImageApi.Tests
         SecondaryFile = null,
         Tags = new List<string>() { "summer" },
         TertiaryFile = null,
-        Title = "Lorem ipsum"
+        Title = "Lorem ipsum",
+        OrderIndex = 1
       };
 
       //Act
@@ -126,7 +127,8 @@ namespace Artportable.ImageApi.Tests
         SecondaryFile = null,
         TertiaryFile = null,
         Tags = new List<string>(),
-        Title = "Ett nytt konstverk"
+        Title = "Ett nytt konstverk",
+                OrderIndex = 2
       };
 
       //Act
@@ -149,6 +151,7 @@ namespace Artportable.ImageApi.Tests
         Height = 50,
         Width = 70,
         Depth = 30,
+                OrderIndex = 1,
         PrimaryFile = "a4d7cea7-1831-4fda-8267-4b395f8efc92.jpg",
         Tags = new List<string>()
       };
@@ -176,6 +179,7 @@ namespace Artportable.ImageApi.Tests
         Height = 50,
         Width = 70,
         Depth = 30,
+                OrderIndex = 2,
         Tags = new List<string>() { "summer" }
       };
       var mySocialId = new Guid("5185fe67-a161-468f-ae16-575972553509");
@@ -316,6 +320,7 @@ namespace Artportable.ImageApi.Tests
           Height = 50,
           Width = 70,
           Depth = 30,
+                  OrderIndex = 1,
           Likes = new List<Like>(),
           Tags = new List<Tag>() {
             new Tag {
