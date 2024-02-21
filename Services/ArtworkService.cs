@@ -439,5 +439,41 @@ namespace Artportable.API.Services
       _context.SaveChanges();
       return true;
     }
+
+   public ArtworkDTO GetRandomArtwork(string owner)
+      {
+          var artwork = _context.Artworks
+          .Where(a => a.User.Username == owner)
+          .OrderBy(a => Guid.NewGuid()) 
+          .Select(a => new
+          {
+              PrimaryFile = new
+              {
+                  Name = a.PrimaryFile.Name, 
+                  Width = a.PrimaryFile.Width,
+                  Height = a.PrimaryFile.Height,
+              }
+          })
+          .FirstOrDefault();
+
+      if (artwork == null || artwork.PrimaryFile == null)
+        {
+            return null;
+        }
+
+      return new ArtworkDTO
+        {
+            PrimaryFile = new FileDTO
+            {
+                Name = artwork.PrimaryFile.Name,
+                Width = artwork.PrimaryFile.Width,
+                Height = artwork.PrimaryFile.Height
+            }
+        };
+
+      }
+
+
+
   }
 }
