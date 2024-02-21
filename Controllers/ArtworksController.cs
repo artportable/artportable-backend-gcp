@@ -282,5 +282,31 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+        /// <summary>
+    /// Get a random artwork of a specific user
+    /// </summary>
+    [HttpGet("random")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public ActionResult<ArtworkDTO> GetRandomArtwork(string owner)
+      {
+          try
+          {
+              var randomArtwork = _artworkService.GetRandomArtwork(owner);
+
+              if (randomArtwork == null)
+              {
+                  return NotFound();
+              }
+
+              return Ok(randomArtwork);
+          }
+          catch (Exception e)
+          {
+              Console.WriteLine("Something went wrong, {0}", e);
+              return StatusCode(StatusCodes.Status500InternalServerError);
+          }
+      }
   }
 }
