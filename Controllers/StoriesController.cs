@@ -181,5 +181,37 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpGet("userExhibitions", Name = "[controller]_[action]")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<StoryDTO>))]
+        public ActionResult<List<StoryDTO>> GetUserExhibitions(int page = 1, int pageSize = 10)
+        {
+            if (page < 1 || pageSize < 1)
+            {
+                return BadRequest();
+            }
+
+            if (pageSize > 1000)
+            {
+                pageSize = 1000;
+            }
+
+            try
+            {
+                var stories = new List<StoryDTO>();
+                stories = _storyServcie.GetUserExhibitions(page, pageSize);
+
+                var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { }, page, pageSize, stories.Count);
+                Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+                Response.Headers.Add("Link", string.Join(", ", links));
+
+                return Ok(stories);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }
