@@ -14,5 +14,6 @@ namespace Artportable.API.Services
     StoryDTO Create(StoryForCreationDTO dto, Guid mySocialId);
     StoryDTO Update(StoryForUpdateDTO dto, Guid id, Guid mySocialId);
     void Delete(Guid id, string myUsername);
+    List<StoryDTO> GetUserExhibitions(int page, int pageSize, ProductEnum minimumProduct = ProductEnum.Portfolio);
   }
 }

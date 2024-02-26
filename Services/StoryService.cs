@@ -51,6 +51,7 @@ namespace Artportable.API.Services
           Surname = s.User.UserProfile.Surname,
           Username = s.User.Username,
           ProfilePicture = s.User.File.Name,
+          Exhibition = s.Exhibition,
           PrimaryFile = new FileDTO
           {
             Name = s.PrimaryFile.Name,
@@ -94,6 +95,7 @@ namespace Artportable.API.Services
           Title = s.Title,
           Description = s.Description,
           Published = s.Published,
+          Exhibition = s.Exhibition,
           PrimaryFile = new
           {
             Name = s.PrimaryFile.Name,
@@ -133,6 +135,7 @@ namespace Artportable.API.Services
         Surname = story.User.Surname,
         Username = story.User.Username,
         ProfilePicture = profilePicture,
+        Exhibition = story.Exhibition,
         PrimaryFile = new FileDTO
         {
           Name = story.PrimaryFile.Name,
@@ -175,6 +178,7 @@ namespace Artportable.API.Services
                 Title = s.Title,
                 Description = s.Description,
                 Published = s.Published,
+                Exhibition = s.Exhibition,
                 PrimaryFile = new
                 {
                     Name = s.PrimaryFile.Name,
@@ -255,6 +259,7 @@ namespace Artportable.API.Services
           Description = s.Description,
           Published = s.Published,
           ProfilePicture = s.User.File.Name,
+          Exhibition = s.Exhibition,
           PrimaryFile = new FileDTO
           {
             Name = s.PrimaryFile.Name,
@@ -353,6 +358,7 @@ namespace Artportable.API.Services
         Description = dto.Description,
         Published = DateTime.Now,
         Slug = slug,
+        Exhibition = dto.Exhibition,
         PrimaryFile = _context.Files.Where(f => f.Name == dto.PrimaryFile).SingleOrDefault(),
         SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
         TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
@@ -373,6 +379,7 @@ namespace Artportable.API.Services
         .Include(s => s.PrimaryFile)
         .Include(s => s.SecondaryFile)
         .Include(s => s.TertiaryFile)
+        .Include(s => s.Exhibition)
         .FirstOrDefault(s => s.PublicId == id && s.User.SocialId == mySocialId);
 
       if (story == null)
@@ -381,6 +388,8 @@ namespace Artportable.API.Services
       }
       story.Title = dto.Title;
       story.Description = dto.Description;
+      story.Exhibition = dto.Exhibition;
+
 
       if (story.PrimaryFile.Name != dto.PrimaryFile)
       {
@@ -437,5 +446,47 @@ namespace Artportable.API.Services
       _context.SaveChanges();
     }
 
+   public List<StoryDTO> GetUserExhibitions(int page, int pageSize, ProductEnum minimumProduct = ProductEnum.Portfolio)
+    {
+      return _context.Stories
+        .Where(s => s.User.Subscription.ProductId >= (int)minimumProduct)
+        .Where(s => s.Exhibition)
+        .OrderByDescending(s => s.Published)
+        .Skip(pageSize * (page - 1))
+        .Take(pageSize)
+        .Select(s =>
+        new StoryDTO
+        {
+          Id = s.PublicId,
+          Title = s.Title,
+          Slug = s.Slug,
+          Name = s.User.UserProfile.Name,
+          Surname = s.User.UserProfile.Surname,
+          Username = s.User.Username,
+          Description = s.Description,
+          Published = s.Published,
+          ProfilePicture = s.User.File.Name,
+          Exhibition = s.Exhibition,
+          PrimaryFile = new FileDTO
+          {
+            Name = s.PrimaryFile.Name,
+            Width = s.PrimaryFile.Width,
+            Height = s.PrimaryFile.Height
+          },
+          SecondaryFile = s.SecondaryFile != null ? new FileDTO
+          {
+            Name = s.SecondaryFile.Name,
+            Width = s.SecondaryFile.Width,
+            Height = s.SecondaryFile.Height
+          } : null,
+          TertiaryFile = s.TertiaryFile != null ? new FileDTO
+          {
+            Name = s.TertiaryFile.Name,
+            Width = s.TertiaryFile.Width,
+            Height = s.TertiaryFile.Height
+          } : null,
+        })
+        .ToList();
+    }
   }
 }
