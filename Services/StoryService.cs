@@ -218,6 +218,7 @@ namespace Artportable.API.Services
             Surname = story.User.Surname,
             Username = story.User.Username,
             ProfilePicture = profilePicture,
+            Exhibition = story.Exhibition,
             PrimaryFile = new FileDTO
             {
                 Name = story.PrimaryFile.Name,
@@ -379,7 +380,6 @@ namespace Artportable.API.Services
         .Include(s => s.PrimaryFile)
         .Include(s => s.SecondaryFile)
         .Include(s => s.TertiaryFile)
-        .Include(s => s.Exhibition)
         .FirstOrDefault(s => s.PublicId == id && s.User.SocialId == mySocialId);
 
       if (story == null)
