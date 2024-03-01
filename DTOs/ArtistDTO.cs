@@ -15,5 +15,6 @@ namespace Artportable.API.DTOs
     public List<string> Tags { get; set; }
     public bool FollowedByMe { get; set; }
     public bool MonthlyArtist { get; set; }
+    public bool BoostUser {get; set;}
   }
 }
