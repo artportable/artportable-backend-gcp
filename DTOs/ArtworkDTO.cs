@@ -29,6 +29,6 @@ namespace Artportable.API.DTOs
     public bool LikedByMe { get; set; }
 
     public int? OrderIndex {get; set;}
-    public bool? Promotion {get; set;}
+    public bool? Promoted {get; set;}
   }
 }
