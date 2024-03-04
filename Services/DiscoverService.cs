@@ -1519,5 +1519,43 @@ namespace Artportable.API.Services
               })
               .ToList();
         }
+
+        public List<ArtworkDTO> GetPromotedArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
+        {
+
+              return _context.Artworks
+              .Where(a => a.Promoted == true)
+              .Select(a => new ArtworkDTO {
+                Id = a.PublicId,
+                Owner = new OwnerDTO {
+                    Username = a.User.Username,
+                    ProfilePicture = a.User.File.Name,
+                    SocialId = a.User.SocialId,
+                    Name = a.User.UserProfile.Name,
+                    Surname = a.User.UserProfile.Surname,
+                    Location = a.User.UserProfile.Location
+                },
+                Title = a.Title,
+                Description = a.Description,
+                Published = a.Published,
+                Price = a.Price,
+                Currency = a.Currency,
+                SoldOut = a.SoldOut,
+                MultipleSizes = a.MultipleSizes,
+                Width = a.Width,
+                Height = a.Height,
+                Depth = a.Depth,
+                PrimaryFile = new FileDTO {
+                    Name = a.PrimaryFile.Name,
+                    Width = a.PrimaryFile.Width,
+                    Height = a.PrimaryFile.Height
+                },
+                Tags = a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>(),
+                Likes = a.Likes.Count(),
+                LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(i => i.User.Username == myUsername) : false,
+              })
+              .ToList();
+            
+        }
     }
 }
