@@ -127,6 +127,7 @@ namespace Artportable.API.Services
           Width = a.Width,
           Depth = a.Depth,
           OrderIndex = a.OrderIndex,
+          Promoted = a.Promoted,
           PrimaryFile = new {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -186,6 +187,7 @@ namespace Artportable.API.Services
         Width = artwork.Width,
         Depth = artwork.Depth,
         OrderIndex = artwork.OrderIndex,
+        Promoted = artwork.Promoted,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,
@@ -319,6 +321,34 @@ namespace Artportable.API.Services
 
       return artworkDto;
     }
+
+    public ArtworkDTO Promote(ArtworkForPromotionDTO dto, Guid id)
+    {
+        var artwork = _context.Artworks.Include(a => a.User).FirstOrDefault(a => a.PublicId == id);
+
+        if (artwork == null)
+        {
+            return null;
+        }
+
+        if (dto.Promoted)
+        {
+            artwork.Promoted = true;
+           
+        }
+        else
+        {
+            artwork.Promoted = false;
+
+        }
+
+        _context.Update(artwork);
+        _context.SaveChanges();
+
+        var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
+        return artworkDto;
+    }
+
 
     public ArtworkDTO UpdateOrderIndex(Guid artworkId, int orderIndex)
     {
