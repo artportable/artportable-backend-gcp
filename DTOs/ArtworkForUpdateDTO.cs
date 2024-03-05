@@ -26,5 +26,6 @@ namespace Artportable.API.DTOs
     [MaxLength(5)]
     public List<string> Tags { get; set; }
     public int? OrderIndex {get; set;}
+    public bool? Promoted {get; set;}
   }
 }

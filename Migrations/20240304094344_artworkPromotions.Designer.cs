@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20240304094344_artworkPromotions")]
+    partial class artworkPromotions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,10 +65,6 @@ namespace Artportable.API.Migrations
                     b.Property<bool?>("Promoted")
                         .HasColumnType("bit")
                         .HasColumnName("promoted");
-
-                    b.Property<int?>("PromotionDaysRemaining")
-                        .HasColumnType("int")
-                        .HasColumnName("promotion_days_remaining");
 
                     b.Property<Guid>("PublicId")
                         .HasColumnType("uniqueidentifier")

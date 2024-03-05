@@ -308,5 +308,29 @@ namespace Artportable.API.Controllers
               return StatusCode(StatusCodes.Status500InternalServerError);
           }
       }
+
+    [HttpPut("promote/{id}")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ArtworkDTO))]
+    [SwaggerResponse(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<ArtworkDTO>> PromoteArtwork([FromBody] ArtworkForPromotionDTO dto, Guid id, Guid mySocialId)
+    {
+      try
+      {
+        var artwork = _artworkService.Promote(dto, id);
+
+        if (artwork == null)
+        {
+          return NotFound();
+        }
+        await _activityService.UpdateArtwork(artwork.Id, artwork.Title, mySocialId);
+
+        return Ok(artwork);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
 }

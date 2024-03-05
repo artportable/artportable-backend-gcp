@@ -18,5 +18,7 @@ namespace Artportable.API.Services
     ArtworkDTO UpdateOrderIndex(Guid artworkId, int orderIndex);
 
     ArtworkDTO GetRandomArtwork(string owner);
+
+    ArtworkDTO Promote(ArtworkForPromotionDTO dto, Guid id);
   }
 }
