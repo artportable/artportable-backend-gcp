@@ -334,12 +334,12 @@ namespace Artportable.API.Services
         if (dto.Promoted)
         {
             artwork.Promoted = true;
-           
+            artwork.PromotedAt = DateTime.UtcNow; // Set the promoted timestamp to the current UTC time
         }
         else
         {
             artwork.Promoted = false;
-
+             artwork.PromotedAt = null; 
         }
 
         _context.Update(artwork);
@@ -348,6 +348,7 @@ namespace Artportable.API.Services
         var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
         return artworkDto;
     }
+
 
 
     public ArtworkDTO UpdateOrderIndex(Guid artworkId, int orderIndex)

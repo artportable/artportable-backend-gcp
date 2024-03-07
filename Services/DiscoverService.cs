@@ -1525,10 +1525,8 @@ namespace Artportable.API.Services
 
         
             return _context.Artworks
-              .FromSqlInterpolated(
-                $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
-                ORDER BY random OFFSET 0 ROWS")
               .Where(a => a.Promoted == true)
+              .OrderByDescending(a => a.PromotedAt) 
               .Skip(pageSize * (page - 1))
               .Take(pageSize)
               .Select(a =>
@@ -1558,6 +1556,7 @@ namespace Artportable.API.Services
                   Height = a.Height,
                   Depth = a.Depth,
                   Promoted = a.Promoted,
+                  PromotedAt = a.PromotedAt,
                   PrimaryFile = new FileDTO
                   {
                       Name = a.PrimaryFile.Name,
