@@ -1546,7 +1546,6 @@ namespace Artportable.API.Services
                   Name = a.User.UserProfile.Name,
                   Surname = a.User.UserProfile.Surname,
                   Username = a.User.Username,
-                  Description = a.Description,
                   Published = a.Published,
                   Price = a.Price,
                    Currency = a.Currency,

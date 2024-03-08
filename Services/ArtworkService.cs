@@ -128,6 +128,7 @@ namespace Artportable.API.Services
           Depth = a.Depth,
           OrderIndex = a.OrderIndex,
           Promoted = a.Promoted,
+          PromotedAt = a.PromotedAt,
           PrimaryFile = new {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -188,6 +189,7 @@ namespace Artportable.API.Services
         Depth = artwork.Depth,
         OrderIndex = artwork.OrderIndex,
         Promoted = artwork.Promoted,
+        PromotedAt = artwork.PromotedAt,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,
