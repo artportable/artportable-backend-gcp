@@ -7,5 +7,6 @@ namespace Artportable.API.DTOs
   {
     [Required]   
     public bool Promoted {get; set;}
+    public int PromotionDurationInMonths {get; set; }
   }
 }

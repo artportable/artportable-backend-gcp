@@ -47,6 +47,8 @@ namespace Artportable.API.Entities.Models
     public int? OrderIndex {get; set;}
     public bool? Promoted {get; set;}
     public DateTime? PromotedAt { get; set; } 
+    public DateTime? PromotionEndDate { get; set; }
+
 
   }
 }
