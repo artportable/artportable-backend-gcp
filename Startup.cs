@@ -90,6 +90,7 @@ namespace Artportable.API
       services.AddScoped<ITrackService, TrackService>();
       services.AddScoped<IStoryService, StoryService>();
       services.AddScoped<IAdminService, AdminService>();
+      services.AddHostedService<TimedHostedService>();
       services.AddHttpClient<IStartDeliverApiService, StartDeliverApiService>(c =>
       {
         c.BaseAddress = new Uri(startDeliverOptions.BaseUrl);
@@ -219,7 +220,7 @@ namespace Artportable.API
       };
       forwardedHeaderOptions.KnownNetworks.Clear();
       forwardedHeaderOptions.KnownProxies.Clear();
-
+  
       app.UseForwardedHeaders(forwardedHeaderOptions);
 
       // Exception handling
@@ -235,6 +236,7 @@ namespace Artportable.API
           {
             // ensure generic 500 status code on fault.
             context.Response.StatusCode = StatusCodes.Status500InternalServerError; ;
+
             await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
           });
         });

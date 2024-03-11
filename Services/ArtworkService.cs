@@ -129,6 +129,7 @@ namespace Artportable.API.Services
           OrderIndex = a.OrderIndex,
           Promoted = a.Promoted,
           PromotedAt = a.PromotedAt,
+          PromotionEndDate = a.PromotionEndDate,
           PrimaryFile = new {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -190,6 +191,7 @@ namespace Artportable.API.Services
         OrderIndex = artwork.OrderIndex,
         Promoted = artwork.Promoted,
         PromotedAt = artwork.PromotedAt,
+        PromotionEndDate = artwork.PromotionEndDate,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,
@@ -325,31 +327,34 @@ namespace Artportable.API.Services
     }
 
     public ArtworkDTO Promote(ArtworkForPromotionDTO dto, Guid id)
-    {
-        var artwork = _context.Artworks.Include(a => a.User).FirstOrDefault(a => a.PublicId == id);
+  {
+      var artwork = _context.Artworks.Include(a => a.User).FirstOrDefault(a => a.PublicId == id);
 
-        if (artwork == null)
-        {
-            return null;
-        }
+      if (artwork == null)
+      {
+          return null;
+      }
 
-        if (dto.Promoted)
-        {
-            artwork.Promoted = true;
-            artwork.PromotedAt = DateTime.UtcNow; // Set the promoted timestamp to the current UTC time
-        }
-        else
-        {
-            artwork.Promoted = false;
-             artwork.PromotedAt = null; 
-        }
+      if (dto.Promoted)
+      {
+          artwork.Promoted = true;
+          artwork.PromotedAt = DateTime.UtcNow;
+          artwork.PromotionEndDate = DateTime.UtcNow.AddMonths(dto.PromotionDurationInMonths);
+      }
+      else
+      {
+          artwork.Promoted = false;
+          artwork.PromotedAt = null;
+          artwork.PromotionEndDate = null;
+      }
 
-        _context.Update(artwork);
-        _context.SaveChanges();
+      _context.Update(artwork);
+      _context.SaveChanges();
 
-        var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
-        return artworkDto;
-    }
+      var artworkDto = _mapper.Map<ArtworkDTO>(artwork);
+      return artworkDto;
+  }
+
 
 
 

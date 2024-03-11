@@ -32,5 +32,8 @@ namespace Artportable.API.DTOs
     public bool? Promoted {get; set;}
 
     public DateTime? PromotedAt {get; set;}
+    public DateTime? PromotionEndDate { get; set; }
+
+
   }
 }
