@@ -68,10 +68,6 @@ namespace Artportable.API.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("promoted_at");
 
-                    b.Property<int?>("PromotionDaysRemaining")
-                        .HasColumnType("int")
-                        .HasColumnName("promotion_days_remaining");
-
                     b.Property<Guid>("PublicId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("public_id");
