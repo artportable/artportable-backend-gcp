@@ -118,7 +118,7 @@ namespace Artportable.API.Services
                     Price = priceId,
                 },
             },
-            TrialPeriodDays = 14, 
+              TrialEnd = DateTimeOffset.FromUnixTimeSeconds(1711449666).UtcDateTime,
         };
         subscriptionOptions.AddExpand("latest_invoice.payment_intent");
         var subscriptionService = new SubscriptionService();
