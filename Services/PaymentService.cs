@@ -106,7 +106,7 @@ namespace Artportable.API.Services
         var customerService = new CustomerService();
         customerService.Update(customerId, customerOptions);
 
-        // Create subscription with a 14-day trial period
+ 
         var subscriptionOptions = new SubscriptionCreateOptions
         {
             Customer = customerId,
