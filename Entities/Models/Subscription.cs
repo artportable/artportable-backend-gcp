@@ -13,7 +13,7 @@ namespace Artportable.API.Entities.Models
     public string CustomerId { get; set; }
     public DateTime? ExpirationDate { get; set; }
 
-
+    public bool IsInTrial { get; set; }
     public Product Product { get; set; }
     public User User { get; set; }
   }
