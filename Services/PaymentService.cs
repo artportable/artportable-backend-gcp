@@ -87,50 +87,52 @@ namespace Artportable.API.Services
 
     public Subscription CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId)
     {
-      // Attach payment method
-      var options = new PaymentMethodAttachOptions
-      {
-        Customer = customerId,
-      };
-      var service = new PaymentMethodService();
-      var paymentMethod = service.Attach(paymentMethodId, options);
-
-      // Update customer's default invoice payment method
-      var customerOptions = new CustomerUpdateOptions
-      {
-        InvoiceSettings = new CustomerInvoiceSettingsOptions
+        // Attach payment method
+        var options = new PaymentMethodAttachOptions
         {
-          DefaultPaymentMethod = paymentMethod.Id,
-        },
-      };
-      var customerService = new CustomerService();
-      customerService.Update(customerId, customerOptions);
+            Customer = customerId,
+        };
+        var service = new PaymentMethodService();
+        var paymentMethod = service.Attach(paymentMethodId, options);
 
-      // Create subscription
-      var subscriptionOptions = new SubscriptionCreateOptions
-      {
-        Customer = customerId,
-        PromotionCode = promotionCodeId,
-        Items = new List<SubscriptionItemOptions>
+        // Update customer's default invoice payment method
+        var customerOptions = new CustomerUpdateOptions
         {
-          new SubscriptionItemOptions
-          {
-            Price = priceId,
-          },
-        },
-      };
-      subscriptionOptions.AddExpand("latest_invoice.payment_intent");
-      var subscriptionService = new SubscriptionService();
+            InvoiceSettings = new CustomerInvoiceSettingsOptions
+            {
+                DefaultPaymentMethod = paymentMethod.Id,
+            },
+        };
+        var customerService = new CustomerService();
+        customerService.Update(customerId, customerOptions);
 
-      Subscription subscription = subscriptionService.Create(subscriptionOptions);
-      return subscription;
+        // Create subscription with a 14-day trial period
+        var subscriptionOptions = new SubscriptionCreateOptions
+        {
+            Customer = customerId,
+            PromotionCode = promotionCodeId,
+            Items = new List<SubscriptionItemOptions>
+            {
+                new SubscriptionItemOptions
+                {
+                    Price = priceId,
+                },
+            },
+            TrialPeriodDays = 14, 
+        };
+        subscriptionOptions.AddExpand("latest_invoice.payment_intent");
+        var subscriptionService = new SubscriptionService();
+
+        Subscription subscription = subscriptionService.Create(subscriptionOptions);
+        return subscription;
     }
+
 
     public Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId)
     {
         try
         {
-            // Retrieve the customer's subscriptions
+
             var subscriptionService = new SubscriptionService();
             var subscriptions = subscriptionService.List(new SubscriptionListOptions
             {
@@ -138,16 +140,16 @@ namespace Artportable.API.Services
                 Status = "active",
             });
 
-            // Find the relevant subscription (for example, choose the latest active subscription)
+
             var currentSubscription = subscriptions.FirstOrDefault();
 
-            // Cancel the existing subscription
+
             if (currentSubscription != null)
         {
             var cancelOptions = new SubscriptionCancelOptions { InvoiceNow = true };
             var canceledSubscription = subscriptionService.Cancel(currentSubscription.Id, cancelOptions);
 
-            // Verify if the cancellation was successful
+
             if (canceledSubscription.Status == "canceled")
             {
                 Console.WriteLine($"Successfully canceled existing subscription: {canceledSubscription.Id}");
@@ -155,37 +157,30 @@ namespace Artportable.API.Services
             else
             {
                 Console.WriteLine($"Failed to cancel existing subscription: {canceledSubscription.Id}");
-                // Log the error or handle it appropriately
-                // You may want to throw an exception here if you want the error to propagate up the call stack
+
             }
         }
         else
         {
-            // Handle the case where no existing subscription is found
+
             Console.WriteLine("No active subscription found to upgrade.");
-            // You may want to log this information or notify the user
+
         }
 
-            // Create the new subscription
             var newSubscription = CreateSubscription(paymentMethodId, customerId, newPriceId, promotionCodeId);
 
             // Handle the case where new subscription creation fails
             if (newSubscription == null)
             {
                 Console.WriteLine("Failed to create a new subscription.");
-                // You may want to log this information or notify the user
-                // Optionally, you could throw an exception here if you want the error to propagate up the call stack
+
             }
 
             return newSubscription;
         }
         catch (StripeException e)
         {
-            // Handle the cancellation error
             Console.WriteLine($"Error upgrading subscription: {e.StripeError.Message}");
-            // You may want to log the error, notify the user, or take other appropriate actions
-
-            // Optionally, you could throw the exception again if you want the error to propagate up the call stack
             throw;
         }
     }
