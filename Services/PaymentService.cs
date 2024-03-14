@@ -303,5 +303,86 @@ namespace Artportable.API.Services
       var pricesIds = pricesObjects.Select(x => x.Id);
       return prices.All(x => pricesIds.Contains(x));
     }
+
+    public async Task<PaymentIntent> CreatePurchase(string customerId, string paymentMethodId, string priceId)
+    {
+        var paymentIntentService = new PaymentIntentService();
+        var priceService = new PriceService();
+
+        try
+        {
+
+            var price = await priceService.GetAsync(priceId);
+            if (price == null)
+            {
+                throw new Exception("Invalid price ID: Price not found.");
+            }
+
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = price.UnitAmount,
+                Currency = price.Currency,
+                Customer = customerId,
+                PaymentMethod = paymentMethodId,
+                Metadata = new Dictionary<string, string>
+                {
+                    { "productKey", "portfolioBoost" } 
+                },
+                Confirm = true,
+            };
+
+
+            var paymentIntent = await paymentIntentService.CreateAsync(options);
+            return paymentIntent;
+        }
+        catch (StripeException ex)
+        {
+            // Handle exceptions from Stripe
+            throw;
+        }
+    }
+
+
+
+
+      public async Task<string> CreateRocketCustomer(string email, string fullName, string phoneNumber)
+      {
+          var customerService = new CustomerService();
+
+          try
+          {
+             
+              var existingCustomers = await customerService.ListAsync(new CustomerListOptions { Email = email });
+              var existingCustomer = existingCustomers.FirstOrDefault();
+
+              if (existingCustomer != null)
+              {
+                
+                  return existingCustomer.Id;
+              }
+              else
+              {
+             
+                  var options = new CustomerCreateOptions
+                  {
+                      Email = email,
+                      Name = fullName,
+                      Phone = phoneNumber,
+                  };
+
+                  var newCustomer = await customerService.CreateAsync(options);
+                  return newCustomer.Id;
+              }
+          }
+          catch (StripeException ex)
+          {
+           
+              throw;
+          }
+      }
+
+      
+
+
   }
 }

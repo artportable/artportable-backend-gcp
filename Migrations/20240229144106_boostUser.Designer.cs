@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20240229144106_boostUser")]
+    partial class boostUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,18 +61,6 @@ namespace Artportable.API.Migrations
                     b.Property<int?>("PrimaryFileId")
                         .HasColumnType("int")
                         .HasColumnName("primary_file_id");
-
-                    b.Property<bool?>("Promoted")
-                        .HasColumnType("bit")
-                        .HasColumnName("promoted");
-
-                    b.Property<DateTime?>("PromotedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("promoted_at");
-
-                    b.Property<DateTime?>("PromotionEndDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("promotion_end_date");
 
                     b.Property<Guid>("PublicId")
                         .HasColumnType("uniqueidentifier")

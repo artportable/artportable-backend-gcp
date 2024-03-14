@@ -487,5 +487,33 @@ namespace Artportable.API.Services
         setAction(value);
       }
     }
+
+    public bool BoostUserAccount(BoostDTO boostDto)
+    {
+        // Assuming username is unique and used to identify the user.
+        var user = _context.Users.FirstOrDefault(u => u.Email== boostDto.Email);
+
+        // Alternatively, you could use SocialId if Username is not reliable
+        // var user = _context.Users.FirstOrDefault(u => u.SocialId == artistDto.SocialId);
+
+        if (user == null)
+        {
+            Console.WriteLine("User not found"); // Replace with proper logging
+            return false;
+        }
+
+        Console.WriteLine($"User found: {user.Username}, BoostUser before: {user.BoostUser}"); // Debugging line
+
+        // Update the BoostUser property based on the DTO
+        user.BoostUser = boostDto.BoostUser;
+
+        _context.SaveChanges();
+        Console.WriteLine($"BoostUser updated: {user.BoostUser}"); // Debugging line
+
+        return true;
+    }
+
+
+
   }
 }

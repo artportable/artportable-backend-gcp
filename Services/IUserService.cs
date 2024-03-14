@@ -28,5 +28,8 @@ namespace Artportable.API.Services
     public ConnectionsCountDTO GetConnectionsCount(string username);
     IEnumerable<TinyUserDTO> GetFollowers(string username);
     IEnumerable<TinyUserDTO> GetFollowees(string username);
+
+    public bool BoostUserAccount(BoostDTO artistDto);
+    
   }
 }
