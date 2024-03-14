@@ -70,6 +70,6 @@ Test events can be triggered with the Stripe CLI:
 - Run `stripe listen --forward-to https://localhost:5001/api/stripe --skip-verify`
 - Trigger events with `stripe trigger payment_intent.created`
 
-### Links
+## Links
 
 - [Frontend repo]("https://github.com/boulder/artportable-web")
