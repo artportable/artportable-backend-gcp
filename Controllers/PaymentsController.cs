@@ -116,32 +116,12 @@ namespace Artportable.API.Controllers
       {
         var subscription = _paymentService.UpgradeSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
 
-        if (!decimal.TryParse(req.Price, out decimal priceValue))
+        if (subscription?.LatestInvoice?.PaymentIntent == null)
         {
-          // Handle the case where the price is not a valid decimal.
-          return StatusCode(StatusCodes.Status400BadRequest, "Invalid price value.");
+          return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
-        // Adjusted logic to handle null PaymentIntent for trial or zero-cost subscriptions.
-        if (subscription.LatestInvoice?.PaymentIntent == null)
-        {
-          if (priceValue <= 0) // Check if the price is 0 or negative, indicating a free or trial subscription.
-          {
-            var res = new StripeSubscriptionResponseDTO
-            {
-              Status = "trial_or_free",
-              Id = subscription.Id
-            };
-            return Ok(res);
-          }
-          else
-          {
-            // For non-zero prices, a null PaymentIntent is unexpected and likely indicates an error.
-            return StatusCode(StatusCodes.Status500InternalServerError, "Payment intent is null for a paid subscription.");
-          }
-        }
-
-        var response = new StripeSubscriptionResponseDTO
+        var res = new StripeSubscriptionResponseDTO
         {
           Status = subscription.LatestInvoice.PaymentIntent.Status,
           Id = subscription.LatestInvoice.PaymentIntent.Status == "requires_action" ?
@@ -149,7 +129,7 @@ namespace Artportable.API.Controllers
             subscription.Id
         };
 
-        return Ok(response);
+        return Ok(res);
       }
       catch (Exception e)
       {
