@@ -272,28 +272,5 @@ namespace Artportable.API.Controllers
 
       return Ok(tinyUser);
     }
-
-  
-
-    [HttpPost("updateBoost")]
-    public IActionResult UpdateUserBoost([FromBody] BoostDTO boostDto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        var result = _userService.BoostUserAccount(boostDto);
-        if (result)
-        {
-            return Ok("User boost status updated successfully.");
-        }
-        else
-        {
-            return NotFound("User not found.");
-        }
-    }
-
-
   }
 }
