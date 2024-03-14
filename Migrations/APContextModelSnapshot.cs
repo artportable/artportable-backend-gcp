@@ -833,10 +833,6 @@ namespace Artportable.API.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("BoostUser")
-                        .HasColumnType("bit")
-                        .HasColumnName("boost_user");
-
                     b.Property<int?>("CoverPhotoFileId")
                         .HasColumnType("int")
                         .HasColumnName("cover_photo_file_id");

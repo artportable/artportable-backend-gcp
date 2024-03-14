@@ -19,8 +19,5 @@ namespace Artportable.API.Services
 
     Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId);
 
-    Task<PaymentIntent> CreatePurchase(string customerId, string paymentMethodId, string priceId);
-
-    Task<string> CreateRocketCustomer(string email, string fullName, string phoneNumber);
   }
 }

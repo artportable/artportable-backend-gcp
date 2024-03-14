@@ -28,8 +28,6 @@ namespace Artportable.API.Entities.Models
     
     public bool MonthlyUser { get; set; }
 
-    public bool BoostUser {get; set;}
-    
     [Required]
     [MaxLength(254)]
     public string Email { get; set; }
@@ -54,7 +52,6 @@ namespace Artportable.API.Entities.Models
     public ICollection<Connection> FolloweeRef { get; set; }
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
-
 
   }
 }
