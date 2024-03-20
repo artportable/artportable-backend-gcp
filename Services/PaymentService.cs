@@ -2,6 +2,7 @@
 using Artportable.API.Entities;
 using Artportable.API.Enums;
 using Stripe;
+using Stripe.BillingPortal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,44 +88,83 @@ namespace Artportable.API.Services
 
     public Subscription CreateSubscription(string paymentMethodId, string customerId, string priceId, string promotionCodeId)
     {
-      // Attach payment method
-      var options = new PaymentMethodAttachOptions
-      {
-        Customer = customerId,
-      };
-      var service = new PaymentMethodService();
-      var paymentMethod = service.Attach(paymentMethodId, options);
 
-      // Update customer's default invoice payment method
-      var customerOptions = new CustomerUpdateOptions
-      {
-        InvoiceSettings = new CustomerInvoiceSettingsOptions
+        var options = new PaymentMethodAttachOptions
         {
-          DefaultPaymentMethod = paymentMethod.Id,
-        },
-      };
-      var customerService = new CustomerService();
-      customerService.Update(customerId, customerOptions);
+            Customer = customerId,
+        };
+        var service = new PaymentMethodService();
+        var paymentMethod = service.Attach(paymentMethodId, options);
 
-      // Create subscription
-      var subscriptionOptions = new SubscriptionCreateOptions
-      {
-        Customer = customerId,
-        PromotionCode = promotionCodeId,
-        Items = new List<SubscriptionItemOptions>
+        var customerOptions = new CustomerUpdateOptions
         {
-          new SubscriptionItemOptions
-          {
-            Price = priceId,
-          },
-        },
-      };
-      subscriptionOptions.AddExpand("latest_invoice.payment_intent");
-      var subscriptionService = new SubscriptionService();
+            InvoiceSettings = new CustomerInvoiceSettingsOptions
+            {
+                DefaultPaymentMethod = paymentMethod.Id,
+            },
+        };
+        var customerService = new CustomerService();
+        customerService.Update(customerId, customerOptions);
 
-      Subscription subscription = subscriptionService.Create(subscriptionOptions);
-      return subscription;
+        var subscriptionOptions = new SubscriptionCreateOptions
+        {
+            Customer = customerId,
+            PromotionCode = promotionCodeId,
+            Items = new List<SubscriptionItemOptions>
+            {
+                new SubscriptionItemOptions
+                {
+                    Price = priceId,
+                },
+            },
+        };
+
+        // Set trial end date only for specific price IDs
+        var trialEligiblePriceIds = new HashSet<string>
+        {
+            "price_1NmYFaA3UXZjjLWxUwhj209e",
+            "price_1Nm1QKA3UXZjjLWxZUlWdaFD",
+            "price_1OX2nYJgjKIYr4gqnAlhnNBO",
+            "price_1OX2mfJgjKIYr4gqV51J3Ciy",
+            "price_1NmYG9JgjKIYr4gqoq0HQx5m",
+            "price_1Nm1PkJgjKIYr4gq8npkkvOk"
+        };
+
+        if (trialEligiblePriceIds.Contains(priceId))
+        {
+            DateTime trialEndDate = DateTime.UtcNow.AddDays(10);
+            subscriptionOptions.TrialEnd = trialEndDate;
+        }
+
+        subscriptionOptions.AddExpand("latest_invoice.payment_intent");
+        var subscriptionService = new SubscriptionService();
+
+        Subscription subscription = subscriptionService.Create(subscriptionOptions);
+        return subscription;
     }
+
+    public Session CreateCustomerPortalSession(string customerId)
+      {
+          var service = new SessionService();
+
+          var options = new SessionCreateOptions
+          {
+              Customer = customerId,
+              ReturnUrl = "https://artportable.com", 
+          };
+
+          try
+          {
+              var session = service.Create(options);
+              return session;
+          }
+          catch (StripeException ex)
+          {
+              // Handle the exception appropriately
+              Console.WriteLine($"Stripe exception occurred: {ex.Message}");
+              throw;
+          }
+      }
 
     public Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId)
     {

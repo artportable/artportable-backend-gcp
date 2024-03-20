@@ -66,7 +66,7 @@ namespace Artportable.API.Controllers
       }
     }
 
-    /// <summary>
+      /// <summary>
     /// Creates a subscription in Stripe
     /// for a given customer and price ID
     /// </summary>
@@ -76,31 +76,43 @@ namespace Artportable.API.Controllers
     [HttpPost("subscriptions")]
     public ActionResult<StripeSubscriptionResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
     {
-      try
-      {
-        var subscription = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
-
-        if (subscription?.LatestInvoice?.PaymentIntent == null)
+        try
         {
-          return StatusCode(StatusCodes.Status500InternalServerError);
+            var subscription = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
+
+            // Assuming _paymentService.CreateSubscription handles the interaction with Stripe and returns a subscription object.
+
+            if (subscription == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to create subscription.");
+            }
+
+
+            if (subscription.Status == "active" || subscription.Status == "trialing")
+            {
+                var responseDTO = new StripeSubscriptionResponseDTO
+                {
+                    Status = subscription.Status,
+                    Id = subscription.Id,
+                    ClientSecret = subscription.Status == "requires_action" && subscription.LatestInvoice?.PaymentIntent != null ?
+                                    subscription.LatestInvoice.PaymentIntent.ClientSecret : null
+                };
+
+                return Ok(responseDTO);
+            }
+            else
+            {
+ 
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Subscription is in an unexpected state: {subscription.Status}");
+            }
         }
-
-        var res = new StripeSubscriptionResponseDTO
+        catch (Exception e)
         {
-          Status = subscription.LatestInvoice.PaymentIntent.Status,
-          Id = subscription.LatestInvoice.PaymentIntent.Status == "requires_action" ?
-            subscription.LatestInvoice.PaymentIntent.ClientSecret :
-            subscription.Id
-        };
-
-        return Ok(res);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
+            Console.WriteLine($"Something went wrong: {e.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the subscription.");
+        }
     }
+
 
      /// <summary>
     /// Upgrades a customersubscription in Stripe
@@ -256,5 +268,31 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+        /// <summary>
+        /// Creates a Stripe Customer Portal session for a given customer.
+        /// </summary>
+        /// <param name="customerId">The ID of the customer to create a portal session for.</param>
+        /// <returns>A redirect URL to the Stripe Customer Portal.</returns>
+
+        [HttpGet("customers/{customerId}/portal-session")]
+        public ActionResult CreateCustomerPortalSession(string customerId)
+        {
+            try
+            {
+                var session = _paymentService.CreateCustomerPortalSession(customerId);
+                if (session == null || string.IsNullOrEmpty(session.Url))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Failed to create customer portal session.");
+                }
+
+                return Ok(new { Url = session.Url });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Something went wrong: {e.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the customer portal session.");
+            }
+        }
   }
 }
