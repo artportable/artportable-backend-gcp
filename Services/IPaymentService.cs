@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Stripe;
+using Stripe.BillingPortal;
 
 namespace Artportable.API.Services
 {
@@ -18,6 +19,7 @@ namespace Artportable.API.Services
     Task<bool> ValidateProducts(List<string> prices);
 
     Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId);
+    Session CreateCustomerPortalSession(string customerId);
 
   }
 }

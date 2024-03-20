@@ -268,5 +268,31 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+        /// <summary>
+        /// Creates a Stripe Customer Portal session for a given customer.
+        /// </summary>
+        /// <param name="customerId">The ID of the customer to create a portal session for.</param>
+        /// <returns>A redirect URL to the Stripe Customer Portal.</returns>
+
+        [HttpGet("customers/{customerId}/portal-session")]
+        public ActionResult CreateCustomerPortalSession(string customerId)
+        {
+            try
+            {
+                var session = _paymentService.CreateCustomerPortalSession(customerId);
+                if (session == null || string.IsNullOrEmpty(session.Url))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Failed to create customer portal session.");
+                }
+
+                return Ok(new { Url = session.Url });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Something went wrong: {e.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the customer portal session.");
+            }
+        }
   }
 }
