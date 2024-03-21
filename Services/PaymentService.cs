@@ -122,12 +122,8 @@ namespace Artportable.API.Services
         // Set trial end date only for specific price IDs
         var trialEligiblePriceIds = new HashSet<string>
         {
-            "price_1NmYFaA3UXZjjLWxUwhj209e",
-            "price_1Nm1QKA3UXZjjLWxZUlWdaFD",
             "price_1OX2nYJgjKIYr4gqnAlhnNBO",
-            "price_1OX2mfJgjKIYr4gqV51J3Ciy",
-            "price_1NmYG9JgjKIYr4gqoq0HQx5m",
-            "price_1Nm1PkJgjKIYr4gq8npkkvOk"
+            "price_1OX2mfJgjKIYr4gqV51J3Ciy"
         };
 
         if (trialEligiblePriceIds.Contains(priceId))
