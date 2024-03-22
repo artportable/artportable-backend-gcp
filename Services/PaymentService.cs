@@ -119,7 +119,6 @@ namespace Artportable.API.Services
             },
         };
 
-        // Set trial end date only for specific price IDs
         var trialEligiblePriceIds = new HashSet<string>
         {
             "price_1OX2nYJgjKIYr4gqnAlhnNBO",

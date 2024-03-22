@@ -132,33 +132,33 @@ namespace Artportable.API.Controllers
 
        
 
-           [HttpGet("UsersByStripeSubscription/{customerId}")]
+        [HttpGet("UsersByStripeSubscription/{customerId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public IActionResult GetUsersByStripeSubscription(string customerId)
-    {
-        try
-        {
-            // Use _adminService here
-            var usersWithStripe = _adminService.GetCustomerJson(customerId);
+        public IActionResult GetUsersByStripeSubscription(string customerId)
+            {
+                try
+                {
+                    // Use _adminService here
+                    var usersWithStripe = _adminService.GetCustomerJson(customerId);
 
-            if (usersWithStripe != null)
-            {
-                // Handle the result accordingly
-                return Ok(usersWithStripe);
+                    if (usersWithStripe != null)
+                    {
+                        // Handle the result accordingly
+                        return Ok(usersWithStripe);
+                    }
+                    else
+                    {
+                        return NotFound(); // Or return an appropriate response for not finding the customer
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error fetching users by product: {e}");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
             }
-            else
-            {
-                return NotFound(); // Or return an appropriate response for not finding the customer
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error fetching users by product: {e}");
-            return StatusCode(StatusCodes.Status500InternalServerError);
-        }
-    }
 
     }
 
