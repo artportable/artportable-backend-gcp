@@ -106,35 +106,35 @@ namespace Artportable.API.Services
             return usersWithProduct;
         }   
         public string GetCustomerJson(string customerId)
-{
-    try
-    {
-        StripeConfiguration.ApiKey = "sk_test_51IRGljA3UXZjjLWxv4sO6lHEF0mNBqAfXWn9wpsWgOK3bS2zy2UYglHeMe6P3IZ2SSGKcrMxYrrftyVq4xwi6MZJ00mOgmNvxW";
-
-        var service = new CustomerService();
-        var options = new CustomerGetOptions
         {
-            Expand = new List<string> { "subscriptions" }  // Request subscriptions data
-        };
+            try
+            {
+                StripeConfiguration.ApiKey = "sk_live_YOUvIGb9PvSi7aDeX5OYqyUN00YcBAGqKx";
 
-        var stripeCustomer = service.Get(customerId, options);
+                var service = new CustomerService();
+                var options = new CustomerGetOptions
+                {
+                    Expand = new List<string> { "subscriptions" }  // Request subscriptions data
+                };
 
-        if (stripeCustomer != null)
-        {
-            string customerJson = JsonConvert.SerializeObject(stripeCustomer);
-            return customerJson;
+                var stripeCustomer = service.Get(customerId, options);
+
+                if (stripeCustomer != null)
+                {
+                    string customerJson = JsonConvert.SerializeObject(stripeCustomer);
+                    return customerJson;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error fetching customer: {e}");
+                return null;
+            }
         }
-        else
-        {
-            return null;
-        }
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine($"Error fetching customer: {e}");
-        return null;
-    }
-}
 
 
 
