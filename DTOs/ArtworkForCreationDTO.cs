@@ -25,5 +25,9 @@ namespace Artportable.API.DTOs
     [MaxLength(5)]
     public List<string> Tags { get; set; }
     public int OrderIndex {get; set;}
+
+      
+    public bool? FrameIncluded {get; set;}
+    public string SignedByArtist {get; set;}
   }
 }

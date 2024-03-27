@@ -69,6 +69,8 @@ namespace Artportable.API.Services
           Width = a.Width,
           Depth = a.Depth,
           OrderIndex = a.OrderIndex,
+          FrameIncluded = a.FrameIncluded,
+          SignedByArtist = a.SignedByArtist,
           PrimaryFile = new FileDTO
           {
             Name = a.PrimaryFile.Name,
@@ -130,6 +132,8 @@ namespace Artportable.API.Services
           Promoted = a.Promoted,
           PromotedAt = a.PromotedAt,
           PromotionEndDate = a.PromotionEndDate,
+          FrameIncluded = a.FrameIncluded,
+          SignedByArtist = a.SignedByArtist,
           PrimaryFile = new {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -192,6 +196,8 @@ namespace Artportable.API.Services
         Promoted = artwork.Promoted,
         PromotedAt = artwork.PromotedAt,
         PromotionEndDate = artwork.PromotionEndDate,
+        FrameIncluded = artwork.FrameIncluded,
+        SignedByArtist = artwork.SignedByArtist,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,
@@ -238,6 +244,8 @@ namespace Artportable.API.Services
         Height = dto.Height,
         Width = dto.Width,
         Depth = dto.Depth,
+        FrameIncluded = dto.FrameIncluded,
+        SignedByArtist = dto.SignedByArtist,
         PrimaryFile = _context.Files.Where(f => f.Name == dto.PrimaryFile).SingleOrDefault(),
         SecondaryFile = dto.SecondaryFile != null ? _context.Files.Where(f => f.Name == dto.SecondaryFile).SingleOrDefault() : null,
         TertiaryFile = dto.TertiaryFile != null ? _context.Files.Where(f => f.Name == dto.TertiaryFile).SingleOrDefault() : null,
@@ -276,6 +284,8 @@ namespace Artportable.API.Services
       artwork.Height = dto.Height;
       artwork.Width = dto.Width;
       artwork.Depth = dto.Depth;
+      artwork.SignedByArtist = dto.SignedByArtist;
+      artwork.FrameIncluded =  dto.FrameIncluded;
 
       if (artwork.PrimaryFile.Name != dto.PrimaryFile)
       {

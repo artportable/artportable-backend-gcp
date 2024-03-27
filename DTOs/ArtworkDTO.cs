@@ -33,6 +33,8 @@ namespace Artportable.API.DTOs
 
     public DateTime? PromotedAt {get; set;}
     public DateTime? PromotionEndDate { get; set; }
+    public bool? FrameIncluded {get; set;}
+    public string SignedByArtist {get; set;}
 
 
   }
