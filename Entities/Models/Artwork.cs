@@ -48,7 +48,7 @@ namespace Artportable.API.Entities.Models
     public bool? Promoted {get; set;}
     public DateTime? PromotedAt { get; set; } 
     public DateTime? PromotionEndDate { get; set; }
-
-
+    public bool? FrameIncluded {get; set;}
+    public string SignedByArtist {get; set;}
   }
 }
