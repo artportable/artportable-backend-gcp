@@ -343,5 +343,88 @@ namespace Artportable.API.Services
       var pricesIds = pricesObjects.Select(x => x.Id);
       return prices.All(x => pricesIds.Contains(x));
     }
+
+    public async Task<bool> BoostArtwork(string paymentMethodId, string customerId, string artworkId)
+        {
+            try
+            {
+                // Retrieve the artwork
+                var artwork = _context.Artworks.FirstOrDefault(a => a.PublicId.ToString() == artworkId);
+                if (artwork == null)
+                {
+                    Console.WriteLine("Artwork not found.");
+                    return false;
+                }
+
+                // Validate payment method
+                var isPaymentMethodValid = await ValidatePaymentMethod(paymentMethodId);
+                if (!isPaymentMethodValid)
+                {
+                    Console.WriteLine("Invalid payment method.");
+                    return false;
+                }
+
+                // Validate if artwork is already boosted
+                if (artwork.IsBoosted)
+                {
+                    Console.WriteLine("Artwork is already boosted.");
+                    return false;
+                }
+
+                // Create invoice for the boost
+                var invoice = await CreateBoostInvoice(paymentMethodId, customerId);
+                if (invoice == null)
+                {
+                    Console.WriteLine("Failed to create boost invoice.");
+                    return false;
+                }
+
+                // Mark artwork as boosted
+                artwork.IsBoosted = true;
+
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error boosting artwork: {ex.Message}");
+                return false;
+            }
+        }
+
+        private async Task<Invoice> CreateBoostInvoice(string paymentMethodId, string customerId)
+        {
+            try
+            {
+
+                var invoiceItemService = new InvoiceItemService();
+                var options = new InvoiceItemCreateOptions
+                {
+                    Customer = customerId,
+                    Price = "price_1OlVwFA3UXZjjLWxmY3dSDqT", 
+                };
+                var invoiceItem = await invoiceItemService.CreateAsync(options);
+
+                var invoiceService = new InvoiceService();
+                var invoiceOptions = new InvoiceCreateOptions
+                {
+                    Customer = customerId,
+                    AutoAdvance = true,
+                    DefaultPaymentMethod = paymentMethodId,
+                };
+                var invoice = await invoiceService.CreateAsync(invoiceOptions);
+
+                invoice = await invoiceService.FinalizeInvoiceAsync(invoice.Id);
+
+                return invoice;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating boost invoice: {ex.Message}");
+                return null;
+            }
+        }
   }
 }
