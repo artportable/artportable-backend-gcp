@@ -30,5 +30,6 @@ namespace Artportable.API.Services
     List<ArtistDTO> GetTopArtists(int page, int pageSize, string myUsername, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtistDTO> GetMonthlyArtists(int page, int pageSize, string myUsername, int seed, int minArtworks = 1, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetPromotedArtworks(int page, int pageSize, int seed, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
+    List<ArtworkDTO> GetBoostedArtworks(int page, int pageSize, int seed, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
   }
 }

@@ -122,7 +122,9 @@ namespace Artportable.API.Services
         var trialEligiblePriceIds = new HashSet<string>
         {
             "price_1OX2nYJgjKIYr4gqnAlhnNBO",
-            "price_1OX2mfJgjKIYr4gqV51J3Ciy"
+            "price_1OX2mfJgjKIYr4gqV51J3Ciy",
+            "price_1NmYFaA3UXZjjLWxUwhj209e",
+            "price_1Nm1QKA3UXZjjLWxZUlWdaFD"
         };
 
         if (trialEligiblePriceIds.Contains(priceId))
@@ -343,5 +345,89 @@ namespace Artportable.API.Services
       var pricesIds = pricesObjects.Select(x => x.Id);
       return prices.All(x => pricesIds.Contains(x));
     }
+
+    public async Task<bool> BoostArtwork(string paymentMethodId, string customerId, string artworkId)
+        {
+            try
+            {
+                // Retrieve the artwork
+                var artwork = _context.Artworks.FirstOrDefault(a => a.PublicId.ToString() == artworkId);
+                if (artwork == null)
+                {
+                    Console.WriteLine("Artwork not found.");
+                    return false;
+                }
+
+                // Validate payment method
+                var isPaymentMethodValid = await ValidatePaymentMethod(paymentMethodId);
+                if (!isPaymentMethodValid)
+                {
+                    Console.WriteLine("Invalid payment method.");
+                    return false;
+                }
+
+                // Validate if artwork is already boosted
+                if (artwork.IsBoosted)
+                {
+                    Console.WriteLine("Artwork is already boosted.");
+                    return false;
+                }
+
+                // Create invoice for the boost
+                var invoice = await CreateBoostPayment(paymentMethodId, customerId);
+                if (invoice == null)
+                {
+                    Console.WriteLine("Failed to create boost invoice.");
+                    return false;
+                }
+                artwork.IsBoosted = true;
+                artwork.BoostedAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error boosting artwork: {ex.Message}");
+                return false;
+            }
+        }
+
+        private async Task<PaymentIntent> CreateBoostPayment(string paymentMethodId, string customerId)
+      {
+          try
+          {
+              // Attach the payment method to the customer
+              var paymentMethodService = new PaymentMethodService();
+              var options = new PaymentMethodAttachOptions
+              {
+                  Customer = customerId,
+              };
+              var paymentMethod = await paymentMethodService.AttachAsync(paymentMethodId, options);
+
+              // Create the payment intent for the boost
+              var paymentIntentService = new PaymentIntentService();
+              var paymentIntentOptions = new PaymentIntentCreateOptions
+              {
+                  Amount = 79500, // Amount in cents (795 SEK)
+                  Currency = "sek",
+                  Customer = customerId,
+                  PaymentMethod = paymentMethodId,
+                  Confirm = true,
+                  ConfirmationMethod = "manual",
+                  Description = "Portfolio Boost",
+              };
+              var paymentIntent = await paymentIntentService.CreateAsync(paymentIntentOptions);
+
+              return paymentIntent;
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine($"Error creating boost payment: {ex.Message}");
+              return null;
+          }
+      }
+
+
+
   }
 }

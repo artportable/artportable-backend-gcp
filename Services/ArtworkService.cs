@@ -71,6 +71,8 @@ namespace Artportable.API.Services
           OrderIndex = a.OrderIndex,
           FrameIncluded = a.FrameIncluded,
           SignedByArtist = a.SignedByArtist,
+          IsBoosted = a.IsBoosted,
+          BoostedAt = a.BoostedAt,
           PrimaryFile = new FileDTO
           {
             Name = a.PrimaryFile.Name,
@@ -134,6 +136,7 @@ namespace Artportable.API.Services
           PromotionEndDate = a.PromotionEndDate,
           FrameIncluded = a.FrameIncluded,
           SignedByArtist = a.SignedByArtist,
+          IsBoosted = a.IsBoosted,
           PrimaryFile = new {
             Name = a.PrimaryFile.Name,
             Width = a.PrimaryFile.Width,
@@ -198,6 +201,7 @@ namespace Artportable.API.Services
         PromotionEndDate = artwork.PromotionEndDate,
         FrameIncluded = artwork.FrameIncluded,
         SignedByArtist = artwork.SignedByArtist,
+        IsBoosted = artwork.IsBoosted,
         PrimaryFile = new FileDTO
         {
           Name = artwork.PrimaryFile.Name,

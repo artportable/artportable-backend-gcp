@@ -294,5 +294,32 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the customer portal session.");
             }
         }
+
+        /// <summary>
+        /// Boosts an artwork
+        /// </summary>
+        /// <param name="boostRequest">Boost request containing artwork ID and payment method ID.</param>
+        /// <returns>ActionResult indicating success or failure of boosting artwork.</returns>
+        [HttpPost("boost")]
+        public async Task<ActionResult> BoostArtwork([FromBody] BoostRequestDTO boostRequest)
+        {
+            try
+            {
+                var isBoosted = await _paymentService.BoostArtwork(boostRequest.PaymentMethodId, boostRequest.CustomerId, boostRequest.ArtworkId);
+                if (isBoosted)
+                {
+                    return Ok("Artwork boosted successfully.");
+                }
+                else
+                {
+                    return BadRequest("Failed to boost artwork.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error boosting artwork: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
   }
 }
