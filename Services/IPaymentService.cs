@@ -21,5 +21,7 @@ namespace Artportable.API.Services
     Subscription UpgradeSubscription(string paymentMethodId, string customerId, string newPriceId, string promotionCodeId);
     Session CreateCustomerPortalSession(string customerId);
 
+    Task<bool> BoostArtwork(string paymentMethodId, string customerId, string artworkId);
+
   }
 }

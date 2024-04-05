@@ -51,5 +51,7 @@ namespace Artportable.API.Entities.Models
     public bool? FrameIncluded {get; set;}
     public string SignedByArtist {get; set;}
     public bool IsBoosted { get; set; }    
+    public DateTime? BoostedAt { get; set; } 
+    public DateTime? BoostedEndDate { get; set; }
   }
 }

@@ -93,8 +93,8 @@ namespace Artportable.API.Services
             })
         .ToList();
 
-    return result;
-}
+            return result;
+        }
 
         public List<ArtworkDTO> GetArtworksSold(int page, int pageSize, List<string> tags, string myUsername, int seed, ProductEnum minimumProduct = ProductEnum.Bas)
         {
@@ -1556,6 +1556,7 @@ namespace Artportable.API.Services
                   Depth = a.Depth,
                   Promoted = a.Promoted,
                   PromotedAt = a.PromotedAt,
+                  IsBoosted = a.IsBoosted,
                   PrimaryFile = new FileDTO
                   {
                       Name = a.PrimaryFile.Name,
@@ -1581,5 +1582,68 @@ namespace Artportable.API.Services
               .ToList();
             
         }
+            public List<ArtworkDTO> GetBoostedArtworks(int page, int pageSize, int seed, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
+        {
+
+            return _context.Artworks
+              .Where(a => a.IsBoosted == true)
+              .OrderByDescending(a => a.BoostedAt) 
+              .Skip(pageSize * (page - 1))
+              .Take(pageSize)
+              .Select(a =>
+              new ArtworkDTO
+              {
+                  Id = a.PublicId,
+                  Owner = new OwnerDTO
+                  {
+                      Username = a.User.Username,
+                      ProfilePicture = a.User.File.Name,
+                      SocialId = a.User.SocialId,
+                      Name = a.User.UserProfile.Name,
+                      Surname = a.User.UserProfile.Surname,
+                      Location = a.User.UserProfile.Location
+                  },
+                  Title = a.Title,
+                  Name = a.User.UserProfile.Name,
+                  Surname = a.User.UserProfile.Surname,
+                  Username = a.User.Username,
+                  Published = a.Published,
+                  Price = a.Price,
+                   Currency = a.Currency,
+                  SoldOut = a.SoldOut,
+                  MultipleSizes = a.MultipleSizes,
+                  Width = a.Width,
+                  Height = a.Height,
+                  Depth = a.Depth,
+                  Promoted = a.Promoted,
+                  PromotedAt = a.PromotedAt,
+                  IsBoosted = a.IsBoosted,
+                  BoostedAt = a.BoostedAt,
+                  PrimaryFile = new FileDTO
+                  {
+                      Name = a.PrimaryFile.Name,
+                      Width = a.PrimaryFile.Width,
+                      Height = a.PrimaryFile.Height
+                  },
+                  SecondaryFile = a.SecondaryFile != null ? new FileDTO
+                  {
+                      Name = a.SecondaryFile.Name,
+                      Width = a.SecondaryFile.Width,
+                      Height = a.SecondaryFile.Height
+                  } : null,
+                  TertiaryFile = a.TertiaryFile != null ? new FileDTO
+                  {
+                      Name = a.TertiaryFile.Name,
+                      Width = a.TertiaryFile.Width,
+                      Height = a.TertiaryFile.Height
+                  } : null,
+                  Tags = (a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()),
+                  Likes = a.Likes.Count(),
+                  LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
+              })
+              .ToList();
+            
+        }
+        
     }
 }
