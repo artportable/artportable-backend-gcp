@@ -396,7 +396,6 @@ namespace Artportable.API.Services
       {
           try
           {
-              // Attach the payment method to the customer
               var paymentMethodService = new PaymentMethodService();
               var options = new PaymentMethodAttachOptions
               {
@@ -404,11 +403,11 @@ namespace Artportable.API.Services
               };
               var paymentMethod = await paymentMethodService.AttachAsync(paymentMethodId, options);
 
-              // Create the payment intent for the boost
+
               var paymentIntentService = new PaymentIntentService();
               var paymentIntentOptions = new PaymentIntentCreateOptions
               {
-                  Amount = 79500, // Amount in cents (795 SEK)
+                  Amount = 9500,
                   Currency = "sek",
                   Customer = customerId,
                   PaymentMethod = paymentMethodId,
@@ -426,7 +425,6 @@ namespace Artportable.API.Services
               return null;
           }
       }
-
 
 
   }
