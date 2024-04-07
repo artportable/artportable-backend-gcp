@@ -392,7 +392,7 @@ namespace Artportable.API.Services
             }
         }
 
-        private async Task<PaymentIntent> CreateBoostPayment(string paymentMethodId, string customerId)
+        private static async Task<PaymentIntent> CreateBoostPayment(string paymentMethodId, string customerId)
       {
           try
           {
@@ -407,7 +407,7 @@ namespace Artportable.API.Services
               var paymentIntentService = new PaymentIntentService();
               var paymentIntentOptions = new PaymentIntentCreateOptions
               {
-                  Amount = 9500,
+                  Amount = 4500,
                   Currency = "sek",
                   Customer = customerId,
                   PaymentMethod = paymentMethodId,
