@@ -350,7 +350,7 @@ namespace Artportable.API.Services
         {
             try
             {
-                // Retrieve the artwork
+             
                 var artwork = _context.Artworks.FirstOrDefault(a => a.PublicId.ToString() == artworkId);
                 if (artwork == null)
                 {
@@ -358,7 +358,7 @@ namespace Artportable.API.Services
                     return false;
                 }
 
-                // Validate payment method
+              
                 var isPaymentMethodValid = await ValidatePaymentMethod(paymentMethodId);
                 if (!isPaymentMethodValid)
                 {
@@ -366,14 +366,14 @@ namespace Artportable.API.Services
                     return false;
                 }
 
-                // Validate if artwork is already boosted
+        
                 if (artwork.IsBoosted)
                 {
                     Console.WriteLine("Artwork is already boosted.");
                     return false;
                 }
 
-                // Create invoice for the boost
+           
                 var invoice = await CreateBoostPayment(paymentMethodId, customerId);
                 if (invoice == null)
                 {
