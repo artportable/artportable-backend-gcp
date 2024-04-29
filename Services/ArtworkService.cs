@@ -111,7 +111,9 @@ namespace Artportable.API.Services
             Name = a.User.UserProfile.Name,
             Surname = a.User.UserProfile.Surname,
             SocialId = a.User.SocialId,
+            Email = a.User.Email,
             EmailInformedFollowersDate = a.User.EmailInformedFollowersDate,
+
             File = a.User.File != null ? new {
               Name = a.User.File.Name
             } : null,
@@ -179,6 +181,7 @@ namespace Artportable.API.Services
           Name = artwork.User.Name,
           Surname = artwork.User.Surname,
           ProfilePicture = artwork.User.File?.Name,
+          Email = artwork.User.Email,
           Location = artwork.User.UserProfile.Location,
           EmailInformedFollowersDate = artwork.User.EmailInformedFollowersDate,
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
