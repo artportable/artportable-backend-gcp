@@ -111,6 +111,7 @@ namespace Artportable.API.Services
             Name = a.User.UserProfile.Name,
             Surname = a.User.UserProfile.Surname,
             SocialId = a.User.SocialId,
+            EmailInformedFollowersDate = a.User.EmailInformedFollowersDate,
             File = a.User.File != null ? new {
               Name = a.User.File.Name
             } : null,
@@ -179,6 +180,7 @@ namespace Artportable.API.Services
           Surname = artwork.User.Surname,
           ProfilePicture = artwork.User.File?.Name,
           Location = artwork.User.UserProfile.Location,
+          EmailInformedFollowersDate = artwork.User.EmailInformedFollowersDate,
           FollowedByMe = !string.IsNullOrWhiteSpace(myUsername) ?
             _context.Connections
               .Any(c => c.Followee.Username == artwork.User.Username && c.Follower.Username == myUsername) :

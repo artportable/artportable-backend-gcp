@@ -20,6 +20,7 @@ namespace Artportable.API.DTOs
     public DateTime Created {get; set;}
 
     public string CustomerId {get; set;}
+    public DateTime? EmailInformedFollowersDate { get; set; }
 
     }
 }

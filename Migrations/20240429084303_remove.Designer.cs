@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20240429084303_remove")]
+    partial class remove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -866,14 +868,6 @@ namespace Artportable.API.Migrations
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)")
                         .HasColumnName("email");
-
-                    b.Property<DateTime?>("EmailInformedFollowersDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("email_informed_followers_date");
-
-                    b.Property<bool>("EmailReceiveArtworkUploaded")
-                        .HasColumnType("bit")
-                        .HasColumnName("email_receive_artwork_uploaded");
 
                     b.Property<int?>("FileId")
                         .HasColumnType("int")

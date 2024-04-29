@@ -40,7 +40,6 @@ namespace Artportable.API.Entities.Models
     [Comment("According to the ISO 639-1 standard")]
     public string Language { get; set; }
 
-
     public UserProfile UserProfile {get; set; }
     public Subscription Subscription { get; set; }
     public File File { get; set; }
@@ -52,7 +51,8 @@ namespace Artportable.API.Entities.Models
     public ICollection<Connection> FolloweeRef { get; set; }
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
-    public DateTime? EmailInformedFollowersDate { get; set; }
+    public DateTime? EmailInformedFollowersDate { get; set; } 
+    public bool EmailReceiveArtworkUploaded { get; set; } 
 
   }
 }
