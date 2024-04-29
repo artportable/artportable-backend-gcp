@@ -218,6 +218,8 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.Name, val => { rowToUpdate.Name = val; });
       setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
       setSafely(updatedProfile.About, val => { rowToUpdate.About = val; });
+      setSafely(updatedProfile.EmailInformedFollowersDate, val => { rowToUpdate.EmailInformedFollowersDate = val; });
+      setSafely(updatedProfile.EmailReceiveArtworkUploaded, val => { rowToUpdate.EmailReceiveArtworkUploaded = val; });
       setSafely(updatedProfile.InspiredBy, val => { rowToUpdate.InspiredBy = val; });
       setSafely(updatedProfile.Studio?.Text, val => { rowToUpdate.StudioText = val; });
       setSafely(updatedProfile.Studio?.Location, val => { rowToUpdate.StudioLocation = val; });
@@ -227,6 +229,8 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.SocialMedia?.LinkedIn, val => { rowToUpdate.LinkedInUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Behance, val => { rowToUpdate.BehanceUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Dribble, val => { rowToUpdate.DribbleUrl = val; });
+      
+      
 
       if (updatedProfile.Educations != null)
       {

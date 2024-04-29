@@ -29,5 +29,7 @@ namespace Artportable.API.DTOs
       
     public bool? FrameIncluded {get; set;}
     public string SignedByArtist {get; set;}
+
+    public string Email {get; set;}
   }
 }
