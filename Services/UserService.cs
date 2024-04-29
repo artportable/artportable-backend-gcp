@@ -109,6 +109,7 @@ namespace Artportable.API.Services
       return users.Select(c => new TinyUserDTO()
       {
         Username = c.Follower.Username,
+        Email = c.Follower.Email,
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null
@@ -122,6 +123,7 @@ namespace Artportable.API.Services
       return users.Select(c => new TinyUserDTO()
       {
         Username = c.Followee.Username,
+        Email = c.Follower.Email,
         Name = c.Followee.UserProfile.Name,
         Surname = c.Followee.UserProfile.Surname,
         ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null
