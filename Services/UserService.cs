@@ -58,6 +58,8 @@ namespace Artportable.API.Services
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
         Created = user.User.Created,
+        EmailReceiveArtworkUploaded = user.User.EmailReceiveArtworkUploaded,
+        
       } :
       null;
     }
@@ -160,6 +162,8 @@ namespace Artportable.API.Services
         State = user.UserProfile.State,
         City = user.UserProfile.City,
         HideLikedArtworks = user.UserProfile.HideLikedArtworks,
+        EmailInformedFollowersDate = user.UserProfile.EmailInformedFollowersDate,
+        EmailReceiveArtworkUploaded = user.UserProfile.EmailReceiveArtworkUploaded,
         /*Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),*/
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
