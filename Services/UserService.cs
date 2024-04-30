@@ -114,7 +114,8 @@ namespace Artportable.API.Services
         Email = c.Follower.Email,
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
-        ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null
+        ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null,
+        EmailReceiveArtworkUploaded = c.Follower.EmailReceiveArtworkUploaded
       });
     }
 
@@ -128,7 +129,8 @@ namespace Artportable.API.Services
         Email = c.Follower.Email,
         Name = c.Followee.UserProfile.Name,
         Surname = c.Followee.UserProfile.Surname,
-        ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null
+        ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null,
+        EmailReceiveArtworkUploaded = c.Followee.EmailReceiveArtworkUploaded
       });
     }
 
