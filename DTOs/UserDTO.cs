@@ -21,7 +21,7 @@ namespace Artportable.API.DTOs
 
     public string CustomerId {get; set;}
     public DateTime? EmailInformedFollowersDate { get; set; }
-    public bool EmailReceiveArtworkUploaded { get; set; } 
+    public bool EmailDeclinedArtworkUpload { get; set; } 
 
     }
 }

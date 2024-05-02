@@ -83,6 +83,6 @@ namespace Artportable.API.Entities.Models
     
     public DateTime? EmailInformedFollowersDate { get; set; }
 
-    public bool EmailReceiveArtworkUploaded { get; set; } 
+    public bool EmailDeclinedArtworkUpload{ get; set; } 
   }
 }

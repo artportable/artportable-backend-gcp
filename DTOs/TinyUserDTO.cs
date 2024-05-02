@@ -12,6 +12,6 @@ namespace Artportable.API.DTOs
     public int Product { get; set; }
     public Guid SocialId { get; set; }
     public DateTime? EmailInformedFollowersDate { get; set; }
-    public bool EmailReceiveArtworkUploaded { get; set; } 
+    public bool EmailDeclinedArtworkUpload { get; set; } 
   }
 }

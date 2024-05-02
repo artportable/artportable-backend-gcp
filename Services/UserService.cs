@@ -58,7 +58,7 @@ namespace Artportable.API.Services
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
         Created = user.User.Created,
-        EmailReceiveArtworkUploaded = user.Profile.EmailReceiveArtworkUploaded,
+        EmailDeclinedArtworkUpload = user.Profile.EmailDeclinedArtworkUpload,
         
       } :
       null;
@@ -115,7 +115,7 @@ namespace Artportable.API.Services
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null,
-        EmailReceiveArtworkUploaded = c.Follower.UserProfile.EmailReceiveArtworkUploaded
+        EmailDeclinedArtworkUpload = c.Follower.UserProfile.EmailDeclinedArtworkUpload
       });
     }
 
@@ -130,7 +130,7 @@ namespace Artportable.API.Services
         Name = c.Followee.UserProfile.Name,
         Surname = c.Followee.UserProfile.Surname,
         ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null,
-        EmailReceiveArtworkUploaded = c.Followee.UserProfile.EmailReceiveArtworkUploaded
+        EmailDeclinedArtworkUpload= c.Followee.UserProfile.EmailDeclinedArtworkUpload
       });
     }
 
@@ -165,7 +165,7 @@ namespace Artportable.API.Services
         City = user.UserProfile.City,
         HideLikedArtworks = user.UserProfile.HideLikedArtworks,
         EmailInformedFollowersDate = user.UserProfile.EmailInformedFollowersDate,
-        EmailReceiveArtworkUploaded = user.UserProfile.EmailReceiveArtworkUploaded,
+        EmailDeclinedArtworkUpload = user.UserProfile.EmailDeclinedArtworkUpload,
         /*Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),*/
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
@@ -225,7 +225,7 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
       setSafely(updatedProfile.About, val => { rowToUpdate.About = val; });
       setSafely(updatedProfile.EmailInformedFollowersDate, val => { rowToUpdate.EmailInformedFollowersDate = val; });
-      setSafely(updatedProfile.EmailReceiveArtworkUploaded, val => { rowToUpdate.EmailReceiveArtworkUploaded = val; });
+      setSafely(updatedProfile.EmailDeclinedArtworkUpload, val => { rowToUpdate.EmailDeclinedArtworkUpload = val; });
       setSafely(updatedProfile.InspiredBy, val => { rowToUpdate.InspiredBy = val; });
       setSafely(updatedProfile.Studio?.Text, val => { rowToUpdate.StudioText = val; });
       setSafely(updatedProfile.Studio?.Location, val => { rowToUpdate.StudioLocation = val; });

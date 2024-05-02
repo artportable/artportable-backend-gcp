@@ -13,7 +13,7 @@ namespace Artportable.API.DTOs
     public bool FollowedByMe { get; set; }
     public bool MonthlyArtist { get; set; }
     public DateTime? EmailInformedFollowersDate { get; set; } 
-    public bool EmailReceiveArtworkUploaded { get; set; } 
+    public bool EmailDeclinedArtworkUpload { get; set; } 
     public string Email { get; set; }
     
   
