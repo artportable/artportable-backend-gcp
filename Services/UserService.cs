@@ -58,7 +58,7 @@ namespace Artportable.API.Services
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
         Created = user.User.Created,
-        EmailReceiveArtworkUploaded = user.User.EmailReceiveArtworkUploaded,
+        EmailReceiveArtworkUploaded = user.Profile.EmailReceiveArtworkUploaded,
         
       } :
       null;
@@ -115,7 +115,7 @@ namespace Artportable.API.Services
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null,
-        EmailReceiveArtworkUploaded = c.Follower.EmailReceiveArtworkUploaded
+        EmailReceiveArtworkUploaded = c.Follower.UserProfile.EmailReceiveArtworkUploaded
       });
     }
 
@@ -130,7 +130,7 @@ namespace Artportable.API.Services
         Name = c.Followee.UserProfile.Name,
         Surname = c.Followee.UserProfile.Surname,
         ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null,
-        EmailReceiveArtworkUploaded = c.Followee.EmailReceiveArtworkUploaded
+        EmailReceiveArtworkUploaded = c.Followee.UserProfile.EmailReceiveArtworkUploaded
       });
     }
 

@@ -52,7 +52,7 @@ namespace Artportable.API.Entities.Models
     [InverseProperty("User")]
     public ICollection<Like> Likes { get; set; }
     public DateTime? EmailInformedFollowersDate { get; set; } 
-    public bool EmailReceiveArtworkUploaded { get; set; } 
+    public bool EmailDeclinedArtworkUpload { get; set; } 
 
   }
 }
