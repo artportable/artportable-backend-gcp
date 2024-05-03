@@ -57,8 +57,7 @@ namespace Artportable.API.Services
         Email = user.User.Email,
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
-        Created = user.User.Created,
-        EmailDeclinedArtworkUpload = user.Profile.EmailDeclinedArtworkUpload,
+
         
       } :
       null;
@@ -115,6 +114,7 @@ namespace Artportable.API.Services
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null,
+        EmailInformedFollowersDate = c.Follower.UserProfile.EmailInformedFollowersDate,
         EmailDeclinedArtworkUpload = c.Follower.UserProfile.EmailDeclinedArtworkUpload
       });
     }
