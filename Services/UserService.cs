@@ -114,8 +114,7 @@ namespace Artportable.API.Services
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null,
-        EmailInformedFollowersDate = c.Follower.EmailInformedFollowersDate,
-        EmailDeclinedArtworkUpload = c.Follower.EmailDeclinedArtworkUpload
+
       });
     }
 
@@ -130,7 +129,7 @@ namespace Artportable.API.Services
         Name = c.Followee.UserProfile.Name,
         Surname = c.Followee.UserProfile.Surname,
         ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null,
-        EmailDeclinedArtworkUpload= c.Followee.EmailDeclinedArtworkUpload
+ 
       });
     }
 
@@ -164,8 +163,7 @@ namespace Artportable.API.Services
         State = user.UserProfile.State,
         City = user.UserProfile.City,
         HideLikedArtworks = user.UserProfile.HideLikedArtworks,
-        EmailInformedFollowersDate = user.EmailInformedFollowersDate,
-        EmailDeclinedArtworkUpload = user.EmailDeclinedArtworkUpload,
+
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
           0
@@ -231,13 +229,7 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.SocialMedia?.LinkedIn, val => { rowToUpdate.LinkedInUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Behance, val => { rowToUpdate.BehanceUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Dribble, val => { rowToUpdate.DribbleUrl = val; });
-      setSafely(updatedProfile.EmailInformedFollowersDate, val => rowToUpdate.User.EmailInformedFollowersDate = val);
-      Console.WriteLine($"Current value: {rowToUpdate.User.EmailDeclinedArtworkUpload}");
-      if (updatedProfile.EmailDeclinedArtworkUpload.HasValue)
-      {
-          rowToUpdate.User.EmailDeclinedArtworkUpload = updatedProfile.EmailDeclinedArtworkUpload.Value;
-          Console.WriteLine($"Updated value set to: {rowToUpdate.User.EmailDeclinedArtworkUpload}");
-      }
+   
 
   
 
