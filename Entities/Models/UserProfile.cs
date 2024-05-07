@@ -80,9 +80,6 @@ namespace Artportable.API.Entities.Models
     public IEnumerable<Education> Educations { get; set; }
     public IEnumerable<Exhibition> Exhibitions { get; set; }
     public bool HideLikedArtworks { get; set; }
-    
-    public DateTime? EmailInformedFollowersDate { get; set; }
 
-    public bool EmailDeclinedArtworkUpload{ get; set; } 
   }
 }

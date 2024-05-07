@@ -114,8 +114,8 @@ namespace Artportable.API.Services
         Name = c.Follower.UserProfile.Name,
         Surname = c.Follower.UserProfile.Surname,
         ProfilePicture = c.Follower.File != null ? c.Follower.File.Name : null,
-        EmailInformedFollowersDate = c.Follower.UserProfile.EmailInformedFollowersDate,
-        EmailDeclinedArtworkUpload = c.Follower.UserProfile.EmailDeclinedArtworkUpload
+        EmailInformedFollowersDate = c.Follower.EmailInformedFollowersDate,
+        EmailDeclinedArtworkUpload = c.Follower.EmailDeclinedArtworkUpload
       });
     }
 
@@ -130,7 +130,7 @@ namespace Artportable.API.Services
         Name = c.Followee.UserProfile.Name,
         Surname = c.Followee.UserProfile.Surname,
         ProfilePicture = c.Followee.File != null ? c.Followee.File.Name : null,
-        EmailDeclinedArtworkUpload= c.Followee.UserProfile.EmailDeclinedArtworkUpload
+        EmailDeclinedArtworkUpload= c.Followee.EmailDeclinedArtworkUpload
       });
     }
 
@@ -164,8 +164,8 @@ namespace Artportable.API.Services
         State = user.UserProfile.State,
         City = user.UserProfile.City,
         HideLikedArtworks = user.UserProfile.HideLikedArtworks,
-        EmailInformedFollowersDate = user.UserProfile.EmailInformedFollowersDate,
-        EmailDeclinedArtworkUpload = user.UserProfile.EmailDeclinedArtworkUpload,
+        EmailInformedFollowersDate = user.EmailInformedFollowersDate,
+        EmailDeclinedArtworkUpload = user.EmailDeclinedArtworkUpload,
         /*Followers = user.FollowerRef.Count(),
         Followees = user.FolloweeRef.Count(),*/
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
@@ -215,6 +215,8 @@ namespace Artportable.API.Services
         return null;
       }
 
+
+
       setSafely(updatedProfile.Headline, val => { rowToUpdate.Headline = val; });
       setSafely(updatedProfile.Title, val => { rowToUpdate.Title = val; });
       setSafely(updatedProfile.Location, val => { rowToUpdate.Location = val; });
@@ -224,8 +226,8 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.Name, val => { rowToUpdate.Name = val; });
       setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
       setSafely(updatedProfile.About, val => { rowToUpdate.About = val; });
-      setSafely(updatedProfile.EmailInformedFollowersDate, val => { rowToUpdate.EmailInformedFollowersDate = val; });
-      setSafely(updatedProfile.EmailDeclinedArtworkUpload, val => { rowToUpdate.EmailDeclinedArtworkUpload = val; });
+      setSafely(rowToUpdate.User.EmailInformedFollowersDate, val => { rowToUpdate.User.EmailInformedFollowersDate = val; });
+      setSafely(rowToUpdate.User.EmailDeclinedArtworkUpload, val => { rowToUpdate.User.EmailDeclinedArtworkUpload = val; });
       setSafely(updatedProfile.InspiredBy, val => { rowToUpdate.InspiredBy = val; });
       setSafely(updatedProfile.Studio?.Text, val => { rowToUpdate.StudioText = val; });
       setSafely(updatedProfile.Studio?.Location, val => { rowToUpdate.StudioLocation = val; });
