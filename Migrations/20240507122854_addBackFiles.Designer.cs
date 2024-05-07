@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    [Migration("20240507080749_removeFalseDefault")]
-    partial class removeFalseDefault
+    [Migration("20240507122854_addBackFiles")]
+    partial class addBackFiles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

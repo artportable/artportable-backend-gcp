@@ -53,6 +53,7 @@ namespace Artportable.API.Entities.Models
     public ICollection<Like> Likes { get; set; }
     public DateTime? EmailInformedFollowersDate { get; set; }
     public bool EmailDeclinedArtworkUpload{ get; set; }
+    public bool EmailAcceptedUppload {get; set;}
 
   }
 }

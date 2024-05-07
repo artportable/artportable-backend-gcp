@@ -2,12 +2,12 @@
 
 namespace Artportable.API.Migrations
 {
-    public partial class uploadEmailNotif : Migration
+    public partial class EmailAccepted : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
-                name: "email_receive_artwork_uploaded",
+                name: "email_accepted_uppload",
                 table: "users",
                 type: "bit",
                 nullable: false,
@@ -17,7 +17,7 @@ namespace Artportable.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "email_receive_artwork_uploaded",
+                name: "email_accepted_uppload",
                 table: "users");
         }
     }
