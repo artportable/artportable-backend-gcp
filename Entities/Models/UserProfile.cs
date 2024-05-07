@@ -74,8 +74,6 @@ namespace Artportable.API.Entities.Models
 
     [Column(TypeName = "Text")]
     public string Technique { get; set; }
-
-
     public User User { get; set; }
     public IEnumerable<Education> Educations { get; set; }
     public IEnumerable<Exhibition> Exhibitions { get; set; }
