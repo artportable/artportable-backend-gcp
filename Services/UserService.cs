@@ -166,8 +166,6 @@ namespace Artportable.API.Services
         HideLikedArtworks = user.UserProfile.HideLikedArtworks,
         EmailInformedFollowersDate = user.EmailInformedFollowersDate,
         EmailDeclinedArtworkUpload = user.EmailDeclinedArtworkUpload,
-        /*Followers = user.FollowerRef.Count(),
-        Followees = user.FolloweeRef.Count(),*/
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
           0
@@ -215,8 +213,6 @@ namespace Artportable.API.Services
         return null;
       }
 
-
-
       setSafely(updatedProfile.Headline, val => { rowToUpdate.Headline = val; });
       setSafely(updatedProfile.Title, val => { rowToUpdate.Title = val; });
       setSafely(updatedProfile.Location, val => { rowToUpdate.Location = val; });
@@ -226,8 +222,6 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.Name, val => { rowToUpdate.Name = val; });
       setSafely(updatedProfile.Surname, val => { rowToUpdate.Surname = val; });
       setSafely(updatedProfile.About, val => { rowToUpdate.About = val; });
-      setSafely(rowToUpdate.User.EmailInformedFollowersDate, val => { rowToUpdate.User.EmailInformedFollowersDate = val; });
-      setSafely(rowToUpdate.User.EmailDeclinedArtworkUpload, val => { rowToUpdate.User.EmailDeclinedArtworkUpload = val; });
       setSafely(updatedProfile.InspiredBy, val => { rowToUpdate.InspiredBy = val; });
       setSafely(updatedProfile.Studio?.Text, val => { rowToUpdate.StudioText = val; });
       setSafely(updatedProfile.Studio?.Location, val => { rowToUpdate.StudioLocation = val; });
@@ -237,8 +231,15 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.SocialMedia?.LinkedIn, val => { rowToUpdate.LinkedInUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Behance, val => { rowToUpdate.BehanceUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Dribble, val => { rowToUpdate.DribbleUrl = val; });
-      
-      
+      setSafely(updatedProfile.EmailInformedFollowersDate, val => rowToUpdate.User.EmailInformedFollowersDate = val);
+      Console.WriteLine($"Current value: {rowToUpdate.User.EmailDeclinedArtworkUpload}");
+      if (updatedProfile.EmailDeclinedArtworkUpload.HasValue)
+      {
+          rowToUpdate.User.EmailDeclinedArtworkUpload = updatedProfile.EmailDeclinedArtworkUpload.Value;
+          Console.WriteLine($"Updated value set to: {rowToUpdate.User.EmailDeclinedArtworkUpload}");
+      }
+
+  
 
       if (updatedProfile.Educations != null)
       {
