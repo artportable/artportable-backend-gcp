@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    [Migration("20240507122656_removeOldMigrationFiles")]
-    partial class removeOldMigrationFiles
+    [Migration("20240507122854_addBackFiles")]
+    partial class addBackFiles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -868,6 +868,14 @@ namespace Artportable.API.Migrations
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)")
                         .HasColumnName("email");
+
+                    b.Property<bool>("EmailDeclinedArtworkUpload")
+                        .HasColumnType("bit")
+                        .HasColumnName("email_declined_artwork_upload");
+
+                    b.Property<DateTime?>("EmailInformedFollowersDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("email_informed_followers_date");
 
                     b.Property<int?>("FileId")
                         .HasColumnType("int")

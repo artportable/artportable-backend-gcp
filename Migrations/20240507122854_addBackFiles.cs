@@ -3,20 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Artportable.API.Migrations
 {
-    public partial class removeOldMigrationFiles : Migration
+    public partial class addBackFiles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "email_declined_artwork_upload",
-                table: "users");
-
-            migrationBuilder.DropColumn(
-                name: "email_informed_followers_date",
-                table: "users");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
                 name: "email_declined_artwork_upload",
@@ -30,6 +19,17 @@ namespace Artportable.API.Migrations
                 table: "users",
                 type: "datetime2",
                 nullable: true);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "email_declined_artwork_upload",
+                table: "users");
+
+            migrationBuilder.DropColumn(
+                name: "email_informed_followers_date",
+                table: "users");
         }
     }
 }

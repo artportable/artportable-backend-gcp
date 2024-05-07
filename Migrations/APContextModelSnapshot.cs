@@ -867,6 +867,14 @@ namespace Artportable.API.Migrations
                         .HasColumnType("nvarchar(254)")
                         .HasColumnName("email");
 
+                    b.Property<bool>("EmailDeclinedArtworkUpload")
+                        .HasColumnType("bit")
+                        .HasColumnName("email_declined_artwork_upload");
+
+                    b.Property<DateTime?>("EmailInformedFollowersDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("email_informed_followers_date");
+
                     b.Property<int?>("FileId")
                         .HasColumnType("int")
                         .HasColumnName("file_id");
