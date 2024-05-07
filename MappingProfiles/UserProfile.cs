@@ -14,6 +14,8 @@ namespace Artportable.API.Profiles
         .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username))
         .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.User.File.Name))
         .ForMember(dest => dest.CoverPhoto, opt => opt.MapFrom(src => src.User.CoverPhotoFile.Name))
+        .ForMember(dest => dest.EmailDeclinedArtworkUpload, opt => opt.MapFrom(src => src.User.EmailDeclinedArtworkUpload))
+        .ForMember(dest => dest.EmailInformedFollowersDate, opt => opt.MapFrom(src => src.User.EmailInformedFollowersDate))
         .ForMember(dest => dest.Studio, opt => opt.MapFrom(src =>
           (src.StudioText != null || src.StudioLocation != null) ?
           new StudioDTO
