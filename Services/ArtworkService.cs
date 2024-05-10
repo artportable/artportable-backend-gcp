@@ -36,8 +36,8 @@ namespace Artportable.API.Services
       var artworksQuery = _context.Artworks
         .Where(a => owner != null ? a.User.Username == owner : true);
       var orderedArtworks = artworksQuery
-        .OrderByDescending(a => a.OrderIndex.HasValue)  
-        .ThenBy(a => a.OrderIndex)
+        .OrderBy(a => a.OrderIndex.HasValue)  
+        .ThenBy(a => a.OrderIndex)            
         .ThenByDescending(a => a.Published)
         .Select(a =>
         new ArtworkDTO
