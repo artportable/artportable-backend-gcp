@@ -58,6 +58,7 @@ namespace Artportable.API.Services
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
         Created = user.User.Created,
+        MonthlyUser = user.User.MonthlyUser,
 
         
       } :
