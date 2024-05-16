@@ -495,6 +495,27 @@ namespace Artportable.API.Services
         .FirstOrDefault();
     }
 
+    public bool UpdateIsMonthlyArtist(string username, bool isMonthlyArtist)
+{
+    // Find the user by username
+    var user = _context.Users.SingleOrDefault(u => u.Username == username);
+
+
+    if (user == null)
+    {
+        return false;
+    }
+
+    user.MonthlyUser = isMonthlyArtist;
+
+
+    _context.SaveChanges();
+
+
+    return true;
+}
+
+
     private void setSafely<T>(T value, Action<T> setAction)
     {
       if (value != null)
