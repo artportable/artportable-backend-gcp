@@ -25,6 +25,7 @@ namespace Artportable.API.DTOs
 
     public bool EmailDeclinedArtworkUpload{ get; set; } 
 
+    public bool MonthlyUser { get; set; }
 
     }
 }

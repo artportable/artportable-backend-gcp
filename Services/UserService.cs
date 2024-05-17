@@ -58,6 +58,7 @@ namespace Artportable.API.Services
         DateOfBirth = user.Profile.DateOfBirth,
         Location = user.Profile.Location,
         Created = user.User.Created,
+        MonthlyUser = user.User.MonthlyUser,
 
         
       } :
@@ -494,6 +495,27 @@ namespace Artportable.API.Services
         })
         .FirstOrDefault();
     }
+
+    public bool UpdateIsMonthlyArtist(string username, bool isMonthlyArtist)
+    {
+
+        var user = _context.Users.SingleOrDefault(u => u.Username == username);
+
+
+        if (user == null)
+        {
+            return false;
+        }
+
+        user.MonthlyUser = isMonthlyArtist;
+
+
+        _context.SaveChanges();
+
+
+        return true;
+    }
+
 
     private void setSafely<T>(T value, Action<T> setAction)
     {

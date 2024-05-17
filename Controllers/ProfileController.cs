@@ -221,5 +221,34 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+        /// <summary>
+        /// Update IsMonthlyArtist property for a specific user by username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="isMonthlyArtist"></param>
+        [HttpPatch("{username}/monthlyartist")]
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        public IActionResult UpdateIsMonthlyArtist(string username, bool isMonthlyArtist)
+        {
+            try
+            {
+                var success = _userService.UpdateIsMonthlyArtist(username, isMonthlyArtist);
+
+                if (!success)
+                {
+                    return NotFound(); 
+                }
+
+                return Ok(new { IsMonthlyArtist = isMonthlyArtist });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+    
   }
 }
