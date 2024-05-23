@@ -13,6 +13,7 @@ namespace Artportable.API.Profiles
       CreateMap<UserProfile, ProfileDTO>()
         .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username))
         .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.User.File.Name))
+        .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
         .ForMember(dest => dest.CoverPhoto, opt => opt.MapFrom(src => src.User.CoverPhotoFile.Name))
         .ForMember(dest => dest.EmailDeclinedArtworkUpload, opt => opt.MapFrom(src => src.User.EmailDeclinedArtworkUpload))
         .ForMember(dest => dest.EmailInformedFollowersDate, opt => opt.MapFrom(src => src.User.EmailInformedFollowersDate))
