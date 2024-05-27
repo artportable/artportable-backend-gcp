@@ -39,6 +39,8 @@ namespace Artportable.API.DTOs
 
     public bool? EmailDeclinedArtworkUpload { get; set; }
 
+     public string ChosenColor { get; set; }
+
 
   }
 }

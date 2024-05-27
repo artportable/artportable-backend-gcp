@@ -167,6 +167,7 @@ namespace Artportable.API.Services
         HideLikedArtworks = user.UserProfile.HideLikedArtworks,
         EmailInformedFollowersDate = user.EmailInformedFollowersDate,
         EmailDeclinedArtworkUpload = user.EmailDeclinedArtworkUpload,
+        ChosenColor = user.UserProfile.ChosenColor,
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
           0
@@ -232,6 +233,7 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.SocialMedia?.LinkedIn, val => { rowToUpdate.LinkedInUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Behance, val => { rowToUpdate.BehanceUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Dribble, val => { rowToUpdate.DribbleUrl = val; });
+      setSafely(updatedProfile.ChosenColor, val => { rowToUpdate.ChosenColor = val; });
       setSafely(updatedProfile.EmailInformedFollowersDate, val => rowToUpdate.User.EmailInformedFollowersDate = val);
 
       if (updatedProfile.EmailDeclinedArtworkUpload.HasValue)

@@ -22,7 +22,7 @@ namespace Artportable.API.DTOs
 
     public DateTime? EmailInformedFollowersDate { get; set; }
     public bool EmailDeclinedArtworkUpload { get; set; } 
-    
+     public string ChosenColor { get; set; }
 
   }
 }

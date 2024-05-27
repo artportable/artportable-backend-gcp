@@ -27,5 +27,6 @@ namespace Artportable.API.DTOs
     public bool MonthlyArtist { get; set; }
     public DateTime? EmailInformedFollowersDate { get; set; }
     public bool EmailDeclinedArtworkUpload { get; set; }
+     public string ChosenColor { get; set; }
   }
 }
