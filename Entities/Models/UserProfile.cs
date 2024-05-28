@@ -80,6 +80,7 @@ namespace Artportable.API.Entities.Models
     public bool HideLikedArtworks { get; set; }
 
     public string ChosenColor { get; set; }
+    public string Frame {get;set;}
 
   }
 }
