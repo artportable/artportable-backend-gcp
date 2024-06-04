@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20240604080911_removeProp")]
+    partial class removeProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -949,26 +951,6 @@ namespace Artportable.API.Migrations
                     b.Property<string>("ChosenColor")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("chosen_color");
-
-                    b.Property<string>("ChosenCorners")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_corners");
-
-                    b.Property<string>("ChosenFont")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_font");
-
-                    b.Property<string>("ChosenFrame")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_frame");
-
-                    b.Property<string>("ChosenLayout")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_layout");
-
-                    b.Property<string>("ChosenShadow")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_shadow");
 
                     b.Property<string>("City")
                         .HasMaxLength(140)
