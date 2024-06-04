@@ -168,6 +168,12 @@ namespace Artportable.API.Services
         EmailInformedFollowersDate = user.EmailInformedFollowersDate,
         EmailDeclinedArtworkUpload = user.EmailDeclinedArtworkUpload,
         ChosenColor = user.UserProfile.ChosenColor,
+        ChosenLayout = user.UserProfile.ChosenLayout,
+        ChosenCorners = user.UserProfile.ChosenCorners,
+        ChosenFont = user.UserProfile.ChosenFont,
+        ChosenFrame = user.UserProfile.ChosenFrame,
+        ChosenShadow = user.UserProfile.ChosenShadow,
+
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
           0
@@ -234,6 +240,11 @@ namespace Artportable.API.Services
       setSafely(updatedProfile.SocialMedia?.Behance, val => { rowToUpdate.BehanceUrl = val; });
       setSafely(updatedProfile.SocialMedia?.Dribble, val => { rowToUpdate.DribbleUrl = val; });
       setSafely(updatedProfile.ChosenColor, val => { rowToUpdate.ChosenColor = val; });
+      setSafely(updatedProfile.ChosenCorners, val => { rowToUpdate.ChosenCorners = val; });
+      setSafely(updatedProfile.ChosenFont, val => { rowToUpdate.ChosenFont = val; });
+      setSafely(updatedProfile.ChosenFrame, val => { rowToUpdate.ChosenFrame = val; });
+      setSafely(updatedProfile.ChosenLayout, val => { rowToUpdate.ChosenLayout = val; });
+      setSafely(updatedProfile.ChosenShadow, val => { rowToUpdate.ChosenShadow = val; });    
       setSafely(updatedProfile.EmailInformedFollowersDate, val => rowToUpdate.User.EmailInformedFollowersDate = val);
 
       if (updatedProfile.EmailDeclinedArtworkUpload.HasValue)
