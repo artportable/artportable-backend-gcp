@@ -39,6 +39,10 @@ namespace Artportable.API.Controllers
     [HttpGet("purchaserequest")]
     public ActionResult<string> PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
     {
+
+      if(email == "jb7660575@gmail.com") {
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
       try{
         _messageService.PurchaseRequest(email,message,artworkUrl,artworkName,artistId,artworkImageUrl);
 
