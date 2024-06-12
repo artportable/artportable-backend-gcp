@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20240604081231_userProfileDesign")]
+    partial class userProfileDesign
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -988,10 +990,6 @@ namespace Artportable.API.Migrations
                         .HasMaxLength(280)
                         .HasColumnType("nvarchar(280)")
                         .HasColumnName("dribble_url");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("email");
 
                     b.Property<string>("FacebookUrl")
                         .HasMaxLength(280)
