@@ -80,5 +80,17 @@ namespace Artportable.API.Entities.Models
     public bool HideLikedArtworks { get; set; }
     public string Email {get; set; }
 
+    public string ChosenColor { get; set; }
+
+    public string ChosenFrame { get; set; }
+
+    public string ChosenShadow {get; set; }
+
+    public string ChosenCorners {get ; set;}
+
+    public string ChosenFont { get; set; }
+    public string ChosenLayout  { get; set; }
+
+
   }
 }

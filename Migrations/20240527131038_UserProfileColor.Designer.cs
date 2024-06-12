@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20240527131038_UserProfileColor")]
+    partial class UserProfileColor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -950,26 +952,6 @@ namespace Artportable.API.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("chosen_color");
 
-                    b.Property<string>("ChosenCorners")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_corners");
-
-                    b.Property<string>("ChosenFont")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_font");
-
-                    b.Property<string>("ChosenFrame")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_frame");
-
-                    b.Property<string>("ChosenLayout")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_layout");
-
-                    b.Property<string>("ChosenShadow")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("chosen_shadow");
-
                     b.Property<string>("City")
                         .HasMaxLength(140)
                         .HasColumnType("nvarchar(140)")
@@ -988,10 +970,6 @@ namespace Artportable.API.Migrations
                         .HasMaxLength(280)
                         .HasColumnType("nvarchar(280)")
                         .HasColumnName("dribble_url");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("email");
 
                     b.Property<string>("FacebookUrl")
                         .HasMaxLength(280)
