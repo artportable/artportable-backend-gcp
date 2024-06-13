@@ -1272,6 +1272,56 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+     /// <summary> Boosted
+    /// Get a collection of boosted art
+    /// </summary>
+    [HttpGet("stories/boosted", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<StoryDTO>))]
+    public ActionResult<List<StoryDTO>> GetBoostedStories(
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      string q = null,
+      int? seed = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
+      {
+        seed = _random.Next();
+      }
+
+      try
+      {
+        var stories = new List<StoryDTO>();
+     
+        stories = _discoverService.GetBoostedStories(page, pageSize, seed.Value, myUsername);
+        
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { seed = seed, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, stories.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(stories);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
   #endregion
 }
