@@ -22,6 +22,7 @@ namespace Artportable.API.Services
     Session CreateCustomerPortalSession(string customerId);
 
     Task<bool> BoostArtwork(string paymentMethodId, string customerId, string artworkId);
+    Task<bool> BoostStory(string paymentMethodId, string customerId, string storyId);
 
   }
 }

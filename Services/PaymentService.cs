@@ -428,6 +428,86 @@ namespace Artportable.API.Services
           }
       }
 
+      public async Task<bool> BoostStory(string paymentMethodId, string customerId, string storyId)
+        {
+            try
+            {
+             
+                var story = _context.Stories.FirstOrDefault(a => a.PublicId.ToString() == storyId);
+                if (story == null)
+                {
+                    Console.WriteLine("Story not found.");
+                    return false;
+                }
+
+              
+                var isPaymentMethodValid = await ValidatePaymentMethod(paymentMethodId);
+                if (!isPaymentMethodValid)
+                {
+                    Console.WriteLine("Invalid payment method.");
+                    return false;
+                }
+
+        
+                if (story.IsBoosted)
+                {
+                    Console.WriteLine("Story is already boosted.");
+                    return false;
+                }
+
+           
+                var invoice = await CreateBoostStoryPayment(paymentMethodId, customerId);
+                if (invoice == null)
+                {
+                    Console.WriteLine("Failed to create boost invoice.");
+                    return false;
+                }
+                story.IsBoosted = true;
+                story.BoostedAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error boosting story: {ex.Message}");
+                return false;
+            }
+        }
+
+      private static async Task<PaymentIntent> CreateBoostStoryPayment(string paymentMethodId, string customerId)
+      {
+          try
+          {
+              var paymentMethodService = new PaymentMethodService();
+              var options = new PaymentMethodAttachOptions
+              {
+                  Customer = customerId,
+              };
+              var paymentMethod = await paymentMethodService.AttachAsync(paymentMethodId, options);
+
+
+              var paymentIntentService = new PaymentIntentService();
+              var paymentIntentOptions = new PaymentIntentCreateOptions
+              {
+                  Amount = 99500,
+                  Currency = "sek",
+                  Customer = customerId,
+                  PaymentMethod = paymentMethodId,
+                  Confirm = true,
+                  ConfirmationMethod = "manual",
+                  Description = "Exhibition Boost",
+              };
+              var paymentIntent = await paymentIntentService.CreateAsync(paymentIntentOptions);
+
+              return paymentIntent;
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine($"Error creating boost payment: {ex.Message}");
+              return null;
+          }
+      }
+
 
   }
 }
