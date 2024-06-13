@@ -1644,6 +1644,50 @@ namespace Artportable.API.Services
               .ToList();
             
         }
+
+        public List<StoryDTO> GetBoostedStories(int page, int pageSize, int seed, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
+        {
+
+            return _context.Stories
+              .Where(a => a.IsBoosted == true)
+              .OrderByDescending(a => a.BoostedAt) 
+              .Skip(pageSize * (page - 1))
+              .Take(pageSize)
+              .Select(a =>
+              new StoryDTO
+              {
+                  Id = a.PublicId,
+                  Title = a.Title,
+                  Description =a.Description,
+                  Name = a.User.UserProfile.Name,
+                  Surname = a.User.UserProfile.Surname,
+                  Username = a.User.Username,
+                  Published = a.Published,
+                  Exhibition = a.Exhibition,
+                  IsBoosted = a.IsBoosted,
+                  BoostedAt = a.BoostedAt,
+                  PrimaryFile = new FileDTO
+                  {
+                      Name = a.PrimaryFile.Name,
+                      Width = a.PrimaryFile.Width,
+                      Height = a.PrimaryFile.Height
+                  },
+                  SecondaryFile = a.SecondaryFile != null ? new FileDTO
+                  {
+                      Name = a.SecondaryFile.Name,
+                      Width = a.SecondaryFile.Width,
+                      Height = a.SecondaryFile.Height
+                  } : null,
+                  TertiaryFile = a.TertiaryFile != null ? new FileDTO
+                  {
+                      Name = a.TertiaryFile.Name,
+                      Width = a.TertiaryFile.Width,
+                      Height = a.TertiaryFile.Height
+                  } : null 
+              })
+              .ToList();
+            
+        }
         
     }
 }
