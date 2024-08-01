@@ -40,7 +40,7 @@ namespace Artportable.API.Controllers
     public ActionResult<string> PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
     {
 
-      if(email == "jb7660575@gmail.com" || "rmbl.fish@gmail.com") {
+      if(email == "jb7660575@gmail.com" || email == "rmbl.fish@gmail.com") {
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
       try{
