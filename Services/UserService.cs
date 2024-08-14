@@ -40,17 +40,21 @@ namespace Artportable.API.Services
 
 
     public UserDTO Get(string username)
-    {
-      var user = _context.Users
+{
+    var user = _context.Users
         .Where(u => u.Username == username)
         .Join(_context.UserProfiles,
-          user => user.Id,
-          profile => profile.UserId,
-          (user, profile) => new { User = user, Profile = profile })
+            user => user.Id,
+            profile => profile.UserId,
+            (user, profile) => new { User = user, Profile = profile })
+        .Join(_context.Subscriptions,
+            userProfile => userProfile.User.Id,
+            subscription => subscription.User.Id,
+            (userProfile, subscription) => new { userProfile.User, userProfile.Profile, Subscription = subscription })
         .SingleOrDefault();
 
-      return user != null ? new UserDTO()
-      {
+    return user != null ? new UserDTO()
+    {
         Username = user.User.Username,
         Name = user.Profile.Name,
         Surname = user.Profile.Surname,
@@ -59,11 +63,11 @@ namespace Artportable.API.Services
         Location = user.Profile.Location,
         Created = user.User.Created,
         MonthlyUser = user.User.MonthlyUser,
+        ProductId = user.Subscription.ProductId // Include ProductId here
 
-        
-      } :
-      null;
-    }
+    } : null;
+}
+
 
     public List<UserDTO> GetAllArtists()
     {
