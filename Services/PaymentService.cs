@@ -121,9 +121,9 @@ namespace Artportable.API.Services
 
         var trialEligiblePriceIds = new HashSet<string>
         {   
-          "price_1PnIsjJgjKIYr4gqzgnegIMs",
-          "price_1PnIsMJgjKIYr4gqC7K1V9V4",
-          "price_1PnIrdJgjKIYr4gqrQ15WbXv",
+          "price_1Pqs8XJgjKIYr4gqRO9hemF9",
+          "price_1Pqs86JgjKIYr4gqgKGyrhXU",
+          "price_1PqsB5JgjKIYr4gqlA709RzH",
           "price_1PnIr9JgjKIYr4gqE1Ym2xvz"
         };
 
