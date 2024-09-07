@@ -1,8 +1,10 @@
 using System;
+using System.Threading.Tasks;
 using Artportable.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Artportable.API.Controllers
 {
@@ -37,21 +39,67 @@ namespace Artportable.API.Controllers
 
     [AllowAnonymous]
     [HttpGet("purchaserequest")]
-    public ActionResult<string> PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
+    public async Task<ActionResult<string>> PurchaseRequest(
+        string email, 
+        string message, 
+        string artworkUrl, 
+        string artworkName, 
+        string artistId, 
+        string artworkImageUrl, 
+        string recaptchaToken) 
     {
+        // Block certain emails
+        if (email == "jb7660575@gmail.com" || 
+            email == "rmbl.fish@gmail.com" || 
+            email == "davidewong33@gmail.com" || 
+            email == "bijon651@gmail.com" || 
+            email == "rmbl.fish@gmail.com" || 
+            email == "brianarmstrongbitcoin01@gmail.com")
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
 
-      if(email == "jb7660575@gmail.com" || email == "rmbl.fish@gmail.com" || email == "davidewong33@gmail.com" || email == "bijon651@gmail.com" || email == "rmbl.fish@gmail.com" || email == "brianarmstrongbitcoin01@gmail.com" ) {
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      } 
-      try{
-        _messageService.PurchaseRequest(email,message,artworkUrl,artworkName,artistId,artworkImageUrl);
+        // Validate reCAPTCHA
+        var isRecaptchaValid = await ValidateRecaptchaAsync(recaptchaToken);
+        if (!isRecaptchaValid)
+        {
+            return BadRequest("Invalid reCAPTCHA.");
+        }
 
-        return Ok();
-      }
-      catch (Exception e){
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
+        try
+        {
+            _messageService.PurchaseRequest(email, message, artworkUrl, artworkName, artistId, artworkImageUrl);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
     }
+
+      // Validate reCAPTCHA token
+      private async Task<bool> ValidateRecaptchaAsync(string recaptchaToken)
+      {
+          var secretKey = "6LcJCDkqAAAAAKrq0Lcl8AbzwKLuTGekuPUa8hbL"; 
+
+          var httpClient = new System.Net.Http.HttpClient();
+          var response = await httpClient.PostAsync(
+              $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={recaptchaToken}",
+              null);
+
+          if (!response.IsSuccessStatusCode) return false;
+
+          var resultContent = await response.Content.ReadAsStringAsync();
+          var recaptchaResult = JsonConvert.DeserializeObject<RecaptchaResponse>(resultContent);
+
+          return recaptchaResult.Success;
+      }
+
+      private class RecaptchaResponse
+      {
+          [JsonProperty("success")]
+          public bool Success { get; set; }
+      }
   }
 }
