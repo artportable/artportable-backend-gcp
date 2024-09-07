@@ -40,9 +40,9 @@ namespace Artportable.API.Controllers
     public ActionResult<string> PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl)
     {
 
-      if(email == "jb7660575@gmail.com" || email == "rmbl.fish@gmail.com") {
+      if(email == "jb7660575@gmail.com" || email == "rmbl.fish@gmail.com" || email == "davidewong33@gmail.com" || email == "bijon651@gmail.com" || email == "rmbl.fish@gmail.com" || email == "brianarmstrongbitcoin01@gmail.com" ) {
         return StatusCode(StatusCodes.Status500InternalServerError);
-      }
+      } 
       try{
         _messageService.PurchaseRequest(email,message,artworkUrl,artworkName,artistId,artworkImageUrl);
 
