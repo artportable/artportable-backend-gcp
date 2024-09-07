@@ -81,7 +81,7 @@ namespace Artportable.API.Controllers
       // Validate reCAPTCHA token
       private async Task<bool> ValidateRecaptchaAsync(string recaptchaToken)
       {
-          var secretKey = "6LcJCDkqAAAAAKrq0Lcl8AbzwKLuTGekuPUa8hbL"; 
+          var secretKey = "6Le5MzkqAAAAAMgt9dgt_jxEsqSGqQf8zityTj5B"; 
 
           var httpClient = new System.Net.Http.HttpClient();
           var response = await httpClient.PostAsync(
