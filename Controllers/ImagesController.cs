@@ -52,7 +52,7 @@ namespace Artportable.API.Controllers
             {
                 
                 var imageEncoder = new JpegEncoder();
-                imageEncoder.Quality = 40;
+                imageEncoder.Quality = 100;
                 var compressedStream = new MemoryStream();
                 image.Save(compressedStream, imageEncoder);
                 compressedStream.Seek(0, SeekOrigin.Begin);
