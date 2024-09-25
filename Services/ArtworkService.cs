@@ -29,10 +29,6 @@ namespace Artportable.API.Services
       var ownerProductId = _context.Users
         .Include(u => u.Subscription)
         .SingleOrDefault(u => u.Username == owner)?.Subscription?.ProductId;
-      if (ownerProductId == (int)ProductEnum.Bas)
-      {
-          return new List<ArtworkDTO>();
-      }
       var artworksQuery = _context.Artworks
         .Where(a => owner != null ? a.User.Username == owner : true);
       var orderedArtworks = artworksQuery
