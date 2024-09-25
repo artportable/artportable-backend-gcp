@@ -181,7 +181,7 @@ namespace Artportable.API.Services
 
         Artworks = user.Subscription.ProductId != (int)ProductEnum.Bas ?
           _context.Artworks.Count(a => a.UserId == user.Id) :
-          0
+          _context.Artworks.Count(a => a.UserId == user.Id)
       };
     }
 
