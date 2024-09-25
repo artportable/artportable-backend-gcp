@@ -128,7 +128,9 @@ namespace Artportable.API.Services
           "price_1Q0ipPJgjKIYr4gqvOQR9koQ",
           "price_1Q0iqDJgjKIYr4gqr0dcdDLR",
           "price_1Q0iqnJgjKIYr4gqBz0KRAEs",
-          "price_1Q0irNJgjKIYr4gqCKmLaHus"
+          "price_1Q0irNJgjKIYr4gqCKmLaHus",
+          "price_1Q2vPBJgjKIYr4gqhi1nSh1s",
+          "price_1Q2vOsJgjKIYr4gqmJ4L9cxi"
 
         };
 
