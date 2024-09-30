@@ -57,23 +57,24 @@ namespace Artportable.API.Services
                 return productStatistics;
             }
 
-            public List<UserDTO> GetUsersByProduct(int productId)
+                public List<UserDTO> GetUsersByProduct(int productId)
             {
+                // Get the date one month ago from today
+                var oneMonthAgo = DateTime.Now.AddMonths(-2);
+
                 var usersWithProduct = _context.Users
                     .Join(_context.Subscriptions, u => u.SubscriptionId, s => s.Id, (u, s) => new { u, s })
                     .GroupJoin(_context.Products, us => us.s.ProductId, p => p.Id, (us, products) => new { us, products })
                     .SelectMany(x => x.products.DefaultIfEmpty(), (x, p) => new { x.us, p })
-                    .Where(x => x.p != null && x.p.Id == productId)
+                    .Where(x => x.p != null && x.p.Id == productId && x.us.u.Created >= oneMonthAgo)
                     .Select(x => new UserDTO
                     {
                         Username = x.us.u.Username,
                         Email = x.us.u.Email,
                         Created = x.us.u.Created,
                         Name = x.us.u.UserProfile.Name,
-                
                     })
                     .ToList();
-
 
                 return usersWithProduct;
             }
