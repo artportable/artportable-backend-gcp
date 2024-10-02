@@ -1647,11 +1647,9 @@ namespace Artportable.API.Services
 
              public List<ArtworkDTO> GetAafArtworks(int page, int pageSize, int seed, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
-
-        
             return _context.Artworks
               .Where(a => a.isAaf == true)
-              .OrderByDescending(a => a.isAaf) 
+ 
               .Skip(pageSize * (page - 1))
               .Take(pageSize)
               .Select(a =>
