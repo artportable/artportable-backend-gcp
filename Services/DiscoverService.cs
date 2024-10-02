@@ -1649,7 +1649,7 @@ namespace Artportable.API.Services
         {
             return _context.Artworks
               .Where(a => a.isAaf == true)
- 
+              .OrderByDescending(a => a.Published) 
               .Skip(pageSize * (page - 1))
               .Take(pageSize)
               .Select(a =>
