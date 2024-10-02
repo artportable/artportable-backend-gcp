@@ -53,5 +53,6 @@ namespace Artportable.API.Entities.Models
     public bool IsBoosted { get; set; }    
     public DateTime? BoostedAt { get; set; } 
     public DateTime? BoostedEndDate { get; set; }
+    public bool? isAaf {get; set;}
   }
 }
