@@ -78,6 +78,38 @@ namespace Artportable.API.Controllers
         }
     }
 
+
+
+    [AllowAnonymous]
+    [HttpGet("emailmessgerequest")]
+    public async Task<ActionResult<string>> EmailMessageRequest(
+        string email, 
+        string message, 
+        string username) 
+    {
+        // Block certain emails
+        if (email == "jb7660575@gmail.com" || 
+            email == "rmbl.fish@gmail.com" || 
+            email == "davidewong33@gmail.com" || 
+            email == "bijon651@gmail.com" || 
+            email == "rmbl.fish@gmail.com" || 
+            email == "brianarmstrongbitcoin01@gmail.com")
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        try
+        {
+            _messageService.EmailMessageRequest(email, message,  username);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Something went wrong, {0}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
+
       // Validate reCAPTCHA token
       private async Task<bool> ValidateRecaptchaAsync(string recaptchaToken)
       {

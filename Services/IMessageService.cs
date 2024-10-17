@@ -7,6 +7,7 @@ namespace Artportable.API.Services
   {
     TokenDTO ConnectUser(string username);
     void PurchaseRequest(string email, string message, string artworkUrl, string artworkName, string artistId, string artworkImageUrl);
+    void EmailMessageRequest(string email, string message,  string username);
     void SyncUser(string username, string role);
     void SyncChannel(string username, string role);
   }

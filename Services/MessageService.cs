@@ -141,5 +141,49 @@ namespace Services
     {
       throw new NotImplementedException();
     }
+
+
+    public void EmailMessageRequest(string email, string message,  string username)
+    { 
+      try
+      {
+        //get artist from DB
+        var user = _context.Users.First(u => u.Username == username);
+
+        //send email
+        var mandrillMessage = new MandrillMessage();
+        mandrillMessage.FromEmail = _mandrillFromEmail;
+        mandrillMessage.AddTo(user.Email);
+        mandrillMessage.ReplyTo = email;
+        mandrillMessage.AddGlobalMergeVars("ap_message", message);
+        mandrillMessage.AddGlobalMergeVars("ap_reply_to",email);
+        
+        if(user.Language == "sv"){
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"message_request_swedish");
+        }else{
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessage,"message_request_swedish");
+        }
+
+        var mandrillMessageConf = new MandrillMessage();
+        mandrillMessageConf.AddTo(email);
+
+
+        if(user.Language == "sv"){
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"confirmation-swedish");
+        }else{
+          var result = _mandrillApi.Messages.SendTemplateAsync(mandrillMessageConf,"confirmation-english");
+        }
+
+      }
+      catch (Exception e)
+      {
+        //Add logging
+        throw new Exception($"Unknown error when trying to send artwork purchase request message with message: {message}, username: {username}, to email: {email}.", e);
+      }
+    }
+
+
+
+
   }
 }
