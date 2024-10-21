@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Authorization;
 using Artportable.API.Enums;
 using Stripe;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Linq;
+
 
 namespace Artportable.API.Controllers
 {
@@ -159,6 +162,37 @@ namespace Artportable.API.Controllers
                     return StatusCode(StatusCodes.Status500InternalServerError);
                 }
             }
+
+
+        /// <summary>
+        /// Gets all users with active Stripe subscriptions
+        /// </summary>
+        [HttpGet("UsersWithActiveStripeSubscription")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetUsersWithActiveStripeSubscription()
+        {
+            try
+            {
+                // Fetch users with active subscriptions from the service
+                var usersWithActiveSubscription = await _adminService.GetUsersWithActiveStripeSubscriptionAsync();
+
+                if (usersWithActiveSubscription != null && usersWithActiveSubscription.Any())
+                {
+                    return Ok(usersWithActiveSubscription);
+                }
+                else
+                {
+                    return NotFound("No users with active Stripe subscriptions found.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error fetching users with active Stripe subscriptions: {e}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching the users.");
+            }
+        }
+
 
     }
 

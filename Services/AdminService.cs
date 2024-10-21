@@ -139,6 +139,60 @@ namespace Artportable.API.Services
             }
         }
 
+        public async Task<List<UserWithSubscriptionDTO>> GetUsersWithActiveStripeSubscriptionAsync()
+        {
+            try
+            {
+                // Set your Stripe API key
+                StripeConfiguration.ApiKey = "sk_live_YOUvIGb9PvSi7aDeX5OYqyUN00YcBAGqKx";
+                
+                // Get all users that have a customerId related to Stripe
+                var usersWithCustomerId = _context.Users
+                    .Where(u => !string.IsNullOrEmpty(u.Subscription.CustomerId))
+                    .ToList();
+
+                var activeUsers = new List<UserWithSubscriptionDTO>();
+                var subscriptionService = new SubscriptionService();
+
+                // Iterate through each user and check if they have an active subscription on Stripe
+                foreach (var user in usersWithCustomerId)
+                {
+                    // Fetch subscriptions for the customer from Stripe
+                    var subscriptions = subscriptionService.List(new SubscriptionListOptions
+                    {
+                        Customer = user.Subscription.CustomerId,
+                        Status = "active",  // Only get active subscriptions
+                    });
+
+                    // If the user has any active subscription, add them to the activeUsers list
+                    if (subscriptions != null && subscriptions.Data.Any())
+                    {
+                        activeUsers.Add(new UserWithSubscriptionDTO
+                        {
+                            User_Id = user.Id,
+                            Subscription_Id = user.SubscriptionId,
+                            Product_Id = user.Subscription.ProductId,
+                            CustomerId = user.Subscription.CustomerId,
+                            ExpirationDate = user.Subscription.ExpirationDate,
+                            Username = user.Username,
+                            Email = user.Email,
+                            Created = user.Created,
+                            Name = user.UserProfile.Name,
+                            Surname = user.UserProfile.Surname
+                        });
+                    }
+                }
+
+                return activeUsers;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error fetching active subscriptions: {e}");
+                return null;
+            }
+        }
+
+
 
 
 

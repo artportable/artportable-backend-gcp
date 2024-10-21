@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Artportable.API.DTOs;
 using Artportable.API.Enums;
+using System.Threading.Tasks;
 
 namespace Artportable.API.Services
 {
@@ -16,5 +17,6 @@ namespace Artportable.API.Services
            public List<UserWithSubscriptionDTO> GetUsersByProductSubscription(int productId);
 
           public string GetCustomerJson(string customerId);
+          Task<List<UserWithSubscriptionDTO>> GetUsersWithActiveStripeSubscriptionAsync();
     }
 }
