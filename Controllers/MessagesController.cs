@@ -85,7 +85,8 @@ namespace Artportable.API.Controllers
     public async Task<ActionResult<string>> EmailMessageRequest(
         string email, 
         string message, 
-        string username) 
+        string username,
+        string recaptchaToken) 
     {
         // Block certain emails
         if (email == "jb7660575@gmail.com" || 
@@ -97,6 +98,12 @@ namespace Artportable.API.Controllers
             email == "brianarmstrongbitcoin01@gmail.com")
         {
             return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+          // Validate reCAPTCHA
+        var isRecaptchaValid = await ValidateRecaptchaAsync(recaptchaToken);
+        if (!isRecaptchaValid)
+        {
+            return BadRequest("Invalid reCAPTCHA.");
         }
 
         try
