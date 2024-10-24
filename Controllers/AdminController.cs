@@ -165,35 +165,41 @@ namespace Artportable.API.Controllers
 
 
         /// <summary>
-        /// Gets all users with active Stripe subscriptions
+        /// Gets a user by email and checks if they have an active subscription on Stripe.
         /// </summary>
-        [HttpGet("UsersWithActiveStripeSubscription")]
+        /// <param name="email">The email of the user to check for an active Stripe subscription.</param>
+        /// <returns>Returns user details with subscription info if an active subscription exists, otherwise returns 404.</returns>
+        [HttpGet("UserWithActiveStripeSubscription")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetUsersWithActiveStripeSubscription()
+        public async Task<IActionResult> GetUserWithActiveStripeSubscription(string email)
         {
             try
             {
-                // Fetch users with active subscriptions from the service
-                var usersWithActiveSubscription = await _adminService.GetUsersWithActiveStripeSubscriptionAsync();
-
-                if (usersWithActiveSubscription != null && usersWithActiveSubscription.Any())
+                if (string.IsNullOrWhiteSpace(email))
                 {
-                    return Ok(usersWithActiveSubscription);
+                    return BadRequest("Email is required.");
+                }
+
+                // Use _adminService to check if the user has an active Stripe subscription
+                var userWithSubscription = await _adminService.GetUserWithActiveOrTrialingStripeSubscriptionByEmailAsync(email);
+
+                if (userWithSubscription != null)
+                {
+                    return Ok(userWithSubscription);
                 }
                 else
                 {
-                    return NotFound("No users with active Stripe subscriptions found.");
+                    return NotFound("No active subscription found for the given email.");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error fetching users with active Stripe subscriptions: {e}");
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching the users.");
+                Console.WriteLine($"Error fetching active subscription by email: {e}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching the user with active subscription.");
             }
         }
-
-
     }
 
 }

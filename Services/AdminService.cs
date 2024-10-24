@@ -10,6 +10,8 @@ using Stripe;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+
 
 
 namespace Artportable.API.Services
@@ -139,66 +141,96 @@ namespace Artportable.API.Services
             }
         }
 
-        public async Task<List<UserWithSubscriptionDTO>> GetUsersWithActiveStripeSubscriptionAsync()
+                    public async Task<UserWithSubscriptionDTO> GetUserWithActiveOrTrialingStripeSubscriptionByEmailAsync(string email)
+{
+    try
+    {
+        // Fetch the user and their subscription details by email
+        var user = await _context.Users
+            .Include(u => u.Subscription) // Load the subscription details
+            .Include(u => u.UserProfile)  // Load the user profile for Name and Surname
+            .FirstOrDefaultAsync(u => u.Email == email);
+
+        if (user == null)
         {
-            try
-            {
-                // Set your Stripe API key
-                StripeConfiguration.ApiKey = "sk_live_YOUvIGb9PvSi7aDeX5OYqyUN00YcBAGqKx";
-                
-                // Get all users that have a customerId related to Stripe
-                var usersWithCustomerId = _context.Users
-                    .Where(u => !string.IsNullOrEmpty(u.Subscription.CustomerId))
-                    .ToList();
-
-                var activeUsers = new List<UserWithSubscriptionDTO>();
-                var subscriptionService = new SubscriptionService();
-
-                // Iterate through each user and check if they have an active subscription on Stripe
-                foreach (var user in usersWithCustomerId)
-                {
-                    // Fetch subscriptions for the customer from Stripe
-                    var subscriptions = subscriptionService.List(new SubscriptionListOptions
-                    {
-                        Customer = user.Subscription.CustomerId,
-                        Status = "active",  // Only get active subscriptions
-                    });
-
-                    // If the user has any active subscription, add them to the activeUsers list
-                    if (subscriptions != null && subscriptions.Data.Any())
-                    {
-                        activeUsers.Add(new UserWithSubscriptionDTO
-                        {
-                            User_Id = user.Id,
-                            Subscription_Id = user.SubscriptionId,
-                            Product_Id = user.Subscription.ProductId,
-                            CustomerId = user.Subscription.CustomerId,
-                            ExpirationDate = user.Subscription.ExpirationDate,
-                            Username = user.Username,
-                            Email = user.Email,
-                            Created = user.Created,
-                            Name = user.UserProfile.Name,
-                            Surname = user.UserProfile.Surname
-                        });
-                    }
-                }
-
-                return activeUsers;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Error fetching active subscriptions: {e}");
-                return null;
-            }
+            Console.WriteLine("User not found in the database");
+            return null;
         }
 
+        if (user.Subscription == null)
+        {
+            Console.WriteLine("User does not have a subscription");
+            return null;
+        }
 
+        var stripeCustomerId = user.Subscription.CustomerId;
 
+        if (string.IsNullOrEmpty(stripeCustomerId))
+        {
+            Console.WriteLine("CustomerId is missing for this subscription");
+            return null;
+        }
 
+        var subscriptionService = new SubscriptionService();
 
+        // Fetch active and trialing subscriptions for the customer from Stripe
+        var subscriptions = subscriptionService.List(new SubscriptionListOptions
+        {
+            Customer = stripeCustomerId,
+            Status = "all",  // Fetch all statuses to filter locally
+            Limit = 1        // Limit to 1 subscription
+        });
 
+        if (subscriptions == null || !subscriptions.Data.Any())
+        {
+            Console.WriteLine("No subscriptions found for Stripe customer: " + stripeCustomerId);
+            return null;
+        }
 
-        
+        // Find the first subscription that is either "active" or "trialing"
+        var activeOrTrialingSubscription = subscriptions.Data
+            .FirstOrDefault(sub => sub.Status == "active" || sub.Status == "trialing");
+
+        if (activeOrTrialingSubscription == null)
+        {
+            Console.WriteLine("No active or trialing subscriptions found for Stripe customer: " + stripeCustomerId);
+            return null;
+        }
+
+        // Debugging: Check if Items contain data
+        Console.WriteLine($"Subscription items count: {activeOrTrialingSubscription.Items.Data.Count}");
+
+        // Extract product plan from subscription (use Product ID or Name)
+        var plan = activeOrTrialingSubscription.Items.Data.FirstOrDefault()?.Plan?.Id;
+
+        foreach (var item in activeOrTrialingSubscription.Items.Data)
+        {
+            Console.WriteLine($"Item Plan ID: {item.Plan?.Id}");
+            Console.WriteLine($"Item Product ID: {item.Plan?.Product?.Id}");
+       
+        }
+
+        // Return user details with subscription info, including ProductPlan
+        return new UserWithSubscriptionDTO
+        {
+            User_Id = user.Id,
+            Subscription_Id = user.SubscriptionId,
+            Product_Id = user.Subscription.ProductId,
+            CustomerId = stripeCustomerId,
+            ExpirationDate = user.Subscription.ExpirationDate,
+            Username = user.Username,
+            Email = user.Email,
+            Created = user.Created,
+            SubscriptionStatus = activeOrTrialingSubscription.Status,
+            ProductPlan = plan  // Assign the plan's product ID or name
+        };
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Error fetching active or trialing subscriptions by email: {e}");
+        return null;
+    }
+}
 
     }
 }

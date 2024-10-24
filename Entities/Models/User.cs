@@ -21,25 +21,19 @@ namespace Artportable.API.Entities.Models
     [Required]
     [MaxLength(50)]
     public string Username { get; set; }
-
     [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid SocialId { get; set; }
-    
     public bool MonthlyUser { get; set; }
-
     [Required]
     [MaxLength(254)]
     public string Email { get; set; }
-
     [Required]
     public DateTime Created { get; set; }
-
     [Required]
     [MaxLength(2)]
     [Comment("According to the ISO 639-1 standard")]
     public string Language { get; set; }
-
     public UserProfile UserProfile {get; set; }
     public Subscription Subscription { get; set; }
     public File File { get; set; }
@@ -54,6 +48,5 @@ namespace Artportable.API.Entities.Models
     public DateTime? EmailInformedFollowersDate { get; set; }
     public bool EmailDeclinedArtworkUpload{ get; set; }
     public bool EmailAcceptedUppload {get; set;}
-
   }
 }

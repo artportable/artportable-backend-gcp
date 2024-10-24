@@ -20,6 +20,8 @@ namespace Artportable.API.DTOs
      public DateTime? ExpirationDate { get; set; }
     public int User_Id{get; set;}
     public SubscriptionDTO Subscription { get; set; }
+    public string SubscriptionStatus { get; set; } 
+    public string ProductPlan {get; set;}
 }
 
 public class SubscriptionDTO

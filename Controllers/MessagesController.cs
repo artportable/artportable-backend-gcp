@@ -93,6 +93,7 @@ namespace Artportable.API.Controllers
             email == "davidewong33@gmail.com" || 
             email == "bijon651@gmail.com" || 
             email == "rmbl.fish@gmail.com" || 
+            email == "Clairewilliams3214@gmail.com" ||
             email == "brianarmstrongbitcoin01@gmail.com")
         {
             return StatusCode(StatusCodes.Status500InternalServerError);

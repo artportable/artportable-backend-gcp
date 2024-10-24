@@ -17,6 +17,7 @@ namespace Artportable.API.Services
            public List<UserWithSubscriptionDTO> GetUsersByProductSubscription(int productId);
 
           public string GetCustomerJson(string customerId);
-          Task<List<UserWithSubscriptionDTO>> GetUsersWithActiveStripeSubscriptionAsync();
+          Task<UserWithSubscriptionDTO> GetUserWithActiveOrTrialingStripeSubscriptionByEmailAsync(string email);
+          
     }
 }
