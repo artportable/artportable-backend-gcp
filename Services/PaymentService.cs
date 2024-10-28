@@ -121,23 +121,7 @@ namespace Artportable.API.Services
 
         var trialEligiblePriceIds = new HashSet<string>
          {   
-          "price_1PxtLaJgjKIYr4gqGPk9Xbhc",
-          "price_1PxtMDJgjKIYr4gqfU9va899",
-          "price_1PxtO3JgjKIYr4gqboWsxW2Y",
-          "price_1PxtOQJgjKIYr4gqM84AfyTh",
-          "price_1Q0ipPJgjKIYr4gqvOQR9koQ",
-          "price_1Q0iqDJgjKIYr4gqr0dcdDLR",
-          "price_1Q0iqnJgjKIYr4gqBz0KRAEs",
-          "price_1Q0irNJgjKIYr4gqCKmLaHus",
-          "price_1Q2vPBJgjKIYr4gqhi1nSh1s",
-          "price_1Q2vOsJgjKIYr4gqmJ4L9cxi",
-          "price_1Q3XkZJgjKIYr4gqXRdRy6XK",
-          "price_1Q3XoUJgjKIYr4gqDwbtC7vs",
-          "price_1Q6DPJJgjKIYr4gqEtUqb8Al",
-          "price_1Q6DPlJgjKIYr4gq4lHnc914",
-          "price_1Q6DKSJgjKIYr4gqEE0eCnRt",
-          "price_1Q6DL7JgjKIYr4gq6scD55vr",
-          "price_1Q9poSJgjKIYr4gqbLr0JQPd",
+
           "price_1Q9poEJgjKIYr4gqQZoUkGyZ",
           "price_1Q9pplJgjKIYr4gqHW8qCf8Y",
           "price_1Q9pq7JgjKIYr4gqsF3xLwW3",
@@ -148,19 +132,17 @@ namespace Artportable.API.Services
           "price_1QEFN5JgjKIYr4gq0LWUnQ8W",
           "price_1QEFNaJgjKIYr4gqHu8ZAZFe",
           "price_1QEqE8JgjKIYr4gqgnexstuD",
-          "price_1QEqDpJgjKIYr4gqksLKySWM"
-
+          "price_1QEqDpJgjKIYr4gqksLKySWM",
+          "price_1QEsfTA3UXZjjLWxaDjmwLyH",
+          "price_1PmqWwA3UXZjjLWxqfzPoF1b"
         };
-
         if (trialEligiblePriceIds.Contains(priceId))
         {
             DateTime trialEndDate = DateTime.UtcNow.AddDays(10);
             subscriptionOptions.TrialEnd = trialEndDate;
         }
-
         subscriptionOptions.AddExpand("latest_invoice.payment_intent");
         var subscriptionService = new SubscriptionService();
-
         Subscription subscription = subscriptionService.Create(subscriptionOptions);
         return subscription;
     }
@@ -263,9 +245,7 @@ namespace Artportable.API.Services
     public void UpdateSubscription(string subscriptionId, string priceId)
     {
       var service = new SubscriptionService();
-
       var currentSubscription = service.Get(subscriptionId);
-
       var items = new List<SubscriptionItemOptions> {
         new SubscriptionItemOptions {
           Id = currentSubscription.Items.Data[0].Id,
