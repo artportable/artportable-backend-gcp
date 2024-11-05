@@ -63,7 +63,8 @@ namespace Artportable.API.Services
         Location = user.Profile.Location,
         Created = user.User.Created,
         MonthlyUser = user.User.MonthlyUser,
-        ProductId = user.Subscription.ProductId // Include ProductId here
+        ProductId = user.Subscription.ProductId,
+        PhoneNumber = user.User.PhoneNumber,
 
     } : null;
 }
@@ -482,6 +483,7 @@ namespace Artportable.API.Services
         Email = user.Email,
         Created = DateTime.Now,
         Language = "en",
+        PhoneNumber = user.PhoneNumber
 
       };
 
