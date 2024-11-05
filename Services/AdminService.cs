@@ -75,6 +75,7 @@ namespace Artportable.API.Services
                         Email = x.us.u.Email,
                         Created = x.us.u.Created,
                         Name = x.us.u.UserProfile.Name,
+                        PhoneNumber = x.us.u.PhoneNumber
                     })
                     .OrderByDescending(x => x.Created) 
                     .ToList();
