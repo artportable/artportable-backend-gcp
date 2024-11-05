@@ -27,7 +27,9 @@ namespace Artportable.API.DTOs
 
     public bool MonthlyUser { get; set; }
 
-     public int ProductId { get; set; }
+    public int ProductId { get; set; }
+
+    public string PhoneNumber {get;set;}
 
     }
 }
