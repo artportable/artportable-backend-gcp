@@ -104,7 +104,8 @@ namespace Artportable.API.Services
                     Email = u.Email,
                     Created = u.Created,
                     Name = u.UserProfile.Name,
-                    Surname = u.UserProfile.Surname
+                    Surname = u.UserProfile.Surname,
+                    PhoneNumber = u.PhoneNumber
                 })
                 .ToList();
 
