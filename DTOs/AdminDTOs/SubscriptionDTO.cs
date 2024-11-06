@@ -8,7 +8,7 @@ namespace Artportable.API.DTOs
     public string Name { get; set; }
     public string Surname { get; set; }
     public string Email { get; set; }
-
+    public string PhoneNumber {get; set;}
 
     public DateTime Created { get; set; }
     public int Subscription_Id {get; set;}
