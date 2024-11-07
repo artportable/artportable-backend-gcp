@@ -31,5 +31,7 @@ namespace Artportable.API.DTOs
 
     public string PhoneNumber {get;set;}
 
+    public int Artworks { get; set; }
+
     }
 }
