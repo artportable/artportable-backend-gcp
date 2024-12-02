@@ -655,6 +655,7 @@ namespace Artportable.API.Services
         public List<ArtworkDTO> GetLatestArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio)
         {
             return _context.Artworks
+              .Where(a => !a.Tags.Any(t => t.Title == "AI" || t.Title == "Digital"))
               .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
               .Where(a => a.User.Subscription.ProductId >= (int)ProductEnum.Portfolio)
               .OrderByDescending(a => a.Published)
