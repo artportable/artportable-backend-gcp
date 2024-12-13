@@ -147,7 +147,10 @@ namespace Artportable.API.Services
           "price_1QPgP4JgjKIYr4gqGoNdZC3H",
           "price_1QPgdVJgjKIYr4gqT7e0oMam",
           "price_1QPgeGJgjKIYr4gqurPm6Zdh",
-          "price_1QU35gJgjKIYr4gq7XkcRAqv"
+          "price_1QU35gJgjKIYr4gq7XkcRAqv",
+          "price_1QVY3NJgjKIYr4gqVKmm2jEV",
+          "price_1QVY3cJgjKIYr4gqygQEHZwt",
+          "price_1QVY52JgjKIYr4gqssTvuEzT"
         };
         if (trialEligiblePriceIds.Contains(priceId))
         {
