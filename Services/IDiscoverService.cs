@@ -34,5 +34,16 @@ namespace Artportable.API.Services
     List<StoryDTO> GetBoostedStories(int page, int pageSize, int seed, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetAafArtworks(int page, int pageSize, int seed, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
     List<ArtworkDTO> GetDigitalArtworks(int page, int pageSize, List<string> tags, string myUsername, ProductEnum minimumProduct = ProductEnum.Portfolio);
+    List<ArtworkDTO> GetFilteredArtworks(
+                int page, 
+                int pageSize, 
+                List<string> tags, 
+                string myUsername, 
+                DateTime likesSince, 
+                string orientation, 
+                string sizeFilter = null, 
+                string priceFilter = null, 
+                string stateFilter = null, 
+                ProductEnum minimumProduct = ProductEnum.Portfolio);
   }
 }

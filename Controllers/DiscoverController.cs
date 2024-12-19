@@ -1429,6 +1429,61 @@ namespace Artportable.API.Controllers
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+
+        /// <summary> ALL
+    /// Get a collection of art ordered by most likes since date
+    /// </summary>
+    [HttpGet("artworks/filter", Name = "[controller]_[action]")]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ArtworkDTO>))]
+    public ActionResult<List<ArtworkDTO>> GetFilteredArtworks(
+      [FromQuery(Name = "tag")] List<string> tags,
+      int page = 1,
+      int pageSize = 10,
+      string myUsername = null,
+      int likesSince = -14,
+      string q = null,
+      string orientation = null,
+      string sizeFilter = null,
+      string priceFilter = null,
+      string stateFilter = null
+    )
+    {
+      if (page < 1 || pageSize < 1)
+      {
+        return BadRequest();
+      }
+
+      if (pageSize > 1000)
+      {
+        pageSize = 1000;
+      }
+
+      try
+      {
+        var artworks = new List<ArtworkDTO>();
+        if (string.IsNullOrWhiteSpace(q))
+        {
+          artworks = _discoverService.GetFilteredArtworks(page, pageSize, tags, myUsername, DateTime.Now.AddDays(likesSince), orientation, sizeFilter, priceFilter, stateFilter);
+        }
+        else
+        {
+          artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+        }
+
+        string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
+
+        var links = Url.ToPageLinks(ControllerContext.RouteData.ToRouteName(), new { tag = tags, myUsername = myUsername, q = urlEncodedQuery }, page, pageSize, artworks.Count);
+        Response.Headers.Add("Access-Control-Expose-Headers", "Link");
+        Response.Headers.Add("Link", string.Join(", ", links));
+
+        return Ok(artworks);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Something went wrong, {0}", e);
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
   }
   #endregion
 }

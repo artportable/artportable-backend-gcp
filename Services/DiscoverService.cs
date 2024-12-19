@@ -681,12 +681,15 @@ namespace Artportable.API.Services
                   Description = a.Description,
                   Published = a.Published,
                   Price = a.Price,
-                   Currency = a.Currency,
+                  Currency = a.Currency,
                   SoldOut = a.SoldOut,
                   MultipleSizes = a.MultipleSizes,
                   Width = a.Width,
                   Height = a.Height,
                   Depth = a.Depth,
+                 Country = a.User.UserProfile.Country,
+                  State = a.User.UserProfile.State,
+                  City = a.User.UserProfile.City,
                   PrimaryFile = new FileDTO
                   {
                       Name = a.PrimaryFile.Name,
@@ -1212,7 +1215,8 @@ namespace Artportable.API.Services
                       SocialId = a.User.SocialId,
                       Name = a.User.UserProfile.Name,
                       Surname = a.User.UserProfile.Surname,
-                      Location = a.User.UserProfile.Location
+                      Location = a.User.UserProfile.Location,          
+                      
                   },
                   Title = a.Title,
                   Name = a.User.UserProfile.Name,
@@ -1221,12 +1225,15 @@ namespace Artportable.API.Services
                   Description = a.Description,
                   Published = a.Published,
                   Price = a.Price,
-                   Currency = a.Currency,
+                  Currency = a.Currency,
                   SoldOut = a.SoldOut,
                   MultipleSizes = a.MultipleSizes,
                   Width = a.Width,
                   Height = a.Height,
                   Depth = a.Depth,
+                  Country = a.User.UserProfile.Country,
+                  State = a.User.UserProfile.State,
+                  City = a.User.UserProfile.City,
                   PrimaryFile = new FileDTO
                   {
                       Name = a.PrimaryFile.Name,
@@ -1810,6 +1817,153 @@ namespace Artportable.API.Services
               .ToList();
             
         }
+
+
+
+            public List<ArtworkDTO> GetFilteredArtworks(
+                int page, 
+                int pageSize, 
+                List<string> tags, 
+                string myUsername, 
+                DateTime likesSince, 
+                string orientation, 
+                string sizeFilter = null, 
+                string priceFilter = null, 
+                string stateFilter = null,  
+                ProductEnum minimumProduct = ProductEnum.Portfolio)
+            {
+                var query = _context.Artworks
+                    .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct);
+
+                // Filter by tags
+                if (tags != null && tags.Count != 0)
+                {
+                    foreach (var tag in tags)
+                    {
+                        query = query.Where(a => a.Tags.Any(t => t.Title == tag));
+                    }
+                }
+
+                // Filter by orientation
+                if (!string.IsNullOrWhiteSpace(orientation))
+                {
+                    if (orientation.Equals("Vertical", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = query.Where(a => a.Height > a.Width);
+                    }
+                    else if (orientation.Equals("Horizontal", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = query.Where(a => a.Width > a.Height);
+                    }
+                }
+
+                // Filter by size
+                if (!string.IsNullOrEmpty(sizeFilter))
+                {
+                    if (sizeFilter == "30")
+                    {
+                        query = query.Where(a => a.Height <= 30 && a.Width <= 30);
+                    }
+                    else if (sizeFilter == "60")
+                    {
+                        query = query.Where(a => a.Height <= 60 && a.Width <= 60);
+                    }
+                    else if (sizeFilter == "100")
+                    {
+                        query = query.Where(a => a.Height <= 100 && a.Width <= 100);
+                    }
+                    else if (sizeFilter == "101")
+                    {
+                        query = query.Where(a => a.Height > 100 || a.Width > 100);
+                    }
+                }
+
+                // Filter by price
+                if (!string.IsNullOrEmpty(priceFilter))
+                {
+                    decimal priceLimit;
+                    if (decimal.TryParse(priceFilter, out priceLimit))
+                    {
+                        if (priceLimit == 5001)
+                        {
+                            query = query.Where(a => a.Price > priceLimit && a.SoldOut != true && a.Price != 0);
+                        }
+                        else
+                        {
+                            query = query.Where(a => a.Price <= priceLimit && a.SoldOut != true && a.Price != 0);
+                        }
+                    }
+                }
+
+
+                if (!string.IsNullOrWhiteSpace(stateFilter))
+                {
+                    query = query.Where(a => a.User.UserProfile.State.Equals(stateFilter));
+                }
+
+                // Get the final list of artworks
+                var artworks = query
+                    .OrderByDescending(a => a.Likes
+                        .Where(l => l.Date > likesSince)
+                        .Count())
+                    .ThenByDescending(a => a.Likes.Count())
+                    .Skip(pageSize * (page - 1))
+                    .Take(pageSize)
+                    .Select(a => new ArtworkDTO
+                    {
+                        Id = a.PublicId,
+                        Owner = new OwnerDTO
+                        {
+                            Username = a.User.Username,
+                            ProfilePicture = a.User.File.Name,
+                            SocialId = a.User.SocialId,
+                            Name = a.User.UserProfile.Name,
+                            Surname = a.User.UserProfile.Surname,
+                            Location = a.User.UserProfile.Location
+                        },
+                        Title = a.Title,
+                        Name = a.User.UserProfile.Name,
+                        Surname = a.User.UserProfile.Surname,
+                        Username = a.User.Username,
+                        Description = a.Description,
+                        Published = a.Published,
+                        Price = a.Price,
+                        Currency = a.Currency,
+                        SoldOut = a.SoldOut,
+                        MultipleSizes = a.MultipleSizes,
+                        Width = a.Width,
+                        Height = a.Height,
+                        Depth = a.Depth,
+                        Country = a.User.UserProfile.Country,
+                        State = a.User.UserProfile.State,
+                        City = a.User.UserProfile.City,
+                        PrimaryFile = new FileDTO
+                        {
+                            Name = a.PrimaryFile.Name,
+                            Width = a.PrimaryFile.Width,
+                            Height = a.PrimaryFile.Height
+                        },
+                        SecondaryFile = a.SecondaryFile != null ? new FileDTO
+                        {
+                            Name = a.SecondaryFile.Name,
+                            Width = a.SecondaryFile.Width,
+                            Height = a.SecondaryFile.Height
+                        } : null,
+                        TertiaryFile = a.TertiaryFile != null ? new FileDTO
+                        {
+                            Name = a.TertiaryFile.Name,
+                            Width = a.TertiaryFile.Width,
+                            Height = a.TertiaryFile.Height
+                        } : null,
+                        Tags = (a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()),
+                        Likes = a.Likes.Count(),
+                        LikedByMe = !string.IsNullOrWhiteSpace(myUsername) ? a.Likes.Any(l => l.User.Username == myUsername) : false,
+                    })
+                    .ToList();
+
+                return artworks;
+            }
+
         
     }
 }

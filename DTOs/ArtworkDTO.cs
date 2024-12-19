@@ -38,6 +38,9 @@ namespace Artportable.API.DTOs
     public bool? IsBoosted {get; set; }
     public DateTime? BoostedAt { get; set; } 
     public bool? isAaf {get; set;}
+    public string? Country {get; set;}
+    public string? State {get; set; }
+    public string? City {get; set;} 
 
 
   }
