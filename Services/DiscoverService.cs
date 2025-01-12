@@ -2202,5 +2202,259 @@ namespace Artportable.API.Services
                 })
                 .ToList();
         }
+
+        private IQueryable<ArtworkDTO> ApplyTagFilter(
+            IQueryable<ArtworkDTO> query,
+            List<string> tags
+        )
+        {
+            if (tags != null && tags.Count != 0)
+            {
+                foreach (var tag in tags)
+                {
+                    query = query.Where(a => a.Tags.Any(t => t == tag));
+                }
+            }
+            return query;
+        }
+
+        private IQueryable<ArtworkDTO> ApplyOrientationFilter(
+            IQueryable<ArtworkDTO> query,
+            string orientation
+        )
+        {
+            if (!string.IsNullOrWhiteSpace(orientation))
+            {
+                if (orientation.Equals("Vertical", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = query.Where(a => a.Height > a.Width);
+                }
+                else if (orientation.Equals("Horizontal", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = query.Where(a => a.Width > a.Height);
+                }
+                else if (orientation.Equals("Square", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = query.Where(a => a.Height == a.Width);
+                }
+            }
+            return query;
+        }
+
+        private IQueryable<ArtworkDTO> ApplySizeFilter(
+            IQueryable<ArtworkDTO> query,
+            string sizeFilter
+        )
+        {
+            if (!string.IsNullOrEmpty(sizeFilter))
+            {
+                if (sizeFilter == "30")
+                {
+                    query = query.Where(a => a.Height <= 30 && a.Width <= 30);
+                }
+                else if (sizeFilter == "60")
+                {
+                    query = query.Where(a => a.Height <= 60 && a.Width <= 60);
+                }
+                else if (sizeFilter == "100")
+                {
+                    query = query.Where(a => a.Height <= 100 && a.Width <= 100);
+                }
+                else if (sizeFilter == "101")
+                {
+                    query = query.Where(a => a.Height > 100 || a.Width > 100);
+                }
+            }
+            return query;
+        }
+
+        private IQueryable<ArtworkDTO> ApplyPriceFilter(
+            IQueryable<ArtworkDTO> query,
+            string priceFilter
+        )
+        {
+            if (string.IsNullOrEmpty(priceFilter))
+                return query;
+
+            query = query.Where(a => !a.SoldOut && a.Price != 0);
+
+            var priceParts = priceFilter.Split(',');
+            if (
+                priceParts.Length == 2
+                && decimal.TryParse(priceParts[0], out decimal minPrice)
+                && decimal.TryParse(priceParts[1], out decimal maxPrice)
+            )
+            {
+                query = query.Where(a => a.Price >= minPrice && a.Price <= maxPrice);
+            }
+            else if (decimal.TryParse(priceFilter, out decimal priceLimit))
+            {
+                if (priceLimit == HighPriceThreshold)
+                {
+                    query = query.Where(a => a.Price > HighPriceThreshold);
+                }
+                else if (priceLimit == PremiumPriceThreshold)
+                {
+                    query = query.Where(a => a.Price > PremiumPriceThreshold); // Over 100,000
+                }
+            }
+            return query;
+        }
+
+        private IQueryable<ArtworkDTO> ApplyHeightFilter(
+            IQueryable<ArtworkDTO> query,
+            decimal? minHeight = null,
+            decimal? maxHeight = null
+        )
+        {
+            if (minHeight.HasValue && maxHeight.HasValue)
+            {
+                query = query.Where(a =>
+                    a.Height >= minHeight.Value && a.Height <= maxHeight.Value
+                );
+            }
+
+            return query;
+        }
+
+        private IQueryable<ArtworkDTO> ApplyWidthFilter(
+            IQueryable<ArtworkDTO> query,
+            decimal? minWidth = null,
+            decimal? maxWidth = null
+        )
+        {
+            if (minWidth.HasValue && maxWidth.HasValue)
+            {
+                query = query.Where(a => a.Width >= minWidth.Value && a.Width <= maxWidth.Value);
+            }
+
+            return query;
+        }
+
+        private List<ArtworkDTO> PaginateAndMap(
+            IQueryable<ArtworkDTO> query,
+            int page,
+            int pageSize,
+            string myUsername
+        )
+        {
+            return query
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize)
+                .Select(a => new ArtworkDTO
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Description = a.Description,
+                    Published = a.Published,
+                    Price = a.Price,
+                    Currency = a.Currency,
+                    SoldOut = a.SoldOut,
+                    MultipleSizes = a.MultipleSizes,
+                    Width = a.Width,
+                    Height = a.Height,
+                    Depth = a.Depth,
+                    Tags = a.Tags != null ? a.Tags.Select(t => t).ToList() : new List<string>(),
+                    Likes = a.Likes,
+                    LikedByMe = a.LikedByMe,
+                    PrimaryFile = a.PrimaryFile,
+                    SecondaryFile = a.SecondaryFile,
+                    TertiaryFile = a.TertiaryFile,
+                    Owner = a.Owner,
+                    Name = a.Name,
+                    Surname = a.Surname,
+                    Username = a.Username,
+                })
+                .ToList();
+        }
+
+        public List<ArtworkDTO> GetFilteredArtworks(
+            int page,
+            int pageSize,
+            List<string> tags,
+            string myUsername,
+            DateTime likesSince,
+            string orientation,
+            string sizeFilter = null,
+            string priceFilter = null,
+            decimal? minHeight = null,
+            decimal? maxHeight = null,
+            decimal? minWidth = null,
+            decimal? maxWidth = null,
+            ProductEnum minimumProduct = ProductEnum.Portfolio
+        )
+        {
+            var query = _context
+                .Artworks.Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
+                .Select(a => new ArtworkDTO
+                {
+                    Id = a.PublicId,
+                    Title = a.Title,
+                    Description = a.Description,
+                    Published = a.Published,
+                    Price = a.Price,
+                    Currency = a.Currency,
+                    SoldOut = a.SoldOut,
+                    MultipleSizes = a.MultipleSizes,
+                    Width = a.Width,
+                    Height = a.Height,
+                    Depth = a.Depth,
+                    Tags = a.Tags.Select(t => t.Title).ToList(),
+                    Likes = a.Likes.Count(),
+                    LikedByMe = !string.IsNullOrWhiteSpace(myUsername)
+                        ? a.Likes.Any(l => l.User.Username == myUsername)
+                        : false,
+                    PrimaryFile =
+                        a.PrimaryFile != null
+                            ? new FileDTO
+                            {
+                                Name = a.PrimaryFile.Name,
+                                Width = a.PrimaryFile.Width,
+                                Height = a.PrimaryFile.Height,
+                            }
+                            : null,
+                    SecondaryFile =
+                        a.SecondaryFile != null
+                            ? new FileDTO
+                            {
+                                Name = a.SecondaryFile.Name,
+                                Width = a.SecondaryFile.Width,
+                                Height = a.SecondaryFile.Height,
+                            }
+                            : null,
+                    TertiaryFile =
+                        a.TertiaryFile != null
+                            ? new FileDTO
+                            {
+                                Name = a.TertiaryFile.Name,
+                                Width = a.TertiaryFile.Width,
+                                Height = a.TertiaryFile.Height,
+                            }
+                            : null,
+                    Owner = new OwnerDTO
+                    {
+                        Username = a.User.Username,
+                        ProfilePicture = a.User.File.Name,
+                        Name = a.User.UserProfile.Name,
+                        Surname = a.User.UserProfile.Surname,
+                        Location = a.User.UserProfile.Location,
+                        Email = a.User.Email,
+                    },
+                    Name = a.User.UserProfile.Name,
+                    Surname = a.User.UserProfile.Surname,
+                    Username = a.User.Username,
+                });
+
+            query = ApplyTagFilter(query, tags);
+            query = ApplyOrientationFilter(query, orientation);
+            query = ApplySizeFilter(query, sizeFilter);
+            query = ApplyPriceFilter(query, priceFilter);
+            query = ApplyHeightFilter(query, minHeight, maxHeight);
+            query = ApplyWidthFilter(query, minWidth, maxWidth);
+
+            query = query.OrderByDescending(a => a.Likes).ThenByDescending(a => a.Published);
+
+            return PaginateAndMap(query, page, pageSize, myUsername);
+        }
     }
 }
