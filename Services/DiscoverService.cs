@@ -14,6 +14,20 @@ namespace Artportable.API.Services
         private APContext _context;
         private readonly IMapper _mapper;
 
+        private const decimal HighPriceThreshold = 5001;
+        private const decimal PremiumPriceThreshold = 100000;
+
+        private static readonly Dictionary<string, (decimal, decimal)> SizeFilters = new Dictionary<
+            string,
+            (decimal, decimal)
+        >
+        {
+            { "Small", (0, 30) },
+            { "Medium", (31, 60) },
+            { "Large", (61, 100) },
+            { "ExtraLarge", (101, decimal.MaxValue) },
+        };
+
         public DiscoverService(APContext apContext, IMapper mapper)
         {
             _context = apContext ?? throw new ArgumentNullException(nameof(apContext));
