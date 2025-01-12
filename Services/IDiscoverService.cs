@@ -226,6 +226,7 @@ namespace Artportable.API.Services
             decimal? maxHeight = null,
             decimal? minWidth = null,
             decimal? maxWidth = null,
+            string? stateFilter = null,
             ProductEnum minimumProduct = ProductEnum.Portfolio
         );
     }

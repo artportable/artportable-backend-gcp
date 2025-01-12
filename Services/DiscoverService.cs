@@ -2345,6 +2345,18 @@ namespace Artportable.API.Services
             return query;
         }
 
+        private IQueryable<ArtworkDTO> applyStateFilter(
+            IQueryable<ArtworkDTO> query,
+            string? stateFilter
+        )
+        {
+            if (!string.IsNullOrWhiteSpace(stateFilter))
+            {
+                query = query.Where(a => a.State.Equals(stateFilter));
+            }
+            return query;
+        }
+
         private List<ArtworkDTO> PaginateAndMap(
             IQueryable<ArtworkDTO> query,
             int page,
@@ -2395,6 +2407,7 @@ namespace Artportable.API.Services
             decimal? maxHeight = null,
             decimal? minWidth = null,
             decimal? maxWidth = null,
+            string? stateFilter = null,
             ProductEnum minimumProduct = ProductEnum.Portfolio
         )
         {
@@ -2457,6 +2470,7 @@ namespace Artportable.API.Services
                     Name = a.User.UserProfile.Name,
                     Surname = a.User.UserProfile.Surname,
                     Username = a.User.Username,
+                    State = a.User.UserProfile.State,
                 });
 
             query = ApplyTagFilter(query, tags);
@@ -2465,6 +2479,7 @@ namespace Artportable.API.Services
             query = ApplyPriceFilter(query, priceFilter);
             query = ApplyHeightFilter(query, minHeight, maxHeight);
             query = ApplyWidthFilter(query, minWidth, maxWidth);
+            query = applyStateFilter(query, stateFilter);
 
             query = query.OrderByDescending(a => a.Likes).ThenByDescending(a => a.Published);
 
