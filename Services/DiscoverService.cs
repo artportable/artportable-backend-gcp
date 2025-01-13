@@ -2249,7 +2249,13 @@ namespace Artportable.API.Services
                 }
                 else if (orientation.Equals("Square", StringComparison.OrdinalIgnoreCase))
                 {
-                    query = query.Where(a => a.Height == a.Width);
+                    query = query.Where(a =>
+                        a.Height != null
+                        && a.Width != null
+                        && a.Height != 0
+                        && a.Width != 0
+                        && a.Height == a.Width
+                    );
                 }
             }
             return query;
