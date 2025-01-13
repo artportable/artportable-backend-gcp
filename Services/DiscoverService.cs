@@ -2247,9 +2247,21 @@ namespace Artportable.API.Services
                 {
                     query = query.Where(a => a.Width > a.Height);
                 }
+                else if (orientation.Equals("Multiple", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = query.Where(a =>
+                        a.Width == null || a.Width == 0 || a.Height == null || a.Height == 0
+                    );
+                }
                 else if (orientation.Equals("Square", StringComparison.OrdinalIgnoreCase))
                 {
-                    query = query.Where(a => a.Height == a.Width);
+                    query = query.Where(a =>
+                        a.Height != null
+                        && a.Width != null
+                        && a.Height != 0
+                        && a.Width != 0
+                        && a.Height == a.Width
+                    );
                 }
             }
             return query;
