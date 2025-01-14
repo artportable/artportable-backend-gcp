@@ -2420,6 +2420,7 @@ namespace Artportable.API.Services
             decimal? minWidth = null,
             decimal? maxWidth = null,
             string? stateFilter = null,
+            string? orderBy = null,
             ProductEnum minimumProduct = ProductEnum.Portfolio
         )
         {
@@ -2493,7 +2494,13 @@ namespace Artportable.API.Services
             query = ApplyWidthFilter(query, minWidth, maxWidth);
             query = applyStateFilter(query, stateFilter);
 
-            query = query.OrderByDescending(a => a.Likes).ThenByDescending(a => a.Published);
+            query = orderBy.ToLower() switch
+            {
+                "likes" => query.OrderByDescending(a => a.Likes),
+                "latest" => query.OrderByDescending(a => a.Published),
+                "price" => query.OrderByDescending(a => a.Price),
+                _ => query.OrderByDescending(a => a.Likes),
+            };
 
             return PaginateAndMap(query, page, pageSize, myUsername);
         }

@@ -1886,7 +1886,8 @@ namespace Artportable.API.Controllers
             decimal? maxHeight = null,
             decimal? minWidth = null,
             decimal? maxWidth = null,
-            string? stateFilter = null
+            string? stateFilter = null,
+            string? orderBy = null
         )
         {
             if (page < 1 || pageSize < 1)
@@ -1917,7 +1918,8 @@ namespace Artportable.API.Controllers
                         maxHeight,
                         minWidth,
                         maxWidth,
-                        stateFilter
+                        stateFilter,
+                        orderBy
                     );
                 }
                 else
