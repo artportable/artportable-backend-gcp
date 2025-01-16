@@ -2494,11 +2494,18 @@ namespace Artportable.API.Services
             query = ApplyWidthFilter(query, minWidth, maxWidth);
             query = applyStateFilter(query, stateFilter);
 
+            DateTime twoWeeksAgo = DateTime.UtcNow.AddDays(-21);
+
             query = orderBy.ToLower() switch
             {
-                "likes" => query.OrderByDescending(a => a.Likes),
+                "likes" => query
+                    .Where(a => a.Published >= twoWeeksAgo)
+                    .OrderByDescending(a => a.Likes),
                 "latest" => query.OrderByDescending(a => a.Published),
-                "price" => query.OrderByDescending(a => a.Price),
+                "highestprice" => query.OrderByDescending(a => a.Price),
+                "lowestprice" => query
+                    .Where(a => a.Price > 0) // Exclude items with Price == 0
+                    .OrderBy(a => a.Price),
                 _ => query.OrderByDescending(a => a.Likes),
             };
 
