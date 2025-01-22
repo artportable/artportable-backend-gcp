@@ -28,9 +28,9 @@ namespace Artportable.API.Services
 
             _products = new Dictionary<string, ProductEnum>()
             {
-                { productCodes.Value.PortfolioPremiumPlus, ProductEnum.PortfolioPremiumPlus },
-                { productCodes.Value.PortfolioPremium, ProductEnum.PortfolioPremium },
                 { productCodes.Value.Portfolio, ProductEnum.Portfolio },
+                { productCodes.Value.PortfolioPremium, ProductEnum.PortfolioPremium },
+                { productCodes.Value.PortfolioPremiumPlus, ProductEnum.PortfolioPremiumPlus },
             }.ToImmutableDictionary();
 
             _crmService = crmService;
