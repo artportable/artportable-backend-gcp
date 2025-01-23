@@ -1,8 +1,8 @@
 namespace Artportable.API.Enums
 {
-  public enum FeedItemType
-  {
-    Artwork,
-    GroupPost
-  }
+    public enum FeedItemType
+    {
+        Artwork,
+        GroupPost,
+    }
 }

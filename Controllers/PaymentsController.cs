@@ -1,273 +1,316 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Artportable.API.Services;
-using Microsoft.AspNetCore.Http;
-using Artportable.API.DTOs;
-using Swashbuckle.AspNetCore.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
+using Artportable.API.DTOs;
+using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Artportable.API.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
-
-  public class PaymentsController : ControllerBase
-  {
-    private readonly IPaymentService _paymentService;
-
-    public PaymentsController(IPaymentService paymentService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PaymentsController : ControllerBase
     {
-      _paymentService = paymentService;
-    }
+        private readonly IPaymentService _paymentService;
 
-    /// <summary>
-    /// Retrieve prices for all products (plans) from Stripe
-    /// </summary>
-    /// <returns>A list of prices</returns>
-    [HttpGet("prices")]
-    public ActionResult<List<StripePriceDTO>> ListPrices()
-    {
-      try
-      {
-        var prices = _paymentService.GetPrices();
-
-        return Ok(prices);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
-
-    /// <summary>
-    /// Register a customer in Stripe by creating a customer object
-    /// </summary>
-    /// <param name="customer"></param>
-    /// <returns>The Stripe customer ID</returns>
-    [Authorize]
-    [HttpPost("customers")]
-    public ActionResult<StripeResponseDTO> CreateCustomer([FromBody] StripeCustomerDTO customer)
-    {
-      try
-      {
-        var id = _paymentService.CreateCustomer(customer.Email, customer.FullName, customer.PhoneNumber);
-        var res = new StripeResponseDTO { Id = id };
-
-        return Ok(res);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
-
-      /// <summary>
-    /// Creates a subscription in Stripe
-    /// for a given customer and price ID
-    /// </summary>
-    /// <param name="req"></param>
-    /// <returns>The Stripe subscription ID</returns>
-    [Authorize]
-    [HttpPost("subscriptions")]
-    public ActionResult<StripeSubscriptionResponseDTO> CreateSubscription([FromBody] SubscriptionRequestDTO req)
-    {
-        try
+        public PaymentsController(IPaymentService paymentService)
         {
-            var subscription = _paymentService.CreateSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
+            _paymentService = paymentService;
+        }
 
-            // Assuming _paymentService.CreateSubscription handles the interaction with Stripe and returns a subscription object.
-
-            if (subscription == null)
+        /// <summary>
+        /// Retrieve prices for all products (plans) from Stripe
+        /// </summary>
+        /// <returns>A list of prices</returns>
+        [HttpGet("prices")]
+        public ActionResult<List<StripePriceDTO>> ListPrices()
+        {
+            try
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to create subscription.");
+                var prices = _paymentService.GetPrices();
+
+                return Ok(prices);
             }
-
-
-            if (subscription.Status == "active" || subscription.Status == "trialing")
+            catch (Exception e)
             {
-                var responseDTO = new StripeSubscriptionResponseDTO
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Register a customer in Stripe by creating a customer object
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns>The Stripe customer ID</returns>
+        [Authorize]
+        [HttpPost("customers")]
+        public ActionResult<StripeResponseDTO> CreateCustomer([FromBody] StripeCustomerDTO customer)
+        {
+            try
+            {
+                var id = _paymentService.CreateCustomer(
+                    customer.Email,
+                    customer.FullName,
+                    customer.PhoneNumber
+                );
+                var res = new StripeResponseDTO { Id = id };
+
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Creates a subscription in Stripe
+        /// for a given customer and price ID
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns>The Stripe subscription ID</returns>
+        [Authorize]
+        [HttpPost("subscriptions")]
+        public ActionResult<StripeSubscriptionResponseDTO> CreateSubscription(
+            [FromBody] SubscriptionRequestDTO req
+        )
+        {
+            try
+            {
+                var subscription = _paymentService.CreateSubscription(
+                    req.PaymentMethod,
+                    req.Customer,
+                    req.Price,
+                    req.PromotionCodeId
+                );
+
+                // Assuming _paymentService.CreateSubscription handles the interaction with Stripe and returns a subscription object.
+
+                if (subscription == null)
                 {
-                    Status = subscription.Status,
-                    Id = subscription.Id,
-                    ClientSecret = subscription.Status == "requires_action" && subscription.LatestInvoice?.PaymentIntent != null ?
-                                    subscription.LatestInvoice.PaymentIntent.ClientSecret : null
+                    return StatusCode(
+                        StatusCodes.Status500InternalServerError,
+                        "Failed to create subscription."
+                    );
+                }
+
+                if (subscription.Status == "active" || subscription.Status == "trialing")
+                {
+                    var responseDTO = new StripeSubscriptionResponseDTO
+                    {
+                        Status = subscription.Status,
+                        Id = subscription.Id,
+                        ClientSecret =
+                            subscription.Status == "requires_action"
+                            && subscription.LatestInvoice?.PaymentIntent != null
+                                ? subscription.LatestInvoice.PaymentIntent.ClientSecret
+                                : null,
+                    };
+
+                    return Ok(responseDTO);
+                }
+                else
+                {
+                    return StatusCode(
+                        StatusCodes.Status500InternalServerError,
+                        $"Subscription is in an unexpected state: {subscription.Status}"
+                    );
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Something went wrong: {e.Message}");
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "An error occurred while creating the subscription."
+                );
+            }
+        }
+
+        /// <summary>
+        /// Upgrades a customersubscription in Stripe
+        /// for a given customer and price ID
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns>The Stripe subscription ID</returns>
+        [Authorize]
+        [HttpPost("upgrade")]
+        public ActionResult<StripeSubscriptionResponseDTO> UpgradeSubscription(
+            [FromBody] SubscriptionRequestDTO req
+        )
+        {
+            try
+            {
+                var subscription = _paymentService.UpgradeSubscription(
+                    req.PaymentMethod,
+                    req.Customer,
+                    req.Price,
+                    req.PromotionCodeId
+                );
+
+                if (subscription?.LatestInvoice?.PaymentIntent == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+
+                var res = new StripeSubscriptionResponseDTO
+                {
+                    Status = subscription.LatestInvoice.PaymentIntent.Status,
+                    Id =
+                        subscription.LatestInvoice.PaymentIntent.Status == "requires_action"
+                            ? subscription.LatestInvoice.PaymentIntent.ClientSecret
+                            : subscription.Id,
                 };
 
-                return Ok(responseDTO);
+                return Ok(res);
             }
-            else
+            catch (Exception e)
             {
- 
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Subscription is in an unexpected state: {subscription.Status}");
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        catch (Exception e)
+
+        /// <summary>
+        /// Creates a purchase in Stripe
+        /// for a given customer and price ID
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns>The Stripe subscription ID</returns>
+        [HttpPost("purchases")]
+        public async Task<ActionResult<StripePurchaseResponseDTO>> CreatePurchase(
+            [FromBody] PurchaseRequestDTO req
+        )
         {
-            Console.WriteLine($"Something went wrong: {e.Message}");
-            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the subscription.");
-        }
-    }
+            try
+            {
+                if (!req.Products.Any())
+                {
+                    return BadRequest("No products");
+                }
 
+                if (!await _paymentService.ValidatePaymentMethod(req.PaymentMethod))
+                {
+                    return BadRequest("Invalid paymentrequest");
+                }
 
-     /// <summary>
-    /// Upgrades a customersubscription in Stripe
-    /// for a given customer and price ID
-    /// </summary>
-    /// <param name="req"></param>
-    /// <returns>The Stripe subscription ID</returns>
-    [Authorize]
-    [HttpPost("upgrade")]
-    public ActionResult<StripeSubscriptionResponseDTO> UpgradeSubscription([FromBody] SubscriptionRequestDTO req)
-    {
-      try
-      {
-        var subscription = _paymentService.UpgradeSubscription(req.PaymentMethod, req.Customer, req.Price, req.PromotionCodeId);
+                if (!await _paymentService.ValidateProducts(req.Products))
+                {
+                    return BadRequest("Invalid products");
+                }
+                if (
+                    req.Customer == null
+                    || string.IsNullOrWhiteSpace(req.Customer.Email)
+                    || string.IsNullOrWhiteSpace(req.Customer.FullName)
+                )
+                {
+                    return BadRequest("Invalid Customer");
+                }
+                var customerId = _paymentService.CreateCustomer(
+                    req.Customer.Email,
+                    req.Customer.FullName,
+                    req.Customer.PhoneNumber
+                );
 
-        if (subscription?.LatestInvoice?.PaymentIntent == null)
-        {
-          return StatusCode(StatusCodes.Status500InternalServerError);
-        }
+                var invoice = await _paymentService.CreateInvoice(
+                    req.PaymentMethod,
+                    customerId,
+                    req.Products
+                );
 
-        var res = new StripeSubscriptionResponseDTO
-        {
-          Status = subscription.LatestInvoice.PaymentIntent.Status,
-          Id = subscription.LatestInvoice.PaymentIntent.Status == "requires_action" ?
-            subscription.LatestInvoice.PaymentIntent.ClientSecret :
-            subscription.Id
-        };
+                if (invoice.PaymentIntent == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
 
-        return Ok(res);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
+                var res = new StripePurchaseResponseDTO
+                {
+                    Status = invoice.PaymentIntent.Status,
+                    Id =
+                        invoice.PaymentIntent.Status == "requires_action"
+                        || invoice.PaymentIntent.Status == "requires_confirmation"
+                            ? invoice.PaymentIntent.ClientSecret
+                            : invoice.Id,
+                };
 
-    /// <summary>
-    /// Creates a purchase in Stripe
-    /// for a given customer and price ID
-    /// </summary>
-    /// <param name="req"></param>
-    /// <returns>The Stripe subscription ID</returns>
-    [HttpPost("purchases")]
-    public async Task<ActionResult<StripePurchaseResponseDTO>> CreatePurchase([FromBody] PurchaseRequestDTO req)
-    {
-      try
-      {
-        if (!req.Products.Any())
-        {
-          return BadRequest("No products");
-        }
-
-        if (!await _paymentService.ValidatePaymentMethod(req.PaymentMethod))
-        {
-          return BadRequest("Invalid paymentrequest");
-        }
-
-        if (!await _paymentService.ValidateProducts(req.Products))
-        {
-          return BadRequest("Invalid products");
-        }
-        if (req.Customer == null || string.IsNullOrWhiteSpace(req.Customer.Email) || string.IsNullOrWhiteSpace(req.Customer.FullName))
-        {
-          return BadRequest("Invalid Customer");
-        }
-        var customerId = _paymentService.CreateCustomer(req.Customer.Email, req.Customer.FullName, req.Customer.PhoneNumber);
-
-        var invoice = await _paymentService.CreateInvoice(req.PaymentMethod, customerId, req.Products);
-
-        if (invoice.PaymentIntent == null)
-        {
-          return StatusCode(StatusCodes.Status500InternalServerError);
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
-        var res = new StripePurchaseResponseDTO
+        /// <summary>
+        /// Cancels a subscription in Stripe
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        [Authorize]
+        [HttpDelete("subscriptions")]
+        public IActionResult CancelSubscription(string subscriptionId)
         {
-          Status = invoice.PaymentIntent.Status,
-          Id = invoice.PaymentIntent.Status == "requires_action" || invoice.PaymentIntent.Status == "requires_confirmation" ?
-            invoice.PaymentIntent.ClientSecret :
-            invoice.Id
-        };
+            try
+            {
+                _paymentService.CancelSubscription(subscriptionId);
 
-        return Ok(res);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
 
-    /// <summary>
-    /// Cancels a subscription in Stripe
-    /// </summary>
-    /// <param name="subscriptionId"></param>
-    [Authorize]
-    [HttpDelete("subscriptions")]
-    public IActionResult CancelSubscription(string subscriptionId)
-    {
-      try
-      {
-        _paymentService.CancelSubscription(subscriptionId);
+        /// <summary>
+        /// Updates a subscription in Stripe
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <param name="priceId"></param>
+        [Authorize]
+        [HttpPut("subscriptions")]
+        public IActionResult UpdateSubscription(string subscriptionId, string priceId)
+        {
+            try
+            {
+                _paymentService.UpdateSubscription(subscriptionId, priceId);
 
-        return Ok();
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
 
-    /// <summary>
-    /// Updates a subscription in Stripe
-    /// </summary>
-    /// <param name="subscriptionId"></param>
-    /// <param name="priceId"></param>
-    [Authorize]
-    [HttpPut("subscriptions")]
-    public IActionResult UpdateSubscription(string subscriptionId, string priceId)
-    {
-      try
-      {
-        _paymentService.UpdateSubscription(subscriptionId, priceId);
+        /// <summary>
+        /// Gets the promotion details for a given promotion code
+        /// </summary>
+        /// <param name="promotionCode"></param>
+        [Authorize]
+        [HttpGet("promotions")]
+        public IActionResult GetPromotion(string promotionCode)
+        {
+            try
+            {
+                var promotion = _paymentService.GetPromotion(promotionCode);
 
-        return Ok();
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
-
-    /// <summary>
-    /// Gets the promotion details for a given promotion code
-    /// </summary>
-    /// <param name="promotionCode"></param>
-    [Authorize]
-    [HttpGet("promotions")]
-    public IActionResult GetPromotion(string promotionCode)
-    {
-      try
-      {
-        var promotion = _paymentService.GetPromotion(promotionCode);
-
-        return Ok(promotion);
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine("Something went wrong, {0}", e);
-        return StatusCode(StatusCodes.Status500InternalServerError);
-      }
-    }
+                return Ok(promotion);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
 
         /// <summary>
         /// Creates a Stripe Customer Portal session for a given customer.
@@ -283,7 +326,10 @@ namespace Artportable.API.Controllers
                 var session = _paymentService.CreateCustomerPortalSession(customerId);
                 if (session == null || string.IsNullOrEmpty(session.Url))
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, "Failed to create customer portal session.");
+                    return StatusCode(
+                        StatusCodes.Status500InternalServerError,
+                        "Failed to create customer portal session."
+                    );
                 }
 
                 return Ok(new { Url = session.Url });
@@ -291,7 +337,10 @@ namespace Artportable.API.Controllers
             catch (Exception e)
             {
                 Console.WriteLine($"Something went wrong: {e.Message}");
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the customer portal session.");
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "An error occurred while creating the customer portal session."
+                );
             }
         }
 
@@ -305,7 +354,11 @@ namespace Artportable.API.Controllers
         {
             try
             {
-                var isBoosted = await _paymentService.BoostArtwork(boostRequest.PaymentMethodId, boostRequest.CustomerId, boostRequest.ArtworkId);
+                var isBoosted = await _paymentService.BoostArtwork(
+                    boostRequest.PaymentMethodId,
+                    boostRequest.CustomerId,
+                    boostRequest.ArtworkId
+                );
                 if (isBoosted)
                 {
                     return Ok("Artwork boosted successfully.");
@@ -332,7 +385,11 @@ namespace Artportable.API.Controllers
         {
             try
             {
-                var isBoosted = await _paymentService.BoostStory(boostRequest.PaymentMethodId, boostRequest.CustomerId, boostRequest.StoryId);
+                var isBoosted = await _paymentService.BoostStory(
+                    boostRequest.PaymentMethodId,
+                    boostRequest.CustomerId,
+                    boostRequest.StoryId
+                );
                 if (isBoosted)
                 {
                     return Ok("Artwork boosted successfully.");
@@ -348,5 +405,5 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-  }
+    }
 }

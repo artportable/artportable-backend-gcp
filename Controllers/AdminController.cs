@@ -1,17 +1,16 @@
-using Microsoft.AspNetCore.Mvc;
-using Artportable.API.Services;
-using Microsoft.AspNetCore.Http;
-using Artportable.API.DTOs;
-using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using Artportable.API.Enums;
-using Stripe;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
 using System.Linq;
-
+using System.Threading.Tasks;
+using Artportable.API.DTOs;
+using Artportable.API.Enums;
+using Artportable.API.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Stripe;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Artportable.API.Controllers
 {
@@ -23,12 +22,15 @@ namespace Artportable.API.Controllers
         private readonly ITrackService _trackService;
         private readonly IAdminService _adminService; // Add the AdminService dependency
 
-        public AdminController(IUserService userService, ITrackService trackService, IAdminService adminService)
+        public AdminController(
+            IUserService userService,
+            ITrackService trackService,
+            IAdminService adminService
+        )
         {
             _userService = userService;
             _trackService = trackService;
             _adminService = adminService ?? throw new ArgumentNullException(nameof(adminService));
-
         }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Artportable.API.Controllers
             }
         }
 
-          /// <summary>
+        /// <summary>
         /// Gets product statistics for the admin dashboard
         /// </summary>
         [HttpGet("productStatistics")]
@@ -95,11 +97,14 @@ namespace Artportable.API.Controllers
             }
         }
 
-          /// <summary>
+        /// <summary>
         /// Gets users associated with a specific product
         /// </summary>
         [HttpGet("usersByProduct/{productId}")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Returns users associated with the specified product")]
+        [SwaggerResponse(
+            StatusCodes.Status200OK,
+            "Returns users associated with the specified product"
+        )]
         public ActionResult<List<UserDTO>> GetUsersByProduct(int productId)
         {
             try
@@ -114,11 +119,14 @@ namespace Artportable.API.Controllers
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Gets users associated with a specific product
         /// </summary>
         [HttpGet("UsersByProductSubscription/{productId}")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Returns users associated with the specified product")]
+        [SwaggerResponse(
+            StatusCodes.Status200OK,
+            "Returns users associated with the specified product"
+        )]
         public ActionResult<List<UserDTO>> GetUsersByProductSubscription(int productId)
         {
             try
@@ -133,36 +141,33 @@ namespace Artportable.API.Controllers
             }
         }
 
-       
-
         [HttpGet("UsersByStripeSubscription/{customerId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetUsersByStripeSubscription(string customerId)
+        {
+            try
             {
-                try
-                {
-                    // Use _adminService here
-                    var usersWithStripe = _adminService.GetCustomerJson(customerId);
+                // Use _adminService here
+                var usersWithStripe = _adminService.GetCustomerJson(customerId);
 
-                    if (usersWithStripe != null)
-                    {
-                        // Handle the result accordingly
-                        return Ok(usersWithStripe);
-                    }
-                    else
-                    {
-                        return NotFound(); // Or return an appropriate response for not finding the customer
-                    }
-                }
-                catch (Exception e)
+                if (usersWithStripe != null)
                 {
-                    Console.WriteLine($"Error fetching users by product: {e}");
-                    return StatusCode(StatusCodes.Status500InternalServerError);
+                    // Handle the result accordingly
+                    return Ok(usersWithStripe);
+                }
+                else
+                {
+                    return NotFound(); // Or return an appropriate response for not finding the customer
                 }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error fetching users by product: {e}");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
 
         /// <summary>
         /// Gets a user by email and checks if they have an active subscription on Stripe.
@@ -183,7 +188,10 @@ namespace Artportable.API.Controllers
                 }
 
                 // Use _adminService to check if the user has an active Stripe subscription
-                var userWithSubscription = await _adminService.GetUserWithActiveOrTrialingStripeSubscriptionByEmailAsync(email);
+                var userWithSubscription =
+                    await _adminService.GetUserWithActiveOrTrialingStripeSubscriptionByEmailAsync(
+                        email
+                    );
 
                 if (userWithSubscription != null)
                 {
@@ -197,9 +205,11 @@ namespace Artportable.API.Controllers
             catch (Exception e)
             {
                 Console.WriteLine($"Error fetching active subscription by email: {e}");
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching the user with active subscription.");
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "An error occurred while fetching the user with active subscription."
+                );
             }
         }
     }
-
 }
