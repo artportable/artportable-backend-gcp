@@ -1934,6 +1934,88 @@ namespace Artportable.API.Services
                 .ToList();
         }
 
+        public List<ArtworkDTO> GetArtportableSelection(
+            int page,
+            int pageSize,
+            List<string> tags,
+            string myUsername,
+            int seed,
+            ProductEnum minimumProduct = ProductEnum.Portfolio
+        )
+        {
+            var sinceDate = DateTime.UtcNow.AddDays(-182);
+
+            // var randomArtworks = _context.Artworks.FromSqlRaw(
+            //     $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
+            //             ORDER BY random OFFSET 0 ROWS"
+            // );
+
+            return _context
+                .Artworks.Where(a => a.Published >= sinceDate) // Filter by artworks published in the last 2 weeks
+                .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+                .Where(a => a.Likes.Any(x => x.User.Subscription.ProductId == 11))
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize)
+                .Select(a => new ArtworkDTO
+                {
+                    Id = a.PublicId,
+                    Owner = new OwnerDTO
+                    {
+                        Username = a.User.Username,
+                        ProfilePicture = a.User.File.Name,
+                        SocialId = a.User.SocialId,
+                        Name = a.User.UserProfile.Name,
+                        Surname = a.User.UserProfile.Surname,
+                        Location = a.User.UserProfile.Location,
+                    },
+                    Title = a.Title,
+                    Name = a.User.UserProfile.Name,
+                    Surname = a.User.UserProfile.Surname,
+                    Username = a.User.Username,
+                    Description = a.Description,
+                    Published = a.Published,
+                    Price = a.Price,
+                    Currency = a.Currency,
+                    SoldOut = a.SoldOut,
+                    MultipleSizes = a.MultipleSizes,
+                    Width = a.Width,
+                    Height = a.Height,
+                    Depth = a.Depth,
+                    PrimaryFile = new FileDTO
+                    {
+                        Name = a.PrimaryFile.Name,
+                        Width = a.PrimaryFile.Width,
+                        Height = a.PrimaryFile.Height,
+                    },
+                    SecondaryFile =
+                        a.SecondaryFile != null
+                            ? new FileDTO
+                            {
+                                Name = a.SecondaryFile.Name,
+                                Width = a.SecondaryFile.Width,
+                                Height = a.SecondaryFile.Height,
+                            }
+                            : null,
+                    TertiaryFile =
+                        a.TertiaryFile != null
+                            ? new FileDTO
+                            {
+                                Name = a.TertiaryFile.Name,
+                                Width = a.TertiaryFile.Width,
+                                Height = a.TertiaryFile.Height,
+                            }
+                            : null,
+                    Tags = (
+                        a.Tags != null ? a.Tags.Select(t => t.Title).ToList() : new List<string>()
+                    ),
+                    Likes = a.Likes.Count(),
+                    LikedByMe = !string.IsNullOrWhiteSpace(myUsername)
+                        ? a.Likes.Any(l => l.User.Username == myUsername)
+                        : false,
+                })
+                .ToList();
+        }
+
         public List<ArtworkDTO> GetPromotedArtworks(
             int page,
             int pageSize,

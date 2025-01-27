@@ -230,5 +230,14 @@ namespace Artportable.API.Services
             string? orderBy = null,
             ProductEnum minimumProduct = ProductEnum.Portfolio
         );
+
+        List<ArtworkDTO> GetArtportableSelection(
+            int page,
+            int pageSize,
+            List<string> tags,
+            string myUsername,
+            int seed,
+            ProductEnum minimumProduct = ProductEnum.Portfolio
+        );
     }
 }
