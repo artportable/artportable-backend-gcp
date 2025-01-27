@@ -7,5 +7,6 @@ namespace Artportable.API.Enums
         PortfolioPremium = 3,
         PortfolioPremiumPlus = 4,
         Admin = 10,
+        SuperAdmin = 11,
     }
 }
