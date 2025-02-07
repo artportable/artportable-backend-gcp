@@ -1940,8 +1940,15 @@ namespace Artportable.API.Services
             ProductEnum minimumProduct = ProductEnum.Portfolio
         )
         {
+            // var randomArtworks = _context.Artworks.FromSqlRaw(
+            //     $@"SELECT *, HASHBYTES('md5',cast(id+{seed} as varchar)) AS random FROM artworks
+            //             ORDER BY random OFFSET 0 ROWS"
+            // );
+
             return _context
-                .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
+                .Artworks.Where(a =>
+                    tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true
+                )
                 .Where(a => a.Likes.Any(x => x.User.Subscription.ProductId == 11))
                 .Skip(pageSize * (page - 1))
                 .Take(pageSize)
