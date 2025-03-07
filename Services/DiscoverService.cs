@@ -2581,9 +2581,8 @@ namespace Artportable.API.Services
                     .OrderByDescending(a => a.Likes),
                 "latest" => query.OrderByDescending(a => a.Published),
                 "highestprice" => query.OrderByDescending(a => a.Price),
-                "lowestprice" => query
-                    .Where(a => a.Price > 0) // Exclude items with Price == 0
-                    .OrderBy(a => a.Price),
+                "lowestprice" => query.Where(a => a.Price > 0).OrderBy(a => a.Price),
+                "search" => query.OrderByDescending(a => a.Published), // Default behavior for "search"
                 _ => query.OrderByDescending(a => a.Likes),
             };
 
