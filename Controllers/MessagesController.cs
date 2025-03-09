@@ -62,7 +62,8 @@ namespace Artportable.API.Controllers
                 || email == "nicolesusantriston@gmail.com"
                 || email == "jurgenhamilton95@gmail.com"
                 || email == "connordylan52@gmail.com",
-                 || email == "jurgenhamilton95@gmail.com",
+                || email == "jurgenhamilton95@gmail.com",
+                 || email == "Jerry@k39.se",
                 
             )
             {
