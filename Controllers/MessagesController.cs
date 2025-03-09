@@ -61,10 +61,9 @@ namespace Artportable.API.Controllers
                 || email == "robarpepper@gmail.com"
                 || email == "nicolesusantriston@gmail.com"
                 || email == "jurgenhamilton95@gmail.com"
-                || email == "connordylan52@gmail.com",
-                || email == "jurgenhamilton95@gmail.com",
-                 || email == "Jerry@k39.se"
-                
+                || email == "connordylan52@gmail.com"
+                || email == "Jerry@k39.se"
+                || email == "jurgenhamilton95@gmail.com"
             )
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
