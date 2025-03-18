@@ -112,24 +112,10 @@ namespace Artportable.API.Services
 
             var trialEligiblePriceIds = new HashSet<string>
             {
-                "price_1QpB6wJgjKIYr4gqjr8dMBw5",
-                "price_1QpB7dJgjKIYr4gqVZoEEdli",
-                "price_1QpB8XJgjKIYr4gqHw1YR92O",
-                "price_1QpB96JgjKIYr4gqGkuBPPas",
-                "price_1QpBAEJgjKIYr4gq0pGzvWiA",
-                "price_1Qk1DbA3UXZjjLWxXYt6Mpph",
-                "price_1Qvxy8JgjKIYr4gqFRWL7dGj",
-                "price_1QvxydJgjKIYr4gqvubc8V9O",
-                "price_1QvxzfJgjKIYr4gqw3Gr1e6X",
-                "price_1Qvy0HJgjKIYr4gqSlCQBLOU",
-                "price_1QyUPEJgjKIYr4gqmEG8V6jf",
-                "price_1QyUTcJgjKIYr4gqa2EDwiwy",
-                "price_1QyUUkJgjKIYr4gqUiRAVO2w",
-                "price_1QyUVXJgjKIYr4gq2YLuGMwA",
-                "price_1QyUX4JgjKIYr4gqSycw18Y6",
-                "price_1R12HLA3UXZjjLWxlYC7QIG9",
-                "price_1R16niJgjKIYr4gqGGkv4Mdk",
-                "price_1R16rEJgjKIYr4gqmX8zH1dg",
+                "price_1R419IJgjKIYr4gqFQ9F2rH7",
+                "price_1R419kJgjKIYr4gqQAJGUh0r",
+                "price_1R41ASJgjKIYr4gqnyujRhyF",
+                "price_1R41BKJgjKIYr4gqIz5sSLFu",
             };
             if (trialEligiblePriceIds.Contains(priceId))
             {
