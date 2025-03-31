@@ -2572,7 +2572,7 @@ namespace Artportable.API.Services
             query = ApplyWidthFilter(query, minWidth, maxWidth);
             query = applyStateFilter(query, stateFilter);
 
-            DateTime twoWeeksAgo = DateTime.UtcNow.AddDays(-21);
+            DateTime twoWeeksAgo = DateTime.UtcNow.AddDays(-195);
 
             query = orderBy.ToLower() switch
             {
