@@ -83,47 +83,120 @@ namespace Artportable.API.Services
             string paymentMethodId,
             string customerId,
             string priceId,
-            string promotionCodeId
+            string promotionCode
         )
         {
-            var options = new PaymentMethodAttachOptions { Customer = customerId };
-            var service = new PaymentMethodService();
-            var paymentMethod = service.Attach(paymentMethodId, options);
-
-            var customerOptions = new CustomerUpdateOptions
+            try
             {
-                InvoiceSettings = new CustomerInvoiceSettingsOptions
+                var paymentMethodService = new PaymentMethodService();
+                var paymentMethod = paymentMethodService.Attach(
+                    paymentMethodId,
+                    new PaymentMethodAttachOptions { Customer = customerId }
+                );
+
+                var customerService = new CustomerService();
+                customerService.Update(
+                    customerId,
+                    new CustomerUpdateOptions
+                    {
+                        InvoiceSettings = new CustomerInvoiceSettingsOptions
+                        {
+                            DefaultPaymentMethod = paymentMethod.Id,
+                        },
+                    }
+                );
+
+                string promotionCodeId = null;
+                if (!string.IsNullOrEmpty(promotionCode))
                 {
-                    DefaultPaymentMethod = paymentMethod.Id,
-                },
-            };
-            var customerService = new CustomerService();
-            customerService.Update(customerId, customerOptions);
+                    var promotionCodeService = new PromotionCodeService();
+                    var promotionCodeOptions = new PromotionCodeListOptions
+                    {
+                        Code = promotionCode.Trim().ToUpper(),
+                        Active = true,
+                    };
 
-            var subscriptionOptions = new SubscriptionCreateOptions
-            {
-                Customer = customerId,
-                PromotionCode = promotionCodeId,
-                Items = new List<SubscriptionItemOptions>
+                    var promotionCodes = promotionCodeService.List(promotionCodeOptions);
+                    var validPromoCode = promotionCodes.FirstOrDefault();
+
+                    if (validPromoCode == null)
+                    {
+                        throw new StripeException
+                        {
+                            StripeError = new StripeError
+                            {
+                                Message = "Invalid or expired promotion code",
+                                Code = "invalid_promotion_code",
+                            },
+                        };
+                    }
+
+                    if (
+                        validPromoCode.Coupon != null
+                        && validPromoCode.Coupon.AppliesTo != null
+                        && validPromoCode.Coupon.AppliesTo.Products != null
+                        && validPromoCode.Coupon.AppliesTo.Products.Count > 0
+                    )
+                    {
+                        if (!validPromoCode.Coupon.AppliesTo.Products.Contains(priceId))
+                        {
+                            throw new StripeException
+                            {
+                                StripeError = new StripeError
+                                {
+                                    Message = "Promotion code not valid for this product",
+                                    Code = "invalid_promotion_product",
+                                },
+                            };
+                        }
+                    }
+
+                    promotionCodeId = validPromoCode.Id;
+                }
+
+                // 4. Create subscription options
+                var subscriptionOptions = new SubscriptionCreateOptions
                 {
-                    new SubscriptionItemOptions { Price = priceId },
-                },
-            };
+                    Customer = customerId,
+                    Items = new List<SubscriptionItemOptions>
+                    {
+                        new SubscriptionItemOptions { Price = priceId },
+                    },
+                };
 
-            var trialEligiblePriceIds = new HashSet<string>
-            {
-                "price_1RBcH3JgjKIYr4gq0b7risoR",
-                "price_1RBcIsJgjKIYr4gqtaqto3mo",
-            };
-            if (trialEligiblePriceIds.Contains(priceId))
-            {
-                DateTime trialEndDate = DateTime.UtcNow.AddDays(10);
-                subscriptionOptions.TrialEnd = trialEndDate;
+                if (!string.IsNullOrEmpty(promotionCodeId))
+                {
+                    subscriptionOptions.PromotionCode = promotionCodeId;
+                }
+
+                var trialEligiblePriceIds = new HashSet<string>
+                {
+                    "price_1RBcH3JgjKIYr4gq0b7risoR",
+                    "price_1RBcIsJgjKIYr4gqtaqto3mo",
+                };
+
+                if (trialEligiblePriceIds.Contains(priceId))
+                {
+                    subscriptionOptions.TrialEnd = DateTime.UtcNow.AddDays(10);
+                }
+
+                subscriptionOptions.AddExpand("latest_invoice.payment_intent");
+
+                var subscriptionService = new SubscriptionService();
+                Subscription subscription = subscriptionService.Create(subscriptionOptions);
+
+                return subscription;
             }
-            subscriptionOptions.AddExpand("latest_invoice.payment_intent");
-            var subscriptionService = new SubscriptionService();
-            Subscription subscription = subscriptionService.Create(subscriptionOptions);
-            return subscription;
+            catch (StripeException ex)
+            {
+                Console.WriteLine($"Stripe error: {ex.StripeError?.Message ?? ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating subscription: {ex.Message}");
+                throw;
+            }
         }
 
         public Session CreateCustomerPortalSession(string customerId)
