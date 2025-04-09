@@ -83,7 +83,7 @@ namespace Artportable.API.Services
             string paymentMethodId,
             string customerId,
             string priceId,
-            string promotionCode
+            string? promotionCode
         )
         {
             try
