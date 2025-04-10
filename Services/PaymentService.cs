@@ -184,6 +184,27 @@ namespace Artportable.API.Services
                 var subscriptionService = new SubscriptionService();
                 Subscription subscription = subscriptionService.Create(subscriptionOptions);
 
+                // Extract the client secret for 3D Secure authentication
+                var clientSecret = subscription.LatestInvoice?.PaymentIntent?.ClientSecret;
+
+                // Handle the 3D Secure Flow if needed
+                if (clientSecret != null && subscription.Status == "requires_action")
+                {
+                    // You would need to send the clientSecret back to the frontend for handling 3D Secure
+                    // This logic can be passed as part of the response from the controller method.
+                    // You can optionally throw an exception or handle this scenario directly here.
+                    throw new StripeException
+                    {
+                        StripeError = new StripeError
+                        {
+                            Message = "Requires additional authentication (3D Secure).",
+                            Code = "requires_action",
+                            Param = clientSecret, // You can pass the client secret as part of the exception if needed.
+                        },
+                    };
+                }
+
+                // Return the subscription object (you can include status here as well)
                 return subscription;
             }
             catch (StripeException ex)
