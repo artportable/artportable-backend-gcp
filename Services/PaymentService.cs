@@ -154,7 +154,6 @@ namespace Artportable.API.Services
                     promotionCodeId = validPromoCode.Id;
                 }
 
-                // 4. Create subscription options
                 var subscriptionOptions = new SubscriptionCreateOptions
                 {
                     Customer = customerId,
@@ -173,7 +172,6 @@ namespace Artportable.API.Services
                 {
                     "price_1RBcH3JgjKIYr4gq0b7risoR",
                     "price_1RBcIsJgjKIYr4gqtaqto3mo",
-                    "price_1R9pEbJgjKIYr4gq5v7UxrSM",
                 };
 
                 if (trialEligiblePriceIds.Contains(priceId))
