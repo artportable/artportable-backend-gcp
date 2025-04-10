@@ -190,16 +190,17 @@ namespace Artportable.API.Services
                 // Handle the 3D Secure Flow if needed
                 if (clientSecret != null && subscription.Status == "requires_action")
                 {
-                    // You would need to send the clientSecret back to the frontend for handling 3D Secure
-                    // This logic can be passed as part of the response from the controller method.
-                    // You can optionally throw an exception or handle this scenario directly here.
-                    throw new StripeException
+                    return new Subscription
                     {
-                        StripeError = new StripeError
+                        Id = subscription.Id,
+                        CustomerId = subscription.CustomerId,
+                        Status = subscription.Status,
+                        LatestInvoice = subscription.LatestInvoice,
+                        // you can add more if needed
+                        Metadata = new Dictionary<string, string>
                         {
-                            Message = "Requires additional authentication (3D Secure).",
-                            Code = "requires_action",
-                            Param = clientSecret, // You can pass the client secret as part of the exception if needed.
+                            { "requires_action", "true" },
+                            { "client_secret", clientSecret },
                         },
                     };
                 }
