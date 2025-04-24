@@ -346,5 +346,23 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost("{id}/boost")]
+        public ActionResult<ArtworkDTO> BoostArtwork(Guid id)
+        {
+            var boosted = _artworkService.Boost(id);
+            if (boosted == null)
+                return NotFound();
+            return Ok(boosted);
+        }
+
+        [HttpDelete("{id}/boost")]
+        public IActionResult RemoveBoost(Guid id)
+        {
+            var dto = _artworkService.Unboost(id);
+            if (dto == null)
+                return NotFound();
+            return Ok(dto);
+        }
     }
 }
