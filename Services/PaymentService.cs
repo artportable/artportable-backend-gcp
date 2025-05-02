@@ -507,7 +507,7 @@ namespace Artportable.API.Services
                 var paymentIntentService = new PaymentIntentService();
                 var paymentIntentOptions = new PaymentIntentCreateOptions
                 {
-                    Amount = 39500,
+                    Amount = 19500,
                     Currency = "sek",
                     Customer = customerId,
                     PaymentMethod = paymentMethodId,
