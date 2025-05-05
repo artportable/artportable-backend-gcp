@@ -1,17 +1,20 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+# Runtime base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 443
-EXPOSE 80
+EXPOSE 8080
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS publish
+
+# Build + publish
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY . .
 RUN dotnet publish -c Release -o /app/publish
 
+# Final image
 FROM base AS final
 WORKDIR /app
-ENV ENVIRONMENT=Development
-COPY --from=publish /app/publish .
-ENTRYPOINT dotnet Artportable.API.dll --environment=${ENVIRONMENT}
+ARG ENVIRONMENT=Development
+ENV ENVIRONMENT=$ENVIRONMENT
+ENV ASPNETCORE_ENVIRONMENT=$ENVIRONMENT
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "Artportable.API.dll"]
