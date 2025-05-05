@@ -37,8 +37,6 @@ steps:
         "ConnectionStrings__DefaultConnection=projects/$PROJECT_ID/secrets/DefaultConnection:latest",
         "--vpc-connector",
         "cloud-run-connector",
-        "--egress",
-        "all",
       ]
 options:
   logging: CLOUD_LOGGING_ONLY
