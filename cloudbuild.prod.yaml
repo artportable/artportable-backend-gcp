@@ -4,7 +4,7 @@ steps:
       [
         "build",
         "-t",
-        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend:$COMMIT_SHA",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-backend:$COMMIT_SHA",
         ".",
       ]
 
@@ -12,7 +12,7 @@ steps:
     args:
       [
         "push",
-        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend:$COMMIT_SHA",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-backend:$COMMIT_SHA",
       ]
 
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -23,7 +23,7 @@ steps:
         "deploy",
         "artportable-backend",
         "--image",
-        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend:$COMMIT_SHA",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-backend:$COMMIT_SHA",
         "--region",
         "europe-north1",
         "--platform",
@@ -44,4 +44,4 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 images:
-  - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend:$COMMIT_SHA"
+  - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-backend:$COMMIT_SHA"
