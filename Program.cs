@@ -72,7 +72,11 @@ namespace Artportable.API
                 )
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseStartup<Startup>()
+                        .UseUrls(
+                            $"http://0.0.0.0:{Environment.GetEnvironmentVariable("PORT") ?? "8080"}"
+                        );
                 });
     }
 }
