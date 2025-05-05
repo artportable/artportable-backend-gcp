@@ -40,6 +40,8 @@ steps:
         "--egress",
         "all",
       ]
+options:
+  logging: CLOUD_LOGGING_ONLY
 
 images:
   - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend-staging:$COMMIT_SHA"
