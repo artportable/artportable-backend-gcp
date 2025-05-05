@@ -1,0 +1,45 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend-staging:$COMMIT_SHA",
+        ".",
+      ]
+
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend-staging:$COMMIT_SHA",
+      ]
+
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "artportable-backend-staging",
+        "--image",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend-staging:$COMMIT_SHA",
+        "--region",
+        "europe-north1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+        "--memory",
+        "1Gi",
+        "--set-env-vars",
+        "ENVIRONMENT=Staging",
+        "--set-secrets",
+        "ConnectionStrings__DefaultConnection=projects/$PROJECT_ID/secrets/DefaultConnection:latest",
+        "--vpc-connector",
+        "cloud-run-connector",
+        "--egress",
+        "all",
+      ]
+
+images:
+  - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web-repo/artportable-backend-staging:$COMMIT_SHA"
