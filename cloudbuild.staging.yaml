@@ -3,6 +3,8 @@ steps:
     args:
       [
         "build",
+        "--build-arg",
+        "ENVIRONMENT=Development",
         "-t",
         "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-backend-staging:$COMMIT_SHA",
         ".",
@@ -29,5 +31,6 @@ steps:
         "--allow-unauthenticated",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Staging:latest",
       ]
+
 options:
   logging: CLOUD_LOGGING_ONLY
