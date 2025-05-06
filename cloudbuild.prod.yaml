@@ -28,8 +28,9 @@ steps:
         "managed",
         "--allow-unauthenticated",
         "--memory=1Gi",
+        "--vpc-connector=cloud-run-connector",
+        "--vpc-egress=all-traffic",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Prod:latest",
-    
       ]
 options:
   logging: CLOUD_LOGGING_ONLY
