@@ -62,8 +62,18 @@ namespace Artportable.API
                         var secret = Environment.GetEnvironmentVariable("AppSettings__Json");
                         if (!string.IsNullOrWhiteSpace(secret))
                         {
-                            using var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret));
-                            config.AddJsonStream(stream);
+                            try
+                            {
+                                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret));
+                                config.AddJsonStream(stream);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(
+                                    $"Failed to parse AppSettings__Json: {ex.Message}"
+                                );
+                                throw; // re-throw to still crash, but now it's logged
+                            }
                         }
                     }
                 )
