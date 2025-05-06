@@ -29,6 +29,7 @@ steps:
         "--platform",
         "managed",
         "--allow-unauthenticated",
+        "--memory=512Mi",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Staging:latest",
       ]
 
