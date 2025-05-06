@@ -59,14 +59,11 @@ namespace Artportable.API
                             );
 
                         // Inject secret JSON in Cloud Run (production)
-                        if (env.IsProduction())
+                        var secret = Environment.GetEnvironmentVariable("AppSettings__Json");
+                        if (!string.IsNullOrWhiteSpace(secret))
                         {
-                            var secret = Environment.GetEnvironmentVariable("AppSettings__Json");
-                            if (!string.IsNullOrWhiteSpace(secret))
-                            {
-                                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret));
-                                config.AddJsonStream(stream);
-                            }
+                            using var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret));
+                            config.AddJsonStream(stream);
                         }
                     }
                 )
