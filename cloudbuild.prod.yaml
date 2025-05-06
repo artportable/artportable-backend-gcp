@@ -27,7 +27,9 @@ steps:
         "--platform",
         "managed",
         "--allow-unauthenticated",
+        "--memory=1Gi",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Prod:latest",
+    
       ]
 options:
   logging: CLOUD_LOGGING_ONLY
