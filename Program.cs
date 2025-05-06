@@ -64,7 +64,7 @@ namespace Artportable.API
                         {
                             try
                             {
-                                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret));
+                                var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret));
                                 config.AddJsonStream(stream);
                             }
                             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace Artportable.API
                                 Console.WriteLine(
                                     $"Failed to parse AppSettings__Json: {ex.Message}"
                                 );
-                                throw; // re-throw to still crash, but now it's logged
+                                throw;
                             }
                         }
                     }
