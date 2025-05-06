@@ -31,6 +31,8 @@ steps:
         "--allow-unauthenticated",
         "--memory=512Mi",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Staging:latest",
+        "--vpc-connector=artportable-connector",
+        "--egress-settings=all-traffic",
       ]
 
 options:
