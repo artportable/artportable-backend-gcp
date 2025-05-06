@@ -28,7 +28,7 @@ steps:
         "managed",
         "--allow-unauthenticated",
         "--memory=1Gi",
-        "--vpc-connector=artportable-vpc-connector",
+        "--vpc-connector=artportable-vpc",
         "--vpc-egress=all-traffic",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Prod:latest",
       ]
