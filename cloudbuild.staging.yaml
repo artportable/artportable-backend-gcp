@@ -32,6 +32,7 @@ steps:
         "--memory=512Mi",
         "--vpc-connector=cloud-run-connector",
         "--vpc-egress=all-traffic",
+        "--add-cloudsql-instances=artportable-web:europe-north1:artportable-dev-sql",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Staging:latest",
       ]
 
