@@ -11,11 +11,9 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
     <RootNamespace>Artportable.API</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.8.4" />
