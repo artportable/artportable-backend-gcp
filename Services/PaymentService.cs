@@ -170,10 +170,10 @@ namespace Artportable.API.Services
 
                 var trialEligiblePriceIds = new HashSet<string>
                 {
+                    "price_1RP8aeJgjKIYr4gqgUvePPVX",
+                    "price_1RP8YuJgjKIYr4gql0II425Q",
                     "price_1ROCUBJgjKIYr4gqGqF0paoJ",
-                    "price_1ROCTkJgjKIYr4gqMUN7SNmf",
-                    "price_1ROCSeJgjKIYr4gqgSnL5XUc",
-                    "price_1ROCSHJgjKIYr4gq1be79IV8",
+                    "price_1RP8bhJgjKIYr4gqtDX5KC5m",
                 };
 
                 if (trialEligiblePriceIds.Contains(priceId))
