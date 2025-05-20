@@ -444,3 +444,7 @@ $RECYCLE.BIN/
 
 ## 
 .env*
+
+##
+
+appsettings.*.json
