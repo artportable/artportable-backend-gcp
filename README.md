@@ -13,7 +13,7 @@
 - Run `dotnet run` in the root of the repo
 - Go to [localhost:5001/swagger](https://localhost:5001/swagger) to see the Swagger
 
-## Development
+## Development ##
 
 The API is written in ASP.NET Core 3.1 (latest LTS). It's a RESTful API supporting the ArtPortable WebApp.
 
