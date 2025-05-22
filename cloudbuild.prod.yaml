@@ -27,7 +27,7 @@ steps:
         "--platform",
         "managed",
         "--allow-unauthenticated",
-        "--memory=1Gi",
+        "--memory=4Gi",
         "--vpc-connector=cloud-run-connector",
         "--vpc-egress=all-traffic",
         "--set-secrets=AppSettings__Json=AppSettings__Json_Prod:latest",
