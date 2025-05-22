@@ -1997,7 +1997,13 @@ namespace Artportable.API.Controllers
                 }
                 else
                 {
-                    artworks = _searchService.SearchArtworks(page, pageSize, myUsername, q, tags);
+                    artworks = _searchService.SearchArtworks(
+                        page, 
+                        pageSize, 
+                        myUsername, 
+                        q, 
+                        tags
+                    );
                 }
 
                 string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
@@ -2009,6 +2015,15 @@ namespace Artportable.API.Controllers
                         tag = tags,
                         myUsername = myUsername,
                         q = urlEncodedQuery,
+                        orientation = orientation,
+                        sizeFilter = sizeFilter,
+                        priceFilter = priceFilter,
+                        minHeight = minHeight,
+                        maxHeight = maxHeight,
+                        minWidth = minWidth,
+                        maxWidth = maxWidth,
+                        stateFilter = stateFilter,
+                        orderBy = orderBy
                     },
                     page,
                     pageSize,
@@ -2026,5 +2041,5 @@ namespace Artportable.API.Controllers
             }
         }
     }
-        #endregion
+    #endregion
 }
