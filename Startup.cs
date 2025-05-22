@@ -56,7 +56,6 @@ namespace Artportable.API
                 });
 
             services.AddHttpContextAccessor();
-            services.AddMemoryCache();
 
             // secOpts available for use in ConfigureServices
             var blobClientOptions = _configuration
