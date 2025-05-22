@@ -2,7 +2,7 @@
 
 ## Get started
 
-### Prerequisites
+### Prerequisites ###
 
 - dotnet core SDK 3.1
 
