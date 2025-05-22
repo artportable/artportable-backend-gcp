@@ -9,29 +9,19 @@ using Artportable.API.Enums;
 using Artportable.API.Interfaces.Services;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using NinjaNye.SearchExtensions;
 
 namespace Artportable.API.Services
 {
     public class SearchService : ISearchService
     {
-        private readonly APContext _context;
+        private APContext _context;
         private readonly IMapper _mapper;
-        private readonly IMemoryCache _cache;
-        private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(15);
 
-        public SearchService(APContext apContext, IMapper mapper, IMemoryCache cache)
+        public SearchService(APContext apContext, IMapper mapper)
         {
             _context = apContext ?? throw new ArgumentNullException(nameof(apContext));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        }
-
-        private string GenerateCacheKey(string q, int page, int pageSize, List<string> tags, ProductEnum minimumProduct)
-        {
-            var tagString = tags != null && tags.Any() ? string.Join(",", tags.OrderBy(t => t)) : "notags";
-            return $"search_artworks_{q}_{page}_{pageSize}_{tagString}_{minimumProduct}";
         }
 
         public List<ArtworkDTO> SearchArtworks(
@@ -43,109 +33,24 @@ namespace Artportable.API.Services
             ProductEnum minimumProduct = ProductEnum.Portfolio
         )
         {
-            var cacheKey = GenerateCacheKey(q, page, pageSize, tags, minimumProduct);
-            
-            // Try to get results from cache first
-            if (_cache.TryGetValue<List<ArtworkDTO>>(cacheKey, out var cachedResults))
-            {
-                // Update LikedByMe status for cached results since it depends on the current user
-                if (cachedResults != null)
-                {
-                    foreach (var artwork in cachedResults)
-                    {
-                        artwork.LikedByMe = !string.IsNullOrWhiteSpace(myUsername) && 
-                            _context.Likes.Any(l => l.Artwork.PublicId == artwork.Id && l.User.Username == myUsername);
-                    }
-                    return cachedResults;
-                }
-            }
-
             IQueryable<Artwork> query = _context.Artworks;
             if (!string.IsNullOrWhiteSpace(q))
             {
-                var terms = q.Split(' ').Select(t => t.Trim().ToLower()).Where(t => !string.IsNullOrEmpty(t)).ToArray();
-                Console.WriteLine($"Search terms: {string.Join(", ", terms)}");
-
-                // Get all tags that match any of the search terms
-                var matchingTags = _context.Tags
-                    .Where(t => terms.Any(term => 
-                        t.Title.ToLower().Contains(term) || // Tag contains search term
-                        term.Contains(t.Title.ToLower()) || // Search term contains tag
-                        t.Title.ToLower() == term || // Exact match
-                        t.Title.ToLower().Replace("-", "") == term || // Match without hyphens
-                        term.Replace("-", "") == t.Title.ToLower() || // Match without hyphens
-                        t.Title.ToLower() == "figurative" && (term == "figurativ" || term == "figurativt") || // Handle translations
-                        t.Title.ToLower() == "sculpture" && (term == "skulptur" || term == "veistos") // Handle translations
-                    ))
-                    .Select(t => t.Title)
-                    .ToList();
-
-                Console.WriteLine($"Matching tags: {string.Join(", ", matchingTags)}");
-
-                // First search in main fields with weights
-                var titleMatches = query
-                    .Search(a => a.Title)
-                    .Containing(terms)
-                    .ToRanked()
-                    .Select(r => new { Item = r.Item, Score = r.Hits * 10.0 })
-                    .ToList(); // Title matches have highest weight
-                Console.WriteLine($"Title matches count: {titleMatches.Count}");
-
-                var tagMatches = query
-                    .Where(a => a.Tags.Any(t => matchingTags.Contains(t.Title)))
-                    .Select(a => new { Item = a, Score = 8.0 })
-                    .ToList(); // Tag matches have second highest weight
-                Console.WriteLine($"Tag matches count: {tagMatches.Count}");
-
-                var descriptionMatches = query
-                    .Search(a => a.Description)
-                    .Containing(terms)
-                    .ToRanked()
-                    .Select(r => new { Item = r.Item, Score = r.Hits * 5.0 })
-                    .ToList(); // Description matches have medium weight
-                Console.WriteLine($"Description matches count: {descriptionMatches.Count}");
-
-                var userMatches = query
+                var terms = q.Split(' ');
+                query = query
                     .Search(
+                        a => a.Title,
                         a => a.User.Username,
                         a => a.User.UserProfile.Name,
                         a => a.User.UserProfile.Surname
                     )
                     .Containing(terms)
                     .ToRanked()
-                    .Select(r => new { Item = r.Item, Score = r.Hits * 3.0 })
-                    .ToList(); // User info matches have lowest weight
-                Console.WriteLine($"User matches count: {userMatches.Count}");
-
-                // Combine all matches and get the highest score for each artwork
-                var combinedResults = titleMatches
-                    .Union(tagMatches)
-                    .Union(descriptionMatches)
-                    .Union(userMatches)
-                    .GroupBy(r => r.Item.Id)
-                    .Select(g => new { 
-                        Item = g.First().Item, 
-                        Score = g.Max(r => r.Score) 
-                    })
-                    .OrderByDescending(r => r.Score)
-                    .ToList();
-                Console.WriteLine($"Combined results count: {combinedResults.Count}");
-
-                query = combinedResults.Select(r => r.Item).AsQueryable();
+                    .OrderByDescending(r => r.Hits)
+                    .Select(a => a.Item);
             }
-            
-            // Handle additional tag filtering
-            if (tags != null && tags.Any())
-            {
-                var normalizedTags = tags.Select(t => t.Trim().ToLower()).Where(t => !string.IsNullOrEmpty(t)).ToList();
-                query = query.Where(a => a.Tags.Any(t => normalizedTags.Any(tag => 
-                    t.Title.ToLower() == tag || // Exact match
-                    t.Title.ToLower().Contains(tag) || // Tag contains search term
-                    tag.Contains(t.Title.ToLower()) // Search term contains tag
-                )));
-            }
-
-            var results = query
+            return query
+                .Where(a => tags.Count != 0 ? a.Tags.Any(t => tags.Contains(t.Title)) : true)
                 .Where(a => a.User.Subscription.ProductId >= (int)minimumProduct)
                 .Skip(pageSize * (page - 1))
                 .Take(pageSize)
@@ -207,11 +112,6 @@ namespace Artportable.API.Services
                         : false,
                 })
                 .ToList();
-
-            // Cache the results
-            _cache.Set(cacheKey, results, CacheDuration);
-
-            return results;
         }
 
         public List<ArtistDTO> SearchArtists(
