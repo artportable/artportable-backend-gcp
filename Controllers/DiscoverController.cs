@@ -1960,17 +1960,23 @@ namespace Artportable.API.Controllers
             decimal? minWidth = null,
             decimal? maxWidth = null,
             string? stateFilter = null,
-            string? orderBy = null
+            string? orderBy = null,
+            int? seed = null
         )
         {
             if (page < 1 || pageSize < 1)
             {
-                return BadRequest();
+                return BadRequest("Page and pageSize must be greater than 0");
             }
 
             if (pageSize > 1000)
             {
                 pageSize = 1000;
+            }
+
+            if (!seed.HasValue && string.IsNullOrWhiteSpace(q))
+            {
+                seed = _random.Next();
             }
 
             try
@@ -2006,12 +2012,18 @@ namespace Artportable.API.Controllers
                     );
                 }
 
+                if (artworks == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Failed to retrieve artworks");
+                }
+
                 string urlEncodedQuery = System.Net.WebUtility.UrlEncode(q);
 
                 var links = Url.ToPageLinks(
                     ControllerContext.RouteData.ToRouteName(),
                     new
                     {
+                        seed = seed,
                         tag = tags,
                         myUsername = myUsername,
                         q = urlEncodedQuery,
@@ -2036,8 +2048,12 @@ namespace Artportable.API.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Something went wrong, {0}", e);
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                Console.WriteLine($"Error in GetFilteredArtworks: {e.Message}");
+                Console.WriteLine($"Stack trace: {e.StackTrace}");
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "An error occurred while processing your request"
+                );
             }
         }
     }
