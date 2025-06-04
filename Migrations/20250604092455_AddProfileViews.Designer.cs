@@ -4,14 +4,16 @@ using Artportable.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Artportable.API.Migrations
 {
     [DbContext(typeof(APContext))]
-    partial class APContextModelSnapshot : ModelSnapshot
+    [Migration("20250604092455_AddProfileViews")]
+    partial class AddProfileViews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -374,25 +376,11 @@ namespace Artportable.API.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("IpAddress")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("ip_address");
-
                     b.Property<string>("ProfileUsername")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("profile_username");
-
-                    b.Property<string>("SessionId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("session_id");
-
-                    b.Property<DateTime>("ViewDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("view_date");
 
                     b.Property<DateTime>("ViewedAt")
                         .HasColumnType("datetime2")
