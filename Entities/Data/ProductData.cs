@@ -12,7 +12,7 @@ namespace Artportable.API.SeedData
                     new Product { Id = 1, Name = "Bas" },
                     new Product { Id = 2, Name = "Portfolio" },
                     new Product { Id = 3, Name = "Portfolio Premium" },
-                    new Product { Id = 4, Name = "Portfolio Premium Plus" },
+                    new Product { Id = 4, Name = "Premium Plus" },
                     new Product { Id = 10, Name = "Admin" },
                     new Product { Id = 11, Name = "SuperAdmin" },
                 };
