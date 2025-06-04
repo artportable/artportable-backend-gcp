@@ -211,5 +211,100 @@ namespace Artportable.API.Controllers
                 );
             }
         }
+
+        /// <summary>
+        /// Gets comprehensive profile view analytics for admin dashboard
+        /// </summary>
+        [HttpGet("profileViewAnalytics")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns comprehensive profile view analytics")]
+        public ActionResult<AdminProfileViewAnalyticsDTO> GetProfileViewAnalytics()
+        {
+            try
+            {
+                var analytics = _adminService.GetProfileViewAnalytics();
+                return Ok(analytics);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching profile view analytics: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Gets top performing artists by profile views
+        /// </summary>
+        [HttpGet("topPerformingArtists")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns top performing artists")]
+        public ActionResult<List<ArtistPerformanceDTO>> GetTopPerformingArtists([FromQuery] int count = 20)
+        {
+            try
+            {
+                var topArtists = _adminService.GetTopPerformingArtists(count);
+                return Ok(topArtists);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching top performing artists: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Gets detailed performance analytics for a specific artist or all artists
+        /// </summary>
+        [HttpGet("artistPerformance")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns artist performance details")]
+        public ActionResult<List<ArtistPerformanceDTO>> GetArtistPerformanceDetails([FromQuery] string username = null)
+        {
+            try
+            {
+                var performance = _adminService.GetArtistPerformanceDetails(username);
+                return Ok(performance);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching artist performance: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Gets platform insights including discovery patterns, engagement metrics, and growth
+        /// </summary>
+        [HttpGet("platformInsights")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns platform insights")]
+        public ActionResult<PlatformInsightsDTO> GetPlatformInsights()
+        {
+            try
+            {
+                var insights = _adminService.GetPlatformInsights();
+                return Ok(insights);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching platform insights: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Gets rising star artists (high growth rate)
+        /// </summary>
+        [HttpGet("risingStars")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns rising star artists")]
+        public ActionResult<List<ArtistPerformanceDTO>> GetRisingStars([FromQuery] int count = 10)
+        {
+            try
+            {
+                var risingStars = _adminService.GetRisingStars(count);
+                return Ok(risingStars);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching rising stars: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }
