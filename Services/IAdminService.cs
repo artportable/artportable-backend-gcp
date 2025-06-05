@@ -25,5 +25,11 @@ namespace Artportable.API.Services
           PlatformInsightsDTO GetPlatformInsights();
           List<ArtistPerformanceDTO> GetRisingStars(int count = 10);
           
+          // Artwork Analytics
+          AdminArtworkAnalyticsDTO GetArtworkAnalytics();
+          List<TopArtworkDTO> GetTrendingArtworks(int count = 20);
+          
+          // Test method for debugging
+          string TestArtworkViewsAccess();
     }
 }
