@@ -37,6 +37,7 @@ namespace Artportable.API.Entities
         public virtual DbSet<Story> Stories { get; set; }
         public virtual DbSet<ProfileView> ProfileViews { get; set; }
         public virtual DbSet<ArtworkView> ArtworkViews { get; set; }
+        public virtual DbSet<PlatformVisit> PlatformVisits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

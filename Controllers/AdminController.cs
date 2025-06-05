@@ -306,5 +306,62 @@ namespace Artportable.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        /// <summary>
+        /// Gets comprehensive artwork analytics for admin dashboard
+        /// </summary>
+        [HttpGet("artworkAnalytics")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns comprehensive artwork analytics")]
+        public ActionResult<AdminArtworkAnalyticsDTO> GetArtworkAnalytics()
+        {
+            try
+            {
+                var analytics = _adminService.GetArtworkAnalytics();
+                return Ok(analytics);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching artwork analytics: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Gets trending artworks (high growth rate in views)
+        /// </summary>
+        [HttpGet("trendingArtworks")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns trending artworks")]
+        public ActionResult<List<TopArtworkDTO>> GetTrendingArtworks([FromQuery] int count = 20)
+        {
+            try
+            {
+                var trendingArtworks = _adminService.GetTrendingArtworks(count);
+                return Ok(trendingArtworks);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error fetching trending artworks: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Test endpoint to debug artwork views access
+        /// </summary>
+        [HttpGet("testArtworkViews")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns test data")]
+        public ActionResult<string> TestArtworkViews()
+        {
+            try
+            {
+                var result = _adminService.TestArtworkViewsAccess();
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in test artwork views: {0}", e);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
     }
 }
