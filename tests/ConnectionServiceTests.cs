@@ -108,7 +108,7 @@ namespace Artportable.ImageApi.Tests
                     Username = "knatte",
                     SocialId = new Guid("5185fe67-a161-468f-ae16-575972553509"),
                     Artworks = new List<Artwork>(),
-                    Subscription = new Subscription { Id = (int)ProductEnum.Bas },
+                    Subscription = new Subscription { Id = (int)ProductEnum.PortfolioMini },
                 },
                 new User
                 {

@@ -31,6 +31,7 @@ namespace Artportable.API.Services
                 { productCodes.Value.Portfolio, ProductEnum.Portfolio },
                 { productCodes.Value.PortfolioPremium, ProductEnum.PortfolioPremium },
                 { productCodes.Value.PortfolioPremiumPlus, ProductEnum.PortfolioPremiumPlus },
+                { productCodes.Value.PortfolioMini, ProductEnum.PortfolioMini },
             }.ToImmutableDictionary();
 
             _crmService = crmService;
@@ -87,10 +88,10 @@ namespace Artportable.API.Services
                         subscription.CurrentPeriodEnd
                     );
                     break;
-                // Downgrade to Bas
+                // Downgrade to PortfolioMini
                 case (Events.CustomerSubscriptionDeleted):
                     var deletedSubscription = e.Data.Object as Subscription;
-                    SetSubscription(deletedSubscription.CustomerId, ProductEnum.Bas, null);
+                    SetSubscription(deletedSubscription.CustomerId, ProductEnum.PortfolioMini, null);
                     break;
                 case (Events.PaymentIntentPaymentFailed):
                 case (Events.PaymentIntentRequiresAction):

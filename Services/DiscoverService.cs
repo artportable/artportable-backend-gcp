@@ -40,7 +40,7 @@ namespace Artportable.API.Services
             List<string> tags,
             string myUsername,
             int seed,
-            ProductEnum minimumProduct = ProductEnum.Bas
+            ProductEnum minimumProduct = ProductEnum.PortfolioMini
         )
         {
             var randomSeed = seed.ToString();
@@ -131,7 +131,7 @@ namespace Artportable.API.Services
             List<string> tags,
             string myUsername,
             int seed,
-            ProductEnum minimumProduct = ProductEnum.Bas
+            ProductEnum minimumProduct = ProductEnum.PortfolioMini
         )
         {
             return _context
@@ -210,7 +210,7 @@ namespace Artportable.API.Services
             List<string> tags,
             string myUsername,
             int seed,
-            ProductEnum minimumProduct = ProductEnum.Bas
+            ProductEnum minimumProduct = ProductEnum.PortfolioMini
         )
         {
             return _context
@@ -392,7 +392,7 @@ namespace Artportable.API.Services
                 .Where(u => u.Username != myUsername)
                 .Where(u => u.MonthlyUser)
                 .Where(u => u.Artworks.Count() > 0)
-                .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+                .Where(u => u.Subscription.ProductId != (int)ProductEnum.PortfolioMini)
                 .AsEnumerable()
                 .OrderBy(u => u.Random)
                 .Skip(pageSize * (page - 1))
