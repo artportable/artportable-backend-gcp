@@ -145,7 +145,7 @@ namespace Artportable.API.Services
                 .Include(u => u.Artworks)
                 .ThenInclude(a => a.Likes)
                 .Where(u => u.Artworks.Count() >= minArtworks)
-                .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+                .Where(u => u.Subscription.ProductId != (int)ProductEnum.PortfolioMini)
                 .Skip(pageSize * (page - 1))
                 .Take(pageSize)
                 .Select(u => new ArtistDTO
@@ -213,7 +213,7 @@ namespace Artportable.API.Services
                 .ThenInclude(a => a.Likes)
                 .Where(u => u.MonthlyUser)
                 .Where(u => u.Artworks.Count() > 0)
-                .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+                .Where(u => u.Subscription.ProductId != (int)ProductEnum.PortfolioMini)
                 .Skip(pageSize * (page - 1))
                 .Take(pageSize)
                 .Select(u => new ArtistDTO

@@ -199,7 +199,7 @@ namespace Artportable.API.Services
                 ChosenShadow = user.UserProfile.ChosenShadow,
 
                 Artworks =
-                    user.Subscription.ProductId != (int)ProductEnum.Bas
+                    user.Subscription.ProductId != (int)ProductEnum.PortfolioMini
                         ? _context.Artworks.Count(a => a.UserId == user.Id)
                         : _context.Artworks.Count(a => a.UserId == user.Id),
             };
@@ -477,7 +477,7 @@ namespace Artportable.API.Services
                     .Include(u => u.Artworks)
                     .Where(u => u.Username != username)
                     .Where(u => u.Artworks.Count() >= 5)
-                    .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+                    .Where(u => u.Subscription.ProductId != (int)ProductEnum.PortfolioMini)
                     .OrderBy(u => Guid.NewGuid())
                     .Take(3)
                     .Select(u => new SimilarProfileDTO
@@ -515,7 +515,7 @@ namespace Artportable.API.Services
                 .Include(u => u.Artworks)
                 .Where(u => similarUsers.Contains(u.Username))
                 .Where(u => u.Artworks.Count() >= 5)
-                .Where(u => u.Subscription.ProductId != (int)ProductEnum.Bas)
+                .Where(u => u.Subscription.ProductId != (int)ProductEnum.PortfolioMini)
                 .OrderBy(u => Guid.NewGuid())
                 .Take(3)
                 .Select(u => new SimilarProfileDTO
@@ -630,7 +630,7 @@ namespace Artportable.API.Services
         {
             var subscriptionDb = new Entities.Models.Subscription
             {
-                ProductId = (int)ProductEnum.Bas,
+                ProductId = (int)ProductEnum.PortfolioMini,
                 CustomerId = null,
                 ExpirationDate = null,
             };

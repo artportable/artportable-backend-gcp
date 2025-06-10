@@ -30,7 +30,7 @@ namespace Artportable.API.Services
                 .Users.Include(u => u.Subscription)
                 .SingleOrDefault(u => u.Username == owner)
                 ?.Subscription?.ProductId;
-            if (ownerProductId == (int)ProductEnum.Bas)
+            if (ownerProductId == (int)ProductEnum.PortfolioMini)
             {
                 return new List<StoryDTO>();
             }
