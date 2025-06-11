@@ -630,7 +630,7 @@ namespace Artportable.API.Services
         {
             var subscriptionDb = new Entities.Models.Subscription
             {
-                ProductId = (int)ProductEnum.PortfolioMini,
+                ProductId = (int)ProductEnum.Free,
                 CustomerId = null,
                 ExpirationDate = null,
             };
