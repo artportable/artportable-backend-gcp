@@ -175,7 +175,9 @@ namespace Artportable.API.Services
                     "price_1RZVOLJgjKIYr4gq93amGib7",
                     "price_1RZVPDJgjKIYr4gqqj8etjGd",
                     "price_1RYOxmJgjKIYr4gq9rEQ3v1e",
-                    "price_1RYP3BJgjKIYr4gq07cNnCb7"
+                    "price_1RYP3BJgjKIYr4gq07cNnCb7",
+                    "price_1RYRCcA3UXZjjLWx9eZ0PniP",
+               
                 
                 };
 
@@ -211,6 +213,78 @@ namespace Artportable.API.Services
                 }
 
                 // Return the subscription object (you can include status here as well)
+                // --- Artportable: Persist subscription details immediately so that the user tier is reflected without waiting for the Stripe webhook ---
+                try
+                {
+                    var subscriptionDb = _context.Subscriptions.SingleOrDefault(s => s.CustomerId == subscription.CustomerId);
+
+                    if (subscriptionDb != null)
+                    {
+                        // Determine which internal product this Stripe subscription corresponds to.
+                        string productKey = null;
+
+                        try
+                        {
+                            // Retrieve the price, expanding its product to access metadata.
+                            var priceService = new PriceService();
+                            var priceOptions = new PriceGetOptions { Expand = new List<string> { "product" } };
+                            var price = priceService.Get(priceId, priceOptions);
+
+                            if (
+                                price?.Product != null
+                                && price.Product.Metadata != null
+                                && price.Product.Metadata.ContainsKey("productkey")
+                            )
+                            {
+                                productKey = price.Product.Metadata["productkey"];
+                            }
+                        }
+                        catch (Exception) { /* ignore */ }
+
+                        // Fallback – try to grab metadata directly from subscription if expanded (rare).
+                        if (string.IsNullOrWhiteSpace(productKey))
+                        {
+                            productKey = subscription.Items?.Data?[0]?.Price?.Product?.Metadata?.ContainsKey("productkey") == true
+                                ? subscription.Items.Data[0].Price.Product.Metadata["productkey"]
+                                : null;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(productKey))
+                        {
+                            switch (productKey.Trim().ToLowerInvariant())
+                            {
+                                case "portfoliomini":
+                                case "mini":
+                                    subscriptionDb.ProductId = (int)ProductEnum.PortfolioMini;
+                                    break;
+                                case "portfolio":
+                                case "basic":
+                                case "bas":
+                                    subscriptionDb.ProductId = (int)ProductEnum.Portfolio;
+                                    break;
+                                case "portfoliopremium":
+                                case "premium":
+                                    subscriptionDb.ProductId = (int)ProductEnum.PortfolioPremium;
+                                    break;
+                                case "portfoliopremiumplus":
+                                case "premiumplus":
+                                    subscriptionDb.ProductId = (int)ProductEnum.PortfolioPremiumPlus;
+                                    break;
+                            }
+                        }
+
+                        // Always update expiration date if Stripe provided it
+                        subscriptionDb.ExpirationDate = subscription.CurrentPeriodEnd;
+
+                        _context.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // We swallow the exception to avoid breaking the main flow, but we log to console for diagnostics.
+                    Console.WriteLine($"[PaymentService] Failed to persist subscription data: {ex.Message}");
+                }
+
                 return subscription;
             }
             catch (StripeException ex)
