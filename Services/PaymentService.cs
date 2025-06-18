@@ -178,7 +178,11 @@ namespace Artportable.API.Services
                     "price_1RYP3BJgjKIYr4gq07cNnCb7",
                     "price_1RYRCcA3UXZjjLWx9eZ0PniP",
                     "price_1Raz0EJgjKIYr4gqkcn4xDC9",
-                    "price_1RayzgJgjKIYr4gqLnlgrQt3"
+                    "price_1RayzgJgjKIYr4gqLnlgrQt3",
+                    "price_1RbJN8JgjKIYr4gqKZE8Jq1E",
+                    "price_1RbJNsJgjKIYr4gqOSjR7sb2",
+                    "price_1RbJOzJgjKIYr4gqExMaRnbh",
+                    "price_1RbJPeJgjKIYr4gqr7M8kY0J"
                
                 
                 };
@@ -331,74 +335,102 @@ namespace Artportable.API.Services
             string promotionCodeId
         )
         {
+            var subscriptionService = new SubscriptionService();
+            Subscription newSubscription = null;
+            string oldSubscriptionId = null;
+
             try
             {
-                // Retrieve the customer's subscriptions
-                var subscriptionService = new SubscriptionService();
-                var subscriptions = subscriptionService.List(
-                    new SubscriptionListOptions { Customer = customerId, Status = "active" }
-                );
-
-                // Find the relevant subscription (for example, choose the latest active subscription)
-                var currentSubscription = subscriptions.FirstOrDefault();
-
-                // Cancel the existing subscription
-                if (currentSubscription != null)
-                {
-                    var cancelOptions = new SubscriptionCancelOptions { InvoiceNow = true };
-                    var canceledSubscription = subscriptionService.Cancel(
-                        currentSubscription.Id,
-                        cancelOptions
-                    );
-
-                    // Verify if the cancellation was successful
-                    if (canceledSubscription.Status == "canceled")
-                    {
-                        Console.WriteLine(
-                            $"Successfully canceled existing subscription: {canceledSubscription.Id}"
-                        );
-                    }
-                    else
-                    {
-                        Console.WriteLine(
-                            $"Failed to cancel existing subscription: {canceledSubscription.Id}"
-                        );
-                        // Log the error or handle it appropriately
-                        // You may want to throw an exception here if you want the error to propagate up the call stack
-                    }
-                }
-                else
-                {
-                    // Handle the case where no existing subscription is found
-                    Console.WriteLine("No active subscription found to upgrade.");
-                    // You may want to log this information or notify the user
-                }
-
-                // Create the new subscription
-                var newSubscription = CreateSubscription(
+                // First, create the new subscription
+                Console.WriteLine($"Creating new subscription for customer: {customerId}");
+                newSubscription = CreateSubscription(
                     paymentMethodId,
                     customerId,
                     newPriceId,
                     promotionCodeId
                 );
 
-                // Handle the case where new subscription creation fails
                 if (newSubscription == null)
                 {
-                    Console.WriteLine("Failed to create a new subscription.");
-                    // You may want to log this information or notify the user
-                    // Optionally, you could throw an exception here if you want the error to propagate up the call stack
+                    throw new InvalidOperationException("Failed to create new subscription");
+                }
+
+                Console.WriteLine($"New subscription created successfully: {newSubscription.Id}");
+
+                // Now find and cancel any existing active subscriptions
+                var subscriptions = subscriptionService.List(
+                    new SubscriptionListOptions { 
+                        Customer = customerId, 
+                        Status = "active",
+                        Limit = 10 // Get multiple in case there are several
+                    }
+                );
+
+                foreach (var existingSubscription in subscriptions.Data)
+                {
+                    // Don't cancel the subscription we just created
+                    if (existingSubscription.Id == newSubscription.Id)
+                        continue;
+
+                    try
+                    {
+                        oldSubscriptionId = existingSubscription.Id;
+                        Console.WriteLine($"Canceling old subscription: {oldSubscriptionId}");
+                        
+                        var canceledSubscription = subscriptionService.Cancel(
+                            oldSubscriptionId,
+                            new SubscriptionCancelOptions { InvoiceNow = false }
+                        );
+
+                        Console.WriteLine($"Successfully canceled old subscription: {oldSubscriptionId}, Status: {canceledSubscription.Status}");
+                    }
+                    catch (StripeException ex)
+                    {
+                        Console.WriteLine($"Warning: Failed to cancel old subscription {oldSubscriptionId}: {ex.StripeError?.Message ?? ex.Message}");
+                        // Don't throw here - the new subscription was created successfully
+                    }
                 }
 
                 return newSubscription;
             }
-            catch (StripeException e)
+            catch (StripeException ex)
             {
-                // Handle the cancellation error
-                Console.WriteLine($"Error upgrading subscription: {e.StripeError.Message}");
-                // You may want to log the error, notify the user, or take other appropriate actions
-
-                // Optionally, you could throw the exception again if you want the error to propagate up the call stack
+                Console.WriteLine($"Stripe error during upgrade: {ex.StripeError?.Message ?? ex.Message}");
+                
+                // If we created a new subscription but then failed, try to clean it up
+                if (newSubscription != null)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Attempting to cancel newly created subscription due to upgrade failure: {newSubscription.Id}");
+                        subscriptionService.Cancel(newSubscription.Id, null);
+                    }
+                    catch (Exception cleanupEx)
+                    {
+                        Console.WriteLine($"Failed to cleanup new subscription {newSubscription.Id}: {cleanupEx.Message}");
+                    }
+                }
+                
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General error during upgrade: {ex.Message}");
+                
+                // If we created a new subscription but then failed, try to clean it up
+                if (newSubscription != null)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Attempting to cancel newly created subscription due to upgrade failure: {newSubscription.Id}");
+                        subscriptionService.Cancel(newSubscription.Id, null);
+                    }
+                    catch (Exception cleanupEx)
+                    {
+                        Console.WriteLine($"Failed to cleanup new subscription {newSubscription.Id}: {cleanupEx.Message}");
+                    }
+                }
+                
                 throw;
             }
         }
